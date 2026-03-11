@@ -66,16 +66,15 @@ public class CmdStoryNext implements CommandExecutor {
 
         Bukkit.getScheduler().runTaskAsynchronously(plugin, () -> {
             try {
-                String path = "/story/advance/" + playerId;
-
                 Map<String, Object> bodyMap = new HashMap<>();
+                bodyMap.put("player_id", playerId);
                 bodyMap.put("world_state", new HashMap<>());
                 Map<String, Object> action = new HashMap<>();
                 action.put("say", "继续");
                 bodyMap.put("action", action);
 
                 String body = GSON.toJson(bodyMap);
-                String resp = backend.postJson(path, body);
+                String resp = backend.postJson("/story/advance", body);
 
                 Bukkit.getScheduler().runTask(plugin, () -> handleSuccess(playerUuid, resp));
 

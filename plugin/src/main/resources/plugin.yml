@@ -1,14 +1,14 @@
 name: DriftSystem
 main: com.driftmc.DriftPlugin
-version: "2.0"
+version: "0.1.0"
 api-version: 1.20
 author: Xinyue
 description: "DriftSystem · 心悦宇宙 · 完全自然语言驱动的AI冒险系统"
 
 commands:
   drift:
-    description: "DriftSystem 主命令 (status/sync/debug)"
-    usage: "/drift <status|sync|debug|report|where|goto|tutorial>"
+    description: "DriftSystem 主命令 (status/levels/load/spawn)"
+    usage: "/drift <status|levels|load|spawn|sync|debug|report|where|goto|tutorial>"
     aliases: [ds, heart]
 
   storycreative:
@@ -98,7 +98,7 @@ commands:
   spawnfragment:
     description: "根据当前运行态生成并投放场景片段"
     usage: "/spawnfragment"
-    permission: "drift.taskdebug"
+    permission: "drift.spawn"
 
   storyreset:
     description: "重置当前玩家剧情运行态（任务/事件/库存聚合）"
@@ -115,23 +115,16 @@ commands:
     usage: "/debuginventory"
     permission: "drift.taskdebug"
 
-  predictscene:
-    description: "预测当前行为语义将命中的场景（不生成世界）"
-    usage: "/predictscene"
-    permission: "drift.taskdebug"
-
-  explainscene:
-    description: "解释当前场景选择（semantic/resources/root/reason + influence/history）"
-    usage: "/explainscene"
-    aliases: [explain_scene]
-    permission: "drift.taskdebug"
-
   debugpatch:
     description: "显示最近 world patch 执行回传"
     usage: "/debugpatch"
     permission: "drift.taskdebug"
 
 permissions:
+  drift.spawn:
+    description: "允许玩家生成当前剧情场景片段"
+    default: true
+
   drift.taskdebug:
     description: "访问任务调试工具"
     default: op

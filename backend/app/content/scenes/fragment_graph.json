@@ -7,6 +7,15 @@
     ],
     "max_children": 3
   },
+  "moon_grove": {
+    "children": [
+      "mist_path",
+      "rain_pier",
+      "wind_chime",
+      "fire"
+    ],
+    "max_children": 3
+  },
   "village": {
     "children": [
       "market",

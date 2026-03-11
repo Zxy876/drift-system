@@ -1,0 +1,34 @@
+{
+  "id": "moon_grove",
+  "root": true,
+  "priority": 130,
+  "size": [8, 6],
+  "layout_anchor": "center",
+  "tags": ["moon", "night", "dream", "light", "forest"],
+  "requires": ["moon"],
+  "optional_resources": ["mist", "wind", "memory"],
+  "structures": [
+    {
+      "type": "moon_grove",
+      "template": "moon_grove_circle",
+      "offset": [0, 0, 0]
+    }
+  ],
+  "npcs": [
+    {
+      "id": "moon_keeper",
+      "role": "guide"
+    }
+  ],
+  "connections": ["mist_path", "rain_pier", "wind_chime", "fire"],
+  "events": [
+    {
+      "event_id": "spawn_moon_grove",
+      "type": "spawn_structure",
+      "anchor_ref": "player",
+      "data": {
+        "template": "moon_grove_circle"
+      }
+    }
+  ]
+}

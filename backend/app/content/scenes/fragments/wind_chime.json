@@ -1,0 +1,29 @@
+{
+  "id": "wind_chime",
+  "root": false,
+  "priority": 57,
+  "size": [4, 4],
+  "layout_anchor": "center",
+  "tags": ["wind", "light", "memory"],
+  "requires": ["wind"],
+  "optional_resources": ["moon", "dream"],
+  "structures": [
+    {
+      "type": "wind_chime",
+      "template": "wind_chime_ring",
+      "offset": [0, 0, 0]
+    }
+  ],
+  "npcs": [],
+  "connections": [],
+  "events": [
+    {
+      "event_id": "spawn_wind_chime",
+      "type": "spawn_structure",
+      "anchor_ref": "player",
+      "data": {
+        "template": "wind_chime_ring"
+      }
+    }
+  ]
+}

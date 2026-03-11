@@ -44,8 +44,7 @@ public class AdvanceCommand implements CommandExecutor {
             BackendClient backend,
             IntentRouter router,
             WorldPatchExecutor world,
-            PlayerSessionManager sessions
-    ) {
+            PlayerSessionManager sessions) {
         this.plugin = plugin;
         this.backend = backend;
         this.router = router;
@@ -76,16 +75,15 @@ public class AdvanceCommand implements CommandExecutor {
 
         Bukkit.getScheduler().runTaskAsynchronously(plugin, () -> {
             try {
-                String path = "/story/advance/" + playerId;
-
                 Map<String, Object> bodyMap = new HashMap<>();
+                bodyMap.put("player_id", playerId);
                 bodyMap.put("world_state", new HashMap<>());
                 Map<String, Object> action = new HashMap<>();
                 action.put("say", content);
                 bodyMap.put("action", action);
                 String body = GSON.toJson(bodyMap);
 
-                String resp = backend.postJson(path, body);
+                String resp = backend.postJson("/story/advance", body);
 
                 Bukkit.getScheduler().runTask(plugin, () -> handleSuccess(playerUuid, resp));
 
@@ -124,11 +122,13 @@ public class AdvanceCommand implements CommandExecutor {
             JsonObject root = JsonParser.parseString(resp).getAsJsonObject();
             if (!root.has("node") || !root.get("node").isJsonObject()) return null;
             JsonObject node = root.getAsJsonObject("node");
+                
             if (node.has("text") && node.get("text").isJsonPrimitive()) {
                 return node.get("text").getAsString();
             }
         } catch (Exception ignored) {}
         return null;
+        
     }
 
     @SuppressWarnings("unchecked")
@@ -137,6 +137,7 @@ public class AdvanceCommand implements CommandExecutor {
             JsonElement rootEl = JsonParser.parseString(resp);
             if (!rootEl.isJsonObject()) return;
 
+                
             JsonObject root = rootEl.getAsJsonObject();
             if (!root.has("world_patch") || !root.get("world_patch").isJsonObject()) {
                 return;
@@ -144,9 +145,11 @@ public class AdvanceCommand implements CommandExecutor {
 
             JsonObject patchObj = root.getAsJsonObject("world_patch");
             Type type = new TypeToken<Map<String, Object>>() {}.getType();
-            Map<String, Object> patch = GSON.fromJson(patchObj, type);
+            Map<String, Object> patch = GSON.fromJson(patchObj
+            , type);
             if (patch == null || patch.isEmpty()) return;
 
+                
             Object mcObj = patch.get("mc");
             Map<String, Object> mcPatch;
             if (mcObj instanceof Map<?, ?> m) {
@@ -159,4 +162,5 @@ public class AdvanceCommand implements CommandExecutor {
 
         } catch (Exception ignored) {}
     }
+        
 }

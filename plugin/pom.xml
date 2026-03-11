@@ -5,7 +5,7 @@
 
     <groupId>com.driftmc</groupId>
     <artifactId>mc_plugin</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <version>0.1.0</version>
     <packaging>jar</packaging>
 
     <name>DriftSystem-MC-Plugin</name>
@@ -79,6 +79,7 @@
     </dependencies>
 
     <build>
+        <finalName>drift-plugin</finalName>
         <plugins>
             <!-- 打包全部依赖到最终插件 Jar -->
             <plugin>

@@ -11,7 +11,9 @@ import com.driftmc.scene.RuleEventBridge;
 
 public class TalkCommand implements CommandExecutor {
 
+    @SuppressWarnings("unused")
     private final IntentRouter router;
+    @SuppressWarnings("unused")
     private final RuleEventBridge ruleEvents;
 
     public TalkCommand(IntentRouter router, RuleEventBridge ruleEvents) {
@@ -33,14 +35,9 @@ public class TalkCommand implements CommandExecutor {
         }
 
         String msg = String.join(" ", args);
-        p.sendMessage(ChatColor.GRAY + "你：" + msg);
-
-        if (ruleEvents != null) {
-            ruleEvents.emitTalk(p, msg);
-        }
-
-        // ⭐ 统一入口：自然语言 -> IntentRouter
-        router.handlePlayerSpeak(p, msg);
+        // 统一语言入口：复用玩家聊天事件链路
+        // PlayerChatListener -> IntentRouter2 -> IntentDispatcher2
+        p.chat(msg);
 
         return true;
     }

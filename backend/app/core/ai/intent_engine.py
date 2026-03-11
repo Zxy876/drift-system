@@ -87,6 +87,7 @@ INTENT_PROMPT = """
 支持的意图（type）：
 
 - CREATE_STORY
+- CREATE_POETRY_SCENE
 - SHOW_MINIMAP
 - SET_DAY / SET_NIGHT
 - SET_WEATHER
@@ -106,7 +107,8 @@ INTENT_PROMPT = """
 3. 若是 CREATE_STORY 且用户文本中出现主题词（例如“创建剧情 大风吹”），请在该 intent 中返回 "scene_theme" 字段。
 4. 若文本包含位置提示（例如“在森林里/在海边”），请同时返回 "scene_hint" 字段。
 5. 涉及关卡数字必须解析成 level_01 / level_05 形式。
-6. 若 AI 不确定，只输出一个 { "type": "SAY_ONLY" }。
+6. 当用户输入 `/poem ...` 或明确表达“把诗变成场景/诗歌场景生成”，返回 CREATE_POETRY_SCENE，并给出 `raw_text`（诗歌正文）。
+7. 若 AI 不确定，只输出一个 { "type": "SAY_ONLY" }。
 
 严格只允许 JSON。
 """
@@ -122,6 +124,62 @@ CREATE_STORY_KEYWORDS = (
     "创建关卡",
     "导入剧情",
 )
+
+POETRY_SCENE_KEYWORDS = (
+    "诗歌场景",
+    "诗意场景",
+    "把诗变成场景",
+    "将诗变成场景",
+    "根据诗歌生成场景",
+    "生成诗歌场景",
+)
+
+
+def _extract_poetry_text(text: str) -> Optional[str]:
+    raw = str(text or "").strip()
+    if not raw:
+        return None
+
+    lowered = raw.lower()
+    if lowered.startswith("/poem"):
+        candidate = raw[5:].strip()
+        return candidate or None
+
+    if lowered.startswith("poem "):
+        candidate = raw[5:].strip()
+        return candidate or None
+
+    patterns = [
+        r"^(?:请)?(?:把|将)?(?:这首)?诗(?:歌)?(?:变成|生成|做成)(?:一个)?场景\s*[:：,，\-— ]*(.+)$",
+        r"^(?:根据|按)?(?:这首)?诗(?:歌)?(?:生成|创建|做一个)?(?:场景)?\s*[:：,，\-— ]*(.+)$",
+    ]
+    for pattern in patterns:
+        match = re.match(pattern, raw)
+        if not match:
+            continue
+        candidate = str(match.group(1) or "").strip()
+        if candidate:
+            return candidate
+
+    return None
+
+
+def is_poetry_scene_request(text: str) -> bool:
+    raw = str(text or "").strip()
+    if not raw:
+        return False
+
+    lowered = raw.lower()
+    if lowered.startswith("/poem") or lowered.startswith("poem "):
+        return True
+
+    if any(keyword in raw for keyword in POETRY_SCENE_KEYWORDS):
+        return True
+
+    if "诗" in raw and "场景" in raw and any(token in raw for token in ("生成", "创建", "变成", "做成")):
+        return True
+
+    return False
 
 
 def _clean_scene_theme(raw_theme: Any) -> Optional[str]:
@@ -304,6 +362,16 @@ def fallback_intents(text: str) -> List[Dict[str, Any]]:
     raw = text.strip()
     intents = []
 
+    # CREATE_POETRY_SCENE
+    if is_poetry_scene_request(raw):
+        poem_text = _extract_poetry_text(raw) or raw
+        intents.append({
+            "type": "CREATE_POETRY_SCENE",
+            "raw_text": poem_text,
+            "poem": poem_text,
+        })
+        return intents
+
     # CREATE_STORY
     if is_create_story_request(raw):
         create_story_intent = {
@@ -425,6 +493,27 @@ def parse_intent(player_id, text, world_state, story_engine):
                     "tell": "✨ 新剧情已准备好，正在加载……"
                 }
             })
+
+    # CREATE_POETRY_SCENE 自动补全
+    for it in intents:
+        if it["type"] == "CREATE_POETRY_SCENE":
+            raw_text = str(it.get("raw_text") or it.get("poem") or text or "").strip()
+            poem_text = _extract_poetry_text(raw_text) or raw_text
+
+            if poem_text:
+                it["raw_text"] = poem_text
+                it["poem"] = poem_text
+
+            scene_theme = _clean_scene_theme(it.get("scene_theme") or it.get("theme"))
+            scene_hint = _clean_scene_hint(it.get("scene_hint") or it.get("hint"))
+
+            if scene_theme:
+                it["scene_theme"] = scene_theme
+            if scene_hint:
+                it["scene_hint"] = scene_hint
+
+            it.pop("theme", None)
+            it.pop("hint", None)
 
     return {
         "status": "ok",

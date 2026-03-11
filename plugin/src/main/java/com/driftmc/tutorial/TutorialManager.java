@@ -721,7 +721,10 @@ public class TutorialManager {
 
     String playerName = player.getName();
     plugin.getLogger().log(Level.INFO, "[TutorialExit] loading flagship_03 for {0}", playerName);
-    backend.postJsonAsync("/story/load/" + playerName + "/" + FIRST_PRIMARY_LEVEL_ID, "{}", new Callback() {
+    Map<String, Object> request = new HashMap<>();
+    request.put("player_id", playerName);
+    request.put("level_id", FIRST_PRIMARY_LEVEL_ID);
+    backend.postJsonAsync("/story/load", gson.toJson(request), new Callback() {
       @Override
       public void onFailure(Call call, IOException e) {
         plugin.getLogger()

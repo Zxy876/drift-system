@@ -21,14 +21,14 @@ public class BackendClient {
 
     public BackendClient(String baseUrl) {
         this(
-            baseUrl,
-            Duration.ofSeconds(150),
-            Duration.ofSeconds(10),
-            Duration.ofSeconds(120),
-            Duration.ofSeconds(120));
-        }
+                baseUrl,
+                Duration.ofSeconds(150),
+                Duration.ofSeconds(10),
+                Duration.ofSeconds(120),
+                Duration.ofSeconds(120));
+    }
 
-        public BackendClient(
+    public BackendClient(
             String baseUrl,
             Duration callTimeout,
             Duration connectTimeout,
@@ -43,10 +43,10 @@ public class BackendClient {
 
         // ---- 最终稳定配置（适配 DriftSystem） ----
         this.client = new OkHttpClient.Builder()
-            .callTimeout(callTimeout) // 整体最大时间
-            .connectTimeout(connectTimeout) // 连接服务器超时
-            .readTimeout(readTimeout) // 读取 JSON 超时
-            .writeTimeout(writeTimeout) // 发送 JSON 超时
+                .callTimeout(callTimeout) // 整体最大时间
+                .connectTimeout(connectTimeout) // 连接服务器超时
+                .readTimeout(readTimeout) // 读取 JSON 超时
+                .writeTimeout(writeTimeout) // 发送 JSON 超时
                 .retryOnConnectionFailure(true) // 避免偶发超时
                 .followRedirects(true)
                 .build();
@@ -66,8 +66,8 @@ public class BackendClient {
             throw new IllegalStateException("BackendClient.postJson cannot run on the primary server thread");
         }
         RequestBody body = RequestBody.create(
-            MediaType.parse("application/json; charset=utf-8"),
-            json);
+                MediaType.parse("application/json; charset=utf-8"),
+                json);
 
         Request request = new Request.Builder()
                 .url(buildUrl(path))
@@ -89,8 +89,8 @@ public class BackendClient {
     public void postJsonAsync(String path, String json, Callback callback) {
 
         RequestBody body = RequestBody.create(
-            MediaType.parse("application/json; charset=utf-8"),
-            json);
+                MediaType.parse("application/json; charset=utf-8"),
+                json);
 
         Request request = new Request.Builder()
                 .url(buildUrl(path))
@@ -128,5 +128,9 @@ public class BackendClient {
         Request request = builder.build();
 
         client.newCall(request).enqueue(callback);
+    }
+
+    public String getBaseUrl() {
+        return baseUrl;
     }
 }

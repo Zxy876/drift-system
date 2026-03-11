@@ -53,7 +53,8 @@ public class IntentDispatcher2 {
     }.getType();
     private static final String PRIMARY_LEVEL_ID = "flagship_03";
 
-    public IntentDispatcher2(Plugin plugin, BackendClient backend, WorldPatchExecutor world, PayloadExecutorV1 payloadExecutor) {
+    public IntentDispatcher2(Plugin plugin, BackendClient backend, WorldPatchExecutor world,
+            PayloadExecutorV1 payloadExecutor) {
         this.plugin = plugin;
         this.backend = backend;
         this.world = world;
@@ -124,6 +125,10 @@ public class IntentDispatcher2 {
                 createStory(p, intent);
                 break;
 
+            case CREATE_POETRY_SCENE:
+                createPoetryScene(p, intent);
+                break;
+
             case SAY_ONLY:
             case STORY_CONTINUE:
             case UNKNOWN:
@@ -144,8 +149,8 @@ public class IntentDispatcher2 {
 
         boolean createStoryUnlocked = ensureUnlocked(fp, TutorialState.CREATE_STORY, "请继续当前教学提示后再创造剧情。");
         plugin.getLogger().log(Level.INFO,
-            "[DEBUG] CREATE_STORY gate={0} player={1} rawText={2}",
-            new Object[]{createStoryUnlocked ? "UNLOCKED" : "LOCKED", fp.getName(), rawTextForLog});
+                "[DEBUG] CREATE_STORY gate={0} player={1} rawText={2}",
+                new Object[] { createStoryUnlocked ? "UNLOCKED" : "LOCKED", fp.getName(), rawTextForLog });
 
         if (!createStoryUnlocked) {
             return;
@@ -200,15 +205,15 @@ public class IntentDispatcher2 {
         }
 
         plugin.getLogger().log(Level.INFO,
-            "[DEBUG] CREATE_STORY scene_theme={0} scene_hint={1} player={2} pos=({3},{4},{5})",
-            new Object[]{
-                finalSceneTheme != null ? finalSceneTheme : "<none>",
-                finalSceneHint != null ? finalSceneHint : "<none>",
-                fp.getName(),
-                String.format(Locale.ROOT, "%.1f", playerLocation.getX()),
-                String.format(Locale.ROOT, "%.1f", playerLocation.getY()),
-                String.format(Locale.ROOT, "%.1f", playerLocation.getZ()),
-            });
+                "[DEBUG] CREATE_STORY scene_theme={0} scene_hint={1} player={2} pos=({3},{4},{5})",
+                new Object[] {
+                        finalSceneTheme != null ? finalSceneTheme : "<none>",
+                        finalSceneHint != null ? finalSceneHint : "<none>",
+                        fp.getName(),
+                        String.format(Locale.ROOT, "%.1f", playerLocation.getX()),
+                        String.format(Locale.ROOT, "%.1f", playerLocation.getY()),
+                        String.format(Locale.ROOT, "%.1f", playerLocation.getZ()),
+                });
 
         String jsonBody = GSON.toJson(body);
 
@@ -279,7 +284,8 @@ public class IntentDispatcher2 {
     // ============================================================
     // 为玩家加载关卡（应用场景和NPC）
     // ============================================================
-    private void loadLevelForPlayer(Player p, String levelId, IntentResponse2 intent, String sceneTheme, String sceneHint) {
+    private void loadLevelForPlayer(Player p, String levelId, IntentResponse2 intent, String sceneTheme,
+            String sceneHint) {
         final Player fp = p;
         final String canonicalLevel = LevelIds.canonicalizeOrDefault(
                 enforceTutorialExitRedirect(fp, levelId, intent != null ? intent.rawText : null));
@@ -288,7 +294,11 @@ public class IntentDispatcher2 {
 
         fp.sendMessage("§e🌍 正在加载关卡场景...");
 
-        backend.postJsonAsync("/story/load/" + fp.getName() + "/" + canonicalLevel, "{}", new Callback() {
+        Map<String, Object> loadBody = new HashMap<>();
+        loadBody.put("player_id", fp.getName());
+        loadBody.put("level_id", canonicalLevel);
+
+        backend.postJsonAsync("/story/load", GSON.toJson(loadBody), new Callback() {
 
             @Override
             public void onFailure(Call call, IOException e) {
@@ -340,15 +350,16 @@ public class IntentDispatcher2 {
                         if (intent != null && intent.worldPatch != null) {
                             plugin.getLogger().info("[加载关卡] 使用intent的worldPatch");
                             Map<String, Object> patch = GSON.fromJson(intent.worldPatch, MAP_TYPE);
+                                    
                             syncTutorialState(fp, patch);
                             world.execute(fp, patch);
                             fp.sendMessage("§a✨ 场景已加载！");
                             String sceneReadyMessage = buildSceneReadyMessage(normalizedSceneTheme, normalizedSceneHint);
                             if (sceneReadyMessage != null) {
                                 fp.sendMessage(sceneReadyMessage);
-                            }
+                            }  
                         } else {
-                            plugin.getLogger().log(Level.WARNING,
+                            plugin.getLogger().log(Level.WARNING, 
                                     "[CREATE_STORY] no patch applied level={0} player={1} scene_theme={2} scene_hint={3}",
                                     new Object[]{canonicalLevel, fp.getName(),
                                             normalizedSceneTheme != null ? normalizedSceneTheme : "<none>",
@@ -362,6 +373,97 @@ public class IntentDispatcher2 {
                         questLogHud.showQuestLog(fp, QuestLogHud.Trigger.LEVEL_ENTER);
                     }
                 });
+            }
+        });
+    }
+
+    // ============================================================
+    // 诗歌场景创建 (CREATE_POETRY_SCENE)
+    // ============================================================
+    private void createPoetryScene(Player p, IntentResponse2 intent) {
+        final Player fp = p;
+        String poem = intent.rawText != null ? intent.rawText.trim() : "";
+
+        if (poem.isEmpty()) {
+            fp.sendMessage("§c[Poetry] 诗歌内容不能为空。请重试。");
+            return;
+        }
+
+        final String sceneTheme = normalizeSceneTheme(intent.sceneTheme);
+        final String sceneHint = normalizeSceneHint(intent.sceneHint);
+
+        Map<String, Object> body = new HashMap<>();
+        body.put("player_id", fp.getName());
+        body.put("poem", poem);
+        body.put("anchor", "player");
+
+        Location playerLocation = fp.getLocation();
+        Map<String, Object> playerPosition = new HashMap<>();
+        playerPosition.put("world", playerLocation.getWorld() != null ? playerLocation.getWorld().getName() : "world");
+        playerPosition.put("x", playerLocation.getX());
+        playerPosition.put("y", playerLocation.getY());
+        playerPosition.put("z", playerLocation.getZ());
+        body.put("player_position", playerPosition);
+
+        if (sceneTheme != null) {
+            body.put("scene_theme", sceneTheme);
+        }
+        if (sceneHint != null) {
+            body.put("scene_hint", sceneHint);
+        }
+
+        fp.sendMessage("§e📝 正在把诗歌转成场景...");
+        backend.postJsonAsync("/poetry/generate", GSON.toJson(body), new Callback() {
+
+            @Override
+            public void onFailure(Call call, IOException e) {
+                Bukkit.getScheduler().runTask(plugin,
+                        () -> fp.sendMessage("§c[Poetry] 请求失败: " + e.getMessage()));
+            }
+
+            @Override
+            public void onResponse(Call call, Response resp) throws IOException {
+                try (resp) {
+                    String respStr = resp.body() != null ? resp.body().string() : "{}";
+                    final int statusCode = resp.code();
+                    final boolean success = resp.isSuccessful();
+                    final JsonObject root = parseJsonObjectSafely(respStr);
+
+                    final JsonObject patchObj = (root.has("world_patch") && root.get("world_patch").isJsonObject())
+                            ? root.getAsJsonObject("world_patch")
+                            : null;
+
+                    final String responseSceneTheme = (root.has("scene_theme") && root.get("scene_theme").isJsonPrimitive())
+                            ? root.get("scene_theme").getAsString()
+                            : sceneTheme;
+
+                    Bukkit.getScheduler().runTask(plugin, () -> {
+                        if (!success) {
+                            fp.sendMessage("§c[Poetry] 生成失败: " + formatHttpError(statusCode, root, respStr));
+                            return;
+                        }
+
+                        if (patchObj == null || patchObj.size() == 0) {
+                            fp.sendMessage("§c[Poetry] 生成完成，但 world_patch 为空。请重试。");
+                            return;
+                        }
+
+                        Map<String, Object> patch = GSON.fromJson(patchObj, MAP_TYPE);
+                        if (patch == null || patch.isEmpty()) {
+                            fp.sendMessage("§c[Poetry] world_patch 解析失败。请重试。");
+                            return;
+                        }
+
+                        syncTutorialState(fp, patch);
+                        world.execute(fp, patch);
+
+                        fp.sendMessage("§a✨ 诗歌场景已生成。");
+                        String sceneReadyMessage = buildSceneReadyMessage(responseSceneTheme, sceneHint);
+                        if (sceneReadyMessage != null) {
+                            fp.sendMessage(sceneReadyMessage);
+                        }
+                    });
+                }
             }
         });
     }
@@ -703,8 +805,12 @@ public class IntentDispatcher2 {
 
         Bukkit.getScheduler().runTask(plugin, () -> fp.teleport(new Location(fp.getWorld(), fx, fy, fz)));
 
-        backend.postJsonAsync("/story/load/" + fp.getName() + "/" + levelId,
-                "{}",
+        Map<String, Object> loadBody = new HashMap<>();
+        loadBody.put("player_id", fp.getName());
+        loadBody.put("level_id", levelId);
+
+        backend.postJsonAsync("/story/load",
+            GSON.toJson(loadBody),
                 new Callback() {
 
                     @Override
@@ -832,7 +938,7 @@ public class IntentDispatcher2 {
         if (rawHint == null) {
             return null;
         }
-        String hint = rawHint.trim();
+        String hint = rawHint .trim(); 
         if (hint.isEmpty()) {
             return null;
         }

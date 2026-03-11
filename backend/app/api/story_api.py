@@ -2,7 +2,7 @@
 
 from fastapi import APIRouter, HTTPException
 from fastapi.responses import JSONResponse
-from pydantic import BaseModel
+from pydantic import BaseModel, Field
 from typing import Dict, Any, Optional, List
 import os
 import json
@@ -21,8 +21,14 @@ from app.core.executor.plugin_payload_v1 import build_plugin_payload_v1
 from app.core.executor.plugin_payload_v2 import build_plugin_payload_v2_with_trace, PayloadV2BuildError
 from app.core.narrative.semantic_engine import infer_semantic_from_text
 from app.core.runtime.resource_canonical import normalize_inventory_resource_token
+from app.core.story.generation_policy_gate import (
+    build_generation_seed,
+    evaluate_generation_policy_gate,
+    generation_policy_observability_payload,
+    record_generation_policy_gate,
+)
 from app.core.trng.graph_state import GraphState, InternalState
-from app.core.trng.transaction import TransactionShell
+from app.core.trng.transaction import TransactionShell, build_tx_id
 
 router = APIRouter(prefix="/story")
 
@@ -43,6 +49,21 @@ class PayloadV2BuildErrorWrapper(Exception):
 
 class StoryTransactionError(Exception):
     pass
+
+
+def _normalize_tx_events(events: list[Dict[str, Any]] | None) -> list[dict]:
+    normalized_events: list[dict] = []
+    for index, event in enumerate(events or [], start=1):
+        if not isinstance(event, dict):
+            continue
+        normalized_events.append(
+            {
+                "event_id": str(event.get("event_id") or f"story_evt_{index}"),
+                "type": str(event.get("type") or "input"),
+                "text": str(event.get("text") or ""),
+            }
+        )
+    return normalized_events
 
 
 def _story_tx_events_for_inject(*, text: str, payload: dict, anchor: str | None) -> list[dict]:
@@ -165,6 +186,113 @@ def _safe_int(value: Any, default: int = 0) -> int:
         return int(float(value))
     except (TypeError, ValueError):
         return int(default)
+
+
+def _normalize_registry_resource_map(raw_resources: Optional[Dict[str, Any]]) -> Dict[str, int]:
+    if not isinstance(raw_resources, dict):
+        return {}
+
+    normalized: Dict[str, int] = {}
+    for key, value in raw_resources.items():
+        token = str(key or "").strip().lower()
+        if not token:
+            continue
+
+        amount = _safe_int(value, 0)
+        if amount <= 0:
+            continue
+
+        normalized[token] = int(normalized.get(token, 0)) + amount
+
+    return normalized
+
+
+def _primary_registry_resource_id(registry_resources: Dict[str, int]) -> str | None:
+    if not registry_resources:
+        return None
+
+    ranked = sorted(
+        registry_resources.items(),
+        key=lambda item: (-_safe_int(item[1], 0), str(item[0])),
+    )
+    if not ranked:
+        return None
+
+    resource_id = str(ranked[0][0] or "").strip().lower()
+    return resource_id or None
+
+
+def _apply_registry_resources_to_event_plan(
+    event_plan: Any,
+    registry_resources: Optional[Dict[str, Any]],
+) -> List[Dict[str, Any]]:
+    if not isinstance(event_plan, list):
+        return []
+
+    normalized_registry_resources = _normalize_registry_resource_map(registry_resources)
+    if not normalized_registry_resources:
+        return [dict(row) for row in event_plan if isinstance(row, dict)]
+
+    primary_resource = _primary_registry_resource_id(normalized_registry_resources)
+    if not primary_resource:
+        return [dict(row) for row in event_plan if isinstance(row, dict)]
+
+    updated_plan: List[Dict[str, Any]] = []
+    override_count = 0
+    default_anchor: Dict[str, Any] | None = None
+    default_offset: Dict[str, Any] | None = None
+
+    for raw_row in event_plan:
+        if not isinstance(raw_row, dict):
+            continue
+
+        row = dict(raw_row)
+        if default_anchor is None and isinstance(row.get("anchor"), dict):
+            default_anchor = dict(row.get("anchor") or {})
+        if default_offset is None and isinstance(row.get("offset"), dict):
+            default_offset = dict(row.get("offset") or {})
+
+        event_type = str(row.get("type") or "").strip().lower()
+        if event_type in {"spawn_block", "spawn_fire"}:
+            data_payload = dict(row.get("data") or {}) if isinstance(row.get("data"), dict) else {}
+            data_payload["block"] = primary_resource
+            data_payload["registry_asset_override"] = True
+            row["type"] = "spawn_block"
+            row["data"] = data_payload
+            override_count += 1
+
+        updated_plan.append(row)
+
+    if override_count > 0:
+        return updated_plan
+
+    if default_anchor is None:
+        default_anchor = {
+            "mode": "player",
+            "ref": "player",
+        }
+    if default_offset is None:
+        default_offset = {
+            "dx": 0.0,
+            "dy": 0.0,
+            "dz": 0.0,
+        }
+
+    updated_plan.append(
+        {
+            "event_id": "spawn_registry_resource",
+            "type": "spawn_block",
+            "text": "spawn_registry_resource",
+            "anchor": dict(default_anchor),
+            "offset": dict(default_offset),
+            "data": {
+                "block": primary_resource,
+                "registry_asset_override": True,
+            },
+        }
+    )
+
+    return updated_plan
 
 
 def _normalize_collect_resource_token(raw_value: Any) -> str:
@@ -854,6 +982,7 @@ def build_scene_events(
     patch_mode: str = "full",
     rule_events: Optional[List[Dict[str, Any]]] = None,
     selection_context: Optional[Dict[str, Any]] = None,
+    registry_resources: Optional[Dict[str, int]] = None,
 ) -> Dict[str, Any]:
     from app.core.narrative import SceneState, assemble_scene, evolve_scene_state
 
@@ -864,6 +993,16 @@ def build_scene_events(
         player_position=player_position,
     )
     inventory_state = _scene_inventory_state_from_event_log(str(player_id or "default"))
+    normalized_registry_resources = _normalize_registry_resource_map(registry_resources)
+
+    if normalized_registry_resources:
+        merged_resources = dict(inventory_state.get("resources") or {})
+        for key, amount in normalized_registry_resources.items():
+            token = str(key or "").strip().lower()
+            if not token:
+                continue
+            merged_resources[token] = int(merged_resources.get(token, 0)) + amount
+        inventory_state["resources"] = merged_resources
 
     assembled_scene = assemble_scene(
         inventory_state,
@@ -899,8 +1038,14 @@ def build_scene_events(
     evolved_scene_graph = dict(evolution_result.get("scene_graph") or base_scene_graph)
     evolved_layout = dict(evolution_result.get("layout") or base_layout)
     evolved_fragments = list(evolution_result.get("fragments") or base_fragments)
-    evolved_event_plan = list(evolution_result.get("event_plan") or assembled_scene.get("event_plan") or [])
-    incremental_event_plan = list(evolution_result.get("incremental_event_plan") or [])
+    evolved_event_plan = _apply_registry_resources_to_event_plan(
+        evolution_result.get("event_plan") or assembled_scene.get("event_plan") or [],
+        normalized_registry_resources,
+    )
+    incremental_event_plan = _apply_registry_resources_to_event_plan(
+        evolution_result.get("incremental_event_plan") or [],
+        normalized_registry_resources,
+    )
 
     scene_state_payload = evolved_scene_state.to_dict() if hasattr(evolved_scene_state, "to_dict") else base_scene_state.to_dict()
     scene_diff_payload = evolved_scene_diff.to_dict() if hasattr(evolved_scene_diff, "to_dict") else {
@@ -918,6 +1063,15 @@ def build_scene_events(
     normalized_patch_mode = str(patch_mode or "full").strip().lower()
     if normalized_patch_mode not in {"full", "incremental"}:
         normalized_patch_mode = "full"
+
+    scoring_debug = dict(assembled_scene.get("scoring_debug") or {})
+    if normalized_registry_resources:
+        reasons_payload = scoring_debug.get("reasons") if isinstance(scoring_debug.get("reasons"), dict) else {}
+        updated_reasons = dict(reasons_payload)
+        updated_reasons["registry_asset_override"] = True
+        updated_reasons["registry_override_resource"] = _primary_registry_resource_id(normalized_registry_resources)
+        scoring_debug["reasons"] = updated_reasons
+        scoring_debug["registry_resources"] = dict(normalized_registry_resources)
 
     return {
         "scene_theme": scene_theme,
@@ -940,7 +1094,7 @@ def build_scene_events(
         },
         "scene_graph": dict(evolved_scene_graph),
         "layout": dict(evolved_layout),
-        "scoring_debug": dict(assembled_scene.get("scoring_debug") or {}),
+        "scoring_debug": scoring_debug,
         "asset_registry_version": assembled_scene.get("asset_registry_version"),
         "selected_assets": list(selected_assets),
         "asset_sources": list(asset_sources),
@@ -953,6 +1107,7 @@ def build_scene_events(
         "event_plan": evolved_event_plan,
         "incremental_event_plan": incremental_event_plan,
         "selection_context": dict(selection_context or {}),
+        "registry_resources": dict(normalized_registry_resources),
     }
 
 
@@ -967,6 +1122,7 @@ def _resolve_inject_transaction_plan(
     player_position: Dict[str, Any] | None = None,
     level_id: str | None = None,
 ) -> Dict[str, Any]:
+    normalized_player = str(player_id or "").strip() or "default"
     selected_anchor = _resolve_scene_anchor(text=text, requested_anchor=requested_anchor)
     tx_events = _story_tx_events_for_inject(
         text=text,
@@ -977,26 +1133,98 @@ def _resolve_inject_transaction_plan(
     scene_output: Dict[str, Any] | None = None
     normalized_theme = _normalize_scene_theme(scene_theme)
     normalized_hint = _normalize_scene_hint(scene_hint)
+    generation_blocked = False
+    gate_observability: Dict[str, Any] = {}
+    gate_result_payload: Dict[str, Any] = {}
+    scene_generation_policy: Dict[str, Any] | None = None
+
+    level = _scene_level_for_player(normalized_player)
+    scene_generation = _scene_generation_for_level(level) or {}
+
     if normalized_theme:
-        scene_output = build_scene_events(
-            player_id=player_id,
-            scene_theme=normalized_theme,
-            scene_hint=normalized_hint,
-            text=text,
-            anchor=selected_anchor,
-            player_position=player_position,
-            level_id=level_id,
-            patch_mode="full",
+        normalized_tx_events = _normalize_tx_events(tx_events)
+        planned_tx_id = build_tx_id(
+            normalized_tx_events,
+            rule_version=str(payload.get("rule_version") or "rule_v2_2"),
+            engine_version=str(payload.get("engine_version") or "engine_v2_1"),
         )
-        scene_events = scene_output.get("event_plan") if isinstance(scene_output, dict) else None
-        if isinstance(scene_events, list) and scene_events:
-            tx_events = scene_events
-            selected_anchor = str(scene_output.get("selected_anchor") or selected_anchor)
+        gate_payload: Dict[str, Any] = {}
+        if isinstance(player_position, dict):
+            gate_payload["player_position"] = dict(player_position)
+
+        gate_seed = build_generation_seed(
+            player_id=normalized_player,
+            event_type="story_inject",
+            payload={
+                "scene_theme": normalized_theme,
+                "scene_hint": normalized_hint,
+                "text": text,
+                "anchor": selected_anchor,
+                "player_position": player_position if isinstance(player_position, dict) else {},
+            },
+            tx_id=planned_tx_id,
+        )
+
+        gate_result = evaluate_generation_policy_gate(
+            scene_generation,
+            event_type="story_inject",
+            payload=gate_payload,
+            deterministic_seed=gate_seed,
+        )
+
+        gate_result_payload = dict(gate_result)
+        gate_result_payload.pop("_recent_timestamps", None)
+        generation_blocked = not bool(gate_result.get("allowed"))
+
+        if generation_blocked:
+            scene_generation = record_generation_policy_gate(
+                scene_generation,
+                gate_result,
+                generated=False,
+            )
+            gate_observability = generation_policy_observability_payload(scene_generation)
+            scene_generation_policy = dict(scene_generation)
+        else:
+            scene_output = build_scene_events(
+                player_id=normalized_player,
+                scene_theme=normalized_theme,
+                scene_hint=normalized_hint,
+                text=text,
+                anchor=selected_anchor,
+                player_position=player_position,
+                level_id=level_id,
+                patch_mode="full",
+            )
+            scene_events = scene_output.get("event_plan") if isinstance(scene_output, dict) else None
+            if isinstance(scene_events, list) and scene_events:
+                tx_events = scene_events
+                selected_anchor = str(scene_output.get("selected_anchor") or selected_anchor)
+
+            scene_generated = bool(isinstance(scene_output, dict) and scene_output)
+            scene_generation = record_generation_policy_gate(
+                scene_generation,
+                gate_result,
+                generated=scene_generated,
+            )
+            gate_observability = generation_policy_observability_payload(scene_generation)
+            scene_generation_policy = dict(scene_generation)
+
+            if isinstance(scene_output, dict):
+                scene_output = dict(scene_output)
+                scene_output.update(gate_observability)
+                scene_output["generation_policy_gate_eval"] = gate_result_payload
+
+        if level is not None and isinstance(scene_generation_policy, dict):
+            _update_scene_generation_for_level(level, scene_generation_policy)
 
     return {
         "selected_anchor": selected_anchor,
         "tx_events": tx_events,
         "scene_output": scene_output,
+        "generation_blocked": generation_blocked,
+        "generation_policy": gate_observability,
+        "generation_policy_gate_eval": gate_result_payload,
+        "scene_generation_policy": scene_generation_policy,
     }
 
 
@@ -2819,30 +3047,33 @@ def run_transaction(
     *,
     rule_version: str | None = None,
     engine_version: str | None = None,
+    tx_id: str | None = None,
 ) -> dict:
-    normalized_events: list[dict] = []
-    for index, event in enumerate(events or [], start=1):
-        if not isinstance(event, dict):
-            continue
-        normalized_events.append(
-            {
-                "event_id": str(event.get("event_id") or f"story_evt_{index}"),
-                "type": str(event.get("type") or "input"),
-                "text": str(event.get("text") or ""),
-            }
-        )
+    normalized_events = _normalize_tx_events(events)
 
     if not normalized_events:
         raise StoryTransactionError("TX_EVENTS_EMPTY")
+
+    resolved_rule_version = str(rule_version or "rule_v2_2")
+    resolved_engine_version = str(engine_version or "engine_v2_1")
+    provided_tx_id = str(tx_id or "").strip()
+    use_deterministic_tx_id = _as_bool_env("DRIFT_TX_DETERMINISTIC_ID", default=True)
+    planned_tx_id = provided_tx_id
+    if not planned_tx_id and use_deterministic_tx_id:
+        planned_tx_id = build_tx_id(
+            normalized_events,
+            rule_version=resolved_rule_version,
+            engine_version=resolved_engine_version,
+        )
 
     try:
         shell = TransactionShell()
         committed_graph = GraphState()
         committed_state = InternalState()
-        tx = shell.begin_tx(committed_graph, committed_state)
+        tx = shell.begin_tx(committed_graph, committed_state, tx_id=planned_tx_id or None)
 
-        if isinstance(engine_version, str) and engine_version.strip():
-            tx.metadata["engine_version"] = engine_version.strip()
+        if resolved_engine_version:
+            tx.metadata["engine_version"] = resolved_engine_version
 
         for event in normalized_events:
             shell.apply_event(tx, event)
@@ -2851,7 +3082,7 @@ def run_transaction(
             tx,
             committed_graph=committed_graph,
             committed_state=committed_state,
-            rule_version=str(rule_version or "rule_v2_2"),
+            rule_version=resolved_rule_version,
         )
         return {
             "tx_id": receipt.get("tx_id"),
@@ -2924,6 +3155,17 @@ class InjectPayload(BaseModel):
     anchor: Optional[str] = None
     scene_theme: Optional[str] = None
     scene_hint: Optional[str] = None
+
+
+class StoryLoadPayload(BaseModel):
+    player_id: str
+    level_id: str
+
+
+class StoryAdvancePayload(BaseModel):
+    player_id: str
+    world_state: Dict[str, Any] = Field(default_factory=dict)
+    action: Dict[str, Any] = Field(default_factory=dict)
 
 
 SCENE_ANCHOR_ID_PATTERN = re.compile(r"^[a-z0-9][a-z0-9_-]{0,31}$")
@@ -3202,6 +3444,11 @@ def api_story_load(player_id: str, level_id: str):
         return {"status": "error", "msg": f"Level {level_id} not found"}
 
 
+@router.post("/load")
+def api_story_load_standard(payload: StoryLoadPayload):
+    return api_story_load(payload.player_id, payload.level_id)
+
+
 # ============================================================
 # ✔ 推进剧情
 # ============================================================
@@ -3217,6 +3464,17 @@ def api_story_advance(player_id: str, payload: Dict[str, Any]):
         "node": node,
         "world_patch": patch
     }
+
+
+@router.post("/advance")
+def api_story_advance_standard(payload: StoryAdvancePayload):
+    return api_story_advance(
+        payload.player_id,
+        {
+            "world_state": payload.world_state or {},
+            "action": payload.action or {},
+        },
+    )
 
 
 # ============================================================
@@ -3297,11 +3555,15 @@ def api_story_inject(payload: InjectPayload):
             level_doc["meta"]["trng_transaction"] = _transaction_meta_payload(transaction_result)
             if tx_plan.get("scene_output"):
                 level_doc["meta"]["scene_generation"] = _scene_meta_payload(tx_plan["scene_output"])
+                if isinstance(tx_plan.get("scene_generation_policy"), dict):
+                    level_doc["meta"]["scene_generation"].update(dict(tx_plan.get("scene_generation_policy") or {}))
                 _persist_scene_state_for_player(
                     player_id=player_id,
                     level_id=level_id,
                     scene_output=tx_plan.get("scene_output"),
                 )
+            elif isinstance(tx_plan.get("scene_generation_policy"), dict):
+                level_doc["meta"]["scene_generation"] = dict(tx_plan.get("scene_generation_policy") or {})
 
             with open(file_path, "w", encoding="utf-8") as f:
                 json.dump(level_doc, f, ensure_ascii=False, indent=2)
@@ -3319,6 +3581,11 @@ def api_story_inject(payload: InjectPayload):
                 result["scene"] = tx_plan["scene_output"]
             if scene_patch:
                 result["scene_world_patch"] = scene_patch
+            if isinstance(tx_plan.get("generation_policy"), dict) and tx_plan.get("generation_policy"):
+                result.update(dict(tx_plan.get("generation_policy") or {}))
+            if tx_plan.get("generation_blocked"):
+                result["generation_blocked"] = True
+                result["generation_policy_gate_eval"] = dict(tx_plan.get("generation_policy_gate_eval") or {})
             if _as_bool_env("DRIFT_DEBUG_TRACE", default=False):
                 result["transaction"] = transaction_result
             return result
@@ -3374,11 +3641,15 @@ def api_story_inject(payload: InjectPayload):
             level_doc["meta"]["trng_transaction"] = _transaction_meta_payload(transaction_result)
             if tx_plan.get("scene_output"):
                 level_doc["meta"]["scene_generation"] = _scene_meta_payload(tx_plan["scene_output"])
+                if isinstance(tx_plan.get("scene_generation_policy"), dict):
+                    level_doc["meta"]["scene_generation"].update(dict(tx_plan.get("scene_generation_policy") or {}))
                 _persist_scene_state_for_player(
                     player_id=player_id,
                     level_id=level_id,
                     scene_output=tx_plan.get("scene_output"),
                 )
+            elif isinstance(tx_plan.get("scene_generation_policy"), dict):
+                level_doc["meta"]["scene_generation"] = dict(tx_plan.get("scene_generation_policy") or {})
 
             with open(file_path, "w", encoding="utf-8") as f:
                 json.dump(level_doc, f, ensure_ascii=False, indent=2)
@@ -3396,6 +3667,11 @@ def api_story_inject(payload: InjectPayload):
                 result["scene"] = tx_plan["scene_output"]
             if scene_patch:
                 result["scene_world_patch"] = scene_patch
+            if isinstance(tx_plan.get("generation_policy"), dict) and tx_plan.get("generation_policy"):
+                result.update(dict(tx_plan.get("generation_policy") or {}))
+            if tx_plan.get("generation_blocked"):
+                result["generation_blocked"] = True
+                result["generation_policy_gate_eval"] = dict(tx_plan.get("generation_policy_gate_eval") or {})
             if _as_bool_env("DRIFT_DEBUG_TRACE", default=False):
                 result["transaction"] = transaction_result
             return result
@@ -3553,11 +3829,15 @@ def api_story_inject(payload: InjectPayload):
     data["meta"]["trng_transaction"] = _transaction_meta_payload(transaction_result)
     if tx_plan.get("scene_output"):
         data["meta"]["scene_generation"] = _scene_meta_payload(tx_plan["scene_output"])
+        if isinstance(tx_plan.get("scene_generation_policy"), dict):
+            data["meta"]["scene_generation"].update(dict(tx_plan.get("scene_generation_policy") or {}))
         _persist_scene_state_for_player(
             player_id=player_id,
             level_id=level_id,
             scene_output=tx_plan.get("scene_output"),
         )
+    elif isinstance(tx_plan.get("scene_generation_policy"), dict):
+        data["meta"]["scene_generation"] = dict(tx_plan.get("scene_generation_policy") or {})
 
     with open(file_path, "w", encoding="utf-8") as f:
         json.dump(data, f, ensure_ascii=False, indent=2)
@@ -3573,6 +3853,11 @@ def api_story_inject(payload: InjectPayload):
         result["scene"] = tx_plan["scene_output"]
     if scene_patch:
         result["scene_world_patch"] = scene_patch
+    if isinstance(tx_plan.get("generation_policy"), dict) and tx_plan.get("generation_policy"):
+        result.update(dict(tx_plan.get("generation_policy") or {}))
+    if tx_plan.get("generation_blocked"):
+        result["generation_blocked"] = True
+        result["generation_policy_gate_eval"] = dict(tx_plan.get("generation_policy_gate_eval") or {})
     if _as_bool_env("DRIFT_DEBUG_TRACE", default=False):
         result["transaction"] = transaction_result
     return result

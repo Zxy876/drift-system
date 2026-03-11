@@ -16,6 +16,7 @@ public enum IntentType2 {
     GOTO_NEXT_LEVEL,
 
     CREATE_STORY, // 新增：创建剧情
+    CREATE_POETRY_SCENE,
 
     SAY_ONLY,
     UNKNOWN;
@@ -38,6 +39,7 @@ public enum IntentType2 {
             case "GOTO_NEXT_LEVEL" -> GOTO_NEXT_LEVEL;
 
             case "CREATE_STORY" -> CREATE_STORY;
+            case "CREATE_POETRY_SCENE" -> CREATE_POETRY_SCENE;
 
             case "SAY_ONLY" -> SAY_ONLY;
             default -> UNKNOWN;

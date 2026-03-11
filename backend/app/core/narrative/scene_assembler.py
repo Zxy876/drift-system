@@ -3,9 +3,9 @@ from __future__ import annotations
 import json
 import logging
 import os
-from typing import Any, Dict
+from typing import Any, Dict, List, Optional, Set, Tuple
 
-from .scene_library import build_event_plan, select_fragments_with_debug
+from .scene_library import build_event_plan, get_fragment_map, select_fragments_with_debug
 
 
 TEMPLATE_VERSION = "scene_template_v1"
@@ -111,6 +111,100 @@ def _normalize_scene_hint(scene_hint: str | None) -> str | None:
     return normalized or None
 
 
+def _normalize_fragment_id(raw_value: Any) -> str:
+    token = str(raw_value or "").strip().lower()
+    if not token:
+        return ""
+    return token.replace("-", "_").replace(" ", "_").strip("_")
+
+
+def _fallback_fragment_candidates() -> List[str]:
+    raw_value = os.environ.get("DRIFT_SCENE_FALLBACK_FRAGMENTS")
+    if raw_value is None:
+        raw_value = "fire,camp,shrine"
+
+    candidates: List[str] = []
+    seen: Set[str] = set()
+    for token in str(raw_value or "").split(","):
+        fragment_id = _normalize_fragment_id(token)
+        if not fragment_id or fragment_id in seen:
+            continue
+        seen.add(fragment_id)
+        candidates.append(fragment_id)
+    return candidates
+
+
+def _pick_fallback_fragment(*, exclude: Optional[Set[str]] = None) -> Optional[str]:
+    fragment_map = get_fragment_map()
+    if not isinstance(fragment_map, dict) or not fragment_map:
+        return None
+
+    excluded = exclude or set()
+    for candidate in _fallback_fragment_candidates():
+        if candidate in fragment_map and candidate not in excluded:
+            return candidate
+
+    for fragment_id in sorted(fragment_map.keys()):
+        normalized = _normalize_fragment_id(fragment_id)
+        if normalized and normalized not in excluded:
+            return normalized
+
+    return None
+
+
+def _fallback_scene_graph_layout(fragments: List[str]) -> Tuple[Dict[str, Any], Dict[str, Any]]:
+    root = fragments[0]
+    positions: Dict[str, Dict[str, int]] = {}
+    for index, fragment_id in enumerate(fragments):
+        positions[fragment_id] = {
+            "x": index * 2,
+            "z": 0,
+        }
+
+    scene_graph = {
+        "root": root,
+        "nodes": list(fragments),
+        "edges": [],
+    }
+    layout = {
+        "strategy": "fallback_linear_v1",
+        "root": root,
+        "positions": positions,
+    }
+    return scene_graph, layout
+
+
+def _force_scene_fallback(
+    *,
+    fragments: List[str],
+    scene_graph: Dict[str, Any],
+    layout: Dict[str, Any],
+    scoring_debug: Dict[str, Any],
+    fallback_reason: str,
+    exclude_existing: bool,
+) -> Tuple[List[str], Dict[str, Any], Dict[str, Any], Dict[str, Any], bool]:
+    excluded = {_normalize_fragment_id(row) for row in fragments} if exclude_existing else set()
+    fallback_fragment = _pick_fallback_fragment(exclude=excluded)
+    if not fallback_fragment:
+        return fragments, scene_graph, layout, scoring_debug, False
+
+    fallback_fragments = [fallback_fragment]
+    fallback_scene_graph, fallback_layout = _fallback_scene_graph_layout(fallback_fragments)
+
+    updated_debug = dict(scoring_debug or {})
+    reasons = updated_debug.get("reasons") if isinstance(updated_debug.get("reasons"), dict) else {}
+    reasons_payload = dict(reasons)
+    reasons_payload["fallback_fragment_forced"] = True
+    reasons_payload["fallback_fragment_reason"] = fallback_reason
+    reasons_payload["fallback_fragment_id"] = fallback_fragment
+
+    updated_debug["reasons"] = reasons_payload
+    updated_debug["selected_root"] = fallback_fragment
+    updated_debug["fallback_forced"] = True
+
+    return fallback_fragments, fallback_scene_graph, fallback_layout, updated_debug, True
+
+
 def assemble_scene(
     inventory_state: Dict[str, Any] | None,
     story_theme: str | None,
@@ -132,6 +226,17 @@ def assemble_scene(
     scene_graph = dict(selection.get("scene_graph") or {})
     layout = dict(selection.get("layout") or {})
     scoring_debug = dict(selection.get("debug") or {})
+
+    if not fragments:
+        fragments, scene_graph, layout, scoring_debug, _ = _force_scene_fallback(
+            fragments=fragments,
+            scene_graph=scene_graph,
+            layout=layout,
+            scoring_debug=scoring_debug,
+            fallback_reason="no_fragment_selected",
+            exclude_existing=False,
+        )
+
     selected_assets = scoring_debug.get("selected_assets") if isinstance(scoring_debug.get("selected_assets"), list) else []
     asset_sources = scoring_debug.get("asset_sources") if isinstance(scoring_debug.get("asset_sources"), list) else []
     asset_selection = scoring_debug.get("asset_selection") if isinstance(scoring_debug.get("asset_selection"), dict) else {}
@@ -143,6 +248,23 @@ def assemble_scene(
         scene_hint=normalized_hint,
         layout=layout,
     )
+
+    if not event_plan:
+        fragments, scene_graph, layout, scoring_debug, forced = _force_scene_fallback(
+            fragments=fragments,
+            scene_graph=scene_graph,
+            layout=layout,
+            scoring_debug=scoring_debug,
+            fallback_reason="empty_event_plan",
+            exclude_existing=True,
+        )
+        if forced:
+            event_plan = build_event_plan(
+                fragments,
+                anchor_position=anchor_position,
+                scene_hint=normalized_hint,
+                layout=layout,
+            )
 
     _emit_scene_debug_log(
         inventory_state=normalized_inventory,

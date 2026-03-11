@@ -1,6 +1,7 @@
 package com.driftmc.commands;
 
 import java.io.IOException;
+import java.util.Locale;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
@@ -15,10 +16,12 @@ import com.driftmc.tutorial.TutorialManager;
 import com.driftmc.world.WorldPatchExecutor;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
+import com.google.gson.JsonSyntaxException;
 
 import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.Response;
+import okhttp3.ResponseBody;
 
 /**
  * DriftCommand - 主命令处理器
@@ -26,7 +29,10 @@ import okhttp3.Response;
  * 提供手动命令接口（虽然主要是自然语言驱动）
  * 
  * 命令:
- * /drift status - 查看当前状态
+ * /drift status - 查看云端连接状态
+ * /drift levels - 查看可用关卡
+ * /drift load <level_id> - 加载关卡
+ * /drift spawn - 生成场景片段
  * /drift sync - 同步剧情状态
  * /drift debug - 调试信息
  * /drift report - 查看最近执行回传
@@ -75,6 +81,22 @@ public class DriftCommand implements CommandExecutor {
         showStatus(player);
         break;
 
+      case "levels":
+        dispatchAsPlayer(player, "levels");
+        break;
+
+      case "load":
+        if (args.length < 2 || args[1].isBlank()) {
+          player.sendMessage("§c用法: /drift load <level_id>");
+          break;
+        }
+        dispatchAsPlayer(player, "level " + args[1]);
+        break;
+
+      case "spawn":
+        dispatchAsPlayer(player, "spawnfragment");
+        break;
+
       case "sync":
         syncState(player);
         break;
@@ -111,7 +133,10 @@ public class DriftCommand implements CommandExecutor {
     player.sendMessage("§7直接在聊天中说话即可与系统交互！");
     player.sendMessage("");
     player.sendMessage("§e手动命令:");
-    player.sendMessage("  §f/drift status §7- 查看当前状态");
+    player.sendMessage("  §f/drift status §7- 查看云端状态");
+    player.sendMessage("  §f/drift levels §7- 查看可用关卡");
+    player.sendMessage("  §f/drift load <id> §7- 加载指定关卡");
+    player.sendMessage("  §f/drift spawn §7- 生成场景片段");
     player.sendMessage("  §f/drift sync §7- 同步剧情状态");
     player.sendMessage("  §f/drift debug §7- 显示调试信息");
     player.sendMessage("  §f/drift report §7- 显示最近执行回传");
@@ -155,18 +180,48 @@ public class DriftCommand implements CommandExecutor {
   }
 
   private void showStatus(Player player) {
-    String level = storyManager.getCurrentLevel(player);
-    StoryManager.StoryState state = storyManager.getState(player);
+    String payloadVersion = readEnv("PAYLOAD_VERSION", "v2");
+    String backendUrl = backend.getBaseUrl();
 
-    player.sendMessage("§b========== 你的状态 ==========");
-    player.sendMessage("§7当前关卡: §a" + level);
-    player.sendMessage("§7节点索引: §e" + state.getNodeIndex());
-    player.sendMessage("§7可推进: §" +
-        (state.canAdvance() ? "a是" : "c否"));
-    if (state.getLastChoice() != null) {
-      player.sendMessage("§7上次选择: §d" + state.getLastChoice());
-    }
-    player.sendMessage("§b============================");
+    player.sendMessage("§b========== Drift System Status ==========");
+    player.sendMessage("§7Backend: §eChecking...");
+    player.sendMessage("§7URL: §f" + backendUrl);
+    player.sendMessage("§7Story Engine: §aActive");
+    player.sendMessage("§7Payload: §a" + payloadVersion);
+
+    backend.getAsync("/health", new Callback() {
+      @Override
+      public void onFailure(Call call, IOException e) {
+        Bukkit.getScheduler().runTask(worldPatcher.getPlugin(),
+            () -> player.sendMessage("§7Backend: §cDisconnected"));
+      }
+
+      @Override
+      public void onResponse(Call call, Response response) throws IOException {
+        int statusCode = response.code();
+        String body = "";
+        try (response) {
+          ResponseBody responseBody = response.body();
+          if (responseBody != null) {
+            body = responseBody.string();
+          }
+        }
+
+        boolean connected = statusCode >= 200 && statusCode < 300 && isHealthOk(body);
+        Bukkit.getScheduler().runTask(worldPatcher.getPlugin(), () -> {
+          if (connected) {
+            player.sendMessage("§7Backend: §aConnected");
+          } else {
+            player.sendMessage("§7Backend: §cDisconnected");
+          }
+        });
+      }
+    });
+
+    StoryManager.StoryState state = storyManager.getState(player);
+    player.sendMessage("§7Current Level: §f" + storyManager.getCurrentLevel(player));
+    player.sendMessage("§7Node Index: §f" + state.getNodeIndex());
+    player.sendMessage("§b========================================");
   }
 
   private void syncState(Player player) {
@@ -204,7 +259,8 @@ public class DriftCommand implements CommandExecutor {
         int code = response.code();
         String body;
         try (response) {
-          body = response.body() != null ? response.body().string() : "{}";
+          ResponseBody responseBody = response.body();
+          body = responseBody != null ? responseBody.string() : "{}";
         }
 
         Bukkit.getScheduler().runTask(worldPatcher.getPlugin(), () -> renderApplyReport(player, code, body));
@@ -243,9 +299,9 @@ public class DriftCommand implements CommandExecutor {
     player.sendMessage("§7last_failed: §f" + getString(report, "last_failed", "0"));
     player.sendMessage("§7last_duration_ms: §f" + getString(report, "last_duration_ms", "0"));
     player.sendMessage("§7fallback: §f"
-      + getString(root, "last_fallback_flag", "false")
-      + " §7reason: §f"
-      + getString(root, "last_fallback_reason", "none"));
+        + getString(root, "last_fallback_flag", "false")
+        + " §7reason: §f"
+        + getString(root, "last_fallback_reason", "none"));
     player.sendMessage("§b==============================");
   }
 
@@ -298,6 +354,35 @@ public class DriftCommand implements CommandExecutor {
       return Integer.parseInt(raw.trim());
     } catch (Exception ex) {
       return defaultValue;
+    }
+  }
+
+  private String readEnv(String key, String defaultValue) {
+    String raw = System.getenv(key);
+    if (raw == null || raw.isBlank()) {
+      return defaultValue;
+    }
+    return raw.trim();
+  }
+
+  private boolean isHealthOk(String body) {
+    if (body == null || body.isBlank()) {
+      return false;
+    }
+    try {
+      JsonObject root = JsonParser.parseString(body).getAsJsonObject();
+      String status = getString(root, "status", "");
+      return "ok".equalsIgnoreCase(status);
+    } catch (JsonSyntaxException | IllegalStateException ex) {
+      String normalized = body.toLowerCase(Locale.ROOT);
+      return normalized.contains("\"status\"") && normalized.contains("\"ok\"");
+    }
+  }
+
+  private void dispatchAsPlayer(Player player, String commandLine) {
+    boolean accepted = Bukkit.dispatchCommand(player, commandLine);
+    if (!accepted) {
+      player.sendMessage("§c命令执行失败: /" + commandLine);
     }
   }
 

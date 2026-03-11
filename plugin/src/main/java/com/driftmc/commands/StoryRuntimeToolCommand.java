@@ -59,7 +59,8 @@ public class StoryRuntimeToolCommand implements CommandExecutor {
             return true;
         }
 
-        if (!player.hasPermission("drift.taskdebug") && !player.isOp()) {
+        String requiredPermission = mode == Mode.SPAWN_FRAGMENT ? "drift.spawn" : "drift.taskdebug";
+        if (!player.hasPermission(requiredPermission) && !player.isOp()) {
             player.sendMessage(Component.text("你没有权限执行该运行时工具命令。", NamedTextColor.RED));
             return true;
         }
@@ -195,7 +196,8 @@ public class StoryRuntimeToolCommand implements CommandExecutor {
         }
 
         try {
-            Type type = new TypeToken<Map<String, Object>>() {}.getType();
+            Type type = new TypeToken<Map<String, Object>>() {
+            }.getType();
             Map<String, Object> patch = GSON.fromJson(patchObj, type);
             if (patch == null || patch.isEmpty()) {
                 return;

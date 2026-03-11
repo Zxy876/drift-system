@@ -1,0 +1,29 @@
+{
+  "id": "mist_path",
+  "root": false,
+  "priority": 58,
+  "size": [6, 3],
+  "layout_anchor": "edge",
+  "tags": ["mist", "night", "water"],
+  "requires": ["mist"],
+  "optional_resources": ["rain", "moon"],
+  "structures": [
+    {
+      "type": "mist_path",
+      "template": "mist_path_lane",
+      "offset": [0, 0, 0]
+    }
+  ],
+  "npcs": [],
+  "connections": [],
+  "events": [
+    {
+      "event_id": "spawn_mist_path",
+      "type": "spawn_structure",
+      "anchor_ref": "player",
+      "data": {
+        "template": "mist_path_lane"
+      }
+    }
+  ]
+}

@@ -1,5 +1,6 @@
 import os
 import time
+import math
 from collections import defaultdict
 from datetime import datetime, timezone
 import json
@@ -16,7 +17,17 @@ from app.core.ai.intent_engine import parse_intent
 from app.core.narrative.semantic_engine import infer_semantic_from_text
 from app.core.narrative.scene_library import select_fragments_with_debug
 from app.core.quest.runtime import quest_runtime
+from app.core.semantic.player_tag_store import player_tag_store
 from app.core.runtime.interaction_event import create_interaction_event, interaction_event_to_dict
+from app.core.story.generation_policy_gate import (
+    build_generation_seed as _core_build_generation_seed,
+    evaluate_generation_policy_gate as _core_evaluate_generation_policy_gate,
+    generation_policy_observability_payload as _core_generation_policy_observability_payload,
+    get_generation_policy_snapshot as _core_get_generation_policy_snapshot,
+    record_generation_policy_gate as _core_record_generation_policy_gate,
+    sanitize_generation_policy as _core_sanitize_generation_policy,
+)
+from app.core.trng.transaction import build_tx_id
 
 router = APIRouter(prefix="/world", tags=["World"])
 world_engine = WorldEngine()
@@ -77,6 +88,105 @@ def _normalize_token_list(values: Any) -> List[str]:
         seen.add(token)
         normalized.append(token)
     return normalized
+
+
+def _sanitize_generation_policy(payload: Dict[str, Any] | None) -> Dict[str, Any]:
+    return _core_sanitize_generation_policy(payload)
+
+
+def _generation_policy_snapshot() -> Dict[str, Any]:
+    return _core_get_generation_policy_snapshot()
+
+
+def _coerce_location_payload(value: Any) -> Dict[str, Any] | None:
+    if not isinstance(value, dict):
+        return None
+
+    x_raw = value.get("x") if value.get("x") is not None else value.get("base_x")
+    y_raw = value.get("y") if value.get("y") is not None else value.get("base_y")
+    z_raw = value.get("z") if value.get("z") is not None else value.get("base_z")
+
+    if x_raw is None and y_raw is None and z_raw is None:
+        return None
+
+    location = {
+        "x": _safe_float(x_raw, 0.0),
+        "y": _safe_float(y_raw, 64.0),
+        "z": _safe_float(z_raw, 0.0),
+    }
+
+    world_token = str(value.get("world") or "").strip()
+    if world_token:
+        location["world"] = world_token
+
+    return location
+
+
+def _location_from_event_payload(payload: Dict[str, Any] | None) -> Dict[str, Any] | None:
+    if not isinstance(payload, dict):
+        return None
+
+    for key in ("location", "anchor", "position", "player_position"):
+        location = _coerce_location_payload(payload.get(key))
+        if location is not None:
+            return location
+
+    return None
+
+
+def _location_distance(a: Dict[str, Any] | None, b: Dict[str, Any] | None) -> float | None:
+    if not isinstance(a, dict) or not isinstance(b, dict):
+        return None
+
+    ax = _safe_float(a.get("x"), 0.0)
+    ay = _safe_float(a.get("y"), 0.0)
+    az = _safe_float(a.get("z"), 0.0)
+    bx = _safe_float(b.get("x"), 0.0)
+    by = _safe_float(b.get("y"), 0.0)
+    bz = _safe_float(b.get("z"), 0.0)
+
+    return math.sqrt((ax - bx) ** 2 + (ay - by) ** 2 + (az - bz) ** 2)
+
+
+def _generation_runtime_payload(scene_generation: Dict[str, Any] | None) -> Dict[str, Any]:
+    source = scene_generation if isinstance(scene_generation, dict) else {}
+    runtime = source.get("generation_policy_runtime") if isinstance(source.get("generation_policy_runtime"), dict) else {}
+    return dict(runtime)
+
+
+def _evaluate_generation_policy_gate(
+    scene_generation: Dict[str, Any] | None,
+    *,
+    event_type: str | None,
+    payload: Dict[str, Any] | None,
+    deterministic_seed: str | None = None,
+) -> Dict[str, Any]:
+    return _core_evaluate_generation_policy_gate(
+        scene_generation,
+        event_type=event_type,
+        payload=payload,
+        deterministic_seed=deterministic_seed,
+    )
+
+
+def _record_generation_policy_gate(
+    player_id: str,
+    scene_generation: Dict[str, Any] | None,
+    gate_result: Dict[str, Any],
+    *,
+    generated: bool,
+) -> Dict[str, Any]:
+    updated_generation = _core_record_generation_policy_gate(
+        scene_generation,
+        gate_result,
+        generated=generated,
+    )
+    _update_scene_generation_for_player(player_id, updated_generation)
+    return updated_generation
+
+
+def _generation_policy_observability_payload(scene_generation: Optional[Dict[str, Any]]) -> Dict[str, Any]:
+    return _core_generation_policy_observability_payload(scene_generation)
 
 
 def _interaction_type_from_rule_event(event_type: str) -> str:
@@ -149,7 +259,21 @@ def _text_from_interaction_event(event_payload: Dict[str, Any]) -> str:
     return f"trigger:{trigger_key}"
 
 
-def _ingest_rule_event_via_trng(event: "RuleTriggerEvent") -> Dict[str, Any]:
+def _default_rule_event_id(player_id: str, incoming_type: str, payload: Dict[str, Any]) -> str:
+    seed_payload = {
+        "player_id": str(player_id or "").strip(),
+        "event_type": str(incoming_type or "").strip().lower(),
+        "payload": dict(payload or {}),
+    }
+    digest = _core_build_generation_seed(
+        player_id=str(player_id or "").strip(),
+        event_type=str(incoming_type or "").strip().lower(),
+        payload=seed_payload,
+    )
+    return f"plugin_{incoming_type}_{digest[:12]}"
+
+
+def _build_rule_event_interaction_payload(event: "RuleTriggerEvent") -> Dict[str, Any]:
     payload = dict(event.payload or {})
     incoming_type = str(event.event_type or "trigger").strip().lower() or "trigger"
     interaction_type = _interaction_type_from_rule_event(incoming_type)
@@ -168,16 +292,46 @@ def _ingest_rule_event_via_trng(event: "RuleTriggerEvent") -> Dict[str, Any]:
     elif interaction_type == "trigger":
         data.setdefault("trigger", _trigger_key_from_rule_payload(incoming_type, data))
 
+    event_id = str(payload.get("event_id") or "").strip()
+    if not event_id:
+        event_id = _default_rule_event_id(event.player_id, incoming_type, data)
+
     interaction_event = create_interaction_event(
         event_type=interaction_type,
         player_id=event.player_id,
         npc_id=npc_id,
         anchor=_anchor_from_rule_payload(payload),
         data=data,
-        event_id=str(payload.get("event_id") or f"plugin_{incoming_type}_{_now_ms()}"),
+        event_id=event_id,
         timestamp_ms=_safe_int(payload.get("timestamp_ms"), _now_ms()),
     )
-    interaction_payload = interaction_event_to_dict(interaction_event)
+    return interaction_event_to_dict(interaction_event)
+
+
+def _planned_rule_event_gate_seed(event: "RuleTriggerEvent") -> str:
+    interaction_payload = _build_rule_event_interaction_payload(event)
+    tx_events = [
+        {
+            "event_id": interaction_payload.get("event_id"),
+            "type": interaction_payload.get("type"),
+            "text": _text_from_interaction_event(interaction_payload),
+        }
+    ]
+    planned_tx_id = build_tx_id(
+        tx_events,
+        rule_version="rule_v2_2",
+        engine_version="engine_v2_1",
+    )
+    return _core_build_generation_seed(
+        player_id=event.player_id,
+        event_type=event.event_type,
+        payload=event.payload if isinstance(event.payload, dict) else {},
+        tx_id=planned_tx_id,
+    )
+
+
+def _ingest_rule_event_via_trng(event: "RuleTriggerEvent") -> Dict[str, Any]:
+    interaction_payload = _build_rule_event_interaction_payload(event)
 
     from app.api.story_api import run_transaction
 
@@ -337,11 +491,8 @@ def _bootstrap_scene_generation_for_talk_event(
     if normalized_type not in {"talk", "chat"}:
         return None
 
-    if _scene_level_for_player(normalized_player) is not None:
-        return None
-
     payload_dict = payload if isinstance(payload, dict) else {}
-    text = str(payload_dict.get("text") or payload_dict.get("message") or "").strip()
+    text = _text_from_rule_event_payload(payload_dict)
     if not text:
         return None
 
@@ -378,6 +529,73 @@ def _bootstrap_scene_generation_for_talk_event(
     }
 
 
+def _text_from_rule_event_payload(payload: Dict[str, Any] | None) -> str:
+    payload_dict = payload if isinstance(payload, dict) else {}
+    for key in ("text", "message", "say", "utterance", "input", "content", "chat", "raw_text"):
+        value = str(payload_dict.get(key) or "").strip()
+        if value:
+            return value
+
+    nested_payload = payload_dict.get("payload") if isinstance(payload_dict.get("payload"), dict) else {}
+    for key in ("text", "message", "say", "utterance", "input", "content", "chat", "raw_text"):
+        value = str(nested_payload.get(key) or "").strip()
+        if value:
+            return value
+
+    return ""
+
+
+def _intent_summary_from_result(intent_result: Dict[str, Any] | None) -> Dict[str, Any] | None:
+    payload = intent_result if isinstance(intent_result, dict) else {}
+    intents = payload.get("intents") if isinstance(payload.get("intents"), list) else []
+    if not intents:
+        return None
+
+    first = intents[0] if isinstance(intents[0], dict) else {}
+    if not first:
+        return None
+
+    summary: Dict[str, Any] = {
+        "type": str(first.get("type") or "").strip() or "UNKNOWN",
+        "raw_text": str(first.get("raw_text") or "").strip() or None,
+        "scene_theme": str(first.get("scene_theme") or first.get("theme") or "").strip() or None,
+        "scene_hint": str(first.get("scene_hint") or first.get("hint") or "").strip() or None,
+    }
+
+    confidence = first.get("confidence")
+    if confidence is not None:
+        try:
+            summary["confidence"] = float(confidence)
+        except (TypeError, ValueError):
+            pass
+
+    if isinstance(first.get("minimap"), dict):
+        summary["has_minimap"] = True
+
+    return summary
+
+
+def _remember_input_trace(
+    player_id: str,
+    *,
+    event_type: str,
+    text: str,
+    intent_summary: Dict[str, Any] | None,
+) -> Dict[str, Any]:
+    scene_generation = _scene_generation_for_player(player_id) or {}
+    updated_generation = dict(scene_generation)
+    updated_generation["last_player_input"] = {
+        "event_type": _normalize_token(event_type) or "talk",
+        "text": str(text or "").strip(),
+        "at_ms": _now_ms(),
+    }
+    if isinstance(intent_summary, dict) and intent_summary:
+        updated_generation["last_intent"] = dict(intent_summary)
+
+    _update_scene_generation_for_player(player_id, updated_generation)
+    return updated_generation
+
+
 def _prediction_inventory_resources(
     player_id: str,
     *,
@@ -412,6 +630,257 @@ def _prediction_inventory_resources(
                 resources[token] = amount
 
     return resources
+
+
+def _registry_resources_for_scene_hint(
+    player_id: str,
+    scene_hint: str | None,
+) -> tuple[Dict[str, int], Optional[str], List[Dict[str, Any]]]:
+    normalized_hint = _normalize_token(scene_hint)
+
+    try:
+        player_items = player_tag_store.list_player_tags(player_id)
+    except Exception:
+        player_items = []
+
+    if not player_items:
+        return {}, None, []
+
+    tokens = [row for row in normalized_hint.split("_") if row] if normalized_hint else []
+    candidates = [normalized_hint] if normalized_hint else []
+    for token in tokens:
+        if token not in candidates:
+            candidates.append(token)
+
+    matched_items: List[Dict[str, Any]] = []
+    resources: Dict[str, int] = {}
+    matched_tag: Optional[str] = None
+
+    for row in player_items:
+        if not isinstance(row, dict):
+            continue
+
+        tag = _normalize_token(row.get("tag"))
+        resource_id = _normalize_token(row.get("resource_id"))
+        if not tag or not resource_id:
+            continue
+
+        tag_hit = bool(normalized_hint) and (tag in candidates or tag in normalized_hint or normalized_hint in tag)
+        if not tag_hit:
+            continue
+
+        matched_tag = matched_tag or tag
+        resources[resource_id] = int(resources.get(resource_id, 0)) + 1
+        matched_items.append(
+            {
+                "tag": tag,
+                "resource_id": resource_id,
+                "resource_type": row.get("resource_type"),
+                "namespace": row.get("namespace"),
+                "source": row.get("source"),
+            }
+        )
+
+    if matched_items:
+        return resources, matched_tag, matched_items
+
+    fallback_mode = _normalize_token(os.environ.get("DRIFT_REGISTRY_FALLBACK_MODE") or "latest_tag")
+    if fallback_mode in {"none", "off", "disabled"}:
+        return resources, matched_tag, matched_items
+
+    for row in player_items:
+        if not isinstance(row, dict):
+            continue
+
+        tag = _normalize_token(row.get("tag"))
+        resource_id = _normalize_token(row.get("resource_id"))
+        if not tag or not resource_id:
+            continue
+
+        matched_tag = tag
+        resources[resource_id] = int(resources.get(resource_id, 0)) + 1
+        matched_items.append(
+            {
+                "tag": tag,
+                "resource_id": resource_id,
+                "resource_type": row.get("resource_type"),
+                "namespace": row.get("namespace"),
+                "source": row.get("source"),
+                "fallback": True,
+                "match_mode": "latest_tag",
+            }
+        )
+        break
+
+    return resources, matched_tag, matched_items
+
+
+def _primary_registry_resource_id(registry_resources: Dict[str, int] | None) -> Optional[str]:
+    if not isinstance(registry_resources, dict):
+        return None
+
+    ranked: List[tuple[str, int]] = []
+    for key, value in registry_resources.items():
+        token = str(key or "").strip().lower()
+        amount = _safe_int(value, 0)
+        if token and amount > 0:
+            ranked.append((token, amount))
+
+    if not ranked:
+        return None
+
+    ranked.sort(key=lambda item: (-item[1], item[0]))
+    return ranked[0][0]
+
+
+def _registry_material_for_resource(resource_id: str) -> str:
+    token = str(resource_id or "").strip().lower()
+    if ":" in token:
+        token = token.split(":", 1)[1]
+    token = token.replace("-", "_").replace(" ", "_")
+
+    aliases = {
+        "fire": "campfire",
+        "bonfire": "campfire",
+        "wood": "oak_planks",
+        "plank": "oak_planks",
+        "planks": "oak_planks",
+        "log": "oak_log",
+    }
+    normalized_token = aliases.get(token, token)
+
+    material_map = {
+        "campfire": "CAMPFIRE",
+        "torch": "TORCH",
+        "lantern": "LANTERN",
+        "chest": "CHEST",
+        "barrel": "BARREL",
+        "crafting_table": "CRAFTING_TABLE",
+        "furnace": "FURNACE",
+        "oak_planks": "OAK_PLANKS",
+        "oak_log": "OAK_LOG",
+        "cobblestone": "COBBLESTONE",
+        "stone": "STONE",
+    }
+    if normalized_token in material_map:
+        return material_map[normalized_token]
+
+    fallback = "".join(ch if ch.isalnum() else "_" for ch in normalized_token).strip("_").upper()
+    return fallback or "OAK_PLANKS"
+
+
+def _apply_registry_override_to_scene_patch(
+    scene_patch: Dict[str, Any] | None,
+    registry_resources: Dict[str, int] | None,
+) -> Dict[str, Any]:
+    if not isinstance(scene_patch, dict):
+        return {}
+
+    primary_resource = _primary_registry_resource_id(registry_resources)
+    if not primary_resource:
+        return dict(scene_patch)
+
+    patched = dict(scene_patch)
+    mc_patch = patched.get("mc") if isinstance(patched.get("mc"), dict) else {}
+    if not mc_patch:
+        return patched
+
+    patched_mc = dict(mc_patch)
+    block_event_ids: List[str] = []
+
+    raw_blocks = patched_mc.get("blocks")
+    if isinstance(raw_blocks, list):
+        next_blocks: List[Dict[str, Any]] = []
+        for row in raw_blocks:
+            if not isinstance(row, dict):
+                continue
+            row_payload = dict(row)
+            row_payload["type"] = primary_resource
+            row_payload["registry_asset_override"] = True
+            event_id = str(row_payload.get("_scene_event_id") or "").strip()
+            if event_id:
+                block_event_ids.append(event_id)
+            next_blocks.append(row_payload)
+        if next_blocks:
+            patched_mc["blocks"] = next_blocks
+
+    material_token = _registry_material_for_resource(primary_resource)
+    raw_build_multi = patched_mc.get("build_multi")
+    if isinstance(raw_build_multi, list):
+        next_build_multi: List[Dict[str, Any]] = []
+        for row in raw_build_multi:
+            if not isinstance(row, dict):
+                continue
+            row_payload = dict(row)
+            event_id = str(row_payload.get("_scene_event_id") or "").strip()
+            if event_id and event_id in block_event_ids:
+                row_payload["material"] = material_token
+                row_payload["registry_asset_override"] = True
+            next_build_multi.append(row_payload)
+        if next_build_multi:
+            patched_mc["build_multi"] = next_build_multi
+
+    if not block_event_ids:
+        base_offset = {
+            "dx": 0.0,
+            "dy": 0.0,
+            "dz": 0.0,
+        }
+        world_name: Optional[str] = None
+        for list_key in ("build_multi", "blocks", "spawn_multi"):
+            rows = patched_mc.get(list_key)
+            if not isinstance(rows, list):
+                continue
+            for row in rows:
+                if not isinstance(row, dict):
+                    continue
+                if isinstance(row.get("offset"), dict):
+                    offset_payload = row.get("offset") or {}
+                    base_offset = {
+                        "dx": _safe_float(offset_payload.get("dx"), 0.0),
+                        "dy": _safe_float(offset_payload.get("dy"), 0.0),
+                        "dz": _safe_float(offset_payload.get("dz"), 0.0),
+                    }
+                row_world = str(row.get("world") or "").strip()
+                if row_world:
+                    world_name = row_world
+                break
+            if world_name:
+                break
+
+        event_id = "spawn_registry_resource"
+        blocks_payload = list(patched_mc.get("blocks") or []) if isinstance(patched_mc.get("blocks"), list) else []
+        block_directive: Dict[str, Any] = {
+            "type": primary_resource,
+            "offset": dict(base_offset),
+            "_scene_event_id": event_id,
+            "registry_asset_override": True,
+        }
+        if world_name:
+            block_directive["world"] = world_name
+        blocks_payload.append(block_directive)
+        patched_mc["blocks"] = blocks_payload
+
+        build_payload = list(patched_mc.get("build_multi") or []) if isinstance(patched_mc.get("build_multi"), list) else []
+        build_directive: Dict[str, Any] = {
+            "shape": "line",
+            "size": 1,
+            "material": material_token,
+            "offset": dict(base_offset),
+            "_scene_event_id": event_id,
+            "registry_asset_override": True,
+        }
+        if world_name:
+            build_directive["world"] = world_name
+        build_payload.append(build_directive)
+        patched_mc["build_multi"] = build_payload
+
+    patched["mc"] = patched_mc
+    patched_meta = patched.get("meta") if isinstance(patched.get("meta"), dict) else {}
+    patched_meta["registry_asset_override"] = True
+    patched_meta["registry_primary_resource"] = primary_resource
+    patched["meta"] = patched_meta
+    return patched
 
 
 def _prediction_selection_context(scene_generation: Optional[Dict[str, Any]]) -> Dict[str, Any]:
@@ -507,8 +976,12 @@ def _predict_scene_payload_for_player(
                 text_semantic_keyword = keyword_text
                 break
 
+    registry_resources, registry_match_tag, registry_bindings = _registry_resources_for_scene_hint(player_id, scene_hint)
+
     resources_for_selection: Dict[str, int] = dict(resources)
     for token, amount in text_semantic_scores.items():
+        resources_for_selection[token] = int(resources_for_selection.get(token, 0)) + max(0, int(amount))
+    for token, amount in registry_resources.items():
         resources_for_selection[token] = int(resources_for_selection.get(token, 0)) + max(0, int(amount))
 
     selection = select_fragments_with_debug(
@@ -574,7 +1047,12 @@ def _predict_scene_payload_for_player(
         "semantic_scores": dict(normalized_semantic_scores),
         "semantic_resolution": list(normalized_semantic_resolution),
         "inventory_resources": dict(resources),
+        "registry_resources": dict(registry_resources),
+        "registry_bindings": list(registry_bindings),
     }
+
+    if registry_match_tag:
+        prediction["registry_match_tag"] = registry_match_tag
 
     top_reason = _top_reason_from_candidate_scores(normalized_scores)
     if (not top_reason) and text_semantic_tag:
@@ -1559,6 +2037,7 @@ def world_state(player_id: str):
         "story": story_snapshot,
     }
     response.update(_narrative_fields_payload(narrative_state))
+    response.update(_generation_policy_observability_payload(scene_generation))
     response.update(_asset_registry_observability_payload(scene_generation))
     response.update(_enabled_packs_payload())
     return response
@@ -1626,32 +2105,107 @@ def story_end(request: EndStoryRequest):
 
 @router.post("/story/rule-event")
 def story_rule_event(event: RuleTriggerEvent):
-    response = quest_runtime.handle_rule_trigger(event.player_id, {
+    normalized_event_type = _normalize_token(event.event_type)
+    payload_dict = dict(event.payload or {}) if isinstance(event.payload, dict) else {}
+    talk_text = _text_from_rule_event_payload(payload_dict) if normalized_event_type in {"talk", "chat"} else ""
+
+    rule_payload: Dict[str, Any] = {
         "event_type": event.event_type,
-        "payload": event.payload,
-    })
+        "payload": dict(payload_dict),
+    }
+    for key, value in payload_dict.items():
+        if key not in rule_payload:
+            rule_payload[key] = value
+    if talk_text:
+        rule_payload["text"] = talk_text
+
+    response = quest_runtime.handle_rule_trigger(event.player_id, rule_payload)
     logger.debug(
         "story_rule_event",
         extra={"player_id": event.player_id, "event_type": event.event_type},
     )
 
-    interaction_tx: Dict[str, Any] | None = None
-    interaction_tx_error: str | None = None
-    if _as_bool_env("DRIFT_ENABLE_PLUGIN_TRNG", default=True):
+    intent_summary: Dict[str, Any] | None = None
+    intent_error: str | None = None
+    registry_preview_resources: Dict[str, int] = {}
+    registry_preview_match_tag: str | None = None
+    registry_preview_bindings: List[Dict[str, Any]] = []
+    if talk_text:
         try:
-            interaction_tx = _ingest_rule_event_via_trng(event)
-        except Exception as exc:
-            interaction_tx_error = str(exc)
-            logger.warning(
-                "plugin_rule_event_trng_ingest_failed",
+            parsed_intent = parse_intent(
+                event.player_id,
+                talk_text,
+                world_engine.get_state() or {},
+                story_engine,
+            )
+            intent_summary = _intent_summary_from_result(parsed_intent)
+            logger.info(
+                "intent_received",
                 extra={
                     "player_id": event.player_id,
-                    "event_type": event.event_type,
-                    "error": interaction_tx_error,
+                    "event_type": normalized_event_type or "talk",
+                    "text": talk_text,
+                    "intent_type": (intent_summary or {}).get("type"),
+                },
+            )
+        except Exception as exc:
+            intent_error = str(exc)
+            logger.warning(
+                "intent_received_failed",
+                extra={
+                    "player_id": event.player_id,
+                    "event_type": normalized_event_type or "talk",
+                    "error": intent_error,
+                },
+            )
+
+        _remember_input_trace(
+            event.player_id,
+            event_type=normalized_event_type or "talk",
+            text=talk_text,
+            intent_summary=intent_summary,
+        )
+
+        try:
+            (
+                registry_preview_resources,
+                registry_preview_match_tag,
+                registry_preview_bindings,
+            ) = _registry_resources_for_scene_hint(event.player_id, talk_text)
+
+            scene_generation_snapshot = _scene_generation_for_player(event.player_id) or {}
+            updated_scene_generation = dict(scene_generation_snapshot)
+            updated_scene_generation["registry_resources"] = dict(registry_preview_resources)
+            updated_scene_generation["registry_bindings"] = list(registry_preview_bindings)
+            if registry_preview_match_tag:
+                updated_scene_generation["registry_match_tag"] = registry_preview_match_tag
+            else:
+                updated_scene_generation.pop("registry_match_tag", None)
+
+            _update_scene_generation_for_player(event.player_id, updated_scene_generation)
+        except Exception as exc:
+            logger.warning(
+                "registry_preview_capture_failed",
+                extra={
+                    "player_id": event.player_id,
+                    "event_type": normalized_event_type or "talk",
+                    "error": str(exc),
                 },
             )
 
     result = {"status": "ok", "result": response}
+    if talk_text:
+        result["player_input"] = {
+            "text": talk_text,
+            "event_type": normalized_event_type or "talk",
+        }
+        result["intent_received"] = bool(intent_summary)
+        if isinstance(intent_summary, dict) and intent_summary:
+            result["intent"] = dict(intent_summary)
+        result["registry_resources"] = dict(registry_preview_resources)
+        result["registry_bindings_count"] = len(registry_preview_bindings)
+        if registry_preview_match_tag:
+            result["registry_match_tag"] = registry_preview_match_tag
     if isinstance(response, dict):
         story_engine.apply_quest_updates(event.player_id, response)
         if response.get("world_patch"):
@@ -1672,36 +2226,77 @@ def story_rule_event(event: RuleTriggerEvent):
             if key in response:
                 result[key] = response[key]
 
-    scene_evolution: Dict[str, Any] | None = None
-    scene_evolution_error: str | None = None
-    try:
-        from app.api.story_api import evolve_scene_for_rule_event, merge_world_patches
+    scene_generation_before = _scene_generation_for_player(event.player_id)
+    gate_seed = _planned_rule_event_gate_seed(event)
+    gate_result = _evaluate_generation_policy_gate(
+        scene_generation_before,
+        event_type=event.event_type,
+        payload=payload_dict,
+        deterministic_seed=gate_seed,
+    )
+    generation_allowed = bool(gate_result.get("allowed"))
+    scene_generation_applied = False
 
-        scene_evolution = evolve_scene_for_rule_event(
-            player_id=event.player_id,
-            event_type=event.event_type,
-            payload=event.payload,
-        )
-
-        if isinstance(scene_evolution, dict):
-            scene_patch = scene_evolution.get("scene_world_patch")
-            if isinstance(scene_patch, dict) and scene_patch:
-                existing_patch = result.get("world_patch") if isinstance(result.get("world_patch"), dict) else {}
-                result["world_patch"] = merge_world_patches(existing_patch, scene_patch)
-
-            scene_diff = scene_evolution.get("scene_diff")
-            if isinstance(scene_diff, dict):
-                result["scene_diff"] = scene_diff
-    except Exception as exc:
-        scene_evolution_error = str(exc)
-        logger.warning(
-            "scene_evolution_apply_failed",
+    if not generation_allowed:
+        result["msg"] = "Scene generation skipped by policy gate."
+        logger.info(
+            "generation_policy_gate_blocked",
             extra={
                 "player_id": event.player_id,
                 "event_type": event.event_type,
-                "error": scene_evolution_error,
+                "reason": gate_result.get("reason"),
+                "next_available_in": gate_result.get("next_available_in"),
             },
         )
+
+    interaction_tx: Dict[str, Any] | None = None
+    interaction_tx_error: str | None = None
+    if generation_allowed and _as_bool_env("DRIFT_ENABLE_PLUGIN_TRNG", default=True):
+        try:
+            interaction_tx = _ingest_rule_event_via_trng(event)
+        except Exception as exc:
+            interaction_tx_error = str(exc)
+            logger.warning(
+                "plugin_rule_event_trng_ingest_failed",
+                extra={
+                    "player_id": event.player_id,
+                    "event_type": event.event_type,
+                    "error": interaction_tx_error,
+                },
+            )
+
+    scene_evolution: Dict[str, Any] | None = None
+    scene_evolution_error: str | None = None
+    if generation_allowed:
+        try:
+            from app.api.story_api import evolve_scene_for_rule_event, merge_world_patches
+
+            scene_evolution = evolve_scene_for_rule_event(
+                player_id=event.player_id,
+                event_type=event.event_type,
+                payload=payload_dict,
+            )
+
+            if isinstance(scene_evolution, dict):
+                scene_patch = scene_evolution.get("scene_world_patch")
+                if isinstance(scene_patch, dict) and scene_patch:
+                    existing_patch = result.get("world_patch") if isinstance(result.get("world_patch"), dict) else {}
+                    result["world_patch"] = merge_world_patches(existing_patch, scene_patch)
+                    scene_generation_applied = True
+
+                scene_diff = scene_evolution.get("scene_diff")
+                if isinstance(scene_diff, dict):
+                    result["scene_diff"] = scene_diff
+        except Exception as exc:
+            scene_evolution_error = str(exc)
+            logger.warning(
+                "scene_evolution_apply_failed",
+                extra={
+                    "player_id": event.player_id,
+                    "event_type": event.event_type,
+                    "error": scene_evolution_error,
+                },
+            )
 
     talk_bootstrap: Dict[str, Any] | None = None
     talk_bootstrap_error: str | None = None
@@ -1709,7 +2304,7 @@ def story_rule_event(event: RuleTriggerEvent):
         talk_bootstrap = _bootstrap_scene_generation_for_talk_event(
             event.player_id,
             event.event_type,
-            event.payload,
+            payload_dict,
         )
     except Exception as exc:
         talk_bootstrap_error = str(exc)
@@ -1722,7 +2317,133 @@ def story_rule_event(event: RuleTriggerEvent):
             },
         )
 
+    talk_scene_bridge: Dict[str, Any] | None = None
+    talk_scene_bridge_error: str | None = None
+    if generation_allowed and normalized_event_type in {"talk", "chat"} and talk_text:
+        try:
+            from app.api.story_api import (
+                _scene_event_plan_to_world_patch,
+                _scene_meta_payload,
+                _selection_context_from_scene_generation,
+                build_scene_events,
+                merge_world_patches,
+            )
+
+            latest_scene_generation = _scene_generation_for_player(event.player_id) or {}
+            scene_theme = str((intent_summary or {}).get("scene_theme") or "").strip()
+            if not scene_theme:
+                scene_theme = str(latest_scene_generation.get("scene_theme") or "").strip()
+            if not scene_theme:
+                scene_theme = str(os.environ.get("DRIFT_DEFAULT_SCENE_THEME", "camp") or "camp").strip() or "camp"
+
+            scene_hint = str((intent_summary or {}).get("scene_hint") or talk_text).strip() or talk_text
+            player_position = _location_from_event_payload(payload_dict)
+
+            selection_context = _selection_context_from_scene_generation(latest_scene_generation)
+            registry_resources, registry_match_tag, registry_bindings = _registry_resources_for_scene_hint(
+                event.player_id,
+                scene_hint,
+            )
+            if registry_match_tag:
+                selection_context = dict(selection_context or {})
+                selection_context["registry_match_tag"] = registry_match_tag
+
+            scene_output = build_scene_events(
+                player_id=event.player_id,
+                scene_theme=scene_theme,
+                scene_hint=scene_hint,
+                text=talk_text,
+                anchor=None,
+                player_position=player_position,
+                selection_context=selection_context if selection_context else None,
+                registry_resources=registry_resources,
+            )
+
+            scene_patch = _scene_event_plan_to_world_patch(scene_output)
+            scene_patch = _apply_registry_override_to_scene_patch(scene_patch, registry_resources)
+
+            if isinstance(scene_patch, dict) and scene_patch:
+                bridge_patch = dict(scene_patch)
+                patch_meta = bridge_patch.get("meta") if isinstance(bridge_patch.get("meta"), dict) else {}
+                patch_meta["registry_resources"] = dict(registry_resources)
+                patch_meta["registry_match_tag"] = registry_match_tag
+                patch_meta["registry_bindings_count"] = len(registry_bindings)
+                patch_meta["talk_bridge"] = True
+                bridge_patch["meta"] = patch_meta
+                bridge_patch.setdefault("type", "spawnfragment")
+
+                existing_patch = result.get("world_patch") if isinstance(result.get("world_patch"), dict) else {}
+                merged_patch = merge_world_patches(existing_patch, bridge_patch)
+                merged_patch.setdefault("type", "spawnfragment")
+                merged_meta = merged_patch.get("meta") if isinstance(merged_patch.get("meta"), dict) else {}
+                merged_meta.update(patch_meta)
+                merged_patch["meta"] = merged_meta
+                result["world_patch"] = merged_patch
+                scene_generation_applied = True
+
+            if isinstance(scene_output, dict):
+                updated_scene_generation = dict(latest_scene_generation)
+                updated_scene_generation.update(_scene_meta_payload(scene_output))
+                updated_scene_generation["last_player_input"] = {
+                    "event_type": normalized_event_type or "talk",
+                    "text": talk_text,
+                    "at_ms": _now_ms(),
+                }
+                if isinstance(intent_summary, dict) and intent_summary:
+                    updated_scene_generation["last_intent"] = dict(intent_summary)
+                _update_scene_generation_for_player(event.player_id, updated_scene_generation)
+
+            result["registry_resources"] = dict(registry_resources)
+            result["registry_match_tag"] = registry_match_tag
+            talk_scene_bridge = {
+                "scene_hint": scene_hint,
+                "scene_theme": scene_theme,
+                "registry_bindings_count": len(registry_bindings),
+                "event_count": len(scene_output.get("event_plan") or []) if isinstance(scene_output, dict) else 0,
+                "fragment_count": len(((scene_output.get("scene_plan") or {}).get("fragments") or [])) if isinstance(scene_output, dict) else 0,
+                "has_world_patch": bool(result.get("world_patch")),
+            }
+        except Exception as exc:
+            talk_scene_bridge_error = str(exc)
+            logger.warning(
+                "talk_spawnfragment_bridge_failed",
+                extra={
+                    "player_id": event.player_id,
+                    "event_type": event.event_type,
+                    "error": talk_scene_bridge_error,
+                },
+            )
+
+    gate_record_error: str | None = None
+    try:
+        latest_scene_generation = _scene_generation_for_player(event.player_id)
+        recorded_generation = _record_generation_policy_gate(
+            event.player_id,
+            latest_scene_generation,
+            gate_result,
+            generated=scene_generation_applied,
+        )
+        result.update(_generation_policy_observability_payload(recorded_generation))
+    except Exception as exc:
+        gate_record_error = str(exc)
+        logger.warning(
+            "generation_policy_gate_record_failed",
+            extra={
+                "player_id": event.player_id,
+                "event_type": event.event_type,
+                "error": gate_record_error,
+            },
+        )
+        result.update(_generation_policy_observability_payload(_scene_generation_for_player(event.player_id)))
+
     if _as_bool_env("DRIFT_DEBUG_TRACE", default=False):
+        gate_debug = dict(gate_result)
+        gate_debug.pop("_recent_timestamps", None)
+        result["generation_policy_gate_eval"] = gate_debug
+        if intent_error:
+            result["intent_received_error"] = intent_error
+        if gate_record_error:
+            result["generation_policy_gate_record_error"] = gate_record_error
         if interaction_tx is not None:
             result["interaction_transaction"] = interaction_tx
         if interaction_tx_error:
@@ -1735,6 +2456,38 @@ def story_rule_event(event: RuleTriggerEvent):
             result["talk_scene_bootstrap"] = talk_bootstrap
         if talk_bootstrap_error:
             result["talk_scene_bootstrap_error"] = talk_bootstrap_error
+        if talk_scene_bridge is not None:
+            result["talk_scene_bridge"] = talk_scene_bridge
+        if talk_scene_bridge_error:
+            result["talk_scene_bridge_error"] = talk_scene_bridge_error
+
+    if talk_text:
+        try:
+            scene_generation_snapshot = _scene_generation_for_player(event.player_id) or {}
+            updated_scene_generation = dict(scene_generation_snapshot)
+            updated_scene_generation["last_rule_event_result"] = {
+                "event_type": normalized_event_type or "talk",
+                "player_input": {
+                    "text": talk_text,
+                    "event_type": normalized_event_type or "talk",
+                },
+                "intent_received": bool(intent_summary),
+                "intent": dict(intent_summary) if isinstance(intent_summary, dict) and intent_summary else None,
+                "registry_resources": dict(result.get("registry_resources") or {}),
+                "registry_match_tag": result.get("registry_match_tag"),
+                "world_patch": dict(result.get("world_patch")) if isinstance(result.get("world_patch"), dict) else None,
+                "at_ms": _now_ms(),
+            }
+            _update_scene_generation_for_player(event.player_id, updated_scene_generation)
+        except Exception as exc:
+            logger.warning(
+                "rule_event_result_persist_failed",
+                extra={
+                    "player_id": event.player_id,
+                    "event_type": normalized_event_type or "talk",
+                    "error": str(exc),
+                },
+            )
     return result
 
 
@@ -1803,6 +2556,7 @@ def story_debug_tasks(player_id: str, request: Request, token: Optional[str] = N
         scene_generation=scene_generation,
     )
     asset_observability = _asset_registry_observability_payload(scene_generation)
+    policy_observability = _generation_policy_observability_payload(scene_generation)
     pack_observability = _enabled_packs_payload()
     if not snapshot:
         result = {
@@ -1822,6 +2576,7 @@ def story_debug_tasks(player_id: str, request: Request, token: Optional[str] = N
         if isinstance(prediction, dict):
             result["prediction"] = prediction
         result.update(_narrative_fields_payload(narrative_state))
+        result.update(policy_observability)
         result.update(asset_observability)
         result.update(pack_observability)
         return result
@@ -1839,6 +2594,7 @@ def story_debug_tasks(player_id: str, request: Request, token: Optional[str] = N
     if isinstance(prediction, dict):
         payload["prediction"] = prediction
     payload.update(_narrative_fields_payload(narrative_state))
+    payload.update(policy_observability)
     payload.update(asset_observability)
     payload.update(pack_observability)
     return payload
@@ -2019,9 +2775,65 @@ def story_spawn_fragment(player_id: str, payload: Optional[SpawnFragmentRequest]
     player_position = request_payload.player_position if isinstance(request_payload.player_position, dict) else None
     request_text = scene_hint or f"spawn fragment {scene_theme}"
 
+    gate_payload: Dict[str, Any] = {}
+    if isinstance(player_position, dict):
+        gate_payload["player_position"] = dict(player_position)
+
+    gate_seed = _core_build_generation_seed(
+        player_id=normalized_player,
+        event_type="spawnfragment",
+        payload={
+            "scene_theme": scene_theme,
+            "scene_hint": scene_hint,
+            "anchor": anchor,
+            "player_position": player_position if isinstance(player_position, dict) else {},
+        },
+    )
+
+    gate_result = _evaluate_generation_policy_gate(
+        scene_generation,
+        event_type="spawnfragment",
+        payload=gate_payload,
+        deterministic_seed=gate_seed,
+    )
+    if not bool(gate_result.get("allowed")):
+        recorded_generation = _record_generation_policy_gate(
+            normalized_player,
+            scene_generation,
+            gate_result,
+            generated=False,
+        )
+        logger.info(
+            "story_spawn_fragment_skipped_by_policy",
+            extra={
+                "player_id": normalized_player,
+                "scene_theme": scene_theme,
+                "reason": gate_result.get("reason"),
+                "next_available_in": gate_result.get("next_available_in"),
+            },
+        )
+        response_payload = {
+            "status": "ok",
+            "msg": "Scene generation skipped by policy gate.",
+            "player_id": normalized_player,
+            "scene_theme": scene_theme,
+            "scene_hint": scene_hint,
+            "fragment_count": 0,
+            "event_count": 0,
+            "scene": {},
+            "world_patch": {},
+            "auto_bootstrap": auto_bootstrap,
+        }
+        response_payload.update(_generation_policy_observability_payload(recorded_generation))
+        return response_payload
+
     from app.api.story_api import build_scene_events, _scene_event_plan_to_world_patch, _scene_meta_payload, _selection_context_from_scene_generation
 
     selection_context = _selection_context_from_scene_generation(scene_generation)
+    registry_resources, registry_match_tag, registry_bindings = _registry_resources_for_scene_hint(normalized_player, scene_hint)
+    if registry_match_tag:
+        selection_context = dict(selection_context or {})
+        selection_context["registry_match_tag"] = registry_match_tag
 
     scene_output = build_scene_events(
         player_id=normalized_player,
@@ -2031,8 +2843,20 @@ def story_spawn_fragment(player_id: str, payload: Optional[SpawnFragmentRequest]
         anchor=anchor,
         player_position=player_position,
         selection_context=selection_context if selection_context else None,
+        registry_resources=registry_resources,
     )
     scene_patch = _scene_event_plan_to_world_patch(scene_output)
+    scene_patch = _apply_registry_override_to_scene_patch(scene_patch, registry_resources)
+
+    if isinstance(scene_output, dict) and registry_resources:
+        scoring_debug = scene_output.get("scoring_debug") if isinstance(scene_output.get("scoring_debug"), dict) else {}
+        scoring_payload = dict(scoring_debug)
+        reasons_payload = scoring_payload.get("reasons") if isinstance(scoring_payload.get("reasons"), dict) else {}
+        reasons = dict(reasons_payload)
+        reasons["registry_world_patch_override"] = True
+        reasons["registry_primary_resource"] = _primary_registry_resource_id(registry_resources)
+        scoring_payload["reasons"] = reasons
+        scene_output["scoring_debug"] = scoring_payload
 
     if isinstance(scene_output, dict):
         updated_scene_generation = dict(scene_generation)
@@ -2043,8 +2867,37 @@ def story_spawn_fragment(player_id: str, payload: Optional[SpawnFragmentRequest]
     event_plan = scene_output.get("event_plan") if isinstance(scene_output.get("event_plan"), list) else []
     fragments = scene_plan.get("fragments") if isinstance(scene_plan.get("fragments"), list) else []
 
-    world_patch = scene_patch if isinstance(scene_patch, dict) else {}
+    world_patch = dict(scene_patch) if isinstance(scene_patch, dict) else {}
+    if world_patch:
+        patch_meta = world_patch.get("meta") if isinstance(world_patch.get("meta"), dict) else {}
+        patch_meta["registry_resources"] = dict(registry_resources)
+        patch_meta["registry_match_tag"] = registry_match_tag
+        patch_meta["registry_bindings_count"] = len(registry_bindings)
+        world_patch["meta"] = patch_meta
+        world_patch.setdefault("type", "spawnfragment")
     has_patch = bool(world_patch)
+
+    policy_observability: Dict[str, Any]
+    gate_record_error: str | None = None
+    try:
+        latest_scene_generation = _scene_generation_for_player(normalized_player)
+        recorded_generation = _record_generation_policy_gate(
+            normalized_player,
+            latest_scene_generation if isinstance(latest_scene_generation, dict) else scene_generation,
+            gate_result,
+            generated=has_patch,
+        )
+        policy_observability = _generation_policy_observability_payload(recorded_generation)
+    except Exception as exc:
+        gate_record_error = str(exc)
+        logger.warning(
+            "story_spawn_fragment_policy_record_failed",
+            extra={
+                "player_id": normalized_player,
+                "error": gate_record_error,
+            },
+        )
+        policy_observability = _generation_policy_observability_payload(_scene_generation_for_player(normalized_player))
 
     logger.info(
         "story_spawn_fragment",
@@ -2055,10 +2908,12 @@ def story_spawn_fragment(player_id: str, payload: Optional[SpawnFragmentRequest]
             "event_count": len(event_plan),
             "has_world_patch": has_patch,
             "auto_bootstrap": bool(auto_bootstrap and auto_bootstrap.get("triggered")),
+            "generation_allowed": bool(gate_result.get("allowed")),
+            "generation_reason": gate_result.get("reason"),
         },
     )
 
-    return {
+    response_payload = {
         "status": "ok",
         "msg": "Scene fragment generated." if has_patch else "Scene fragment generated (no executable patch).",
         "player_id": normalized_player,
@@ -2069,7 +2924,14 @@ def story_spawn_fragment(player_id: str, payload: Optional[SpawnFragmentRequest]
         "scene": scene_output,
         "world_patch": world_patch,
         "auto_bootstrap": auto_bootstrap,
+        "registry_resources": dict(registry_resources),
+        "registry_bindings": list(registry_bindings),
+        "registry_match_tag": registry_match_tag,
     }
+    response_payload.update(policy_observability)
+    if gate_record_error and _as_bool_env("DRIFT_DEBUG_TRACE", default=False):
+        response_payload["generation_policy_gate_record_error"] = gate_record_error
+    return response_payload
 
 
 @router.post("/story/{player_id}/reset")

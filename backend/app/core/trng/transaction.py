@@ -49,6 +49,34 @@ def _graph_hash(graph: GraphState) -> str:
     return _stable_hash(asdict(graph))
 
 
+def build_tx_id(
+    events: list[Dict[str, Any]],
+    *,
+    rule_version: str = "rule_v2_2",
+    engine_version: str = "engine_v2_1",
+) -> str:
+    normalized_events: list[Dict[str, str]] = []
+    for index, event in enumerate(events or [], start=1):
+        if not isinstance(event, dict):
+            continue
+        normalized_events.append(
+            {
+                "event_id": str(event.get("event_id") or f"story_evt_{index}"),
+                "type": str(event.get("type") or "input"),
+                "text": str(event.get("text") or ""),
+            }
+        )
+
+    digest = _stable_hash(
+        {
+            "events": normalized_events,
+            "rule_version": str(rule_version or "rule_v2_2"),
+            "engine_version": str(engine_version or "engine_v2_1"),
+        }
+    )
+    return f"tx_{digest[:12]}"
+
+
 class CommitReceipt(dict):
     def __iter__(self):
         return iter((self.get("committed_graph"), self.get("committed_state")))
@@ -77,10 +105,17 @@ class TransactionShell:
     def __init__(self, *, dry_run_fn: DryRunFn | None = None) -> None:
         self._dry_run_fn = dry_run_fn
 
-    def begin_tx(self, committed_graph: GraphState, committed_state: InternalState) -> Transaction:
+    def begin_tx(
+        self,
+        committed_graph: GraphState,
+        committed_state: InternalState,
+        *,
+        tx_id: str | None = None,
+    ) -> Transaction:
         base_state_hash = _state_hash(committed_state)
+        resolved_tx_id = str(tx_id or "").strip() or f"tx_{uuid4().hex[:12]}"
         tx = Transaction(
-            tx_id=f"tx_{uuid4().hex[:12]}",
+            tx_id=resolved_tx_id,
             base_state_hash=base_state_hash,
             root_from_node=committed_graph.current_node_id,
             draft_graph=deepcopy(committed_graph),

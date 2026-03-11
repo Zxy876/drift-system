@@ -27,7 +27,7 @@ import com.google.gson.reflect.TypeToken;
 
 /**
  * /level <level_id>
- * 调用后端：/story/load/{player}/{level_id}
+ * 调用后端：/story/load
  */
 public class LevelCommand implements CommandExecutor {
 
@@ -48,8 +48,7 @@ public class LevelCommand implements CommandExecutor {
             IntentRouter router,
             WorldPatchExecutor world,
             PayloadExecutorV1 payloadExecutor,
-            PlayerSessionManager sessions
-    ) {
+            PlayerSessionManager sessions) {
         this.plugin = plugin;
         this.backend = backend;
         this.router = router;
@@ -105,8 +104,10 @@ public class LevelCommand implements CommandExecutor {
         UUID playerUuid = player.getUniqueId();
         Bukkit.getScheduler().runTaskAsynchronously(plugin, () -> {
             try {
-                String path = "/story/load/" + playerId + "/" + levelId;
-                String resp = backend.postJson(path, "{}");
+                Map<String, Object> bodyMap = new LinkedHashMap<>();
+                bodyMap.put("player_id", playerId);
+                bodyMap.put("level_id", levelId);
+                String resp = backend.postJson("/story/load", GSON.toJson(bodyMap));
                 Bukkit.getScheduler().runTask(plugin, () -> handleSuccess(playerUuid, resp));
             } catch (Exception e) {
                 Bukkit.getScheduler().runTask(plugin, () -> handleFailure(playerUuid, e));
@@ -156,6 +157,7 @@ public class LevelCommand implements CommandExecutor {
     @SuppressWarnings("unchecked")
     private void applyPatchFromResponse(Player player, String resp, boolean useBootstrap) {
         try {
+                
             JsonElement rootEl = JsonParser.parseString(resp);
             if (!rootEl.isJsonObject()) return;
 
@@ -167,6 +169,7 @@ public class LevelCommand implements CommandExecutor {
             } else if (root.has("world_patch") && root.get("world_patch").isJsonObject()) {
                 patchObj = root.getAsJsonObject("world_patch");
             }
+                
 
             if (patchObj == null) return;
 
@@ -177,8 +180,10 @@ public class LevelCommand implements CommandExecutor {
                 }
                 return;
             }
+            
 
-            Type type = new TypeToken<Map<String, Object>>() {}.getType();
+            Type type = new TypeToken<Map<String,
+                Object>>() {}.getType();
             Map<String, Object> patch = GSON.fromJson(patchObj, type);
             if (patch == null || patch.isEmpty()) return;
 

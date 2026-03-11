@@ -41,8 +41,7 @@ public class IntentRouter {
             DslExecutor dsl,
             NPCManager npcs,
             WorldPatchExecutor world,
-            PlayerSessionManager sessions
-    ) {
+            PlayerSessionManager sessions) {
         this.plugin = plugin;
         this.backend = backend;
         this.dsl = dsl;
@@ -71,6 +70,7 @@ public class IntentRouter {
         Bukkit.getScheduler().runTaskAsynchronously(plugin, () -> {
             try {
                 Map<String, Object> bodyMap = new HashMap<>();
+                bodyMap.put("player_id", playerId);
                 bodyMap.put("world_state", new HashMap<>());
 
                 Map<String, Object> action = new HashMap<>();
@@ -78,8 +78,7 @@ public class IntentRouter {
                 bodyMap.put("action", action);
 
                 String body = GSON.toJson(bodyMap);
-                String path = "/story/advance/" + playerId;
-                String resp = backend.postJson(path, body);
+                String resp = backend.postJson("/story/advance", body);
 
                 Bukkit.getScheduler().runTask(plugin, () -> handleResponse(playerUuid, trimmed, resp));
 
@@ -114,7 +113,8 @@ public class IntentRouter {
 
             if (root.has("world_patch") && root.get("world_patch").isJsonObject()) {
                 JsonObject patchObj = root.getAsJsonObject("world_patch");
-                Type type = new TypeToken<Map<String, Object>>() {}.getType();
+                Type type = new TypeToken<Map<String, Object>>() {
+                }.getType();
                 Map<String, Object> patch = GSON.fromJson(patchObj, type);
 
                 plugin.getLogger().info("[IntentRouter] world_patch(from backend) = " + patch);

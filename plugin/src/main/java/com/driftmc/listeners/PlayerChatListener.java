@@ -26,6 +26,7 @@ public class PlayerChatListener implements Listener {
     private final IntentRouter2 router;
     private final IntentDispatcher2 dispatcher;
     private final TutorialManager tutorialManager;
+    @SuppressWarnings("unused")
     private final RuleEventBridge ruleEvents;
     private final ExitIntentDetector exitDetector;
     private final ChoicePanel choicePanel;
@@ -55,10 +56,6 @@ public class PlayerChatListener implements Listener {
 
         p.sendMessage("§7你：" + msg);
         plugin.getLogger().log(Level.INFO, "[聊天] 玩家 {0} 说: {1}", new Object[]{p.getName(), msg});
-
-        if (ruleEvents != null) {
-            ruleEvents.emitTalk(p, msg);
-        }
 
         // 保存原始消息
         final String originalMsg = msg;

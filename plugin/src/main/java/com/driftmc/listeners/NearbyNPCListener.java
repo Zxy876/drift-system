@@ -1,6 +1,7 @@
 package com.driftmc.listeners;
 
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import java.util.Set;
@@ -26,10 +27,11 @@ import org.bukkit.event.player.PlayerMoveEvent;
 import org.bukkit.inventory.EquipmentSlot;
 import org.bukkit.metadata.MetadataValue;
 import org.bukkit.plugin.java.JavaPlugin;
-import org.bukkit.scheduler.BukkitTask;
 
 import com.driftmc.DriftPlugin;
-import com.driftmc.intent.IntentRouter;
+import com.driftmc.intent2.IntentDispatcher2;
+import com.driftmc.intent2.IntentResponse2;
+import com.driftmc.intent2.IntentRouter2;
 import com.driftmc.npc.NPCManager;
 import com.driftmc.scene.QuestEventCanonicalizer;
 import com.driftmc.scene.RuleEventBridge;
@@ -45,8 +47,6 @@ import net.kyori.adventure.text.format.NamedTextColor;
 public class NearbyNPCListener implements Listener {
 
     private static final long NPC_INTERACT_COOLDOWN_MS = 2_000L;
-    private static final long NEAR_INTENT_COOLDOWN_MS = 2_500L;
-    private static final long NEAR_INTENT_DEBOUNCE_TICKS = 10L;
     private static final String NPC_ID_META = "npc_id";
     private static final String NPC_ID_PREFIX = "npc_id:";
     private static final String TUTORIAL_WORLD_NAME = "KunmingLakeTutorial";
@@ -56,7 +56,8 @@ public class NearbyNPCListener implements Listener {
 
     private final JavaPlugin plugin;
     private final NPCManager npcManager;
-    private final IntentRouter router;
+    private final IntentRouter2 intentRouter2;
+    private final IntentDispatcher2 intentDispatcher2;
     private final RuleEventBridge ruleEvents;
     private final StoryManager storyManager;
     private final PlayerSessionManager sessions;
@@ -64,15 +65,14 @@ public class NearbyNPCListener implements Listener {
     private final Map<String, Long> proximityCooldown = new ConcurrentHashMap<>();
     private final Map<UUID, Long> interactCooldown = new ConcurrentHashMap<>();
     private final Map<String, Long> npcQuestCooldown = new ConcurrentHashMap<>();
-    private final Map<UUID, Long> nearIntentCooldown = new ConcurrentHashMap<>();
-    private final Map<UUID, BukkitTask> pendingNearIntents = new ConcurrentHashMap<>();
     private final ConcurrentMap<UUID, Boolean> tutorialCompletionEmitted = new ConcurrentHashMap<>();
 
-    public NearbyNPCListener(JavaPlugin plugin, NPCManager npcManager, IntentRouter router, RuleEventBridge ruleEvents,
-            PlayerSessionManager sessions) {
+    public NearbyNPCListener(JavaPlugin plugin, NPCManager npcManager, IntentRouter2 intentRouter2,
+            IntentDispatcher2 intentDispatcher2, RuleEventBridge ruleEvents, PlayerSessionManager sessions) {
         this.plugin = plugin;
         this.npcManager = npcManager;
-        this.router = router;
+        this.intentRouter2 = intentRouter2;
+        this.intentDispatcher2 = intentDispatcher2;
         this.ruleEvents = ruleEvents;
         this.storyManager = plugin instanceof DriftPlugin drift ? drift.getStoryManager() : null;
         this.sessions = sessions;
@@ -83,25 +83,11 @@ public class NearbyNPCListener implements Listener {
     public void onMove(PlayerMoveEvent event) {
 
         Player p = event.getPlayer();
-        if (p == null) {
-            return;
-        }
-
         UUID playerId = p.getUniqueId();
 
         if (shouldIgnoreTutorialListener(p)) {
-            cancelPendingNearIntent(playerId);
             return;
         }
-
-        boolean tutorialMovement = isTutorialMovement(p);
-        if (tutorialMovement) {
-            cancelPendingNearIntent(playerId);
-        }
-
-        String levelId = resolveCurrentLevel(p);
-        boolean flagshipTutorial = LevelIds.isFlagshipTutorial(levelId);
-        boolean tutorialCompleted = sessions != null && sessions.hasCompletedTutorial(p);
 
         for (Entity entity : npcManager.getSpawnedNPCs()) {
 
@@ -134,15 +120,8 @@ public class NearbyNPCListener implements Listener {
                     if (ruleEvents != null) {
                         ruleEvents.emitNearNpc(p, name, entity.getLocation());
                     }
-                    if (!tutorialMovement && !shouldSuppressNearIntent(p)) {
-                        scheduleNearIntent(p, entity, name);
-                    }
                 }
             }
-        }
-
-        if (tutorialMovement) {
-            return;
         }
     }
 
@@ -205,101 +184,6 @@ public class NearbyNPCListener implements Listener {
         }
         proximityCooldown.put(key, now);
         return true;
-    }
-
-    private void scheduleNearIntent(Player player, Entity entity, String displayName) {
-        if (router == null || player == null) {
-            return;
-        }
-
-        if (shouldIgnoreTutorialListener(player)) {
-            cancelPendingNearIntent(player.getUniqueId());
-            return;
-        }
-
-        if (isTutorialMovement(player)) {
-            cancelPendingNearIntent(player.getUniqueId());
-            return;
-        }
-
-        UUID playerId = player.getUniqueId();
-        BukkitTask existing = pendingNearIntents.remove(playerId);
-        if (existing != null) {
-            existing.cancel();
-        }
-
-        BukkitTask task = Bukkit.getScheduler().runTaskLater(plugin, () -> {
-            pendingNearIntents.remove(playerId);
-
-            if (!consumeNearIntent(playerId)) {
-                return;
-            }
-
-            Player current = Bukkit.getPlayer(playerId);
-            if (current == null || !current.isOnline()) {
-                return;
-            }
-
-            if (shouldSuppressNearIntent(current)) {
-                return;
-            }
-
-            if (entity != null && entity.isValid()) {
-                Location playerLoc = current.getLocation();
-                Location entityLoc = entity.getLocation();
-                if (entityLoc.getWorld() != playerLoc.getWorld()) {
-                    return;
-                }
-                if (entityLoc.distanceSquared(playerLoc) > 9.0D) {
-                    return;
-                }
-            }
-
-            router.handlePlayerSpeak(current, "我靠近了 " + displayName);
-
-        }, NEAR_INTENT_DEBOUNCE_TICKS);
-
-        pendingNearIntents.put(playerId, task);
-    }
-
-    private void cancelPendingNearIntent(UUID playerId) {
-        BukkitTask pending = pendingNearIntents.remove(playerId);
-        if (pending != null) {
-            pending.cancel();
-        }
-    }
-
-    private boolean consumeNearIntent(UUID playerId) {
-        long now = System.currentTimeMillis();
-        Long last = nearIntentCooldown.get(playerId);
-        if (last != null && now - last < NEAR_INTENT_COOLDOWN_MS) {
-            return false;
-        }
-        nearIntentCooldown.put(playerId, now);
-        return true;
-    }
-
-    private boolean shouldSuppressNearIntent(Player player) {
-        if (player == null) {
-            return false;
-        }
-        if (sessions != null && sessions.isTutorial(player)) {
-            return true;
-        }
-        if (sessions == null) {
-            return false;
-        }
-        if (sessions.hasCompletedTutorial(player)) {
-            return false;
-        }
-        return isFlagshipTutorialLevel(player);
-    }
-
-    private boolean isTutorialMovement(Player player) {
-        if (player == null) {
-            return false;
-        }
-        return sessions != null && sessions.isTutorial(player);
     }
 
     private boolean isInTutorialWorld(Location location) {
@@ -373,7 +257,6 @@ public class NearbyNPCListener implements Listener {
             }
             emittedCompletion = tryEmitTutorialComplete(player, target, levelId);
             if (emittedCompletion) {
-                cancelPendingNearIntent(playerId);
                 player.sendMessage(ChatColor.LIGHT_PURPLE + "你与【" + displayName + "】交谈。");
                 player.sendActionBar(Component.text("你与【" + displayName + "】交谈", NamedTextColor.LIGHT_PURPLE));
                 return true;
@@ -385,7 +268,6 @@ public class NearbyNPCListener implements Listener {
 
         if (ruleEvents != null) {
             if (!(tutorialGuide && flagshipTutorial)) {
-                ruleEvents.emitNpcTalk(player, target, npcId, displayName, "right_click");
                 if (isTradeNpc(target)) {
                     ruleEvents.emitNpcTrade(player, target, npcId, displayName);
                 }
@@ -436,8 +318,8 @@ public class NearbyNPCListener implements Listener {
             }
         }
 
-        if (router != null && !suppressIntent && !emittedCompletion) {
-            router.handlePlayerSpeak(player, "我与 " + displayName + " 互动");
+        if (intentRouter2 != null && intentDispatcher2 != null && !suppressIntent && !emittedCompletion) {
+            dispatchNpcTalkIntent(player, "我与 " + displayName + " 互动");
         }
 
         return true;
@@ -647,5 +529,35 @@ public class NearbyNPCListener implements Listener {
         loc.put("y", location.getY());
         loc.put("z", location.getZ());
         payload.put("location", loc);
+    }
+
+    private void dispatchNpcTalkIntent(Player player, String text) {
+        if (player == null || intentRouter2 == null || intentDispatcher2 == null) {
+            return;
+        }
+
+        final String normalizedText = text == null ? "" : text.trim();
+        if (normalizedText.isEmpty()) {
+            return;
+        }
+
+        intentRouter2.askIntent(player.getName(), normalizedText, (List<IntentResponse2> intents) -> {
+            Bukkit.getScheduler().runTask(plugin, () -> {
+                for (IntentResponse2 intent : intents) {
+                    IntentResponse2 fixedIntent = intent;
+                    if (intent.rawText == null || intent.rawText.isEmpty()) {
+                        fixedIntent = new IntentResponse2(
+                                intent.type,
+                                intent.levelId,
+                                intent.minimap,
+                                normalizedText,
+                                intent.sceneTheme,
+                                intent.sceneHint,
+                                intent.worldPatch);
+                    }
+                    intentDispatcher2.dispatch(player, fixedIntent);
+                }
+            });
+        });
     }
 }

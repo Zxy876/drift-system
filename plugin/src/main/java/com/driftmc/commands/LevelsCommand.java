@@ -13,7 +13,7 @@ import com.driftmc.world.WorldPatchExecutor;
 
 /**
  * /levels
- * 目前做成一个「心悦宇宙帮助面板」，不强依赖后端。
+ * 发布版关卡列表面板。
  */
 public class LevelsCommand implements CommandExecutor {
 
@@ -30,8 +30,7 @@ public class LevelsCommand implements CommandExecutor {
             BackendClient backend,
             IntentRouter router,
             WorldPatchExecutor world,
-            PlayerSessionManager sessions
-    ) {
+            PlayerSessionManager sessions) {
         this.backend = backend;
         this.router = router;
         this.world = world;
@@ -47,9 +46,14 @@ public class LevelsCommand implements CommandExecutor {
         }
 
         player.sendMessage(ChatColor.LIGHT_PURPLE + "====== 心悦宇宙 · Levels ======");
-        player.sendMessage(ChatColor.AQUA + "/level flagship_tutorial " + ChatColor.GRAY + "→ 心悦文集 · 第 1 章");
-        player.sendMessage(ChatColor.AQUA + "/storynext " + ChatColor.GRAY + "→ 让故事向前推进一步");
-        player.sendMessage(ChatColor.AQUA + "直接在聊天里说话 " + ChatColor.GRAY + "→ 让世界根据你的自然语言变化");
+        player.sendMessage(ChatColor.AQUA + "flagship_01 " + ChatColor.GRAY + "→ 昆明湖启程");
+        player.sendMessage(ChatColor.AQUA + "flagship_02 " + ChatColor.GRAY + "→ 湖岸市集");
+        player.sendMessage(ChatColor.AQUA + "flagship_03 " + ChatColor.GRAY + "→ 夜色远航");
+        player.sendMessage("");
+        player.sendMessage(ChatColor.YELLOW + "推荐命令:");
+        player.sendMessage(ChatColor.AQUA + "/drift load flagship_01 " + ChatColor.GRAY + "→ 加载关卡");
+        player.sendMessage(ChatColor.AQUA + "/drift spawn " + ChatColor.GRAY + "→ 生成场景片段");
+        player.sendMessage(ChatColor.GRAY + "旧命令 /levels /level /spawnfragment 仍可使用");
         player.sendMessage(ChatColor.LIGHT_PURPLE + "================================");
 
         return true;
