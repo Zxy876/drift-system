@@ -1,0 +1,127 @@
+{
+  "id": "custom_1765015070620",
+  "title": "我要出剧情，我要建房子",
+  "text": [
+    "我要出剧情，我要建房子"
+  ],
+  "tags": [],
+  "mood": {
+    "base": "calm",
+    "intensity": 0.5
+  },
+  "choices": [],
+  "meta": {},
+  "npcs": [],
+  "bootstrap_patch": {
+    "variables": {
+      "story_world_generated": true,
+      "story_title": "我要出剧情，我要建房子"
+    },
+    "mc": {
+      "tell": "§6我要出剧情，我要建房子§r\n我要出剧情，我要建房子",
+      "spawn": {
+        "x": 0,
+        "y": 70,
+        "z": 0
+      },
+      "time": "day",
+      "weather": "clear",
+      "spawns": [
+        {
+          "type": "villager",
+          "name": "建筑师",
+          "x": 10,
+          "y": 70,
+          "z": 5,
+          "dialog": "需要帮助建房子吗？我有蓝图！"
+        },
+        {
+          "type": "zombie",
+          "name": "守卫",
+          "x": -15,
+          "y": 70,
+          "z": -10,
+          "dialog": "grrr... 别靠近废墟！"
+        },
+        {
+          "type": "cow",
+          "name": "哞哞",
+          "x": 8,
+          "y": 70,
+          "z": -3,
+          "dialog": ""
+        }
+      ],
+      "blocks": [
+        {
+          "type": "stone",
+          "x": 0,
+          "y": 69,
+          "z": 0
+        },
+        {
+          "type": "oak_planks",
+          "x": 5,
+          "y": 70,
+          "z": 5
+        },
+        {
+          "type": "oak_planks",
+          "x": 6,
+          "y": 70,
+          "z": 5
+        },
+        {
+          "type": "oak_planks",
+          "x": 7,
+          "y": 70,
+          "z": 5
+        },
+        {
+          "type": "glass",
+          "x": 6,
+          "y": 72,
+          "z": 5
+        },
+        {
+          "type": "stone",
+          "x": -10,
+          "y": 69,
+          "z": -10
+        },
+        {
+          "type": "stone",
+          "x": -11,
+          "y": 69,
+          "z": -10
+        },
+        {
+          "type": "stone",
+          "x": -10,
+          "y": 70,
+          "z": -10
+        }
+      ]
+    }
+  },
+  "tree": null,
+  "narrative": {
+    "text": [
+      "我要出剧情，我要建房子"
+    ]
+  },
+  "scene": {},
+  "tasks": [
+    {
+      "id": "custom_1765015070620_story",
+      "type": "story",
+      "conditions": [],
+      "milestones": [],
+      "rewards": []
+    }
+  ],
+  "world_patch": {
+    "mc": {},
+    "variables": {}
+  }
+}

@@ -1,0 +1,292 @@
+{
+  "id": "flagship_tutorial",
+  "title": "心悦旗舰教程：湖面上的第一步",
+  "meta": {
+    "chapter": 0,
+    "tags": ["tutorial", "onboarding", "flagship"],
+    "word_count": 0,
+    "difficulty": "introductory"
+  },
+
+  "storyline_theme": "flagship_resilience",
+  "continuity": {
+    "previous": null,
+    "next": "flagship_03",
+    "emotional_vector": "hopeful_preparation",
+    "arc_step": 1
+  },
+
+  "emotional_world_patch": {
+    "default": {
+      "label": "平稳引导",
+      "tone": "gentle",
+      "patch": {
+        "mc": {
+          "lighting_shift": "sunrise_soft",
+          "music": { "record": "mellohi", "volume": 0.5 },
+          "npc_emotion": {
+            "tone": "gentle",
+            "targets": ["心悦向导"],
+            "lines": ["心悦向导轻声：慢下来没关系，我们会一起练习。"]
+          }
+        }
+      }
+    },
+    "profiles": [
+      {
+        "id": "facing",
+        "label": "面对勇气",
+        "tone": "encouraging",
+        "requires": ["xinyue.face_once"],
+        "priority": 10,
+        "patch": {
+          "mc": {
+            "weather_transition": { "to": "CLEAR" },
+            "lighting_shift": "sunrise_glow",
+            "music": { "record": "otherside", "volume": 0.8 },
+            "npc_emotion": {
+              "tone": "encouraging",
+              "targets": ["心悦向导"],
+              "lines": ["心悦向导点头：你敢直面疼痛，湖面都替你开了一条路。"],
+              "actionbar": "心绪升温 · 面对"
+            }
+          }
+        }
+      },
+      {
+        "id": "escape",
+        "label": "逃避回声",
+        "tone": "reassure",
+        "requires": ["xinyue.escape_once"],
+        "priority": 5,
+        "patch": {
+          "mc": {
+            "weather_transition": { "to": "RAIN" },
+            "lighting_shift": "mist_soft",
+            "music": { "record": "ward", "volume": 0.6 },
+            "npc_emotion": {
+              "tone": "reassuring",
+              "targets": ["心悦向导"],
+              "lines": ["心悦向导叹息：逃开也没关系，记得我们可以再回头。"],
+              "actionbar": "心绪低潮 · 退后"
+            }
+          }
+        }
+      }
+    ]
+  },
+
+  
+  "narrative": {
+    "text": [
+      "湖面在晨光中平静闪动。空气带着微甜的露气。",
+      "一个身影站在你的前方，她转过头来，像早就在等你。"
+    ],
+    "beats": [
+      {
+        "id": "tutorial_intro",
+        "trigger": "on_enter",
+        "cinematic": "tutorial_entry_fade",
+        "cinematic_alias": "flagship_tutorial.entry",
+        "rule_refs": ["tutorial_greet"],
+        "memory_set": ["xinyue.masked_pain"],
+        "memory_clear": ["xinyue.admitted_pain"],
+        "branch_hint": "flagship_resilience.orientation",
+        "choices": [
+          {
+            "id": "intro_yes",
+            "text": "点头：我准备好了。",
+            "rule_event": "tutorial_intro_started",
+            "continuity_tags": ["courage_signal"],
+            "next_major_level": "flagship_03"
+          },
+          {
+            "id": "intro_confused",
+            "text": "疑惑：这里是哪里？",
+            "rule_event": "tutorial_meet_guide",
+            "continuity_tags": ["processing_signal"]
+          }
+        ]
+      },
+      {
+        "id": "tutorial_confession",
+        "trigger": "rule_event:tutorial_meet_guide",
+        "cinematic_alias": "flagship_tutorial.confession",
+        "rule_refs": ["tutorial_reassure"],
+        "memory_set": ["xinyue.admitted_pain"],
+        "memory_clear": ["xinyue.masked_pain"],
+        "world_patch": {
+          "mc": {
+            "tell": "§d[心悦向导]§r 你愿意提起，那已经是一种勇气。",
+            "particle": {"type": "heart", "count": 14},
+            "sound": {"type": "ENTITY_PLAYER_LEVELUP", "volume": 0.8, "pitch": 1.2}
+          }
+        },
+        "choices": [
+          {
+            "id": "confession_affirm",
+            "text": "谢谢你，我还想继续走下去。",
+            "rule_event": "tutorial_intro_started",
+            "tags": ["confession", "pain_shared"],
+            "continuity_tags": ["shared_weight"]
+          }
+        ]
+      },
+      {
+        "id": "tutorial_start",
+        "trigger": "rule_event:tutorial_intro_started",
+        "cinematic": "tutorial_light_bloom",
+        "cinematic_alias": "flagship_tutorial.first_step",
+        "rule_refs": ["tutorial_step_one"],
+        "branch_hint": "flagship_resilience.first_step"
+      },
+      {
+        "id": "tutorial_finish",
+        "trigger": "rule_event:tutorial_task_complete",
+        "cinematic": "tutorial_portal_open",
+        "cinematic_alias": "flagship_tutorial.arc_handoff",
+        "next_level": "flagship_03",
+        "next_major_level": "flagship_03",
+        "rule_refs": ["tutorial_task_complete"],
+        "branch_hint": "flagship_resilience.hand_off"
+      }
+    ]
+  },
+
+  
+  "scene": {
+    "world": "KunmingLakeTutorial",
+    "teleport": { "x": 4.5, "y": 68, "z": 4.5, "yaw": 180, "pitch": 0 },
+    "environment": { "weather": "CLEAR", "time": "SUNRISE" },
+    "structures": [
+      "structures/tutorial/spawn_plaza.nbt",
+      "structures/tutorial/light_markers.nbt"
+    ],
+    "npc_skins": [
+      { "id": "心悦向导", "skin": "registry:flagship_tutorial" }
+    ]
+  },
+
+  
+  "rules": {
+    "listeners": [
+      {
+        "id": "tutorial_greet",
+        "type": "npc_dialogue",
+        "targets": ["心悦向导"],
+        "dialogue": [
+          "欢迎来到心悦世界的湖面。",
+          "这里，每个决定都会留下光的纹路。"
+        ]
+      },
+      {
+        "id": "tutorial_reassure",
+        "type": "npc_dialogue",
+        "targets": ["心悦向导"],
+        "dialogue": [
+          "没关系，在这里我们可以慢慢来。",
+          "把疼痛说出口，才有机会一起修补它。"
+        ],
+        "metadata": {
+          "update_behaviors": [
+            {"type": "particle", "particle": "glow", "description": "向导抬手，光点围绕你旋转"}
+          ]
+        }
+      },
+      {
+        "id": "tutorial_step_one",
+        "type": "quest_event",
+        "targets": ["tutorial_task_complete"],
+        "quest_event": "tutorial_task_complete",
+        "metadata": {
+          "dialogue": [
+            "很好，你迈出了第一步。",
+            "试着靠近前方的光点吧。"
+          ],
+          "update_behaviors": [
+            { "type": "particle", "particle": "happy_villager" }
+          ]
+        }
+      },
+      {
+        "id": "tutorial_launch",
+        "type": "quest_event",
+        "targets": ["tutorial_task_complete"],
+        "quest_event": "tutorial_task_complete",
+        "metadata": {
+          "dialogue": {
+            "title": "传送门已开启",
+            "text": "你已准备好面对真正的故事。"
+          },
+          "commands": [
+            "title @p title {\"text\":\"前往第一章\",\"color\":\"gold\"}",
+            "title @p subtitle {\"text\":\"flagship_03 即将开启\",\"color\":\"white\"}"
+          ]
+        }
+      }
+    ]
+  },
+
+  
+  "tasks": [
+    {
+      "id": "tutorial_task_01",
+      "type": "quest_event",
+      "title": "踏上旅程",
+      "rule_event": "tutorial_task_complete",
+      "memory_set": ["xinyue.tutorial_completed"],
+      "count": 1,
+      "conditions": [
+        {
+          "quest_event": "tutorial_task_complete",
+          "rule_event": "tutorial_task_complete",
+          "count": 1,
+          "title": "抵达光点"
+        }
+      ],
+      "rule_refs": [
+        "tutorial_task_complete"
+      ],
+      "milestones": [],
+      "rewards": [
+        { "type": "item", "amount": 1, "data": {"id": "guide_compass"} }
+      ],
+      "hints": ["跟随光点，靠近前方提示区域。"]
+    }
+  ],
+
+  
+  "exit": {
+    "phrase_aliases": ["结束教学", "返回湖面", "退出教程"],
+    "return_spawn": "KunmingLakeHub",
+    "teleport": { "x": 128.5, "y": 72, "z": -16.5, "yaw": 180, "pitch": 0 }
+  },
+
+  
+  "world_patch": {
+    "mc": {
+      "_scene": {
+        "level_id": "flagship_tutorial",
+        "title": "心悦旗舰教程",
+        "scene_world": "KunmingLakeTutorial",
+        "featured_npc": "心悦向导",
+        "entry_trigger": "tutorial_intro_started",
+        "npc_triggers": [
+          { "npc": "心悦向导", "quest_event": "tutorial_meet_guide" }
+        ]
+      },
+      "music": { "record": "mellohi" },
+      "particle": { "type": "enchantment", "count": 20 },
+      "lighting_shift": "sunrise_warm",
+      "weather_transition": { "from": "DAWN_MIST", "to": "SUNRISE" },
+      "npc_trigger_events": [
+        { "npc": "心悦向导", "quest_event": "tutorial_meet_guide" }
+      ]
+    },
+    "variables": {
+      "theme": "tutorial",
+      "unlocked": true,
+      "arc_position": "opening"
+    }
+  }
+}

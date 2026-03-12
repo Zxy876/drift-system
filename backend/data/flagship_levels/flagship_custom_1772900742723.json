@@ -1,0 +1,211 @@
+{
+  "id": "flagship_custom_1772900742723",
+  "title": "创建剧情",
+  "text": [
+    "创建剧情"
+  ],
+  "tags": [],
+  "mood": {
+    "base": "calm",
+    "intensity": 0.5
+  },
+  "choices": [],
+  "meta": {
+    "trng_transaction": {
+      "tx_id": "tx_bd936f763fb0",
+      "base_state_hash": "befe6682a6c32ed55d288ddaf40636b0ee73c37fd48bd8ec91204afa91dba85e",
+      "committed_state_hash": "b450e47a275e671dd891764d7ad74099a3233d2dc6cf18b9dff2a9bf07506cde",
+      "committed_graph_hash": "bd74ed1883975aa69563d1d7251d8fc81df4a662b60bccd43bb735c8afafc588",
+      "commit_timestamp": 1772900742.725576,
+      "rule_version": "rule_v2_2",
+      "engine_version": "engine_v2_1",
+      "event_count": 2
+    }
+  },
+  "npcs": [],
+  "bootstrap_patch": {
+    "variables": {
+      "story_world_generated": true,
+      "story_title": "创建剧情"
+    },
+    "mc": {
+      "tell": "§6创建剧情§r\n创建剧情",
+      "spawn": {
+        "x": 0,
+        "y": 70,
+        "z": 0
+      },
+      "time": "night",
+      "weather": "rain",
+      "spawns": [
+        {
+          "type": "villager",
+          "name": "老铁匠",
+          "x": 8,
+          "y": 70,
+          "z": -5,
+          "dialog": "远方来的旅人，小心夜晚的怪物！"
+        },
+        {
+          "type": "zombie",
+          "name": "徘徊者",
+          "x": -10,
+          "y": 70,
+          "z": 15,
+          "dialog": ""
+        },
+        {
+          "type": "cow",
+          "name": "哞哞",
+          "x": 3,
+          "y": 70,
+          "z": 7,
+          "dialog": ""
+        }
+      ],
+      "blocks": [
+        {
+          "type": "stone",
+          "x": 0,
+          "y": 69,
+          "z": 0
+        },
+        {
+          "type": "oak_planks",
+          "x": 5,
+          "y": 70,
+          "z": -5
+        },
+        {
+          "type": "glass",
+          "x": 6,
+          "y": 72,
+          "z": -5
+        },
+        {
+          "type": "stone",
+          "x": 4,
+          "y": 70,
+          "z": -5
+        },
+        {
+          "type": "oak_planks",
+          "x": 5,
+          "y": 71,
+          "z": -5
+        },
+        {
+          "type": "stone",
+          "x": 6,
+          "y": 70,
+          "z": -5
+        },
+        {
+          "type": "oak_planks",
+          "x": 5,
+          "y": 70,
+          "z": -4
+        },
+        {
+          "type": "oak_planks",
+          "x": 5,
+          "y": 70,
+          "z": -6
+        }
+      ]
+    }
+  },
+  "world_patch": {
+    "variables": {
+      "story_world_generated": true,
+      "story_title": "创建剧情"
+    },
+    "mc": {
+      "tell": "§6创建剧情§r\n创建剧情",
+      "spawn": {
+        "x": 0,
+        "y": 70,
+        "z": 0
+      },
+      "time": "night",
+      "weather": "rain",
+      "spawns": [
+        {
+          "type": "villager",
+          "name": "老铁匠",
+          "x": 8,
+          "y": 70,
+          "z": -5,
+          "dialog": "远方来的旅人，小心夜晚的怪物！"
+        },
+        {
+          "type": "zombie",
+          "name": "徘徊者",
+          "x": -10,
+          "y": 70,
+          "z": 15,
+          "dialog": ""
+        },
+        {
+          "type": "cow",
+          "name": "哞哞",
+          "x": 3,
+          "y": 70,
+          "z": 7,
+          "dialog": ""
+        }
+      ],
+      "blocks": [
+        {
+          "type": "stone",
+          "x": 0,
+          "y": 69,
+          "z": 0
+        },
+        {
+          "type": "oak_planks",
+          "x": 5,
+          "y": 70,
+          "z": -5
+        },
+        {
+          "type": "glass",
+          "x": 6,
+          "y": 72,
+          "z": -5
+        },
+        {
+          "type": "stone",
+          "x": 4,
+          "y": 70,
+          "z": -5
+        },
+        {
+          "type": "oak_planks",
+          "x": 5,
+          "y": 71,
+          "z": -5
+        },
+        {
+          "type": "stone",
+          "x": 6,
+          "y": 70,
+          "z": -5
+        },
+        {
+          "type": "oak_planks",
+          "x": 5,
+          "y": 70,
+          "z": -4
+        },
+        {
+          "type": "oak_planks",
+          "x": 5,
+          "y": 70,
+          "z": -6
+        }
+      ]
+    }
+  },
+  "tree": null
+}

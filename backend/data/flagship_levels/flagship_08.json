@@ -1,0 +1,406 @@
+{
+  "id": "flagship_08",
+  "title": "天黑欲雨 · 心魔迷宫",
+  "tags": ["心悦文集", "心理", "叙事", "迷宫", "心象"],
+  "meta": {
+    "chapter": 8,
+    "source": "xinyue_wenji",
+    "template_version": "v3"
+  },
+
+  "memory_affinity": ["xinyue.face_once"],
+  "memory_recovery": ["xinyue.escape_once"],
+
+  "storyline_theme": "flagship_resilience",
+  "continuity": {
+    "previous": "flagship_03",
+    "next": "flagship_12",
+    "next_major_level": "flagship_12",
+    "emotional_vector": "reckoning_in_rain",
+    "arc_step": 3
+  },
+
+  "emotional_world_patch": {
+    "default": {
+      "label": "雨夜悬念",
+      "tone": "brooding",
+      "patch": {
+        "mc": {
+          "lighting_shift": "night_to_neon_glow",
+          "music": { "record": "ward", "volume": 0.7 },
+          "npc_emotion": {
+            "tone": "brooding",
+            "targets": ["grandma_memory", "heart_demon"],
+            "lines": ["雨声像问句一样敲着迷宫的墙。"]
+          }
+        }
+      }
+    },
+    "profiles": [
+      {
+        "id": "face_maze",
+        "label": "雨停一隙",
+        "tone": "encouraging",
+        "requires": ["xinyue.face_once"],
+        "priority": 10,
+        "patch": {
+          "mc": {
+            "weather_transition": { "to": "CLEAR" },
+            "lighting_shift": "lantern_warm",
+            "music": { "record": "otherside", "volume": 0.75 },
+            "npc_emotion": {
+              "tone": "encouraging",
+              "targets": ["grandma_memory"],
+              "lines": ["奶奶的影子笑了：你敢转身，雨势就替你散开。"],
+              "actionbar": "雨线稀疏 · 面对"
+            }
+          }
+        }
+      },
+      {
+        "id": "escape_maze",
+        "label": "暗涌加剧",
+        "tone": "solemn",
+        "requires": ["xinyue.escape_once"],
+        "priority": 5,
+        "patch": {
+          "mc": {
+            "weather_transition": { "to": "STORM" },
+            "lighting_shift": "storm_echo",
+            "music": { "record": "mellohi", "volume": 0.65 },
+            "npc_emotion": {
+              "tone": "solemn",
+              "targets": ["heart_demon"],
+              "lines": ["心魔低语：你越快逃开，阴影就越亮。"],
+              "actionbar": "雨幕压顶 · 退却"
+            }
+          }
+        }
+      }
+    ]
+  },
+
+  "scene": {
+    "world": "KunmingLakeStory",
+    "teleport": { "x": 0.5, "y": 70, "z": 0.5, "yaw": 0, "pitch": 0 },
+    "environment": {
+      "weather": "RAIN",
+      "time": "NIGHT"
+    },
+    "npc_skins": [
+      {
+        "id": "grandma_memory",
+        "name": "回忆中的奶奶",
+        "skin": "registry:old_wisdom",
+        "x": 3,
+        "y": 70,
+        "z": 3
+      },
+      {
+        "id": "heart_demon",
+        "name": "心魔裂口",
+        "skin": "registry:shadow_creature",
+        "x": -4,
+        "y": 70,
+        "z": -4
+      }
+    ],
+    "structures": [
+      {
+        "id": "memory_maze",
+        "shape": "maze",
+        "size": 22,
+        "material": "blackstone"
+      }
+    ]
+  },
+
+  "world_patch": {
+    "mc": {
+      "lighting_shift": "night_to_neon_glow",
+      "weather_transition": {"from": "STORM_BUILD", "to": "SOFT_RAIN"},
+      "trigger_zones": [
+        {
+          "id": "flagship_08_maze_entry",
+          "label": "迷宫入口",
+          "quest_event": "flagship_08_intro",
+          "radius": 4.0
+        },
+        {
+          "id": "flagship_08_grandma",
+          "label": "奶奶的灯光",
+          "quest_event": "approach_grandma",
+          "radius": 3.0,
+          "offset": {"dx": 3.0, "dy": 0.0, "dz": 3.0}
+        },
+        {
+          "id": "flagship_08_heart_demon",
+          "label": "心魔裂口",
+          "quest_event": "approach_heart_demon",
+          "radius": 3.0,
+          "offset": {"dx": -4.0, "dy": 0.0, "dz": -4.0}
+        }
+      ],
+      "npc_trigger_events": [
+        {"npc": "回忆中的奶奶", "quest_event": "comfort_path"},
+        {"npc": "心魔裂口", "quest_event": "deny_path"}
+      ]
+    },
+    "variables": {
+      "arc_position": "midpoint"
+    }
+  },
+
+  "narrative": {
+    "text": [
+      "天黑了，也下起了雨。",
+      "你的世界像泥泞的街道，每前进一步都像是拖着过去的重量。",
+      "耳边只有自己的呼吸和雨声。",
+      "在迷宫深处，有什么东西正在苏醒。"
+    ],
+
+    "beats": [
+      {
+        "id": "intro",
+        "trigger": "on_enter",
+        "rule_refs": ["flagship_08_intro"],
+        "milestone_event": "flagship_08_intro",
+        "cinematic": "rain_intro",
+        "cinematic_alias": "flagship_08.rain_entry",
+        "branch_hint": "flagship_resilience.fork",
+        "choices": [
+          {
+            "id": "face_memory",
+            "text": "走向奶奶的幻影",
+            "rule_event": "approach_grandma",
+            "continuity_tags": ["face_memory"],
+            "next_major_level": "flagship_12"
+          },
+          {
+            "id": "follow_crack",
+            "text": "追随地面裂开的黑暗",
+            "rule_event": "approach_heart_demon",
+            "continuity_tags": ["shadow_pursuit"]
+          }
+        ],
+        "world_patch": {
+          "mc": {
+            "tell": "✨ 雨夜降临。记忆化作迷宫，你必须面对内心的影子。",
+            "music": { "record": "ward" },
+            "particle": { "type": "ash", "count": 50 }
+          }
+        }
+      },
+
+      {
+        "id": "flagship_08_memory_face",
+        "trigger": ["rule_event:comfort_path", "rule_event:fight_path"],
+        "memory_set": ["xinyue.face_once"],
+        "memory_clear": ["xinyue.escape_once"],
+        "branch_hint": "flagship_resilience.face_memory",
+        "milestone_event": "comfort_path",
+        "world_patch": {
+          "mc": {
+            "tell": "§a 雨声渐弱，你踩在泥水里的脚步慢慢稳了下来。",
+            "particle": {"type": "happy_villager", "count": 16},
+            "sound": {"type": "BLOCK_AMETHYST_BLOCK_STEP", "volume": 0.8, "pitch": 1.0}
+          }
+        }
+      },
+
+      {
+        "id": "flagship_08_memory_escape",
+        "trigger": ["rule_event:deny_path", "rule_event:escape_path"],
+        "memory_set": ["xinyue.escape_once"],
+        "memory_clear": ["xinyue.face_once"],
+        "branch_hint": "flagship_resilience.escape_loop",
+        "milestone_event": "escape_path",
+        "world_patch": {
+          "mc": {
+            "tell": "§7 泥水溅起，你转身离开的背影被夜色吞没。",
+            "particle": {"type": "ash", "count": 30},
+            "sound": {"type": "BLOCK_MUD_STEP", "volume": 0.9, "pitch": 0.8}
+          }
+        }
+      },
+
+      {
+        "id": "flagship_08_reconcile",
+        "trigger": "story:continue",
+        "memory_required": ["xinyue.face_once"],
+        "branch_hint": "flagship_resilience.face_recap",
+        "milestone_event": "flagship_08_reconcile",
+        "world_patch": {
+          "mc": {
+            "tell": "✨ 你回头望向迷宫，光束像线索一样指向更深处。",
+            "weather": "CLEAR",
+            "music": {"record": "otherside"}
+          }
+        },
+        "scene_patch": "scene_calm_after_rain"
+      },
+
+      {
+        "id": "flagship_08_linger",
+        "trigger": "story:continue",
+        "memory_required": ["xinyue.escape_once"],
+        "branch_hint": "flagship_resilience.escape_recap",
+        "milestone_event": "flagship_08_linger",
+        "world_patch": {
+          "mc": {
+            "tell": "☔ 雨更密了，迷宫墙面映出你匆忙的倒影。",
+            "particle": {"type": "dripping_water", "count": 45},
+            "music": {"record": "ward"}
+          }
+        },
+        "scene_patch": "scene_rain_intensifies"
+      },
+
+      {
+        "id": "meet_grandma",
+        "trigger": "rule:approach_grandma",
+        "rule_refs": ["calm_gain"],
+        "milestone_event": "approach_grandma",
+        "npc_dialogue": [
+          {
+            "npc": "grandma_memory",
+            "lines": [
+              "孩子，你为什么害怕回头？",
+              "烦恼不是黑暗，它只是想被你看见。"
+            ]
+          }
+        ],
+        "choices": [
+          {
+            "id": "accept_comfort",
+            "text": "我愿意面对自己",
+            "rule_event": "comfort_path"
+          },
+          {
+            "id": "deny_past",
+            "text": "我不想再想过去了",
+            "rule_event": "deny_path"
+          }
+        ],
+        "world_patch": {
+          "mc": {
+            "particle": { "type": "heart", "count": 20 },
+            "sound": "entity.experience_orb.pickup"
+          }
+        }
+      },
+
+      {
+        "id": "meet_heart_demon",
+        "trigger": "rule:approach_heart_demon",
+        "npc_dialogue": [
+          {
+            "npc": "heart_demon",
+            "lines": [
+              "你以为努力能让你逃出去？",
+              "痛苦一直都在，你只是害怕看它。"
+            ]
+          }
+        ],
+        "choices": [
+          {
+            "id": "confront_demon",
+            "text": "直面心魔",
+            "rule_event": "fight_path",
+            "next_major_level": "flagship_12"
+          },
+          {
+            "id": "escape_demon",
+            "text": "逃离它",
+            "rule_event": "escape_path",
+            "next_major_level": "flagship_03"
+          }
+        ],
+        "world_patch": {
+          "mc": { "particle": { "type": "smoke", "count": 35 } }
+        },
+        "cinematic": "heart_demon_rise",
+        "cinematic_alias": "flagship_08.shadow_rise",
+        "milestone_event": "approach_heart_demon"
+      },
+
+      {
+        "id": "ending",
+        "trigger": "story:continue",
+        "rule_refs": ["flagship_08_ending"],
+        "milestone_event": "flagship_08_ending",
+        "next_major_level": "flagship_12",
+        "world_patch": {
+          "mc": {
+            "tell": "✨ 雨停了。你穿过迷宫，迈向下一个阶段。",
+            "weather": "CLEAR"
+          }
+        }
+      }
+    ]
+  },
+
+  "rules": {
+    "listeners": [
+      { "id": "calm_gain", "on": "comfort_path" },
+      { "id": "fear_gain", "on": "deny_path" },
+      { "id": "resolve_gain", "on": "fight_path" },
+      { "id": "avoidance_gain", "on": "escape_path" }
+    ]
+  },
+
+  "tasks": [
+    {
+      "id": "flagship_08_maze",
+      "type": "quest_event",
+      "title": "穿越心象迷宫",
+      "hint": "在雨夜迷宫中寻找引导与心魔的答案。",
+      "rule_event": "flagship_08_ending",
+      "conditions": [
+        {
+          "quest_event": "approach_grandma",
+          "count": 1,
+          "title": "找到奶奶的幻影"
+        },
+        {
+          "quest_event": "approach_heart_demon",
+          "count": 1,
+          "title": "面对心魔裂口"
+        }
+      ],
+      "milestones": [
+        {
+          "id": "flagship_08_find_grandma",
+          "title": "找到奶奶的幻影",
+          "hint": "靠近雨巷深处的灯光，与熟悉的影子对话。",
+          "milestone_event": "approach_grandma",
+          "target": "approach_grandma"
+        },
+        {
+          "id": "flagship_08_face_demon",
+          "title": "面对心魔裂口",
+          "hint": "直面迷宫阴影的低语，做出属于你的回应。",
+          "milestone_event": "approach_heart_demon",
+          "target": "approach_heart_demon"
+        }
+      ],
+      "rule_refs": [
+        "approach_grandma",
+        "approach_heart_demon",
+        "comfort_path",
+        "deny_path",
+        "fight_path",
+        "escape_path",
+        "flagship_08_intro",
+        "flagship_08_ending"
+      ],
+      "rewards": ["clarity_fragment"]
+    }
+  ],
+
+  "exit": {
+    "phrase_aliases": ["离开雨夜", "离开迷宫", "结束剧情"],
+    "return_spawn": "KunmingLakeHub",
+    "teleport": { "x": 0.5, "y": 70, "z": 0.5, "yaw": 0, "pitch": 0 }
+  }
+}

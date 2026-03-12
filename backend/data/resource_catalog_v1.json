@@ -1,0 +1,83 @@
+{
+  "version": "resource_catalog_v1",
+  "description": "Drift 资源目录草案（仅结构设计，不接入执行）",
+  "defaults": {
+    "namespace": "minecraft",
+    "fallback_material": "oak_planks",
+    "max_candidates_per_tag": 8
+  },
+  "groups": [
+    {
+      "id": "wood_basic",
+      "tags": ["wood", "warm", "safe", "build"],
+      "materials": [
+        { "id": "oak_planks", "weight": 1.0 },
+        { "id": "spruce_planks", "weight": 0.7 },
+        { "id": "birch_planks", "weight": 0.5 },
+        { "id": "oak_log", "weight": 0.8 },
+        { "id": "oak_slab", "weight": 0.8 }
+      ]
+    },
+    {
+      "id": "stone_neutral",
+      "tags": ["stone", "neutral", "ground", "support"],
+      "materials": [
+        { "id": "stone", "weight": 1.0 },
+        { "id": "cobblestone", "weight": 0.8 },
+        { "id": "smooth_stone", "weight": 0.7 },
+        { "id": "stone_bricks", "weight": 0.6 }
+      ]
+    },
+    {
+      "id": "glass_light",
+      "tags": ["window", "light", "clean", "modern"],
+      "materials": [
+        { "id": "glass", "weight": 1.0 },
+        { "id": "white_stained_glass", "weight": 0.7 },
+        { "id": "light_blue_stained_glass", "weight": 0.5 }
+      ]
+    },
+    {
+      "id": "mood_dawn",
+      "tags": ["dawn", "hopeful", "gold", "finale"],
+      "materials": [
+        { "id": "smooth_quartz", "weight": 0.9 },
+        { "id": "calcite", "weight": 0.7 },
+        { "id": "sea_lantern", "weight": 0.6 }
+      ],
+      "effects": {
+        "particle": ["end_rod", "glow"],
+        "music": ["otherside", "5"]
+      }
+    },
+    {
+      "id": "mood_twilight",
+      "tags": ["night", "melancholy", "rain", "mystery"],
+      "materials": [
+        { "id": "deepslate_tiles", "weight": 0.8 },
+        { "id": "gray_wool", "weight": 0.6 },
+        { "id": "blackstone", "weight": 0.5 }
+      ],
+      "effects": {
+        "particle": ["ash", "smoke"],
+        "music": ["mellohi"]
+      }
+    }
+  ],
+  "selectors": {
+    "by_tag": {
+      "build_house_small": ["wood_basic", "stone_neutral", "glass_light"],
+      "scene_finale_dawn": ["mood_dawn", "glass_light"],
+      "scene_finale_night": ["mood_twilight", "stone_neutral"]
+    },
+    "by_intent": {
+      "CREATE_STORY": ["wood_basic", "stone_neutral"],
+      "BUILD_STRUCTURE": ["wood_basic", "stone_neutral", "glass_light"]
+    }
+  },
+  "guardrails": {
+    "allow_unknown_material": false,
+    "dedupe_materials": true,
+    "enforce_weight_range": [0.0, 1.0]
+  }
+}

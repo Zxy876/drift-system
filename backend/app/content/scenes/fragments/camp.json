@@ -1,0 +1,44 @@
+{
+  "id": "camp",
+  "root": true,
+  "priority": 90,
+  "size": [7, 7],
+  "layout_anchor": "center",
+  "tags": ["wood", "light", "shelter"],
+  "requires": ["wood"],
+  "optional_resources": ["food", "stone", "light"],
+  "structures": [
+    {
+      "type": "campfire",
+      "template": "campfire_small",
+      "offset": [0, 0, 0]
+    },
+    {
+      "type": "tent",
+      "template": "tent_basic",
+      "offset": [3, 0, 1]
+    },
+    {
+      "type": "crate",
+      "template": "crate_supply",
+      "offset": [-2, 0, 2]
+    }
+  ],
+  "npcs": [
+    {
+      "id": "camper",
+      "role": "survivor"
+    }
+  ],
+  "connections": ["fire", "wanderer_npc", "cooking_area", "watchtower"],
+  "events": [
+    {
+      "event_id": "spawn_camp",
+      "type": "spawn_structure",
+      "anchor_ref": "player",
+      "data": {
+        "template": "camp_small"
+      }
+    }
+  ]
+}

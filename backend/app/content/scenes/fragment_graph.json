@@ -1,0 +1,30 @@
+{
+  "camp": {
+    "children": [
+      "fire",
+      "cooking_area",
+      "watchtower"
+    ],
+    "max_children": 3
+  },
+  "village": {
+    "children": [
+      "market",
+      "forge",
+      "farm",
+      "shrine"
+    ],
+    "max_children": 4
+  },
+  "market": {
+    "children": [
+      "forge",
+      "farm"
+    ],
+    "max_children": 2
+  },
+  "forge": {
+    "children": [],
+    "max_children": 0
+  }
+}

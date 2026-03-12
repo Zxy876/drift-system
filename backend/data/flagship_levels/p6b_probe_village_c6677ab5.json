@@ -1,0 +1,880 @@
+{
+  "id": "p6b_probe_village_c6677ab5",
+  "title": "P6B runtime probe village",
+  "text": [
+    "P6B runtime probe village"
+  ],
+  "tags": [],
+  "mood": {
+    "base": "calm",
+    "intensity": 0.5
+  },
+  "choices": [],
+  "meta": {
+    "trng_transaction": {
+      "tx_id": "tx_998c670e008a",
+      "base_state_hash": "befe6682a6c32ed55d288ddaf40636b0ee73c37fd48bd8ec91204afa91dba85e",
+      "committed_state_hash": "b450e47a275e671dd891764d7ad74099a3233d2dc6cf18b9dff2a9bf07506cde",
+      "committed_graph_hash": "f287911c6f339d3ce4945b77155c8d5a5d5c412efa32b424605e62342e9402e4",
+      "commit_timestamp": 1772860636.9044302,
+      "rule_version": "rule_v2_2",
+      "engine_version": "engine_v2_1",
+      "event_count": 3
+    },
+    "scene_generation": {
+      "scene_theme": "语义探针村落",
+      "scene_hint": null,
+      "selected_anchor": "player",
+      "initial_anchor": "player",
+      "final_anchor": "player_safe_ground",
+      "player_pos": {
+        "world": "world",
+        "x": 12.0,
+        "y": 65.0,
+        "z": -3.0
+      },
+      "initial_anchor_pos": {
+        "world": "world",
+        "x": 12.0,
+        "y": 65.0,
+        "z": -3.0
+      },
+      "final_anchor_pos": {
+        "world": "world",
+        "x": 12.0,
+        "y": 65.0,
+        "z": -3.0
+      },
+      "anchor_pos": {
+        "world": "world",
+        "x": 12.0,
+        "y": 65.0,
+        "z": -3.0
+      },
+      "fragments": [
+        "village",
+        "market",
+        "farm"
+      ],
+      "event_count": 3,
+      "event_plan": [
+        {
+          "event_id": "spawn_village",
+          "type": "spawn_structure",
+          "text": "spawn_village",
+          "anchor": {
+            "mode": "absolute",
+            "ref": "player",
+            "world": "world",
+            "x": 12.0,
+            "y": 65.0,
+            "z": -3.0
+          },
+          "offset": {
+            "dx": 0.0,
+            "dy": 0.0,
+            "dz": 0.0
+          },
+          "data": {
+            "template": "village_core"
+          }
+        },
+        {
+          "event_id": "spawn_market",
+          "type": "spawn_structure",
+          "text": "spawn_market",
+          "anchor": {
+            "mode": "absolute",
+            "ref": "village_center",
+            "world": "world",
+            "x": 12.0,
+            "y": 65.0,
+            "z": -3.0
+          },
+          "offset": {
+            "dx": 8.0,
+            "dy": 0.0,
+            "dz": 0.0
+          },
+          "data": {
+            "template": "market_stalls"
+          }
+        },
+        {
+          "event_id": "spawn_farm",
+          "type": "spawn_structure",
+          "text": "spawn_farm",
+          "anchor": {
+            "mode": "absolute",
+            "ref": "village_edge",
+            "world": "world",
+            "x": 12.0,
+            "y": 65.0,
+            "z": -3.0
+          },
+          "offset": {
+            "dx": -8.0,
+            "dy": 0.0,
+            "dz": 0.0
+          },
+          "data": {
+            "template": "farm_plot"
+          }
+        }
+      ],
+      "scene_graph": {
+        "root": "village",
+        "nodes": [
+          "village",
+          "market",
+          "farm"
+        ],
+        "edges": [
+          {
+            "from": "village",
+            "to": "market"
+          },
+          {
+            "from": "village",
+            "to": "farm"
+          }
+        ]
+      },
+      "layout": {
+        "strategy": "radial_v1",
+        "root": "village",
+        "positions": {
+          "village": {
+            "x": 0,
+            "z": 0
+          },
+          "market": {
+            "x": 8,
+            "z": 0
+          },
+          "farm": {
+            "x": -8,
+            "z": 0
+          }
+        }
+      },
+      "inventory_resources": {
+        "bread": 3,
+        "emerald": 2,
+        "water_bucket": 1,
+        "wood": 1
+      },
+      "selected_root": "village",
+      "candidate_scores": [
+        {
+          "fragment": "village",
+          "score": 303.112,
+          "reason": "trade + food + water + wood"
+        },
+        {
+          "fragment": "camp",
+          "score": 206.488,
+          "reason": "wood + food"
+        }
+      ],
+      "selected_children": [
+        "market",
+        "farm"
+      ],
+      "blocked": [
+        {
+          "fragment": "forge",
+          "stage": "expand",
+          "reason": "missing_required: stone"
+        },
+        {
+          "fragment": "shrine",
+          "stage": "expand",
+          "reason": "missing_required: stone"
+        }
+      ],
+      "reasons": {
+        "selection_stage": "root_candidates",
+        "selected_root": "trade + food + water + wood"
+      },
+      "semantic_scores": {
+        "food": 3,
+        "trade": 5,
+        "water": 1,
+        "wood": 1
+      }
+    }
+  },
+  "npcs": [],
+  "bootstrap_patch": {
+    "variables": {
+      "story_world_generated": true,
+      "story_title": "P6B runtime probe village"
+    },
+    "mc": {
+      "tell": "§6P6B runtime probe village§r\nP6B runtime probe village",
+      "spawn": {
+        "x": 12,
+        "y": 65,
+        "z": -3,
+        "world": "world"
+      },
+      "time": "night",
+      "weather": "clear",
+      "spawns": [
+        {
+          "type": "villager",
+          "name": "Probe Engineer",
+          "x": 17,
+          "y": 65,
+          "z": -3,
+          "dialog": "Welcome to P6B Runtime Probe Village! We monitor the world's data streams.",
+          "world": "world"
+        },
+        {
+          "type": "villager",
+          "name": "Data Analyst",
+          "x": 20,
+          "y": 65,
+          "z": -6,
+          "dialog": "The probes are functioning optimally. No anomalies detected.",
+          "world": "world"
+        },
+        {
+          "type": "skeleton",
+          "name": "Glitched Probe",
+          "x": 7,
+          "y": 65,
+          "z": 2,
+          "dialog": "Error: Runtime corruption detected...",
+          "world": "world"
+        }
+      ],
+      "blocks": [
+        {
+          "type": "stone",
+          "x": 12,
+          "y": 64,
+          "z": -3,
+          "world": "world"
+        },
+        {
+          "type": "stone",
+          "x": 13,
+          "y": 64,
+          "z": -3,
+          "world": "world"
+        },
+        {
+          "type": "stone",
+          "x": 11,
+          "y": 64,
+          "z": -3,
+          "world": "world"
+        },
+        {
+          "type": "stone",
+          "x": 12,
+          "y": 64,
+          "z": -2,
+          "world": "world"
+        },
+        {
+          "type": "stone",
+          "x": 12,
+          "y": 64,
+          "z": -4,
+          "world": "world"
+        },
+        {
+          "type": "oak_planks",
+          "x": 17,
+          "y": 65,
+          "z": -3,
+          "world": "world"
+        },
+        {
+          "type": "oak_planks",
+          "x": 18,
+          "y": 65,
+          "z": -3,
+          "world": "world"
+        },
+        {
+          "type": "oak_planks",
+          "x": 17,
+          "y": 65,
+          "z": -2,
+          "world": "world"
+        },
+        {
+          "type": "oak_planks",
+          "x": 18,
+          "y": 65,
+          "z": -2,
+          "world": "world"
+        },
+        {
+          "type": "glass",
+          "x": 17,
+          "y": 66,
+          "z": -3,
+          "world": "world"
+        },
+        {
+          "type": "glass",
+          "x": 18,
+          "y": 66,
+          "z": -3,
+          "world": "world"
+        },
+        {
+          "type": "stone",
+          "x": 20,
+          "y": 64,
+          "z": -6,
+          "world": "world"
+        },
+        {
+          "type": "stone",
+          "x": 21,
+          "y": 64,
+          "z": -6,
+          "world": "world"
+        },
+        {
+          "type": "stone",
+          "x": 20,
+          "y": 64,
+          "z": -5,
+          "world": "world"
+        },
+        {
+          "type": "stone",
+          "x": 21,
+          "y": 64,
+          "z": -5,
+          "world": "world"
+        },
+        {
+          "type": "oak_planks",
+          "x": 20,
+          "y": 65,
+          "z": -6,
+          "world": "world"
+        },
+        {
+          "type": "oak_planks",
+          "x": 21,
+          "y": 65,
+          "z": -6,
+          "world": "world"
+        },
+        {
+          "type": "oak_planks",
+          "x": 20,
+          "y": 65,
+          "z": -5,
+          "world": "world"
+        },
+        {
+          "type": "oak_planks",
+          "x": 21,
+          "y": 65,
+          "z": -5,
+          "world": "world"
+        },
+        {
+          "type": "glass",
+          "x": 20,
+          "y": 66,
+          "z": -6,
+          "world": "world"
+        },
+        {
+          "type": "glass",
+          "x": 21,
+          "y": 66,
+          "z": -6,
+          "world": "world"
+        },
+        {
+          "type": "stone",
+          "x": 7,
+          "y": 64,
+          "z": 2,
+          "world": "world"
+        },
+        {
+          "type": "stone",
+          "x": 8,
+          "y": 64,
+          "z": 2,
+          "world": "world"
+        },
+        {
+          "type": "stone",
+          "x": 7,
+          "y": 64,
+          "z": 3,
+          "world": "world"
+        },
+        {
+          "type": "stone",
+          "x": 8,
+          "y": 64,
+          "z": 3,
+          "world": "world"
+        },
+        {
+          "type": "oak_planks",
+          "x": 7,
+          "y": 65,
+          "z": 2,
+          "world": "world"
+        },
+        {
+          "type": "oak_planks",
+          "x": 8,
+          "y": 65,
+          "z": 2,
+          "world": "world"
+        },
+        {
+          "type": "oak_planks",
+          "x": 7,
+          "y": 65,
+          "z": 3,
+          "world": "world"
+        },
+        {
+          "type": "oak_planks",
+          "x": 8,
+          "y": 65,
+          "z": 3,
+          "world": "world"
+        },
+        {
+          "type": "glass",
+          "x": 7,
+          "y": 66,
+          "z": 2,
+          "world": "world"
+        },
+        {
+          "type": "glass",
+          "x": 8,
+          "y": 66,
+          "z": 2,
+          "world": "world"
+        }
+      ],
+      "structure": [
+        {
+          "template": "village_core",
+          "offset": {
+            "dx": 0.0,
+            "dy": 0.0,
+            "dz": 0.0
+          },
+          "_scene_event_id": "spawn_village",
+          "world": "world"
+        },
+        {
+          "template": "market_stalls",
+          "offset": {
+            "dx": 8.0,
+            "dy": 0.0,
+            "dz": 0.0
+          },
+          "_scene_event_id": "spawn_market",
+          "world": "world"
+        },
+        {
+          "template": "farm_plot",
+          "offset": {
+            "dx": -8.0,
+            "dy": 0.0,
+            "dz": 0.0
+          },
+          "_scene_event_id": "spawn_farm",
+          "world": "world"
+        }
+      ],
+      "build_multi": [
+        {
+          "shape": "platform",
+          "size": 1,
+          "material": "OAK_PLANKS",
+          "offset": {
+            "dx": 0.0,
+            "dy": 0.0,
+            "dz": 0.0
+          },
+          "_scene_event_id": "spawn_village",
+          "world": "world"
+        },
+        {
+          "shape": "platform",
+          "size": 1,
+          "material": "OAK_PLANKS",
+          "offset": {
+            "dx": 8.0,
+            "dy": 0.0,
+            "dz": 0.0
+          },
+          "_scene_event_id": "spawn_market",
+          "world": "world"
+        },
+        {
+          "shape": "platform",
+          "size": 1,
+          "material": "OAK_PLANKS",
+          "offset": {
+            "dx": -8.0,
+            "dy": 0.0,
+            "dz": 0.0
+          },
+          "_scene_event_id": "spawn_farm",
+          "world": "world"
+        }
+      ]
+    }
+  },
+  "world_patch": {
+    "variables": {
+      "story_world_generated": true,
+      "story_title": "P6B runtime probe village"
+    },
+    "mc": {
+      "tell": "§6P6B runtime probe village§r\nP6B runtime probe village",
+      "spawn": {
+        "x": 12,
+        "y": 65,
+        "z": -3,
+        "world": "world"
+      },
+      "time": "night",
+      "weather": "clear",
+      "spawns": [
+        {
+          "type": "villager",
+          "name": "Probe Engineer",
+          "x": 17,
+          "y": 65,
+          "z": -3,
+          "dialog": "Welcome to P6B Runtime Probe Village! We monitor the world's data streams.",
+          "world": "world"
+        },
+        {
+          "type": "villager",
+          "name": "Data Analyst",
+          "x": 20,
+          "y": 65,
+          "z": -6,
+          "dialog": "The probes are functioning optimally. No anomalies detected.",
+          "world": "world"
+        },
+        {
+          "type": "skeleton",
+          "name": "Glitched Probe",
+          "x": 7,
+          "y": 65,
+          "z": 2,
+          "dialog": "Error: Runtime corruption detected...",
+          "world": "world"
+        }
+      ],
+      "blocks": [
+        {
+          "type": "stone",
+          "x": 12,
+          "y": 64,
+          "z": -3,
+          "world": "world"
+        },
+        {
+          "type": "stone",
+          "x": 13,
+          "y": 64,
+          "z": -3,
+          "world": "world"
+        },
+        {
+          "type": "stone",
+          "x": 11,
+          "y": 64,
+          "z": -3,
+          "world": "world"
+        },
+        {
+          "type": "stone",
+          "x": 12,
+          "y": 64,
+          "z": -2,
+          "world": "world"
+        },
+        {
+          "type": "stone",
+          "x": 12,
+          "y": 64,
+          "z": -4,
+          "world": "world"
+        },
+        {
+          "type": "oak_planks",
+          "x": 17,
+          "y": 65,
+          "z": -3,
+          "world": "world"
+        },
+        {
+          "type": "oak_planks",
+          "x": 18,
+          "y": 65,
+          "z": -3,
+          "world": "world"
+        },
+        {
+          "type": "oak_planks",
+          "x": 17,
+          "y": 65,
+          "z": -2,
+          "world": "world"
+        },
+        {
+          "type": "oak_planks",
+          "x": 18,
+          "y": 65,
+          "z": -2,
+          "world": "world"
+        },
+        {
+          "type": "glass",
+          "x": 17,
+          "y": 66,
+          "z": -3,
+          "world": "world"
+        },
+        {
+          "type": "glass",
+          "x": 18,
+          "y": 66,
+          "z": -3,
+          "world": "world"
+        },
+        {
+          "type": "stone",
+          "x": 20,
+          "y": 64,
+          "z": -6,
+          "world": "world"
+        },
+        {
+          "type": "stone",
+          "x": 21,
+          "y": 64,
+          "z": -6,
+          "world": "world"
+        },
+        {
+          "type": "stone",
+          "x": 20,
+          "y": 64,
+          "z": -5,
+          "world": "world"
+        },
+        {
+          "type": "stone",
+          "x": 21,
+          "y": 64,
+          "z": -5,
+          "world": "world"
+        },
+        {
+          "type": "oak_planks",
+          "x": 20,
+          "y": 65,
+          "z": -6,
+          "world": "world"
+        },
+        {
+          "type": "oak_planks",
+          "x": 21,
+          "y": 65,
+          "z": -6,
+          "world": "world"
+        },
+        {
+          "type": "oak_planks",
+          "x": 20,
+          "y": 65,
+          "z": -5,
+          "world": "world"
+        },
+        {
+          "type": "oak_planks",
+          "x": 21,
+          "y": 65,
+          "z": -5,
+          "world": "world"
+        },
+        {
+          "type": "glass",
+          "x": 20,
+          "y": 66,
+          "z": -6,
+          "world": "world"
+        },
+        {
+          "type": "glass",
+          "x": 21,
+          "y": 66,
+          "z": -6,
+          "world": "world"
+        },
+        {
+          "type": "stone",
+          "x": 7,
+          "y": 64,
+          "z": 2,
+          "world": "world"
+        },
+        {
+          "type": "stone",
+          "x": 8,
+          "y": 64,
+          "z": 2,
+          "world": "world"
+        },
+        {
+          "type": "stone",
+          "x": 7,
+          "y": 64,
+          "z": 3,
+          "world": "world"
+        },
+        {
+          "type": "stone",
+          "x": 8,
+          "y": 64,
+          "z": 3,
+          "world": "world"
+        },
+        {
+          "type": "oak_planks",
+          "x": 7,
+          "y": 65,
+          "z": 2,
+          "world": "world"
+        },
+        {
+          "type": "oak_planks",
+          "x": 8,
+          "y": 65,
+          "z": 2,
+          "world": "world"
+        },
+        {
+          "type": "oak_planks",
+          "x": 7,
+          "y": 65,
+          "z": 3,
+          "world": "world"
+        },
+        {
+          "type": "oak_planks",
+          "x": 8,
+          "y": 65,
+          "z": 3,
+          "world": "world"
+        },
+        {
+          "type": "glass",
+          "x": 7,
+          "y": 66,
+          "z": 2,
+          "world": "world"
+        },
+        {
+          "type": "glass",
+          "x": 8,
+          "y": 66,
+          "z": 2,
+          "world": "world"
+        }
+      ],
+      "structure": [
+        {
+          "template": "village_core",
+          "offset": {
+            "dx": 0.0,
+            "dy": 0.0,
+            "dz": 0.0
+          },
+          "_scene_event_id": "spawn_village",
+          "world": "world"
+        },
+        {
+          "template": "market_stalls",
+          "offset": {
+            "dx": 8.0,
+            "dy": 0.0,
+            "dz": 0.0
+          },
+          "_scene_event_id": "spawn_market",
+          "world": "world"
+        },
+        {
+          "template": "farm_plot",
+          "offset": {
+            "dx": -8.0,
+            "dy": 0.0,
+            "dz": 0.0
+          },
+          "_scene_event_id": "spawn_farm",
+          "world": "world"
+        }
+      ],
+      "build_multi": [
+        {
+          "shape": "platform",
+          "size": 1,
+          "material": "OAK_PLANKS",
+          "offset": {
+            "dx": 0.0,
+            "dy": 0.0,
+            "dz": 0.0
+          },
+          "_scene_event_id": "spawn_village",
+          "world": "world"
+        },
+        {
+          "shape": "platform",
+          "size": 1,
+          "material": "OAK_PLANKS",
+          "offset": {
+            "dx": 8.0,
+            "dy": 0.0,
+            "dz": 0.0
+          },
+          "_scene_event_id": "spawn_market",
+          "world": "world"
+        },
+        {
+          "shape": "platform",
+          "size": 1,
+          "material": "OAK_PLANKS",
+          "offset": {
+            "dx": -8.0,
+            "dy": 0.0,
+            "dz": 0.0
+          },
+          "_scene_event_id": "spawn_farm",
+          "world": "world"
+        }
+      ]
+    }
+  },
+  "tree": null
+}

@@ -1,0 +1,30 @@
+{
+  "generated_at_utc": "2026-03-04T14:34:11.508718+00:00",
+  "gate": "Gate 4 — Strict Reject Integrity",
+  "overall_pass": true,
+  "checks": [
+    {
+      "name": "strict_debug_zero_side_effect",
+      "pass": true,
+      "status_code": 422,
+      "target_file_exists": false,
+      "has_trace": true,
+      "has_rule_version": true,
+      "has_engine_version": true
+    },
+    {
+      "name": "strict_nodbg_hidden_fields",
+      "pass": true,
+      "status_code": 422,
+      "target_file_exists": false
+    },
+    {
+      "name": "default_not_pollute_strict",
+      "pass": true,
+      "default_status_code": 200,
+      "strict_status_code": 422,
+      "default_target_exists": true,
+      "strict_target_exists": false
+    }
+  ]
+}

@@ -1,0 +1,149 @@
+{
+  "id": "level_29",
+  "title": "心悦文集 第29章",
+  "text": [
+    "我兴奋不已   我这次会保护好我让我依恋的"
+  ],
+  "tags": [
+    "心悦文集",
+    "叙事"
+  ],
+  "mood": {
+    "base": "calm",
+    "intensity": 0.5
+  },
+  "choices": [
+    {
+      "label": "继续",
+      "next": "level_30"
+    }
+  ],
+  "meta": {
+    "source": "xinyue_wenji",
+    "chapter": 29,
+    "word_count": 21
+  },
+  "world_patch": {
+    "mc": {
+      "spawn": {
+        "type": "villager",
+        "name": "音乐家",
+        "offset": {
+          "dx": 3,
+          "dy": 0,
+          "dz": 3
+        },
+        "behaviors": [
+          {
+            "type": "stand",
+            "location": {
+              "dx": 0,
+              "dy": 0,
+              "dz": 0
+            },
+            "description": "等待玩家到来"
+          },
+          {
+            "type": "interact",
+            "trigger": "right_click",
+            "action": "dialogue",
+            "messages": [
+              "§a[守护者]§r 欢迎来到第29关。",
+              "§7提示：尝试与我对话了解更多"
+            ],
+            "description": "提供关卡指引"
+          }
+        ],
+        "ai_hints": "第29关的守护者，会根据关卡主题提供帮助和指引。"
+      },
+      "build": {
+        "shape": "platform",
+        "size": 6,
+        "material": "stone_bricks"
+      },
+      "music": {
+        "record": "ward"
+      },
+      "particle": {
+        "type": "end_rod",
+        "color": "gold",
+        "count": 10
+      },
+      "tell": "✨ 欢迎来到【音乐厅】- 心悦文集 第29章",
+      "_scene": {
+        "level_id": "level_29",
+        "title": "心悦文集 第29章",
+        "theme": "音乐厅",
+        "scene_world": "KunmingLakeStory",
+        "teleport": {
+          "x": 0.5,
+          "y": 70.0,
+          "z": 0.5,
+          "yaw": 0.0,
+          "pitch": 0.0
+        }
+      }
+    },
+    "variables": {
+      "theme": "音乐厅",
+      "biome": "plains",
+      "structure": "concert_hall",
+      "unlocked": false
+    }
+  },
+  "narrative": {
+    "text": [
+      "我兴奋不已   我这次会保护好我让我依恋的"
+    ],
+    "beats": [
+      {
+        "id": "level_29_intro",
+        "trigger": "on_enter",
+        "rule_refs": []
+      }
+    ]
+  },
+  "scene": {
+    "world": "KunmingLakeStory",
+    "teleport": {
+      "x": 0.5,
+      "y": 70.0,
+      "z": 0.5,
+      "yaw": 0.0,
+      "pitch": 0.0
+    },
+    "environment": {
+      "weather": "CLEAR",
+      "time": "DAY"
+    },
+    "structures": [],
+    "npc_skins": []
+  },
+  "rules": {
+    "listeners": []
+  },
+  "tasks": [
+    {
+      "id": "level_29_story",
+      "type": "story",
+      "conditions": [],
+      "milestones": [],
+      "rewards": []
+    }
+  ],
+  "exit": {
+    "phrase_aliases": [
+      "结束剧情",
+      "离开关卡",
+      "退出剧情"
+    ],
+    "return_spawn": "KunmingLakeHub",
+    "teleport": {
+      "x": 0.5,
+      "y": 70.0,
+      "z": 0.5,
+      "yaw": 0.0,
+      "pitch": 0.0
+    }
+  }
+}

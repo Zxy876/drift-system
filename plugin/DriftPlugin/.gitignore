@@ -1,0 +1,7 @@
+target/
+.gradle/
+.idea/
+.vscode/
+.pytest_cache/
+*.iml
+*.log

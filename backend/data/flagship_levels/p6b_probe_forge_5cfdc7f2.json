@@ -1,0 +1,639 @@
+{
+  "id": "p6b_probe_forge_5cfdc7f2",
+  "title": "P6B runtime probe forge",
+  "text": [
+    "P6B runtime probe forge"
+  ],
+  "tags": [],
+  "mood": {
+    "base": "calm",
+    "intensity": 0.5
+  },
+  "choices": [],
+  "meta": {
+    "trng_transaction": {
+      "tx_id": "tx_5e61f445ac42",
+      "base_state_hash": "befe6682a6c32ed55d288ddaf40636b0ee73c37fd48bd8ec91204afa91dba85e",
+      "committed_state_hash": "b450e47a275e671dd891764d7ad74099a3233d2dc6cf18b9dff2a9bf07506cde",
+      "committed_graph_hash": "1ab564ad9b6c9f4334db411c25f8cc80322545180d48399852ad2b0eabb6aa41",
+      "commit_timestamp": 1772860275.677533,
+      "rule_version": "rule_v2_2",
+      "engine_version": "engine_v2_1",
+      "event_count": 1
+    },
+    "scene_generation": {
+      "scene_theme": "语义探针锻造",
+      "scene_hint": null,
+      "selected_anchor": "player",
+      "initial_anchor": "player",
+      "final_anchor": "player_safe_ground",
+      "player_pos": {
+        "world": "world",
+        "x": 12.0,
+        "y": 65.0,
+        "z": -3.0
+      },
+      "initial_anchor_pos": {
+        "world": "world",
+        "x": 12.0,
+        "y": 65.0,
+        "z": -3.0
+      },
+      "final_anchor_pos": {
+        "world": "world",
+        "x": 12.0,
+        "y": 65.0,
+        "z": -3.0
+      },
+      "anchor_pos": {
+        "world": "world",
+        "x": 12.0,
+        "y": 65.0,
+        "z": -3.0
+      },
+      "fragments": [
+        "forge"
+      ],
+      "event_count": 1,
+      "event_plan": [
+        {
+          "event_id": "spawn_forge",
+          "type": "spawn_structure",
+          "text": "spawn_forge",
+          "anchor": {
+            "mode": "absolute",
+            "ref": "village_edge",
+            "world": "world",
+            "x": 12.0,
+            "y": 65.0,
+            "z": -3.0
+          },
+          "offset": {
+            "dx": 0.0,
+            "dy": 0.0,
+            "dz": 0.0
+          },
+          "data": {
+            "template": "forge_basic"
+          }
+        }
+      ],
+      "scene_graph": {
+        "root": "forge",
+        "nodes": [
+          "forge"
+        ],
+        "edges": []
+      },
+      "layout": {
+        "strategy": "radial_v1",
+        "root": "forge",
+        "positions": {
+          "forge": {
+            "x": 0,
+            "z": 0
+          }
+        }
+      },
+      "inventory_resources": {
+        "campfire": 1,
+        "iron_ingot": 2,
+        "stone": 2
+      },
+      "selected_root": "forge",
+      "candidate_scores": [
+        {
+          "fragment": "forge",
+          "score": 163.8,
+          "reason": "metal + stone + fire"
+        },
+        {
+          "fragment": "fire",
+          "score": 110.25,
+          "reason": "fire + light"
+        }
+      ],
+      "selected_children": [],
+      "blocked": [
+        {
+          "fragment": "camp",
+          "stage": "root",
+          "reason": "missing_required: wood"
+        },
+        {
+          "fragment": "village",
+          "stage": "root",
+          "reason": "missing_required: food, wood"
+        },
+        {
+          "fragment": "camp",
+          "stage": "fallback",
+          "reason": "missing_required: wood"
+        },
+        {
+          "fragment": "cooking_area",
+          "stage": "fallback",
+          "reason": "missing_required: food"
+        },
+        {
+          "fragment": "farm",
+          "stage": "fallback",
+          "reason": "missing_required: food, water"
+        },
+        {
+          "fragment": "market",
+          "stage": "fallback",
+          "reason": "missing_required: food"
+        },
+        {
+          "fragment": "shrine",
+          "stage": "fallback",
+          "reason": "theme_mismatch"
+        },
+        {
+          "fragment": "village",
+          "stage": "fallback",
+          "reason": "missing_required: food, wood"
+        },
+        {
+          "fragment": "wanderer_npc",
+          "stage": "fallback",
+          "reason": "theme_mismatch"
+        },
+        {
+          "fragment": "watchtower",
+          "stage": "fallback",
+          "reason": "missing_required: wood"
+        }
+      ],
+      "reasons": {
+        "selection_stage": "fallback_all",
+        "selected_root": "metal + stone + fire"
+      },
+      "semantic_scores": {
+        "light": 1,
+        "fire": 1,
+        "metal": 2,
+        "stone": 2
+      }
+    }
+  },
+  "npcs": [],
+  "bootstrap_patch": {
+    "variables": {
+      "story_world_generated": true,
+      "story_title": "P6B runtime probe forge"
+    },
+    "mc": {
+      "tell": "§6P6B runtime probe forge§r\nP6B runtime probe forge",
+      "spawn": {
+        "x": 12,
+        "y": 65,
+        "z": -3,
+        "world": "world"
+      },
+      "time": "night",
+      "weather": "clear",
+      "spawns": [
+        {
+          "type": "villager",
+          "name": "Probe Forge Operator",
+          "x": 15,
+          "y": 65,
+          "z": 2,
+          "dialog": "Welcome to the P6B Runtime Probe Forge. We craft advanced probes here.",
+          "world": "world"
+        },
+        {
+          "type": "zombie",
+          "name": "Corrupted Probe",
+          "x": 7,
+          "y": 65,
+          "z": -6,
+          "dialog": "Grr... system malfunction...",
+          "world": "world"
+        },
+        {
+          "type": "skeleton",
+          "name": "Guardian Skeleton",
+          "x": 19,
+          "y": 65,
+          "z": -5,
+          "dialog": "Halt! Unauthorized access to the forge is prohibited.",
+          "world": "world"
+        }
+      ],
+      "blocks": [
+        {
+          "type": "stone",
+          "x": 12,
+          "y": 64,
+          "z": -3,
+          "world": "world"
+        },
+        {
+          "type": "stone",
+          "x": 13,
+          "y": 64,
+          "z": -3,
+          "world": "world"
+        },
+        {
+          "type": "stone",
+          "x": 11,
+          "y": 64,
+          "z": -3,
+          "world": "world"
+        },
+        {
+          "type": "stone",
+          "x": 12,
+          "y": 64,
+          "z": -2,
+          "world": "world"
+        },
+        {
+          "type": "stone",
+          "x": 12,
+          "y": 64,
+          "z": -4,
+          "world": "world"
+        },
+        {
+          "type": "oak_planks",
+          "x": 14,
+          "y": 65,
+          "z": 1,
+          "world": "world"
+        },
+        {
+          "type": "oak_planks",
+          "x": 15,
+          "y": 65,
+          "z": 1,
+          "world": "world"
+        },
+        {
+          "type": "oak_planks",
+          "x": 16,
+          "y": 65,
+          "z": 1,
+          "world": "world"
+        },
+        {
+          "type": "oak_planks",
+          "x": 14,
+          "y": 65,
+          "z": 2,
+          "world": "world"
+        },
+        {
+          "type": "oak_planks",
+          "x": 16,
+          "y": 65,
+          "z": 2,
+          "world": "world"
+        },
+        {
+          "type": "oak_planks",
+          "x": 14,
+          "y": 65,
+          "z": 3,
+          "world": "world"
+        },
+        {
+          "type": "oak_planks",
+          "x": 15,
+          "y": 65,
+          "z": 3,
+          "world": "world"
+        },
+        {
+          "type": "oak_planks",
+          "x": 16,
+          "y": 65,
+          "z": 3,
+          "world": "world"
+        },
+        {
+          "type": "glass",
+          "x": 15,
+          "y": 66,
+          "z": 2,
+          "world": "world"
+        },
+        {
+          "type": "stone",
+          "x": 8,
+          "y": 65,
+          "z": -6,
+          "world": "world"
+        },
+        {
+          "type": "stone",
+          "x": 7,
+          "y": 65,
+          "z": -6,
+          "world": "world"
+        },
+        {
+          "type": "stone",
+          "x": 6,
+          "y": 65,
+          "z": -6,
+          "world": "world"
+        },
+        {
+          "type": "stone",
+          "x": 8,
+          "y": 65,
+          "z": -5,
+          "world": "world"
+        },
+        {
+          "type": "stone",
+          "x": 6,
+          "y": 65,
+          "z": -5,
+          "world": "world"
+        },
+        {
+          "type": "stone",
+          "x": 8,
+          "y": 65,
+          "z": -7,
+          "world": "world"
+        },
+        {
+          "type": "stone",
+          "x": 7,
+          "y": 65,
+          "z": -7,
+          "world": "world"
+        },
+        {
+          "type": "stone",
+          "x": 6,
+          "y": 65,
+          "z": -7,
+          "world": "world"
+        }
+      ],
+      "structure": [
+        {
+          "template": "forge_basic",
+          "offset": {
+            "dx": 0.0,
+            "dy": 0.0,
+            "dz": 0.0
+          },
+          "_scene_event_id": "spawn_forge",
+          "world": "world"
+        }
+      ],
+      "build_multi": [
+        {
+          "shape": "platform",
+          "size": 1,
+          "material": "OAK_PLANKS",
+          "offset": {
+            "dx": 0.0,
+            "dy": 0.0,
+            "dz": 0.0
+          },
+          "_scene_event_id": "spawn_forge",
+          "world": "world"
+        }
+      ]
+    }
+  },
+  "world_patch": {
+    "variables": {
+      "story_world_generated": true,
+      "story_title": "P6B runtime probe forge"
+    },
+    "mc": {
+      "tell": "§6P6B runtime probe forge§r\nP6B runtime probe forge",
+      "spawn": {
+        "x": 12,
+        "y": 65,
+        "z": -3,
+        "world": "world"
+      },
+      "time": "night",
+      "weather": "clear",
+      "spawns": [
+        {
+          "type": "villager",
+          "name": "Probe Forge Operator",
+          "x": 15,
+          "y": 65,
+          "z": 2,
+          "dialog": "Welcome to the P6B Runtime Probe Forge. We craft advanced probes here.",
+          "world": "world"
+        },
+        {
+          "type": "zombie",
+          "name": "Corrupted Probe",
+          "x": 7,
+          "y": 65,
+          "z": -6,
+          "dialog": "Grr... system malfunction...",
+          "world": "world"
+        },
+        {
+          "type": "skeleton",
+          "name": "Guardian Skeleton",
+          "x": 19,
+          "y": 65,
+          "z": -5,
+          "dialog": "Halt! Unauthorized access to the forge is prohibited.",
+          "world": "world"
+        }
+      ],
+      "blocks": [
+        {
+          "type": "stone",
+          "x": 12,
+          "y": 64,
+          "z": -3,
+          "world": "world"
+        },
+        {
+          "type": "stone",
+          "x": 13,
+          "y": 64,
+          "z": -3,
+          "world": "world"
+        },
+        {
+          "type": "stone",
+          "x": 11,
+          "y": 64,
+          "z": -3,
+          "world": "world"
+        },
+        {
+          "type": "stone",
+          "x": 12,
+          "y": 64,
+          "z": -2,
+          "world": "world"
+        },
+        {
+          "type": "stone",
+          "x": 12,
+          "y": 64,
+          "z": -4,
+          "world": "world"
+        },
+        {
+          "type": "oak_planks",
+          "x": 14,
+          "y": 65,
+          "z": 1,
+          "world": "world"
+        },
+        {
+          "type": "oak_planks",
+          "x": 15,
+          "y": 65,
+          "z": 1,
+          "world": "world"
+        },
+        {
+          "type": "oak_planks",
+          "x": 16,
+          "y": 65,
+          "z": 1,
+          "world": "world"
+        },
+        {
+          "type": "oak_planks",
+          "x": 14,
+          "y": 65,
+          "z": 2,
+          "world": "world"
+        },
+        {
+          "type": "oak_planks",
+          "x": 16,
+          "y": 65,
+          "z": 2,
+          "world": "world"
+        },
+        {
+          "type": "oak_planks",
+          "x": 14,
+          "y": 65,
+          "z": 3,
+          "world": "world"
+        },
+        {
+          "type": "oak_planks",
+          "x": 15,
+          "y": 65,
+          "z": 3,
+          "world": "world"
+        },
+        {
+          "type": "oak_planks",
+          "x": 16,
+          "y": 65,
+          "z": 3,
+          "world": "world"
+        },
+        {
+          "type": "glass",
+          "x": 15,
+          "y": 66,
+          "z": 2,
+          "world": "world"
+        },
+        {
+          "type": "stone",
+          "x": 8,
+          "y": 65,
+          "z": -6,
+          "world": "world"
+        },
+        {
+          "type": "stone",
+          "x": 7,
+          "y": 65,
+          "z": -6,
+          "world": "world"
+        },
+        {
+          "type": "stone",
+          "x": 6,
+          "y": 65,
+          "z": -6,
+          "world": "world"
+        },
+        {
+          "type": "stone",
+          "x": 8,
+          "y": 65,
+          "z": -5,
+          "world": "world"
+        },
+        {
+          "type": "stone",
+          "x": 6,
+          "y": 65,
+          "z": -5,
+          "world": "world"
+        },
+        {
+          "type": "stone",
+          "x": 8,
+          "y": 65,
+          "z": -7,
+          "world": "world"
+        },
+        {
+          "type": "stone",
+          "x": 7,
+          "y": 65,
+          "z": -7,
+          "world": "world"
+        },
+        {
+          "type": "stone",
+          "x": 6,
+          "y": 65,
+          "z": -7,
+          "world": "world"
+        }
+      ],
+      "structure": [
+        {
+          "template": "forge_basic",
+          "offset": {
+            "dx": 0.0,
+            "dy": 0.0,
+            "dz": 0.0
+          },
+          "_scene_event_id": "spawn_forge",
+          "world": "world"
+        }
+      ],
+      "build_multi": [
+        {
+          "shape": "platform",
+          "size": 1,
+          "material": "OAK_PLANKS",
+          "offset": {
+            "dx": 0.0,
+            "dy": 0.0,
+            "dz": 0.0
+          },
+          "_scene_event_id": "spawn_forge",
+          "world": "world"
+        }
+      ]
+    }
+  },
+  "tree": null
+}

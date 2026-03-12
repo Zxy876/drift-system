@@ -1,0 +1,25 @@
+{
+  "version": "1.0",
+  "sources": {
+    "vanilla_registry": {
+      "path": "content/scenes/semantic_tags.json",
+      "priority": 1,
+      "description": "Built-in deterministic semantic mapping for vanilla resources"
+    },
+    "mod_map": {
+      "path": "content/semantic/mod_semantic_map.json",
+      "priority": 2,
+      "description": "Deterministic semantic mapping for mod/custom resources"
+    },
+    "pack_map": {
+      "path": "content/packs/*/semantic_map.json",
+      "priority": 0,
+      "description": "Pack-level semantic mappings merged by pack priority"
+    },
+    "fallback": {
+      "path": null,
+      "priority": 3,
+      "description": "Compatibility fallback to item token semantics"
+    }
+  }
+}

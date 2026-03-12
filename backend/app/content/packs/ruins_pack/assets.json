@@ -1,0 +1,16 @@
+{
+  "assets": [
+    {
+      "asset_id": "ruins_arch",
+      "type": "structure",
+      "tags": ["ruin", "stone", "ancient"],
+      "spawn_method": "structure"
+    },
+    {
+      "asset_id": "ruined_gate",
+      "type": "structure",
+      "tags": ["ruin", "wood", "history"],
+      "spawn_method": "fragment"
+    }
+  ]
+}

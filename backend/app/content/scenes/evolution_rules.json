@@ -1,0 +1,18 @@
+{
+  "camp": {
+    "collect:wood": [
+      "watchtower"
+    ],
+    "collect:stone": [
+      "road"
+    ]
+  },
+  "village": {
+    "collect:food": [
+      "farm"
+    ],
+    "collect:metal": [
+      "forge"
+    ]
+  }
+}

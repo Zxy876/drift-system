@@ -1,0 +1,212 @@
+{
+  "id": "flagship_phase7_m2_accept_1772655051",
+  "title": "Phase7 M2 acceptance",
+  "text": [
+    "wind over wild"
+  ],
+  "tags": [],
+  "mood": {
+    "base": "calm",
+    "intensity": 0.5
+  },
+  "choices": [],
+  "meta": {},
+  "npcs": [],
+  "bootstrap_patch": {
+    "variables": {
+      "story_world_generated": true,
+      "story_title": "Phase7 M2 acceptance"
+    },
+    "mc": {
+      "tell": "§6Phase7 M2 acceptance§r\nwind over wild",
+      "spawn": {
+        "x": 0,
+        "y": 70,
+        "z": 0
+      },
+      "time": "dusk",
+      "weather": "windy",
+      "spawns": [
+        {
+          "type": "villager",
+          "name": "风语者",
+          "x": 10,
+          "y": 70,
+          "z": 5,
+          "dialog": "风从荒野吹来，带来了远方的故事..."
+        },
+        {
+          "type": "cow",
+          "name": "荒野漫步者",
+          "x": -8,
+          "y": 70,
+          "z": -3,
+          "dialog": ""
+        },
+        {
+          "type": "skeleton",
+          "name": "风蚀守卫",
+          "x": 15,
+          "y": 70,
+          "z": -10,
+          "dialog": "嘶...风中的低语..."
+        }
+      ],
+      "blocks": [
+        {
+          "type": "stone",
+          "x": 0,
+          "y": 69,
+          "z": 0
+        },
+        {
+          "type": "oak_planks",
+          "x": 5,
+          "y": 70,
+          "z": 5
+        },
+        {
+          "type": "glass",
+          "x": 6,
+          "y": 71,
+          "z": 5
+        },
+        {
+          "type": "stone",
+          "x": 4,
+          "y": 70,
+          "z": 5
+        },
+        {
+          "type": "oak_planks",
+          "x": 5,
+          "y": 70,
+          "z": 4
+        },
+        {
+          "type": "stone",
+          "x": 5,
+          "y": 69,
+          "z": 5
+        },
+        {
+          "type": "oak_planks",
+          "x": -2,
+          "y": 70,
+          "z": -2
+        },
+        {
+          "type": "stone",
+          "x": -2,
+          "y": 69,
+          "z": -2
+        },
+        {
+          "type": "glass",
+          "x": -1,
+          "y": 71,
+          "z": -2
+        }
+      ]
+    }
+  },
+  "world_patch": {
+    "variables": {
+      "story_world_generated": true,
+      "story_title": "Phase7 M2 acceptance"
+    },
+    "mc": {
+      "tell": "§6Phase7 M2 acceptance§r\nwind over wild",
+      "spawn": {
+        "x": 0,
+        "y": 70,
+        "z": 0
+      },
+      "time": "dusk",
+      "weather": "windy",
+      "spawns": [
+        {
+          "type": "villager",
+          "name": "风语者",
+          "x": 10,
+          "y": 70,
+          "z": 5,
+          "dialog": "风从荒野吹来，带来了远方的故事..."
+        },
+        {
+          "type": "cow",
+          "name": "荒野漫步者",
+          "x": -8,
+          "y": 70,
+          "z": -3,
+          "dialog": ""
+        },
+        {
+          "type": "skeleton",
+          "name": "风蚀守卫",
+          "x": 15,
+          "y": 70,
+          "z": -10,
+          "dialog": "嘶...风中的低语..."
+        }
+      ],
+      "blocks": [
+        {
+          "type": "stone",
+          "x": 0,
+          "y": 69,
+          "z": 0
+        },
+        {
+          "type": "oak_planks",
+          "x": 5,
+          "y": 70,
+          "z": 5
+        },
+        {
+          "type": "glass",
+          "x": 6,
+          "y": 71,
+          "z": 5
+        },
+        {
+          "type": "stone",
+          "x": 4,
+          "y": 70,
+          "z": 5
+        },
+        {
+          "type": "oak_planks",
+          "x": 5,
+          "y": 70,
+          "z": 4
+        },
+        {
+          "type": "stone",
+          "x": 5,
+          "y": 69,
+          "z": 5
+        },
+        {
+          "type": "oak_planks",
+          "x": -2,
+          "y": 70,
+          "z": -2
+        },
+        {
+          "type": "stone",
+          "x": -2,
+          "y": 69,
+          "z": -2
+        },
+        {
+          "type": "glass",
+          "x": -1,
+          "y": 71,
+          "z": -2
+        }
+      ]
+    }
+  },
+  "tree": null
+}

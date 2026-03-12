@@ -1,0 +1,29 @@
+{
+  "id": "wanderer_npc",
+  "root": false,
+  "priority": 45,
+  "size": [1, 1],
+  "layout_anchor": "edge",
+  "tags": ["npc", "story"],
+  "requires": [],
+  "optional_resources": ["food", "light"],
+  "theme_keywords": ["荒野", "大风", "风"],
+  "structures": [],
+  "npcs": [
+    {
+      "id": "wanderer",
+      "role": "survivor"
+    }
+  ],
+  "connections": [],
+  "events": [
+    {
+      "event_id": "spawn_npc",
+      "type": "spawn_npc",
+      "anchor_ref": "camp_edge",
+      "data": {
+        "npc_template": "wanderer"
+      }
+    }
+  ]
+}

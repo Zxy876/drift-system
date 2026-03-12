@@ -1,0 +1,396 @@
+{
+  "id": "level_3",
+  "title": "心悦文集 第3章",
+  "text": [
+    "⽗亲⼼情很差，在回家途中狂按喇叭，我知道，他以为我病了。⾃那之后，我被禁⽌",
+    "做数学时⻓篇⼤论，当出现 “ 所以 ˮ ， “ 于是 ˮ 的苗头，⽗亲就开始咳嗽。阿⽆再也不敢",
+    "出来了，我的⼼，也好像凋落了。",
+    "我披头散发，翻脸泪痕的出现在⽗⺟⾯前，讲着她有多么聪慧，你们的⼥⼉应该是",
+    "她。⽗亲怒了； “ 你知道她是假的，却深陷其中，你确实不聪明。 ˮ 我想起⼉时我最在乎",
+    "的就是在⽗亲⼼中，我聪明与否，⽽我现在却歇斯底⾥； “ 我不聪明，你们不要我就好",
+    "了！她会做数学，她⼩时候就会！她 …… ˮ",
+    "“那是你啊！从⼩喜爱数学的⼈是你，在没有她的时候，你⼀直很擅⻓数学，⽐现在还",
+    "要好！ ˮ我听⻅了，我颤抖着，我不想提起的记忆涌上来，我⼩时候的光彩，休学后的",
+    "⾃卑，还是阿⽆的虚拟。我想起阿⽆，她是胖胖的短发⼥⽣，那张脸，那空洞的只装",
+    "的下数字的眼睛分明就是⼩时候的我，她双⽬含泪，仿佛不明真相的⼈⼀直只有我。",
+    "可我，我真爱数学吗？我回忆起那些 “ 于是 ˮ 和 “ 设问 ˮ ，我喜欢与阿⽆讨论数学，喜欢",
+    "书写在纸上，进⾏⼀次深刻的讨论，⽣命很短，好时光却很⻓，其中，主导的⼈⼀直",
+    "是我，或许，我是热爱数学的吧。⼩阿⽆在我问出真⼼的那刻，向我鞠了⼀躬，消失",
+    "在暖光中，原来，我进⾏了⼀次只有我⾃⼰，决定她去留的讨论。",
+    "⾃此之后，我做数学不再与阿⽆讨论了，我曾和她有过⼀次短暂的相遇，⻛吹过桃",
+    "源，我在树下靠着，做着我热爱的数学，虽然如蹒跚学步，但基本功正在恢复，⽽阿",
+    "⽆，她头也不回，与数学为伴，⼀路相依。这是我⽤热爱吻开的笔墨，多么美好，我",
+    "眼⻆落下⼀滴珠泪。",
+    "名字的原因",
+    "那我就开盅（揭晓答案）了",
+    "这是⼀个很⼩的猜谜游戏，貌似条件不⾜，任谁都⽆法猜出来⻰去脉的感觉。但是在",
+    "条件不⾜的情况下，仍要⼈猜，但我是清醒的。我想说，在这个谜语中的⼀切⾏为都",
+    "是我给出的线索。包括照⽚，以及转发的⼈和动机。",
+    "这时候，它为什么叫陈思思重要也不重要。",
+    "1 若猜谜者知道原因，且只关注是否将谜语猜出   。那么原因很重要。",
+    "2 若猜谜者 “ 听者有意 ˮ ，那么重点将不在 “ 原因上 ˮ",
+    "⼜来了，猜谜者知不知道原因很重要",
+    "1  猜谜者最后仍不知道原因，系铃⼈是失败的。（游戏层⾯）",
+    "2  系铃⼈希望猜谜者知道原因（主观因素）",
+    "回到谜⾯    名字的缘由",
+    "1  病情严重的节点（追问点   获得事件发⽣事件）",
+    "时间：去年 5 ⽉",
+    "⽆标题",
+    "3"
+  ],
+  "tags": [
+    "心悦文集",
+    "叙事"
+  ],
+  "mood": {
+    "base": "calm",
+    "intensity": 0.5
+  },
+  "choices": [
+    {
+      "label": "继续",
+      "next": "level_4"
+    }
+  ],
+  "meta": {
+    "source": "xinyue_wenji",
+    "chapter": 3,
+    "word_count": 976
+  },
+  "world_patch": {
+    "mc": {
+      "spawn": {
+        "type": "villager",
+        "name": "登山者",
+        "offset": {
+          "dx": 3,
+          "dy": 0,
+          "dz": 3
+        },
+        "behaviors": [
+          {
+            "type": "climb",
+            "target_height": 12,
+            "speed": 0.85,
+            "description": "沿山壁缓慢攀爬，示范脚步节奏"
+          },
+          {
+            "type": "patrol",
+            "path": [
+              {
+                "dx": 0,
+                "dz": 0
+              },
+              {
+                "dx": 2,
+                "dz": 2
+              },
+              {
+                "dx": -2,
+                "dz": 3
+              },
+              {
+                "dx": -1,
+                "dz": -1
+              }
+            ],
+            "speed": 0.7,
+            "description": "在营地外围勘查雪线与安全绳"
+          },
+          {
+            "type": "interact",
+            "trigger": "right_click",
+            "trigger_keywords": [
+              "攀登",
+              "山峰",
+              "绳"
+            ],
+            "action": "dialogue",
+            "messages": [
+              "§6[登山者]§r 层层雪线并不可怕，关键是脚下的节奏。",
+              "§6[登山者]§r 如果你准备好了，说'我想攀登高峰'。"
+            ],
+            "description": "分享登山技巧与安全提示"
+          },
+          {
+            "type": "quest",
+            "trigger_keywords": [
+              "攀登",
+              "山峰",
+              "挑战"
+            ],
+            "quest_name": "攀登之路",
+            "rewards": [
+              "climbing_gear",
+              "achievement"
+            ],
+            "description": "引导玩家体验攀登并记录高程"
+          }
+        ],
+        "ai_hints": "登山者擅长用自然意象激励玩家。完成中途营地或山顶事件时，他会以诗意的 比喻回应，并提醒调整呼吸与节奏。"
+      },
+      "build": {
+        "shape": "platform",
+        "size": 6,
+        "material": "stone_bricks"
+      },
+      "music": {
+        "record": "ward"
+      },
+      "particle": {
+        "type": "end_rod",
+        "color": "white",
+        "count": 10
+      },
+      "tell": "✨ 欢迎来到【山顶】- 心悦文集 第3章",
+      "_scene": {
+        "level_id": "level_3",
+        "title": "心悦文集 第3章",
+        "theme": "山顶",
+        "scene_world": "KunmingLakeStory",
+        "teleport": {
+          "x": 0.5,
+          "y": 70.0,
+          "z": 0.5,
+          "yaw": 0.0,
+          "pitch": 0.0
+        },
+        "featured_npc": "登山者",
+        "altitude_hint": 12
+      }
+    },
+    "variables": {
+      "theme": "山顶",
+      "biome": "mountain",
+      "structure": "summit",
+      "unlocked": false
+    }
+  },
+  "narrative": {
+    "text": [
+      "⽗亲⼼情很差，在回家途中狂按喇叭，我知道，他以为我病了。⾃那之后，我被禁⽌",
+      "做数学时⻓篇⼤论，当出现 “ 所以 ˮ ， “ 于是 ˮ 的苗头，⽗亲就开始咳嗽。阿⽆再也不敢",
+      "出来了，我的⼼，也好像凋落了。",
+      "我披头散发，翻脸泪痕的出现在⽗⺟⾯前，讲着她有多么聪慧，你们的⼥⼉应该是",
+      "她。⽗亲怒了； “ 你知道她是假的，却深陷其中，你确实不聪明。 ˮ 我想起⼉时我最在乎",
+      "的就是在⽗亲⼼中，我聪明与否，⽽我现在却歇斯底⾥； “ 我不聪明，你们不要我就好",
+      "了！她会做数学，她⼩时候就会！她 …… ˮ",
+      "“那是你啊！从⼩喜爱数学的⼈是你，在没有她的时候，你⼀直很擅⻓数学，⽐现在还",
+      "要好！ ˮ我听⻅了，我颤抖着，我不想提起的记忆涌上来，我⼩时候的光彩，休学后的",
+      "⾃卑，还是阿⽆的虚拟。我想起阿⽆，她是胖胖的短发⼥⽣，那张脸，那空洞的只装",
+      "的下数字的眼睛分明就是⼩时候的我，她双⽬含泪，仿佛不明真相的⼈⼀直只有我。",
+      "可我，我真爱数学吗？我回忆起那些 “ 于是 ˮ 和 “ 设问 ˮ ，我喜欢与阿⽆讨论数学，喜欢",
+      "书写在纸上，进⾏⼀次深刻的讨论，⽣命很短，好时光却很⻓，其中，主导的⼈⼀直",
+      "是我，或许，我是热爱数学的吧。⼩阿⽆在我问出真⼼的那刻，向我鞠了⼀躬，消失",
+      "在暖光中，原来，我进⾏了⼀次只有我⾃⼰，决定她去留的讨论。",
+      "⾃此之后，我做数学不再与阿⽆讨论了，我曾和她有过⼀次短暂的相遇，⻛吹过桃",
+      "源，我在树下靠着，做着我热爱的数学，虽然如蹒跚学步，但基本功正在恢复，⽽阿",
+      "⽆，她头也不回，与数学为伴，⼀路相依。这是我⽤热爱吻开的笔墨，多么美好，我",
+      "眼⻆落下⼀滴珠泪。",
+      "名字的原因",
+      "那我就开盅（揭晓答案）了",
+      "这是⼀个很⼩的猜谜游戏，貌似条件不⾜，任谁都⽆法猜出来⻰去脉的感觉。但是在",
+      "条件不⾜的情况下，仍要⼈猜，但我是清醒的。我想说，在这个谜语中的⼀切⾏为都",
+      "是我给出的线索。包括照⽚，以及转发的⼈和动机。",
+      "这时候，它为什么叫陈思思重要也不重要。",
+      "1 若猜谜者知道原因，且只关注是否将谜语猜出   。那么原因很重要。",
+      "2 若猜谜者 “ 听者有意 ˮ ，那么重点将不在 “ 原因上 ˮ",
+      "⼜来了，猜谜者知不知道原因很重要",
+      "1  猜谜者最后仍不知道原因，系铃⼈是失败的。（游戏层⾯）",
+      "2  系铃⼈希望猜谜者知道原因（主观因素）",
+      "回到谜⾯    名字的缘由",
+      "1  病情严重的节点（追问点   获得事件发⽣事件）",
+      "时间：去年 5 ⽉",
+      "⽆标题",
+      "3"
+    ],
+    "beats": [
+      {
+        "id": "level_3_intro",
+        "trigger": "on_enter",
+        "scene_patch": "scene_base_camp",
+        "rule_refs": [
+          "summit_halfway"
+        ]
+      },
+      {
+        "id": "level_3_halfway",
+        "trigger": "rule_event:summit_midpoint",
+        "scene_patch": "scene_mid_camp",
+        "rule_refs": [
+          "summit_halfway"
+        ]
+      },
+      {
+        "id": "level_3_summit",
+        "trigger": "rule_event:summit_success",
+        "scene_patch": "scene_summit_fire",
+        "rule_refs": [
+          "summit_success"
+        ]
+      }
+    ]
+  },
+  "scene": {
+    "world": "KunmingLakeStory",
+    "teleport": {
+      "x": 0.5,
+      "y": 70.0,
+      "z": 0.5,
+      "yaw": 0.0,
+      "pitch": 0.0
+    },
+    "environment": {
+      "weather": "CLEAR",
+      "time": "DAY"
+    },
+    "structures": [
+      "structures/mountain/base_camp.nbt"
+    ],
+    "npc_skins": [
+      {
+        "id": "登山者",
+        "skin": "registry:climber"
+      }
+    ]
+  },
+  "rules": {
+    "listeners": [
+      {
+        "id": "summit_halfway",
+        "type": "quest_event",
+        "targets": [
+          "mountain_halfway"
+        ],
+        "quest_event": "summit_midpoint",
+        "metadata": {
+          "dialogue": [
+            "§6[登山者]§r 到达营地了，休整一下，记得检查绳扣。",
+            "§7(营地火堆再次被点燃，驱散寒风)"
+          ],
+          "update_behaviors": [
+            {
+              "type": "particle",
+              "particle": "snowflake",
+              "description": "雪雾环绕营地，标记安全区"
+            }
+          ],
+          "world_patch": {
+            "mc": {
+              "title": {
+                "main": "§b半山营地",
+                "sub": "雪雾涌动，登山者为你点燃补给火堆。",
+                "fade_in": 5,
+                "stay": 70,
+                "fade_out": 20
+              },
+              "sound": {
+                "type": "AMBIENT_UNDERWATER_ENTER",
+                "volume": 0.6,
+                "pitch": 0.9
+              },
+              "particle": {
+                "type": "SNOW_SHOVEL",
+                "count": 80,
+                "radius": 4.0,
+                "speed": 0.08
+              },
+              "weather": "storm",
+              "time": "sunset"
+            }
+          }
+        }
+      },
+      {
+        "id": "summit_success",
+        "type": "quest_event",
+        "targets": [
+          "mountain_summit"
+        ],
+        "quest_event": "summit_success",
+        "metadata": {
+          "dialogue": {
+            "title": "顶峰赞歌",
+            "text": "登山者举起冰镐，邀你一起俯瞰云海。"
+          },
+          "commands": [
+            "playsound minecraft:music.game credits @p ~ ~ ~ 1 0.8",
+            "title @p subtitle {\"text\":\"云海之上，初心仍在。\",\"color\":\"aqua\"}"
+          ],
+          "world_patch": {
+            "mc": {
+              "title": {
+                "main": "§b登顶时刻",
+                "sub": "云海被晨光点亮，旅程写下新的篇章。",
+                "fade_in": 10,
+                "stay": 90,
+                "fade_out": 30
+              },
+              "sound": {
+                "type": "MUSIC_DISC_STRAD",
+                "volume": 1.0,
+                "pitch": 1.0
+              },
+              "particle": {
+                "type": "CLOUD",
+                "count": 90,
+                "radius": 5.0,
+                "speed": 0.04
+              },
+              "weather": "clear",
+              "time": "sunrise"
+            }
+          }
+        }
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "id": "level_3_ascent",
+      "type": "exploration",
+      "conditions": [
+        {
+          "location": "mountain_base_camp",
+          "count": 1
+        },
+        {
+          "location": "mountain_summit",
+          "count": 1
+        }
+      ],
+      "milestones": [
+        "camp_arrival",
+        "summit_view"
+      ],
+      "rewards": [
+        {
+          "type": "xp",
+          "amount": 120
+        },
+        {
+          "type": "item",
+          "amount": 1,
+          "data": {
+            "id": "climbing_rope"
+          }
+        }
+      ]
+    }
+  ],
+  "exit": {
+    "phrase_aliases": [
+      "结束剧情",
+      "离开关卡",
+      "退出剧情"
+    ],
+    "return_spawn": "KunmingLakeHub",
+    "teleport": {
+      "x": 0.5,
+      "y": 70.0,
+      "z": 0.5,
+      "yaw": 0.0,
+      "pitch": 0.0
+    }
+  }
+}

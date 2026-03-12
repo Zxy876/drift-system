@@ -1,0 +1,24 @@
+{
+  "fragments": [
+    {
+      "fragment_id": "camp_storage_ext",
+      "root": false,
+      "priority": 20,
+      "tags": ["wood", "storage", "safe_zone"],
+      "requires": ["safe_zone"],
+      "optional_resources": ["wood"],
+      "size": [4, 4],
+      "connections": [],
+      "events": [
+        {
+          "event_id": "spawn_vanilla_camp_storage_ext",
+          "type": "spawn_structure",
+          "anchor_ref": "camp_center",
+          "data": {
+            "template": "camp_storage_extension"
+          }
+        }
+      ]
+    }
+  ]
+}

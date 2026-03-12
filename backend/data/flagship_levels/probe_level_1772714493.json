@@ -1,0 +1,279 @@
+{
+  "id": "probe_level_1772714493",
+  "title": "Probe Level",
+  "text": [
+    "创建剧情 大风吹 在森林里"
+  ],
+  "tags": [],
+  "mood": {
+    "base": "calm",
+    "intensity": 0.5
+  },
+  "choices": [],
+  "meta": {
+    "trng_transaction": {
+      "tx_id": "tx_68270f35fdb9",
+      "base_state_hash": "befe6682a6c32ed55d288ddaf40636b0ee73c37fd48bd8ec91204afa91dba85e",
+      "committed_state_hash": "b450e47a275e671dd891764d7ad74099a3233d2dc6cf18b9dff2a9bf07506cde",
+      "committed_graph_hash": "000200dc3d653282854d3caa2bb700a32e9b84949b49c7aecb9fba529c1bfc4f",
+      "commit_timestamp": 1772714493.952033,
+      "rule_version": "rule_v2_2",
+      "engine_version": "engine_v2_1",
+      "event_count": 1
+    },
+    "scene_generation": {
+      "scene_theme": "大风吹",
+      "scene_hint": "森林",
+      "selected_anchor": "home",
+      "fragments": [
+        "wanderer_npc"
+      ],
+      "event_count": 1,
+      "event_plan": [
+        {
+          "event_id": "spawn_npc",
+          "type": "spawn_npc",
+          "text": "spawn_npc",
+          "anchor": {
+            "mode": "absolute",
+            "ref": "camp_edge",
+            "world": "world",
+            "x": 0.0,
+            "y": 64.0,
+            "z": 0.0
+          },
+          "data": {
+            "npc_template": "wanderer",
+            "scene_hint": "森林",
+            "scene_variant": "forest"
+          }
+        }
+      ],
+      "inventory_resources": {}
+    }
+  },
+  "npcs": [],
+  "bootstrap_patch": {
+    "variables": {
+      "story_world_generated": true,
+      "story_title": "Probe Level"
+    },
+    "mc": {
+      "tell": "§6Probe Level§r\n创建剧情 大风吹 在森林里",
+      "spawn": {
+        "x": 10,
+        "y": 72,
+        "z": 5
+      },
+      "time": "night",
+      "weather": "rain",
+      "spawns": [
+        {
+          "type": "villager",
+          "name": "林间商人",
+          "x": 15,
+          "y": 72,
+          "z": 8,
+          "dialog": "小心！大风快来了，快找地方躲躲！"
+        },
+        {
+          "type": "skeleton",
+          "name": "骷髅弓箭手",
+          "x": -5,
+          "y": 72,
+          "z": -3,
+          "dialog": "风太大了，我的箭都射不准了！"
+        },
+        {
+          "type": "cow",
+          "name": "受惊的奶牛",
+          "x": 20,
+          "y": 72,
+          "z": 15,
+          "dialog": ""
+        }
+      ],
+      "blocks": [
+        {
+          "type": "oak_planks",
+          "x": 12,
+          "y": 72,
+          "z": 7
+        },
+        {
+          "type": "oak_planks",
+          "x": 12,
+          "y": 73,
+          "z": 7
+        },
+        {
+          "type": "oak_planks",
+          "x": 12,
+          "y": 74,
+          "z": 7
+        },
+        {
+          "type": "glass",
+          "x": 11,
+          "y": 73,
+          "z": 7
+        },
+        {
+          "type": "glass",
+          "x": 13,
+          "y": 73,
+          "z": 7
+        },
+        {
+          "type": "stone",
+          "x": 10,
+          "y": 71,
+          "z": 5
+        },
+        {
+          "type": "stone",
+          "x": 10,
+          "y": 71,
+          "z": 6
+        },
+        {
+          "type": "stone",
+          "x": 11,
+          "y": 71,
+          "z": 5
+        },
+        {
+          "type": "stone",
+          "x": 11,
+          "y": 71,
+          "z": 6
+        }
+      ],
+      "spawn_multi": [
+        {
+          "type": "villager",
+          "name": "阿无",
+          "offset": {
+            "dx": 2.0,
+            "dy": 0.0,
+            "dz": 1.0
+          },
+          "_scene_event_id": "spawn_npc",
+          "world": "world"
+        }
+      ]
+    }
+  },
+  "world_patch": {
+    "variables": {
+      "story_world_generated": true,
+      "story_title": "Probe Level"
+    },
+    "mc": {
+      "tell": "§6Probe Level§r\n创建剧情 大风吹 在森林里",
+      "spawn": {
+        "x": 10,
+        "y": 72,
+        "z": 5
+      },
+      "time": "night",
+      "weather": "rain",
+      "spawns": [
+        {
+          "type": "villager",
+          "name": "林间商人",
+          "x": 15,
+          "y": 72,
+          "z": 8,
+          "dialog": "小心！大风快来了，快找地方躲躲！"
+        },
+        {
+          "type": "skeleton",
+          "name": "骷髅弓箭手",
+          "x": -5,
+          "y": 72,
+          "z": -3,
+          "dialog": "风太大了，我的箭都射不准了！"
+        },
+        {
+          "type": "cow",
+          "name": "受惊的奶牛",
+          "x": 20,
+          "y": 72,
+          "z": 15,
+          "dialog": ""
+        }
+      ],
+      "blocks": [
+        {
+          "type": "oak_planks",
+          "x": 12,
+          "y": 72,
+          "z": 7
+        },
+        {
+          "type": "oak_planks",
+          "x": 12,
+          "y": 73,
+          "z": 7
+        },
+        {
+          "type": "oak_planks",
+          "x": 12,
+          "y": 74,
+          "z": 7
+        },
+        {
+          "type": "glass",
+          "x": 11,
+          "y": 73,
+          "z": 7
+        },
+        {
+          "type": "glass",
+          "x": 13,
+          "y": 73,
+          "z": 7
+        },
+        {
+          "type": "stone",
+          "x": 10,
+          "y": 71,
+          "z": 5
+        },
+        {
+          "type": "stone",
+          "x": 10,
+          "y": 71,
+          "z": 6
+        },
+        {
+          "type": "stone",
+          "x": 11,
+          "y": 71,
+          "z": 5
+        },
+        {
+          "type": "stone",
+          "x": 11,
+          "y": 71,
+          "z": 6
+        }
+      ],
+      "spawn_multi": [
+        {
+          "type": "villager",
+          "name": "阿无",
+          "offset": {
+            "dx": 2.0,
+            "dy": 0.0,
+            "dz": 1.0
+          },
+          "_scene_event_id": "spawn_npc",
+          "world": "world"
+        }
+      ]
+    }
+  },
+  "tree": null
+}

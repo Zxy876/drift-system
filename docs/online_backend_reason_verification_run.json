@@ -1,0 +1,66 @@
+{
+  "base": "https://driftsystem-production-6558.up.railway.app",
+  "doc_checks": {
+    "version_plugin_payload_v1_3of3": false,
+    "commands_len_gt_0_3of3": false,
+    "merged_hash_equal_3of3": false,
+    "no_world_preview_3of3": true,
+    "fallback_flag_false": true,
+    "fallback_reason_none": true,
+    "recent_apply_reports_exists": true,
+    "http_200_3of3": false
+  },
+  "overall_pass_against_doc": false,
+  "runs": [
+    {
+      "run": 1,
+      "level_id": "railway_payload_v1_verify_A1",
+      "http_status": 400,
+      "content_type": "application/json",
+      "version": null,
+      "build_id": null,
+      "merged_hash": null,
+      "commands_len": 0,
+      "has_world_preview": false
+    },
+    {
+      "run": 2,
+      "level_id": "railway_payload_v1_verify_A2",
+      "http_status": 200,
+      "content_type": "application/json",
+      "version": "plugin_payload_v1",
+      "build_id": "9832e3e6a85a6ec7220c1f177bba5b793589c5ef51291226fcf3308a886b0c20",
+      "merged_hash": "f80dad88eb2559cacbf3746da7fb98e76a5377e5f6708bf1667ad57c88784fcf",
+      "commands_len": 293,
+      "has_world_preview": false
+    },
+    {
+      "run": 3,
+      "level_id": "railway_payload_v1_verify_A3",
+      "http_status": 200,
+      "content_type": "application/json",
+      "version": "plugin_payload_v1",
+      "build_id": "9832e3e6a85a6ec7220c1f177bba5b793589c5ef51291226fcf3308a886b0c20",
+      "merged_hash": "f80dad88eb2559cacbf3746da7fb98e76a5377e5f6708bf1667ad57c88784fcf",
+      "commands_len": 293,
+      "has_world_preview": false
+    }
+  ],
+  "hashes": [
+    null,
+    "f80dad88eb2559cacbf3746da7fb98e76a5377e5f6708bf1667ad57c88784fcf",
+    "f80dad88eb2559cacbf3746da7fb98e76a5377e5f6708bf1667ad57c88784fcf"
+  ],
+  "commands": [
+    0,
+    293,
+    293
+  ],
+  "debug": {
+    "http_status": 200,
+    "last_fallback_flag": false,
+    "last_fallback_reason": "none",
+    "recent_apply_reports_len": 0,
+    "has_recent_apply_reports": true
+  }
+}

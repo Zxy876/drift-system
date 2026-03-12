@@ -1,0 +1,570 @@
+{
+  "id": "flagship_12",
+  "title": "夜行 · 玻璃药店",
+  "tags": [
+    "心悦文集",
+    "夜行",
+    "分支叙事"
+  ],
+  "mood": {
+    "base": "melancholy",
+    "intensity": 0.8
+  },
+  "choices": [
+    {
+      "label": "继续在夜色里走",
+      "next": "flagship_21"
+    }
+  ],
+  "meta": {
+    "source": "xinyue_wenji",
+    "chapter": 12,
+    "word_count": 1200
+  },
+
+  "memory_affinity": ["xinyue.face_once"],
+  "memory_recovery": ["xinyue.escape_once"],
+  "storyline_theme": "flagship_resilience",
+  "continuity": {
+    "previous": "flagship_08",
+    "next": "flagship_final",
+    "next_major_level": "flagship_final",
+    "emotional_vector": "nocturne_resolution",
+    "arc_step": 4
+  },
+  "emotional_world_patch": {
+    "default": {
+      "label": "夜行徘徊",
+      "tone": "melancholy",
+      "patch": {
+        "mc": {
+          "lighting_shift": "neon_to_dawn",
+          "music": { "record": "otherside", "volume": 0.6 },
+          "npc_emotion": {
+            "tone": "melancholy",
+            "targets": ["药店店员", "影子少女"],
+            "lines": ["霓虹映在雨里，你的脚步在十字路口徘徊。"]
+          }
+        }
+      }
+    },
+    "profiles": [
+      {
+        "id": "night_face",
+        "label": "夜色开缝",
+        "tone": "encouraging",
+        "requires": ["xinyue.face_once"],
+        "priority": 10,
+        "patch": {
+          "mc": {
+            "weather_transition": { "to": "CLEAR" },
+            "lighting_shift": "bridge_aurora",
+            "music": { "record": "5", "volume": 0.85 },
+            "npc_emotion": {
+              "tone": "encouraging",
+              "targets": ["影子少女"],
+              "lines": ["影子少女放下伞：你愿意停下听听，夜风也跟着慢了。"],
+              "actionbar": "霓虹渐亮 · 面对"
+            }
+          }
+        }
+      },
+      {
+        "id": "night_escape",
+        "label": "雨幕收紧",
+        "tone": "concerned",
+        "requires": ["xinyue.escape_once"],
+        "priority": 5,
+        "patch": {
+          "mc": {
+            "weather_transition": { "to": "RAIN" },
+            "lighting_shift": "neon_loop",
+            "music": { "record": "mellohi", "volume": 0.7 },
+            "npc_emotion": {
+              "tone": "concerned",
+              "targets": ["药店店员"],
+              "lines": ["药店店员把纸袋递给你：别让自己在雨里迷路太久。"],
+              "actionbar": "雨势压肩 · 退却"
+            }
+          }
+        }
+      }
+    ]
+  },
+  "world_patch": {
+    "mc": {
+      "spawn": {
+        "type": "player",
+        "name": "夜行者",
+        "offset": {
+          "dx": 0,
+          "dy": 0,
+          "dz": 0
+        },
+        "behaviors": [
+          {
+            "type": "patrol",
+            "path": [
+              {
+                "dx": -6,
+                "dz": 0
+              },
+              {
+                "dx": 0,
+                "dz": 6
+              },
+              {
+                "dx": 6,
+                "dz": 0
+              },
+              {
+                "dx": 0,
+                "dz": -6
+              }
+            ],
+            "speed": 0.7,
+            "description": "在雨夜十字路口来回踱步，像在原地打转的思绪"
+          }
+        ],
+        "ai_hints": "十字路口象征选择。夜行者身边的光线会随玩家的决定变亮或变暗。"
+      },
+      "build": {
+        "shape": "street_block",
+        "size": 16,
+        "material": "stone",
+        "details": [
+          "wet_asphalt",
+          "street_lamp",
+          "glass_pharmacy"
+        ]
+      },
+      "music": {
+        "record": "otherside"
+      },
+      "particle": {
+        "type": "dripping_water",
+        "color": "blue",
+        "count": 40
+      },
+      "tell": "☔ 你站在雨夜的十字路口，霓虹‘药’字在远处一闪一闪。",
+      "_scene": {
+        "level_id": "flagship_12",
+        "title": "夜行 · 玻璃药店",
+        "theme": "夜街 · 药店 · 分岔口",
+        "scene_world": "KunmingLakeStory",
+        "teleport": {
+          "x": 0.5,
+          "y": 70.0,
+          "z": 0.5,
+          "yaw": 0.0,
+          "pitch": 0.0
+        },
+        "featured_npc": "药店店员",
+        "focus": "crossroad_neon"
+      },
+      "trigger_zones": [
+        {
+          "id": "flagship_12_crossroad",
+          "label": "夜行十字路口",
+          "quest_event": "night12_crossroad_choice",
+          "radius": 4.5
+        },
+        {
+          "id": "flagship_12_pharmacy",
+          "label": "玻璃药店",
+          "quest_event": "night12_pharmacy_counsel",
+          "radius": 3.0,
+          "offset": {
+            "dx": -6.0,
+            "dy": 0.0,
+            "dz": 0.0
+          }
+        },
+        {
+          "id": "flagship_12_bridge",
+          "label": "雨夜桥边",
+          "quest_event": "night12_shadow_whisper",
+          "radius": 3.2,
+          "offset": {
+            "dx": 6.0,
+            "dy": 0.0,
+            "dz": 6.0
+          }
+        }
+      ],
+      "npc_trigger_events": [
+        { "npc": "药店店员", "quest_event": "night12_pharmacy_counsel" },
+        { "npc": "影子少女", "quest_event": "night12_shadow_whisper" }
+      ],
+      "lighting_shift": "neon_to_dawn",
+      "weather_transition": {"from": "RAIN", "to": "MIST_CLEAR"}
+    },
+    "variables": {
+      "theme": "night_city",
+      "biome": "minecraft:taiga",
+      "weather": "RAIN",
+      "structure": "neon_crossroad",
+      "unlocked": true,
+      "arc_position": "climax"
+    }
+  },
+  "narrative": {
+    "text": [
+      "雨线把路灯拉成一条条模糊的弧线，像被拉长的心电图。",
+      "你站在十字路口，耳机里歌声忽高忽低，歌词在喉咙里打结。",
+      "远处药店的绿十字亮着，像一块被反复擦拭过的出口标志。",
+      "你不知道那是救生圈，还是让一切麻木的开关。"
+    ],
+    "beats": [
+      {
+        "id": "flagship_12_crossroad",
+        "trigger": "on_enter",
+        "scene_patch": "scene_night_crossroad",
+        "rule_refs": [
+          "choice_at_crossroad",
+          "night12_crossroad_choice"
+        ],
+        "cinematic_alias": "flagship_12.crossroad",
+        "branch_hint": "flagship_resilience.choice",
+        "milestone_event": "night12_crossroad_choice",
+        "choices": [
+          {
+            "id": "go_to_pharmacy",
+            "text": "推开药店的玻璃门。",
+            "rule_event": "night12_go_pharmacy",
+            "tags": [
+              "seek_relief",
+              "medication"
+            ],
+            "next_level": null,
+            "next_major_level": "flagship_final"
+          },
+          {
+            "id": "keep_walking",
+            "text": "绕过药店，继续走向桥边。",
+            "rule_event": "night12_keep_walking",
+            "tags": [
+              "face_pain",
+              "avoid_medication"
+            ],
+            "next_level": null,
+            "next_major_level": "flagship_final"
+          }
+        ]
+      },
+      {
+        "id": "flagship_12_pharmacy",
+        "trigger": "rule_event:night12_go_pharmacy",
+        "scene_patch": "scene_inside_pharmacy",
+        "rule_refs": [
+          "pharmacy_counter",
+          "night12_pharmacy_counsel"
+        ],
+        "cinematic_alias": "flagship_12.pharmacy",
+        "branch_hint": "flagship_resilience.pharmacy_path",
+        "milestone_event": "night12_pharmacy_counsel",
+        "choices": [
+          {
+            "id": "take_pills_now",
+            "text": "当场吞下药片，让今晚快点结束。",
+            "rule_event": "night12_take_now",
+            "next_level": null,
+            "tags": [
+              "numb",
+              "fast_exit"
+            ],
+            "next_major_level": "flagship_final"
+          },
+          {
+            "id": "pocket_pills",
+            "text": "把药装进口袋，走出门外再决定。",
+            "rule_event": "night12_pocket_pills",
+            "next_level": null,
+            "tags": [
+              "delay_choice",
+              "ambivalent"
+            ],
+            "next_major_level": "flagship_final"
+          }
+        ]
+      },
+      {
+        "id": "flagship_12_bridge",
+        "trigger": "rule_event:night12_keep_walking",
+        "scene_patch": "scene_river_bridge",
+        "rule_refs": [
+          "shadow_confront",
+          "night12_shadow_whisper"
+        ],
+        "cinematic_alias": "flagship_12.bridge",
+        "branch_hint": "flagship_resilience.bridge_path",
+        "milestone_event": "night12_shadow_whisper",
+        "choices": [
+          {
+            "id": "listen_shadow",
+            "text": "停下来听听‘影子’在说什么。",
+            "rule_event": "night12_listen_shadow",
+            "next_level": "flagship_21",
+            "tags": [
+              "introspect",
+              "courage"
+            ],
+            "next_major_level": "flagship_final"
+          },
+          {
+            "id": "run_from_shadow",
+            "text": "加快脚步，假装什么都没听见。",
+            "rule_event": "night12_run_shadow",
+            "next_level": "flagship_03",
+            "tags": [
+              "escape",
+              "loop_back"
+            ],
+            "next_major_level": "flagship_03"
+          }
+        ]
+      },
+      {
+        "id": "flagship_12_shadow_face",
+        "trigger": "rule_event:night12_listen_shadow",
+        "memory_set": ["xinyue.face_once"],
+        "memory_clear": ["xinyue.escape_once"],
+        "branch_hint": "flagship_resilience.face_recap",
+        "milestone_event": "night12_listen_shadow",
+        "world_patch": {
+          "mc": {
+            "tell": "§b 你站在雨中倾听，影子的声音变得柔软。",
+            "particle": {"type": "soul", "count": 12},
+            "sound": {"type": "BLOCK_NOTE_BLOCK_BELL", "volume": 0.7, "pitch": 1.2}
+          }
+        }
+      },
+      {
+        "id": "flagship_12_shadow_escape",
+        "trigger": "rule_event:night12_run_shadow",
+        "memory_set": ["xinyue.escape_once"],
+        "memory_clear": ["xinyue.face_once"],
+        "branch_hint": "flagship_resilience.escape_loop",
+        "milestone_event": "night12_run_shadow",
+        "world_patch": {
+          "mc": {
+            "tell": "§7 你踏过水洼，身后只剩脚步溅开的涟漪。",
+            "particle": {"type": "ash", "count": 28},
+            "sound": {"type": "BLOCK_GLASS_BREAK", "volume": 0.6, "pitch": 0.9}
+          }
+        }
+      },
+      {
+        "id": "flagship_12_face_recap",
+        "trigger": "story:continue",
+        "memory_required": ["xinyue.face_once"],
+        "branch_hint": "flagship_resilience.face_recap",
+        "scene_patch": "scene_bridge_glow",
+        "milestone_event": "flagship_12_face_recap",
+        "world_patch": {
+          "mc": {
+            "tell": "✨ 药店的霓虹倒映在水面上，像路标一样替你驻留。",
+            "weather": "CLEAR",
+            "music": {"record": "5"}
+          }
+        }
+      },
+      {
+        "id": "flagship_12_escape_recap",
+        "trigger": "story:continue",
+        "memory_required": ["xinyue.escape_once"],
+        "branch_hint": "flagship_resilience.escape_recap",
+        "scene_patch": "scene_neon_loop",
+        "milestone_event": "flagship_12_escape_recap",
+        "world_patch": {
+          "mc": {
+            "tell": "☔ 你绕过十字路口，雨丝像幕布一样把出口遮住。",
+            "weather": "RAIN",
+            "music": {"record": "mellohi"}
+          }
+        }
+      },
+      {
+        "id": "flagship_12_ending",
+        "trigger": "story:continue",
+        "world_patch": {
+          "mc": {
+            "tell": "✨ 雨线变得细密，夜行的轨迹在脚下发光。",
+            "weather": "CLEAR"
+          }
+        },
+        "next_major_level": "flagship_final",
+        "milestone_event": "flagship_12_ending"
+      }
+    ]
+  },
+  "scene": {
+    "world": "KunmingLakeStory",
+    "teleport": {
+      "x": 0.5,
+      "y": 70.0,
+      "z": 0.5,
+      "yaw": 0.0,
+      "pitch": 0.0
+    },
+    "environment": {
+      "weather": "RAIN",
+      "time": "NIGHT"
+    },
+    "structures": [
+      "structures/city/crossroad_neon.nbt",
+      "structures/city/glass_pharmacy.nbt",
+      "structures/city/river_bridge.nbt"
+    ],
+    "npc_skins": [
+      {
+        "id": "药店店员",
+        "skin": "registry:pharmacist"
+      },
+      {
+        "id": "影子少女",
+        "skin": "registry:shadow"
+      }
+    ]
+  },
+  "rules": {
+    "listeners": [
+      {
+        "id": "choice_at_crossroad",
+        "type": "story_choice",
+        "targets": [
+          "flagship_12_crossroad"
+        ],
+        "quest_event": "night12_crossroad_choice",
+        "metadata": {
+          "dialogue": [
+            "§7雨把世界洗得很干净，也把路分成了几条。",
+            "§8(也许没有对错，只有你愿意多看一眼的方向。)"
+          ]
+        }
+      },
+      {
+        "id": "pharmacy_counter",
+        "type": "npc_dialogue",
+        "targets": [
+          "药店店员"
+        ],
+        "quest_event": "night12_pharmacy_counsel",
+        "metadata": {
+          "dialogue": [
+            "§a[药店店员]§r 这不是神奇的糖，吃了也不会把事情抹掉。",
+            "§a[药店店员]§r 但有时候，让大脑睡一会儿，也算是一种勇气。"
+          ],
+          "cinematic": "scene_inside_pharmacy"
+        }
+      },
+      {
+        "id": "shadow_confront",
+        "type": "npc_dialogue",
+        "targets": [
+          "影子少女"
+        ],
+        "quest_event": "night12_shadow_whisper",
+        "metadata": {
+          "dialogue": [
+            "§8[影子]§r 你一直在逃课，逃的是‘怎么面对自己’这一课。",
+            "§8[影子]§r 今晚你愿不愿意，哪怕只做一题？"
+          ],
+          "cinematic": "scene_river_bridge"
+        }
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "id": "flagship_12_nightwalk",
+      "type": "quest_event",
+      "title": "夜行抉择",
+      "hint": "在雨夜十字路口、药店与桥边之间做出你的答案。",
+      "rule_event": "night12_crossroad_choice",
+      "conditions": [
+        {
+          "quest_event": "night12_crossroad_choice",
+          "count": 1,
+          "title": "抵达十字路口"
+        },
+        {
+          "quest_event": "night12_pharmacy_counsel",
+          "count": 1,
+          "title": "倾听药店的劝告"
+        },
+        {
+          "quest_event": "night12_shadow_whisper",
+          "count": 1,
+          "title": "倾听影子低语"
+        }
+      ],
+      "milestones": [
+        {
+          "id": "flagship_12_crossroad",
+          "title": "夜行的分岔口",
+          "hint": "站在霓虹雨夜的十字路口，感受心跳的节奏。",
+          "milestone_event": "night12_crossroad_choice",
+          "target": "night12_crossroad_choice"
+        },
+        {
+          "id": "flagship_12_confront",
+          "title": "聆听引导",
+          "hint": "选择倾听药店或影子的声音，让心绪安定下来。",
+          "milestone_event": "night12_branch_dialogue",
+          "target": "night12_pharmacy_counsel",
+          "alternates": ["night12_shadow_whisper"]
+        },
+        {
+          "id": "flagship_12_decision",
+          "title": "作出夜行选择",
+          "hint": "在夜色中决定前行或逃离的脚步。",
+          "milestone_event": "night12_branch_choice",
+          "target": "night12_take_now",
+          "alternates": [
+            "night12_pocket_pills",
+            "night12_listen_shadow",
+            "night12_run_shadow"
+          ]
+        }
+      ],
+      "rule_refs": [
+        "night12_crossroad_choice",
+        "night12_pharmacy_counsel",
+        "night12_shadow_whisper",
+        "night12_take_now",
+        "night12_pocket_pills",
+        "night12_listen_shadow",
+        "night12_run_shadow"
+      ],
+      "rewards": [
+        {
+          "type": "xp",
+          "amount": 180
+        },
+        {
+          "type": "item",
+          "amount": 1,
+          "data": {
+            "id": "memory_shard_night"
+          }
+        }
+      ]
+    }
+  ],
+  "exit": {
+    "phrase_aliases": [
+      "回到白天",
+      "离开街道",
+      "退出夜行"
+    ],
+    "return_spawn": "KunmingLakeHub",
+    "teleport": {
+      "x": 128.5,
+      "y": 72.0,
+      "z": -16.5,
+      "yaw": 180.0,
+      "pitch": 0.0
+    }
+  }
+}

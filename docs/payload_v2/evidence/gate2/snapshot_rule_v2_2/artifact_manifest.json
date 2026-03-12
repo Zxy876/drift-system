@@ -1,0 +1,41 @@
+{
+  "commit": "54ee783520c301c4626f0b72fc517ee5ca5ff4b1",
+  "artifacts": {
+    "docs/payload_v2/evidence/gate2_replay_report.json": {
+      "sha256": "41e242ab2d82b58a4f1002df5d355c4e8644be533eae547125848cf29e340d16",
+      "bytes": 2536
+    },
+    "docs/payload_v2/evidence/gate2b_execution_replay_report.json": {
+      "sha256": "ee9549f9749a4eac1b86d1590b506a5c8f0fb37f24d17ed7d215f4e908b5a93b",
+      "bytes": 2657
+    },
+    "tools/gate2_replay_determinism_check.py": {
+      "sha256": "a3beadb52f9b10e5b9477ca4ce3c815dc7d630638962983bdc5c451141d4daa5",
+      "bytes": 3632
+    },
+    "tools/gate2b_execution_replay_check.py": {
+      "sha256": "baf8b9074567dddc9c5196f491c110fc67693504dfb44d713077992c4a265827",
+      "bytes": 4284
+    },
+    "tools/replay_evidence_adapter.py": {
+      "sha256": "3cf9313f991edf6cf47e385700d8aa3c3e553578b47c48973e9b447f2aeb0b11",
+      "bytes": 1355
+    },
+    "run/gate2_replay_test.sh": {
+      "sha256": "ec260e78a52e535aae8cdad8517f8fbed9146f5707981016ded856f0859db8de",
+      "bytes": 309
+    },
+    "run/gate2b_execution_replay_test.sh": {
+      "sha256": "edc9deb53781dc376ef10082ab4059109a00d26479b6e77e3abaa6799b5c8665",
+      "bytes": 360
+    },
+    "backend/app/core/mapping/projection_rule_registry.py": {
+      "sha256": "85f90003215f63bdcc18858b1d2f6ed64114253728049fdfdbab50929dc0ddeb",
+      "bytes": 2162
+    },
+    "backend/app/core/executor/plugin_payload_schema_v2.json": {
+      "sha256": "c2408bf6718d69d3c52dba4fd56bd1de866cc2c56a0f881f3b81dcbbba5cdc0e",
+      "bytes": 3943
+    }
+  }
+}

@@ -1,0 +1,9 @@
+pycache/
+*.log
+.venv/
+node_modules/
+world/
+logs/
+.DS_Store
+server/
+*.pid

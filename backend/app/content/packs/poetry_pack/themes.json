@@ -1,0 +1,16 @@
+{
+  "themes": [
+    {
+      "theme_id": "poetry_night",
+      "priority": 28,
+      "keywords": ["诗", "夜", "poetry", "moon", "ritual"],
+      "allowed_fragments": ["echo_stage", "camp", "shrine", "wanderer_npc"],
+      "bonus_tags": {
+        "emotion": 2.0,
+        "memory": 1.4,
+        "light": 0.9
+      },
+      "bonus_weight": 1.0
+    }
+  ]
+}

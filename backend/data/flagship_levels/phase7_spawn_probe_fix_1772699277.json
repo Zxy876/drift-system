@@ -1,0 +1,253 @@
+{
+  "id": "phase7_spawn_probe_fix_1772699277",
+  "title": "spawn probe fix",
+  "text": [
+    "create story big wind"
+  ],
+  "tags": [],
+  "mood": {
+    "base": "calm",
+    "intensity": 0.5
+  },
+  "choices": [],
+  "meta": {
+    "trng_transaction": {
+      "tx_id": "tx_5ad2e6411265",
+      "base_state_hash": "befe6682a6c32ed55d288ddaf40636b0ee73c37fd48bd8ec91204afa91dba85e",
+      "committed_state_hash": "b450e47a275e671dd891764d7ad74099a3233d2dc6cf18b9dff2a9bf07506cde",
+      "committed_graph_hash": "000200dc3d653282854d3caa2bb700a32e9b84949b49c7aecb9fba529c1bfc4f",
+      "commit_timestamp": 1772699277.368701,
+      "rule_version": "rule_v2_2",
+      "engine_version": "engine_v2_1",
+      "event_count": 1
+    },
+    "scene_generation": {
+      "scene_theme": "大风吹",
+      "scene_hint": null,
+      "selected_anchor": "home",
+      "fragments": [
+        "wanderer_npc"
+      ],
+      "event_count": 1,
+      "event_plan": [
+        {
+          "event_id": "spawn_npc",
+          "type": "spawn_npc",
+          "text": "spawn_npc",
+          "anchor": {
+            "mode": "absolute",
+            "ref": "camp_edge",
+            "world": "world",
+            "x": 0.0,
+            "y": 64.0,
+            "z": 0.0
+          },
+          "data": {
+            "npc_template": "wanderer"
+          }
+        }
+      ],
+      "inventory_resources": {}
+    }
+  },
+  "npcs": [],
+  "bootstrap_patch": {
+    "variables": {
+      "story_world_generated": true,
+      "story_title": "spawn probe fix"
+    },
+    "mc": {
+      "tell": "§6spawn probe fix§r\ncreate story big wind",
+      "spawn": {
+        "x": 0,
+        "y": 70,
+        "z": 0
+      },
+      "time": "night",
+      "weather": "rain",
+      "spawns": [
+        {
+          "type": "villager",
+          "name": "风之守护者",
+          "x": 10,
+          "y": 70,
+          "z": 5,
+          "dialog": "小心强风！它吹倒了我的房子。"
+        },
+        {
+          "type": "zombie",
+          "name": "被风吹来的僵尸",
+          "x": -8,
+          "y": 70,
+          "z": -3,
+          "dialog": ""
+        },
+        {
+          "type": "cow",
+          "name": "风中奶牛",
+          "x": 15,
+          "y": 70,
+          "z": -10,
+          "dialog": ""
+        }
+      ],
+      "blocks": [
+        {
+          "type": "stone",
+          "x": 0,
+          "y": 69,
+          "z": 0
+        },
+        {
+          "type": "oak_planks",
+          "x": 12,
+          "y": 70,
+          "z": 5
+        },
+        {
+          "type": "glass",
+          "x": 13,
+          "y": 71,
+          "z": 5
+        },
+        {
+          "type": "oak_planks",
+          "x": 11,
+          "y": 70,
+          "z": 5
+        },
+        {
+          "type": "stone",
+          "x": -5,
+          "y": 69,
+          "z": -5
+        },
+        {
+          "type": "stone",
+          "x": -5,
+          "y": 70,
+          "z": -5
+        },
+        {
+          "type": "oak_planks",
+          "x": 20,
+          "y": 70,
+          "z": 0
+        }
+      ],
+      "spawn_multi": [
+        {
+          "type": "villager",
+          "name": "阿无",
+          "offset": {
+            "dx": 2.0,
+            "dy": 0.0,
+            "dz": 1.0
+          },
+          "_scene_event_id": "spawn_npc",
+          "world": "world"
+        }
+      ]
+    }
+  },
+  "world_patch": {
+    "variables": {
+      "story_world_generated": true,
+      "story_title": "spawn probe fix"
+    },
+    "mc": {
+      "tell": "§6spawn probe fix§r\ncreate story big wind",
+      "spawn": {
+        "x": 0,
+        "y": 70,
+        "z": 0
+      },
+      "time": "night",
+      "weather": "rain",
+      "spawns": [
+        {
+          "type": "villager",
+          "name": "风之守护者",
+          "x": 10,
+          "y": 70,
+          "z": 5,
+          "dialog": "小心强风！它吹倒了我的房子。"
+        },
+        {
+          "type": "zombie",
+          "name": "被风吹来的僵尸",
+          "x": -8,
+          "y": 70,
+          "z": -3,
+          "dialog": ""
+        },
+        {
+          "type": "cow",
+          "name": "风中奶牛",
+          "x": 15,
+          "y": 70,
+          "z": -10,
+          "dialog": ""
+        }
+      ],
+      "blocks": [
+        {
+          "type": "stone",
+          "x": 0,
+          "y": 69,
+          "z": 0
+        },
+        {
+          "type": "oak_planks",
+          "x": 12,
+          "y": 70,
+          "z": 5
+        },
+        {
+          "type": "glass",
+          "x": 13,
+          "y": 71,
+          "z": 5
+        },
+        {
+          "type": "oak_planks",
+          "x": 11,
+          "y": 70,
+          "z": 5
+        },
+        {
+          "type": "stone",
+          "x": -5,
+          "y": 69,
+          "z": -5
+        },
+        {
+          "type": "stone",
+          "x": -5,
+          "y": 70,
+          "z": -5
+        },
+        {
+          "type": "oak_planks",
+          "x": 20,
+          "y": 70,
+          "z": 0
+        }
+      ],
+      "spawn_multi": [
+        {
+          "type": "villager",
+          "name": "阿无",
+          "offset": {
+            "dx": 2.0,
+            "dy": 0.0,
+            "dz": 1.0
+          },
+          "_scene_event_id": "spawn_npc",
+          "world": "world"
+        }
+      ]
+    }
+  },
+  "tree": null
+}

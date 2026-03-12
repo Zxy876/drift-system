@@ -1,0 +1,75 @@
+{
+  "generated_at_utc": "2026-03-02T16:04:01.092480+00:00",
+  "gate": "Gate 2B — Execution Replay Determinism",
+  "scope": "executor_v1 simulation path (block + npc_placeholder), no real summon",
+  "rounds_per_scenario": 100,
+  "overall_pass": true,
+  "scenarios": [
+    {
+      "scenario": "fog-only",
+      "rounds": 100,
+      "unique_world_state_hashes": 1,
+      "unique_merged_hashes": 1,
+      "world_state_hash_counts": {
+        "8a846e998ebcab44d4b394914199d0c60371983f1dedbc68140bc22ba7f43a94": 100
+      },
+      "merged_hash_counts": {
+        "ff18a375552028d5994f3abf62ba712ed195cf6455f771ff6d6d1f68935e834e": 100
+      },
+      "pass": true,
+      "sample": {
+        "compose_status": "SUCCESS",
+        "compose_failure": "NONE",
+        "mapping_status": "OK",
+        "payload_status": "plugin_payload_v1",
+        "merged_hash": "ff18a375552028d5994f3abf62ba712ed195cf6455f771ff6d6d1f68935e834e",
+        "world_state_hash": "8a846e998ebcab44d4b394914199d0c60371983f1dedbc68140bc22ba7f43a94",
+        "world_block_count": 145
+      }
+    },
+    {
+      "scenario": "npc-only",
+      "rounds": 100,
+      "unique_world_state_hashes": 1,
+      "unique_merged_hashes": 1,
+      "world_state_hash_counts": {
+        "763d04abb843b93cf3c0c865a856218274b8999d27e51c84355c1738534ee8ba": 100
+      },
+      "merged_hash_counts": {
+        "840213f62ccb220a92ca39bc4cfc74c45d51412ecf09a9fc00cd335a2b186d22": 100
+      },
+      "pass": true,
+      "sample": {
+        "compose_status": "SUCCESS",
+        "compose_failure": "NONE",
+        "mapping_status": "OK",
+        "payload_status": "plugin_payload_v1",
+        "merged_hash": "840213f62ccb220a92ca39bc4cfc74c45d51412ecf09a9fc00cd335a2b186d22",
+        "world_state_hash": "763d04abb843b93cf3c0c865a856218274b8999d27e51c84355c1738534ee8ba",
+        "world_block_count": 131
+      }
+    },
+    {
+      "scenario": "fog+npc",
+      "rounds": 100,
+      "unique_world_state_hashes": 1,
+      "unique_merged_hashes": 1,
+      "world_state_hash_counts": {
+        "80ed734bee838307b98d0609cf87f719686ffa54db49056fe927607410ac2c4d": 100
+      },
+      "merged_hash_counts": {
+        "95164dcff85e00b91b129e97152ba68ea0abf5fd04da13dc03e8fb34c719a7ac": 100
+      },
+      "pass": true,
+      "sample": {
+        "compose_status": "SUCCESS",
+        "compose_failure": "NONE",
+        "mapping_status": "OK",
+        "payload_status": "plugin_payload_v1",
+        "merged_hash": "95164dcff85e00b91b129e97152ba68ea0abf5fd04da13dc03e8fb34c719a7ac",
+        "world_state_hash": "80ed734bee838307b98d0609cf87f719686ffa54db49056fe927607410ac2c4d",
+        "world_block_count": 146
+      }
+    }
+  ]
+}

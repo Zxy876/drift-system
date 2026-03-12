@@ -1,0 +1,8 @@
+{
+  "snapshot_version": "gate6_freeze_v1",
+  "frozen_default_rule_version": "rule_v2_2",
+  "frozen_rule_hashes": {
+    "rule_v2_2": "561615933bf32a9436aead689872f968ccbcab1a579fcff180c0c3362908f17f"
+  },
+  "frozen_registry_digest": "03bf193e9022d8ccdea907edce49ca39d6128a3c8718fe6b0422416a0b05d116"
+}

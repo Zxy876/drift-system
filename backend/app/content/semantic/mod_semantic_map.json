@@ -1,0 +1,8 @@
+{
+  "minecraft:iron_ingot": ["metal"],
+  "minecraft:lantern": ["light"],
+  "mod:rusted_gear": ["metal", "ruin"],
+  "mod:ancient_brick": ["stone", "history"],
+  "mod:magic_lantern": ["light", "magic"],
+  "mod:forgotten_book": ["knowledge", "memory"]
+}

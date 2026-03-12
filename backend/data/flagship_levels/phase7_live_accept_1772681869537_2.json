@@ -1,0 +1,200 @@
+{
+  "id": "phase7_live_accept_1772681869537_2",
+  "title": "验收-2",
+  "text": [
+    "创建剧情 暴风雨"
+  ],
+  "tags": [],
+  "mood": {
+    "base": "calm",
+    "intensity": 0.5
+  },
+  "choices": [],
+  "meta": {},
+  "npcs": [],
+  "bootstrap_patch": {
+    "variables": {
+      "story_world_generated": true,
+      "story_title": "验收-2"
+    },
+    "mc": {
+      "tell": "§6验收-2§r\n创建剧情 暴风雨",
+      "spawn": {
+        "x": 10,
+        "y": 70,
+        "z": 10
+      },
+      "time": "night",
+      "weather": "thunderstorm",
+      "spawns": [
+        {
+          "type": "villager",
+          "name": "老渔夫",
+          "x": 15,
+          "y": 70,
+          "z": 5,
+          "dialog": "暴风雨要来了，快找个地方躲躲！"
+        },
+        {
+          "type": "zombie",
+          "name": "迷失的僵尸",
+          "x": -5,
+          "y": 70,
+          "z": 15,
+          "dialog": ""
+        },
+        {
+          "type": "cow",
+          "name": "受惊的奶牛",
+          "x": 8,
+          "y": 70,
+          "z": 20,
+          "dialog": ""
+        }
+      ],
+      "blocks": [
+        {
+          "type": "stone",
+          "x": 10,
+          "y": 69,
+          "z": 10
+        },
+        {
+          "type": "oak_planks",
+          "x": 12,
+          "y": 70,
+          "z": 12
+        },
+        {
+          "type": "glass",
+          "x": 12,
+          "y": 71,
+          "z": 12
+        },
+        {
+          "type": "oak_planks",
+          "x": 12,
+          "y": 72,
+          "z": 12
+        },
+        {
+          "type": "stone",
+          "x": 5,
+          "y": 69,
+          "z": 5
+        },
+        {
+          "type": "oak_planks",
+          "x": 5,
+          "y": 70,
+          "z": 5
+        },
+        {
+          "type": "glass",
+          "x": 5,
+          "y": 71,
+          "z": 5
+        },
+        {
+          "type": "oak_planks",
+          "x": 5,
+          "y": 72,
+          "z": 5
+        }
+      ]
+    }
+  },
+  "world_patch": {
+    "variables": {
+      "story_world_generated": true,
+      "story_title": "验收-2"
+    },
+    "mc": {
+      "tell": "§6验收-2§r\n创建剧情 暴风雨",
+      "spawn": {
+        "x": 10,
+        "y": 70,
+        "z": 10
+      },
+      "time": "night",
+      "weather": "thunderstorm",
+      "spawns": [
+        {
+          "type": "villager",
+          "name": "老渔夫",
+          "x": 15,
+          "y": 70,
+          "z": 5,
+          "dialog": "暴风雨要来了，快找个地方躲躲！"
+        },
+        {
+          "type": "zombie",
+          "name": "迷失的僵尸",
+          "x": -5,
+          "y": 70,
+          "z": 15,
+          "dialog": ""
+        },
+        {
+          "type": "cow",
+          "name": "受惊的奶牛",
+          "x": 8,
+          "y": 70,
+          "z": 20,
+          "dialog": ""
+        }
+      ],
+      "blocks": [
+        {
+          "type": "stone",
+          "x": 10,
+          "y": 69,
+          "z": 10
+        },
+        {
+          "type": "oak_planks",
+          "x": 12,
+          "y": 70,
+          "z": 12
+        },
+        {
+          "type": "glass",
+          "x": 12,
+          "y": 71,
+          "z": 12
+        },
+        {
+          "type": "oak_planks",
+          "x": 12,
+          "y": 72,
+          "z": 12
+        },
+        {
+          "type": "stone",
+          "x": 5,
+          "y": 69,
+          "z": 5
+        },
+        {
+          "type": "oak_planks",
+          "x": 5,
+          "y": 70,
+          "z": 5
+        },
+        {
+          "type": "glass",
+          "x": 5,
+          "y": 71,
+          "z": 5
+        },
+        {
+          "type": "oak_planks",
+          "x": 5,
+          "y": 72,
+          "z": 5
+        }
+      ]
+    }
+  },
+  "tree": null
+}

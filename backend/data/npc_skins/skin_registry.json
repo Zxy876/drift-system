@@ -1,0 +1,21 @@
+{
+  "default": "skins/girl_npc_01.png",
+  "entries": {
+    "girl": "skins/girl_npc_01.png",
+    "shadow": "skins/girl_npc_02.png",
+    "night": "skins/girl_npc_02.png",
+    "river": "skins/girl_npc_03.png",
+    "pharmacist": "skins/girl_npc_04.png",
+    "guide": "skins/girl_npc_01.png",
+    "tutorial": "skins/girl_npc_01.png",
+    "flagship_tutorial": "skins/girl_npc_01.png",
+    "climber": "skins/girl_npc_03.png",
+    "fear": "skins/girl_npc_02.png",
+    "gardener": "skins/girl_npc_03.png",
+    "librarian": "skins/girl_npc_04.png",
+    "racer": "skins/girl_npc_02.png",
+    "old_wisdom": "skins/girl_npc_01.png",
+    "shadow_creature": "skins/girl_npc_02.png",
+    "player_memory": "skins/girl_npc_01.png"
+  }
+}

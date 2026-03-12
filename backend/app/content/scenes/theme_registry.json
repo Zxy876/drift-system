@@ -1,0 +1,41 @@
+{
+  "version": "1.0",
+  "themes": [
+    {
+      "theme_id": "wind_camp",
+      "priority": 20,
+      "keywords": ["大风", "风", "荒野", "camp", "wind"],
+      "allowed_fragments": ["camp", "fire", "cooking_area", "watchtower", "wanderer_npc", "road"],
+      "bonus_tags": {
+        "wood": 1.5,
+        "light": 1.2,
+        "fire": 1.0
+      },
+      "bonus_weight": 1.0
+    },
+    {
+      "theme_id": "market_village",
+      "priority": 18,
+      "keywords": ["市集", "村庄", "market", "village", "trade"],
+      "allowed_fragments": ["village", "market", "forge", "farm", "shrine"],
+      "bonus_tags": {
+        "trade": 1.6,
+        "food": 1.0,
+        "wood": 0.8
+      },
+      "bonus_weight": 1.0
+    },
+    {
+      "theme_id": "memory_shrine",
+      "priority": 16,
+      "keywords": ["记忆", "古老", "静谧", "memory", "ancient"],
+      "allowed_fragments": ["shrine", "village", "camp"],
+      "bonus_tags": {
+        "memory": 1.4,
+        "stone": 1.0,
+        "light": 0.8
+      },
+      "bonus_weight": 1.0
+    }
+  ]
+}

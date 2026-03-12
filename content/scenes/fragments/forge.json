@@ -1,0 +1,34 @@
+{
+  "id": "forge",
+  "root": false,
+  "priority": 48,
+  "size": [5, 5],
+  "layout_anchor": "edge",
+  "tags": ["stone", "fire", "craft", "metal"],
+  "requires": ["stone"],
+  "optional_resources": ["fire", "wood"],
+  "structures": [
+    {
+      "type": "forge",
+      "template": "forge_basic",
+      "offset": [-3, 0, 1]
+    }
+  ],
+  "npcs": [
+    {
+      "id": "blacksmith",
+      "role": "smith"
+    }
+  ],
+  "connections": ["market"],
+  "events": [
+    {
+      "event_id": "spawn_forge",
+      "type": "spawn_structure",
+      "anchor_ref": "village_edge",
+      "data": {
+        "template": "forge_basic"
+      }
+    }
+  ]
+}

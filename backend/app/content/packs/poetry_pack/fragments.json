@@ -1,0 +1,24 @@
+{
+  "fragments": [
+    {
+      "fragment_id": "echo_stage",
+      "root": false,
+      "priority": 38,
+      "tags": ["poetry", "light", "memory"],
+      "requires": ["poetry"],
+      "optional_resources": ["light"],
+      "size": [4, 4],
+      "connections": [],
+      "events": [
+        {
+          "event_id": "spawn_poetry_echo_stage",
+          "type": "spawn_structure",
+          "anchor_ref": "player",
+          "data": {
+            "template": "poetry_echo_stage"
+          }
+        }
+      ]
+    }
+  ]
+}

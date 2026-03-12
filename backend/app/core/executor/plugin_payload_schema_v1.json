@@ -1,0 +1,101 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "plugin_payload_schema_v1.json",
+  "title": "Plugin Payload V1",
+  "type": "object",
+  "required": [
+    "version",
+    "build_id",
+    "player_id",
+    "build_path",
+    "patch_source",
+    "scene_path",
+    "hash",
+    "stats",
+    "origin",
+    "commands"
+  ],
+  "properties": {
+    "version": {
+      "const": "plugin_payload_v1"
+    },
+    "build_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "player_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "build_path": {
+      "type": "string"
+    },
+    "patch_source": {
+      "type": "string"
+    },
+    "scene_path": {
+      "type": "string"
+    },
+    "hash": {
+      "type": "object",
+      "required": ["scene_spec", "spec", "merged_blocks"],
+      "properties": {
+        "scene_spec": {
+          "type": "string"
+        },
+        "spec": {
+          "type": "string"
+        },
+        "merged_blocks": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    },
+    "stats": {
+      "type": "object",
+      "required": [
+        "scene_block_count",
+        "spec_block_count",
+        "merged_block_count",
+        "conflicts_total",
+        "spec_dropped_total"
+      ],
+      "properties": {
+        "scene_block_count": {"type": "integer", "minimum": 0},
+        "spec_block_count": {"type": "integer", "minimum": 0},
+        "merged_block_count": {"type": "integer", "minimum": 0},
+        "conflicts_total": {"type": "integer", "minimum": 0},
+        "spec_dropped_total": {"type": "integer", "minimum": 0}
+      },
+      "additionalProperties": false
+    },
+    "origin": {
+      "type": "object",
+      "required": ["base_x", "base_y", "base_z", "anchor_mode"],
+      "properties": {
+        "base_x": {"type": "integer"},
+        "base_y": {"type": "integer"},
+        "base_z": {"type": "integer"},
+        "anchor_mode": {"type": "string", "enum": ["player", "fixed"]}
+      },
+      "additionalProperties": false
+    },
+    "commands": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["op", "x", "y", "z", "block"],
+        "properties": {
+          "op": {"const": "setblock"},
+          "x": {"type": "integer"},
+          "y": {"type": "integer"},
+          "z": {"type": "integer"},
+          "block": {"type": "string", "minLength": 1}
+        },
+        "additionalProperties": false
+      }
+    }
+  },
+  "additionalProperties": false
+}

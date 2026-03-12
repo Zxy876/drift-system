@@ -1,0 +1,72 @@
+{
+  "generated_at_utc": "2026-03-04T13:12:12.382666+00:00",
+  "gate": "Gate 3 — Hash Consistency",
+  "scope": "v1 merged_blocks hash stability + v2 final_commands hash stability + cross-version non-confusion",
+  "rounds_per_scenario": 100,
+  "overall_pass": true,
+  "scenarios": [
+    {
+      "scenario": "fog-only",
+      "rounds": 100,
+      "v1_unique_hashes": 1,
+      "v2_unique_hashes": 1,
+      "cross_version_confused": false,
+      "canonical_permutation_invariant": true,
+      "v1_hash_counts": {
+        "489e47b2521a84cfcea66ce2e83cf9c1690c82f44e017bbf41ab642a5b822cd2": 100
+      },
+      "v2_hash_counts": {
+        "2cf8f38a9ab006a95cec22566b48f2244729ab209e5f09dbf60b679c70141d6d": 100
+      },
+      "pass": true,
+      "sample": {
+        "v1_hash": "489e47b2521a84cfcea66ce2e83cf9c1690c82f44e017bbf41ab642a5b822cd2",
+        "v2_hash": "2cf8f38a9ab006a95cec22566b48f2244729ab209e5f09dbf60b679c70141d6d",
+        "v1_payload_version": "plugin_payload_v1",
+        "v2_payload_version": "plugin_payload_v2"
+      }
+    },
+    {
+      "scenario": "npc-only",
+      "rounds": 100,
+      "v1_unique_hashes": 1,
+      "v2_unique_hashes": 1,
+      "cross_version_confused": false,
+      "canonical_permutation_invariant": true,
+      "v1_hash_counts": {
+        "489e47b2521a84cfcea66ce2e83cf9c1690c82f44e017bbf41ab642a5b822cd2": 100
+      },
+      "v2_hash_counts": {
+        "189861003ab79305103a1e0e58668227f208d7c246628fac423ec4633d27cbb2": 100
+      },
+      "pass": true,
+      "sample": {
+        "v1_hash": "489e47b2521a84cfcea66ce2e83cf9c1690c82f44e017bbf41ab642a5b822cd2",
+        "v2_hash": "189861003ab79305103a1e0e58668227f208d7c246628fac423ec4633d27cbb2",
+        "v1_payload_version": "plugin_payload_v1",
+        "v2_payload_version": "plugin_payload_v2"
+      }
+    },
+    {
+      "scenario": "fog+npc",
+      "rounds": 100,
+      "v1_unique_hashes": 1,
+      "v2_unique_hashes": 1,
+      "cross_version_confused": false,
+      "canonical_permutation_invariant": true,
+      "v1_hash_counts": {
+        "489e47b2521a84cfcea66ce2e83cf9c1690c82f44e017bbf41ab642a5b822cd2": 100
+      },
+      "v2_hash_counts": {
+        "a13b8ae311c20aa98a4a4371ef25e89396741714df77e8134e01536a04b3e0c7": 100
+      },
+      "pass": true,
+      "sample": {
+        "v1_hash": "489e47b2521a84cfcea66ce2e83cf9c1690c82f44e017bbf41ab642a5b822cd2",
+        "v2_hash": "a13b8ae311c20aa98a4a4371ef25e89396741714df77e8134e01536a04b3e0c7",
+        "v1_payload_version": "plugin_payload_v1",
+        "v2_payload_version": "plugin_payload_v2"
+      }
+    }
+  ]
+}

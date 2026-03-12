@@ -1,0 +1,162 @@
+{
+  "id": "level_30",
+  "title": "心悦文集 第30章",
+  "text": [
+    "款姐   不   妈妈。",
+    "完",
+    "⽆标题",
+    "29"
+  ],
+  "tags": [
+    "心悦文集",
+    "叙事"
+  ],
+  "mood": {
+    "base": "calm",
+    "intensity": 0.5
+  },
+  "choices": [],
+  "meta": {
+    "source": "xinyue_wenji",
+    "chapter": 30,
+    "word_count": 18
+  },
+  "world_patch": {
+    "mc": {
+      "spawn": {
+        "type": "villager",
+        "name": "心悦守护者",
+        "offset": {
+          "dx": 3,
+          "dy": 0,
+          "dz": 3
+        },
+        "behaviors": [
+          {
+            "type": "float",
+            "height": 2.0,
+            "particle": "soul_fire_flame",
+            "description": "悬浮在空中，散发神圣光芒"
+          },
+          {
+            "type": "interact",
+            "trigger": "right_click",
+            "action": "dialogue",
+            "messages": [
+              "§e✨[心悦守护者]§r 你终于到达了终点。",
+              "§e✨[心悦守护者]§r 但这不是结束，而是新的开始...",
+              "§7提示：说'我准备好了'来完成最终挑战"
+            ],
+            "description": "给予最终考验"
+          },
+          {
+            "type": "quest",
+            "trigger_keywords": [
+              "完成",
+              "结束",
+              "挑战"
+            ],
+            "quest_name": "心悦之旅终章",
+            "rewards": [
+              "legendary_item",
+              "completion"
+            ],
+            "description": "完成所有试炼"
+          }
+        ],
+        "ai_hints": "心悦守护者神圣庄严，智慧无边。会总结玩家的整个旅程，给予最终指引。"
+      },
+      "build": {
+        "shape": "platform",
+        "size": 6,
+        "material": "stone_bricks"
+      },
+      "music": {
+        "record": "wait"
+      },
+      "particle": {
+        "type": "end_rod",
+        "color": "light_purple",
+        "count": 10
+      },
+      "tell": "✨ 欢迎来到【心悦殿堂】- 心悦文集 第30章",
+      "_scene": {
+        "level_id": "level_30",
+        "title": "心悦文集 第30章",
+        "theme": "心悦殿堂",
+        "scene_world": "KunmingLakeStory",
+        "teleport": {
+          "x": 0.5,
+          "y": 70.0,
+          "z": 0.5,
+          "yaw": 0.0,
+          "pitch": 0.0
+        }
+      }
+    },
+    "variables": {
+      "theme": "心悦殿堂",
+      "biome": "end",
+      "structure": "grand_hall",
+      "unlocked": false
+    }
+  },
+  "narrative": {
+    "text": [
+      "款姐   不   妈妈。",
+      "完",
+      "⽆标题",
+      "29"
+    ],
+    "beats": [
+      {
+        "id": "level_30_intro",
+        "trigger": "on_enter",
+        "rule_refs": []
+      }
+    ]
+  },
+  "scene": {
+    "world": "KunmingLakeStory",
+    "teleport": {
+      "x": 0.5,
+      "y": 70.0,
+      "z": 0.5,
+      "yaw": 0.0,
+      "pitch": 0.0
+    },
+    "environment": {
+      "weather": "CLEAR",
+      "time": "DAY"
+    },
+    "structures": [],
+    "npc_skins": []
+  },
+  "rules": {
+    "listeners": []
+  },
+  "tasks": [
+    {
+      "id": "level_30_story",
+      "type": "story",
+      "conditions": [],
+      "milestones": [],
+      "rewards": []
+    }
+  ],
+  "exit": {
+    "phrase_aliases": [
+      "结束剧情",
+      "离开关卡",
+      "退出剧情"
+    ],
+    "return_spawn": "KunmingLakeHub",
+    "teleport": {
+      "x": 0.5,
+      "y": 70.0,
+      "z": 0.5,
+      "yaw": 0.0,
+      "pitch": 0.0
+    }
+  }
+}

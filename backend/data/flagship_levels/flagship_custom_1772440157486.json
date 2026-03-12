@@ -1,0 +1,1892 @@
+{
+  "id": "flagship_custom_1772440157486",
+  "title": "创建剧情；妈妈我爱你",
+  "text": [
+    "创建剧情；妈妈我爱你"
+  ],
+  "tags": [],
+  "mood": {
+    "base": "calm",
+    "intensity": 0.5
+  },
+  "choices": [],
+  "meta": {},
+  "npcs": [],
+  "bootstrap_patch": {
+    "version": "plugin_payload_v1",
+    "build_id": "c10b215848af6f95ba8758ff406e1f0e62fd7fce74f7bbb2ba2fb71545fb6e25",
+    "player_id": "vivn",
+    "build_path": "spec_engine_v1",
+    "patch_source": "deterministic_engine",
+    "scene_path": "scene_engine_v1",
+    "hash": {
+      "scene_spec": "0fe088105c70ec875b0074c42f635ac6c287ca6d0a08e63d34b0ec875bff8b0f",
+      "spec": "58320b094e0c165877b73672ce74fcc8a55554884b179b6fd39d5c5b912c47c4",
+      "merged_blocks": "aa413c410064102b54b8fe5bebe5880ea3b572194689feef898cd1eb331f53ee"
+    },
+    "stats": {
+      "scene_block_count": 0,
+      "spec_block_count": 130,
+      "merged_block_count": 130,
+      "conflicts_total": 0,
+      "spec_dropped_total": 0
+    },
+    "origin": {
+      "base_x": 0,
+      "base_y": 64,
+      "base_z": 0,
+      "anchor_mode": "fixed"
+    },
+    "commands": [
+      {
+        "op": "setblock",
+        "x": 0,
+        "y": 64,
+        "z": 0,
+        "block": "oak_planks"
+      },
+      {
+        "op": "setblock",
+        "x": 0,
+        "y": 64,
+        "z": 1,
+        "block": "oak_planks"
+      },
+      {
+        "op": "setblock",
+        "x": 0,
+        "y": 64,
+        "z": 2,
+        "block": "oak_planks"
+      },
+      {
+        "op": "setblock",
+        "x": 0,
+        "y": 64,
+        "z": 3,
+        "block": "oak_planks"
+      },
+      {
+        "op": "setblock",
+        "x": 0,
+        "y": 64,
+        "z": 4,
+        "block": "oak_planks"
+      },
+      {
+        "op": "setblock",
+        "x": 0,
+        "y": 65,
+        "z": 0,
+        "block": "oak_planks"
+      },
+      {
+        "op": "setblock",
+        "x": 0,
+        "y": 65,
+        "z": 1,
+        "block": "oak_planks"
+      },
+      {
+        "op": "setblock",
+        "x": 0,
+        "y": 65,
+        "z": 2,
+        "block": "oak_planks"
+      },
+      {
+        "op": "setblock",
+        "x": 0,
+        "y": 65,
+        "z": 3,
+        "block": "oak_planks"
+      },
+      {
+        "op": "setblock",
+        "x": 0,
+        "y": 65,
+        "z": 4,
+        "block": "oak_planks"
+      },
+      {
+        "op": "setblock",
+        "x": 0,
+        "y": 66,
+        "z": 0,
+        "block": "oak_planks"
+      },
+      {
+        "op": "setblock",
+        "x": 0,
+        "y": 66,
+        "z": 1,
+        "block": "oak_planks"
+      },
+      {
+        "op": "setblock",
+        "x": 0,
+        "y": 66,
+        "z": 2,
+        "block": "oak_planks"
+      },
+      {
+        "op": "setblock",
+        "x": 0,
+        "y": 66,
+        "z": 3,
+        "block": "oak_planks"
+      },
+      {
+        "op": "setblock",
+        "x": 0,
+        "y": 66,
+        "z": 4,
+        "block": "oak_planks"
+      },
+      {
+        "op": "setblock",
+        "x": 0,
+        "y": 67,
+        "z": 0,
+        "block": "oak_planks"
+      },
+      {
+        "op": "setblock",
+        "x": 0,
+        "y": 67,
+        "z": 1,
+        "block": "oak_planks"
+      },
+      {
+        "op": "setblock",
+        "x": 0,
+        "y": 67,
+        "z": 2,
+        "block": "oak_planks"
+      },
+      {
+        "op": "setblock",
+        "x": 0,
+        "y": 67,
+        "z": 3,
+        "block": "oak_planks"
+      },
+      {
+        "op": "setblock",
+        "x": 0,
+        "y": 67,
+        "z": 4,
+        "block": "oak_planks"
+      },
+      {
+        "op": "setblock",
+        "x": 0,
+        "y": 68,
+        "z": 0,
+        "block": "oak_slab"
+      },
+      {
+        "op": "setblock",
+        "x": 0,
+        "y": 68,
+        "z": 1,
+        "block": "oak_slab"
+      },
+      {
+        "op": "setblock",
+        "x": 0,
+        "y": 68,
+        "z": 2,
+        "block": "oak_slab"
+      },
+      {
+        "op": "setblock",
+        "x": 0,
+        "y": 68,
+        "z": 3,
+        "block": "oak_slab"
+      },
+      {
+        "op": "setblock",
+        "x": 0,
+        "y": 68,
+        "z": 4,
+        "block": "oak_slab"
+      },
+      {
+        "op": "setblock",
+        "x": 1,
+        "y": 64,
+        "z": 0,
+        "block": "oak_planks"
+      },
+      {
+        "op": "setblock",
+        "x": 1,
+        "y": 64,
+        "z": 1,
+        "block": "oak_planks"
+      },
+      {
+        "op": "setblock",
+        "x": 1,
+        "y": 64,
+        "z": 2,
+        "block": "oak_planks"
+      },
+      {
+        "op": "setblock",
+        "x": 1,
+        "y": 64,
+        "z": 3,
+        "block": "oak_planks"
+      },
+      {
+        "op": "setblock",
+        "x": 1,
+        "y": 64,
+        "z": 4,
+        "block": "oak_planks"
+      },
+      {
+        "op": "setblock",
+        "x": 1,
+        "y": 65,
+        "z": 0,
+        "block": "oak_planks"
+      },
+      {
+        "op": "setblock",
+        "x": 1,
+        "y": 65,
+        "z": 4,
+        "block": "oak_planks"
+      },
+      {
+        "op": "setblock",
+        "x": 1,
+        "y": 66,
+        "z": 0,
+        "block": "oak_planks"
+      },
+      {
+        "op": "setblock",
+        "x": 1,
+        "y": 66,
+        "z": 4,
+        "block": "oak_planks"
+      },
+      {
+        "op": "setblock",
+        "x": 1,
+        "y": 67,
+        "z": 0,
+        "block": "oak_planks"
+      },
+      {
+        "op": "setblock",
+        "x": 1,
+        "y": 67,
+        "z": 4,
+        "block": "oak_planks"
+      },
+      {
+        "op": "setblock",
+        "x": 1,
+        "y": 68,
+        "z": 0,
+        "block": "oak_slab"
+      },
+      {
+        "op": "setblock",
+        "x": 1,
+        "y": 68,
+        "z": 1,
+        "block": "oak_slab"
+      },
+      {
+        "op": "setblock",
+        "x": 1,
+        "y": 68,
+        "z": 2,
+        "block": "oak_slab"
+      },
+      {
+        "op": "setblock",
+        "x": 1,
+        "y": 68,
+        "z": 3,
+        "block": "oak_slab"
+      },
+      {
+        "op": "setblock",
+        "x": 1,
+        "y": 68,
+        "z": 4,
+        "block": "oak_slab"
+      },
+      {
+        "op": "setblock",
+        "x": 2,
+        "y": 64,
+        "z": 0,
+        "block": "oak_planks"
+      },
+      {
+        "op": "setblock",
+        "x": 2,
+        "y": 64,
+        "z": 1,
+        "block": "oak_planks"
+      },
+      {
+        "op": "setblock",
+        "x": 2,
+        "y": 64,
+        "z": 2,
+        "block": "oak_planks"
+      },
+      {
+        "op": "setblock",
+        "x": 2,
+        "y": 64,
+        "z": 3,
+        "block": "oak_planks"
+      },
+      {
+        "op": "setblock",
+        "x": 2,
+        "y": 64,
+        "z": 4,
+        "block": "oak_planks"
+      },
+      {
+        "op": "setblock",
+        "x": 2,
+        "y": 65,
+        "z": 0,
+        "block": "oak_planks"
+      },
+      {
+        "op": "setblock",
+        "x": 2,
+        "y": 65,
+        "z": 4,
+        "block": "oak_planks"
+      },
+      {
+        "op": "setblock",
+        "x": 2,
+        "y": 66,
+        "z": 0,
+        "block": "oak_planks"
+      },
+      {
+        "op": "setblock",
+        "x": 2,
+        "y": 66,
+        "z": 4,
+        "block": "oak_planks"
+      },
+      {
+        "op": "setblock",
+        "x": 2,
+        "y": 67,
+        "z": 0,
+        "block": "oak_planks"
+      },
+      {
+        "op": "setblock",
+        "x": 2,
+        "y": 67,
+        "z": 4,
+        "block": "oak_planks"
+      },
+      {
+        "op": "setblock",
+        "x": 2,
+        "y": 68,
+        "z": 0,
+        "block": "oak_slab"
+      },
+      {
+        "op": "setblock",
+        "x": 2,
+        "y": 68,
+        "z": 1,
+        "block": "oak_slab"
+      },
+      {
+        "op": "setblock",
+        "x": 2,
+        "y": 68,
+        "z": 2,
+        "block": "oak_slab"
+      },
+      {
+        "op": "setblock",
+        "x": 2,
+        "y": 68,
+        "z": 3,
+        "block": "oak_slab"
+      },
+      {
+        "op": "setblock",
+        "x": 2,
+        "y": 68,
+        "z": 4,
+        "block": "oak_slab"
+      },
+      {
+        "op": "setblock",
+        "x": 3,
+        "y": 64,
+        "z": 0,
+        "block": "oak_planks"
+      },
+      {
+        "op": "setblock",
+        "x": 3,
+        "y": 64,
+        "z": 1,
+        "block": "oak_planks"
+      },
+      {
+        "op": "setblock",
+        "x": 3,
+        "y": 64,
+        "z": 2,
+        "block": "oak_planks"
+      },
+      {
+        "op": "setblock",
+        "x": 3,
+        "y": 64,
+        "z": 3,
+        "block": "oak_planks"
+      },
+      {
+        "op": "setblock",
+        "x": 3,
+        "y": 64,
+        "z": 4,
+        "block": "oak_planks"
+      },
+      {
+        "op": "setblock",
+        "x": 3,
+        "y": 65,
+        "z": 0,
+        "block": "oak_planks"
+      },
+      {
+        "op": "setblock",
+        "x": 3,
+        "y": 65,
+        "z": 4,
+        "block": "oak_planks"
+      },
+      {
+        "op": "setblock",
+        "x": 3,
+        "y": 66,
+        "z": 0,
+        "block": "oak_planks"
+      },
+      {
+        "op": "setblock",
+        "x": 3,
+        "y": 66,
+        "z": 4,
+        "block": "oak_planks"
+      },
+      {
+        "op": "setblock",
+        "x": 3,
+        "y": 67,
+        "z": 0,
+        "block": "oak_planks"
+      },
+      {
+        "op": "setblock",
+        "x": 3,
+        "y": 67,
+        "z": 4,
+        "block": "oak_planks"
+      },
+      {
+        "op": "setblock",
+        "x": 3,
+        "y": 68,
+        "z": 0,
+        "block": "oak_slab"
+      },
+      {
+        "op": "setblock",
+        "x": 3,
+        "y": 68,
+        "z": 1,
+        "block": "oak_slab"
+      },
+      {
+        "op": "setblock",
+        "x": 3,
+        "y": 68,
+        "z": 2,
+        "block": "oak_slab"
+      },
+      {
+        "op": "setblock",
+        "x": 3,
+        "y": 68,
+        "z": 3,
+        "block": "oak_slab"
+      },
+      {
+        "op": "setblock",
+        "x": 3,
+        "y": 68,
+        "z": 4,
+        "block": "oak_slab"
+      },
+      {
+        "op": "setblock",
+        "x": 4,
+        "y": 64,
+        "z": 0,
+        "block": "oak_planks"
+      },
+      {
+        "op": "setblock",
+        "x": 4,
+        "y": 64,
+        "z": 1,
+        "block": "oak_planks"
+      },
+      {
+        "op": "setblock",
+        "x": 4,
+        "y": 64,
+        "z": 2,
+        "block": "oak_planks"
+      },
+      {
+        "op": "setblock",
+        "x": 4,
+        "y": 64,
+        "z": 3,
+        "block": "oak_planks"
+      },
+      {
+        "op": "setblock",
+        "x": 4,
+        "y": 64,
+        "z": 4,
+        "block": "oak_planks"
+      },
+      {
+        "op": "setblock",
+        "x": 4,
+        "y": 65,
+        "z": 0,
+        "block": "oak_planks"
+      },
+      {
+        "op": "setblock",
+        "x": 4,
+        "y": 65,
+        "z": 4,
+        "block": "oak_planks"
+      },
+      {
+        "op": "setblock",
+        "x": 4,
+        "y": 66,
+        "z": 0,
+        "block": "oak_planks"
+      },
+      {
+        "op": "setblock",
+        "x": 4,
+        "y": 66,
+        "z": 4,
+        "block": "oak_planks"
+      },
+      {
+        "op": "setblock",
+        "x": 4,
+        "y": 67,
+        "z": 0,
+        "block": "oak_planks"
+      },
+      {
+        "op": "setblock",
+        "x": 4,
+        "y": 67,
+        "z": 4,
+        "block": "oak_planks"
+      },
+      {
+        "op": "setblock",
+        "x": 4,
+        "y": 68,
+        "z": 0,
+        "block": "oak_slab"
+      },
+      {
+        "op": "setblock",
+        "x": 4,
+        "y": 68,
+        "z": 1,
+        "block": "oak_slab"
+      },
+      {
+        "op": "setblock",
+        "x": 4,
+        "y": 68,
+        "z": 2,
+        "block": "oak_slab"
+      },
+      {
+        "op": "setblock",
+        "x": 4,
+        "y": 68,
+        "z": 3,
+        "block": "oak_slab"
+      },
+      {
+        "op": "setblock",
+        "x": 4,
+        "y": 68,
+        "z": 4,
+        "block": "oak_slab"
+      },
+      {
+        "op": "setblock",
+        "x": 5,
+        "y": 64,
+        "z": 0,
+        "block": "oak_planks"
+      },
+      {
+        "op": "setblock",
+        "x": 5,
+        "y": 64,
+        "z": 1,
+        "block": "oak_planks"
+      },
+      {
+        "op": "setblock",
+        "x": 5,
+        "y": 64,
+        "z": 2,
+        "block": "oak_planks"
+      },
+      {
+        "op": "setblock",
+        "x": 5,
+        "y": 64,
+        "z": 3,
+        "block": "oak_planks"
+      },
+      {
+        "op": "setblock",
+        "x": 5,
+        "y": 64,
+        "z": 4,
+        "block": "oak_planks"
+      },
+      {
+        "op": "setblock",
+        "x": 5,
+        "y": 65,
+        "z": 0,
+        "block": "oak_planks"
+      },
+      {
+        "op": "setblock",
+        "x": 5,
+        "y": 65,
+        "z": 4,
+        "block": "oak_planks"
+      },
+      {
+        "op": "setblock",
+        "x": 5,
+        "y": 66,
+        "z": 0,
+        "block": "oak_planks"
+      },
+      {
+        "op": "setblock",
+        "x": 5,
+        "y": 66,
+        "z": 4,
+        "block": "oak_planks"
+      },
+      {
+        "op": "setblock",
+        "x": 5,
+        "y": 67,
+        "z": 0,
+        "block": "oak_planks"
+      },
+      {
+        "op": "setblock",
+        "x": 5,
+        "y": 67,
+        "z": 4,
+        "block": "oak_planks"
+      },
+      {
+        "op": "setblock",
+        "x": 5,
+        "y": 68,
+        "z": 0,
+        "block": "oak_slab"
+      },
+      {
+        "op": "setblock",
+        "x": 5,
+        "y": 68,
+        "z": 1,
+        "block": "oak_slab"
+      },
+      {
+        "op": "setblock",
+        "x": 5,
+        "y": 68,
+        "z": 2,
+        "block": "oak_slab"
+      },
+      {
+        "op": "setblock",
+        "x": 5,
+        "y": 68,
+        "z": 3,
+        "block": "oak_slab"
+      },
+      {
+        "op": "setblock",
+        "x": 5,
+        "y": 68,
+        "z": 4,
+        "block": "oak_slab"
+      },
+      {
+        "op": "setblock",
+        "x": 6,
+        "y": 64,
+        "z": 0,
+        "block": "oak_planks"
+      },
+      {
+        "op": "setblock",
+        "x": 6,
+        "y": 64,
+        "z": 1,
+        "block": "oak_planks"
+      },
+      {
+        "op": "setblock",
+        "x": 6,
+        "y": 64,
+        "z": 2,
+        "block": "oak_planks"
+      },
+      {
+        "op": "setblock",
+        "x": 6,
+        "y": 64,
+        "z": 3,
+        "block": "oak_planks"
+      },
+      {
+        "op": "setblock",
+        "x": 6,
+        "y": 64,
+        "z": 4,
+        "block": "oak_planks"
+      },
+      {
+        "op": "setblock",
+        "x": 6,
+        "y": 65,
+        "z": 0,
+        "block": "oak_planks"
+      },
+      {
+        "op": "setblock",
+        "x": 6,
+        "y": 65,
+        "z": 1,
+        "block": "oak_planks"
+      },
+      {
+        "op": "setblock",
+        "x": 6,
+        "y": 65,
+        "z": 2,
+        "block": "oak_planks"
+      },
+      {
+        "op": "setblock",
+        "x": 6,
+        "y": 65,
+        "z": 3,
+        "block": "oak_planks"
+      },
+      {
+        "op": "setblock",
+        "x": 6,
+        "y": 65,
+        "z": 4,
+        "block": "oak_planks"
+      },
+      {
+        "op": "setblock",
+        "x": 6,
+        "y": 66,
+        "z": 0,
+        "block": "oak_planks"
+      },
+      {
+        "op": "setblock",
+        "x": 6,
+        "y": 66,
+        "z": 1,
+        "block": "oak_planks"
+      },
+      {
+        "op": "setblock",
+        "x": 6,
+        "y": 66,
+        "z": 2,
+        "block": "oak_planks"
+      },
+      {
+        "op": "setblock",
+        "x": 6,
+        "y": 66,
+        "z": 3,
+        "block": "oak_planks"
+      },
+      {
+        "op": "setblock",
+        "x": 6,
+        "y": 66,
+        "z": 4,
+        "block": "oak_planks"
+      },
+      {
+        "op": "setblock",
+        "x": 6,
+        "y": 67,
+        "z": 0,
+        "block": "oak_planks"
+      },
+      {
+        "op": "setblock",
+        "x": 6,
+        "y": 67,
+        "z": 1,
+        "block": "oak_planks"
+      },
+      {
+        "op": "setblock",
+        "x": 6,
+        "y": 67,
+        "z": 2,
+        "block": "oak_planks"
+      },
+      {
+        "op": "setblock",
+        "x": 6,
+        "y": 67,
+        "z": 3,
+        "block": "oak_planks"
+      },
+      {
+        "op": "setblock",
+        "x": 6,
+        "y": 67,
+        "z": 4,
+        "block": "oak_planks"
+      },
+      {
+        "op": "setblock",
+        "x": 6,
+        "y": 68,
+        "z": 0,
+        "block": "oak_slab"
+      },
+      {
+        "op": "setblock",
+        "x": 6,
+        "y": 68,
+        "z": 1,
+        "block": "oak_slab"
+      },
+      {
+        "op": "setblock",
+        "x": 6,
+        "y": 68,
+        "z": 2,
+        "block": "oak_slab"
+      },
+      {
+        "op": "setblock",
+        "x": 6,
+        "y": 68,
+        "z": 3,
+        "block": "oak_slab"
+      },
+      {
+        "op": "setblock",
+        "x": 6,
+        "y": 68,
+        "z": 4,
+        "block": "oak_slab"
+      }
+    ]
+  },
+  "world_patch": {
+    "version": "plugin_payload_v1",
+    "build_id": "c10b215848af6f95ba8758ff406e1f0e62fd7fce74f7bbb2ba2fb71545fb6e25",
+    "player_id": "vivn",
+    "build_path": "spec_engine_v1",
+    "patch_source": "deterministic_engine",
+    "scene_path": "scene_engine_v1",
+    "hash": {
+      "scene_spec": "0fe088105c70ec875b0074c42f635ac6c287ca6d0a08e63d34b0ec875bff8b0f",
+      "spec": "58320b094e0c165877b73672ce74fcc8a55554884b179b6fd39d5c5b912c47c4",
+      "merged_blocks": "aa413c410064102b54b8fe5bebe5880ea3b572194689feef898cd1eb331f53ee"
+    },
+    "stats": {
+      "scene_block_count": 0,
+      "spec_block_count": 130,
+      "merged_block_count": 130,
+      "conflicts_total": 0,
+      "spec_dropped_total": 0
+    },
+    "origin": {
+      "base_x": 0,
+      "base_y": 64,
+      "base_z": 0,
+      "anchor_mode": "fixed"
+    },
+    "commands": [
+      {
+        "op": "setblock",
+        "x": 0,
+        "y": 64,
+        "z": 0,
+        "block": "oak_planks"
+      },
+      {
+        "op": "setblock",
+        "x": 0,
+        "y": 64,
+        "z": 1,
+        "block": "oak_planks"
+      },
+      {
+        "op": "setblock",
+        "x": 0,
+        "y": 64,
+        "z": 2,
+        "block": "oak_planks"
+      },
+      {
+        "op": "setblock",
+        "x": 0,
+        "y": 64,
+        "z": 3,
+        "block": "oak_planks"
+      },
+      {
+        "op": "setblock",
+        "x": 0,
+        "y": 64,
+        "z": 4,
+        "block": "oak_planks"
+      },
+      {
+        "op": "setblock",
+        "x": 0,
+        "y": 65,
+        "z": 0,
+        "block": "oak_planks"
+      },
+      {
+        "op": "setblock",
+        "x": 0,
+        "y": 65,
+        "z": 1,
+        "block": "oak_planks"
+      },
+      {
+        "op": "setblock",
+        "x": 0,
+        "y": 65,
+        "z": 2,
+        "block": "oak_planks"
+      },
+      {
+        "op": "setblock",
+        "x": 0,
+        "y": 65,
+        "z": 3,
+        "block": "oak_planks"
+      },
+      {
+        "op": "setblock",
+        "x": 0,
+        "y": 65,
+        "z": 4,
+        "block": "oak_planks"
+      },
+      {
+        "op": "setblock",
+        "x": 0,
+        "y": 66,
+        "z": 0,
+        "block": "oak_planks"
+      },
+      {
+        "op": "setblock",
+        "x": 0,
+        "y": 66,
+        "z": 1,
+        "block": "oak_planks"
+      },
+      {
+        "op": "setblock",
+        "x": 0,
+        "y": 66,
+        "z": 2,
+        "block": "oak_planks"
+      },
+      {
+        "op": "setblock",
+        "x": 0,
+        "y": 66,
+        "z": 3,
+        "block": "oak_planks"
+      },
+      {
+        "op": "setblock",
+        "x": 0,
+        "y": 66,
+        "z": 4,
+        "block": "oak_planks"
+      },
+      {
+        "op": "setblock",
+        "x": 0,
+        "y": 67,
+        "z": 0,
+        "block": "oak_planks"
+      },
+      {
+        "op": "setblock",
+        "x": 0,
+        "y": 67,
+        "z": 1,
+        "block": "oak_planks"
+      },
+      {
+        "op": "setblock",
+        "x": 0,
+        "y": 67,
+        "z": 2,
+        "block": "oak_planks"
+      },
+      {
+        "op": "setblock",
+        "x": 0,
+        "y": 67,
+        "z": 3,
+        "block": "oak_planks"
+      },
+      {
+        "op": "setblock",
+        "x": 0,
+        "y": 67,
+        "z": 4,
+        "block": "oak_planks"
+      },
+      {
+        "op": "setblock",
+        "x": 0,
+        "y": 68,
+        "z": 0,
+        "block": "oak_slab"
+      },
+      {
+        "op": "setblock",
+        "x": 0,
+        "y": 68,
+        "z": 1,
+        "block": "oak_slab"
+      },
+      {
+        "op": "setblock",
+        "x": 0,
+        "y": 68,
+        "z": 2,
+        "block": "oak_slab"
+      },
+      {
+        "op": "setblock",
+        "x": 0,
+        "y": 68,
+        "z": 3,
+        "block": "oak_slab"
+      },
+      {
+        "op": "setblock",
+        "x": 0,
+        "y": 68,
+        "z": 4,
+        "block": "oak_slab"
+      },
+      {
+        "op": "setblock",
+        "x": 1,
+        "y": 64,
+        "z": 0,
+        "block": "oak_planks"
+      },
+      {
+        "op": "setblock",
+        "x": 1,
+        "y": 64,
+        "z": 1,
+        "block": "oak_planks"
+      },
+      {
+        "op": "setblock",
+        "x": 1,
+        "y": 64,
+        "z": 2,
+        "block": "oak_planks"
+      },
+      {
+        "op": "setblock",
+        "x": 1,
+        "y": 64,
+        "z": 3,
+        "block": "oak_planks"
+      },
+      {
+        "op": "setblock",
+        "x": 1,
+        "y": 64,
+        "z": 4,
+        "block": "oak_planks"
+      },
+      {
+        "op": "setblock",
+        "x": 1,
+        "y": 65,
+        "z": 0,
+        "block": "oak_planks"
+      },
+      {
+        "op": "setblock",
+        "x": 1,
+        "y": 65,
+        "z": 4,
+        "block": "oak_planks"
+      },
+      {
+        "op": "setblock",
+        "x": 1,
+        "y": 66,
+        "z": 0,
+        "block": "oak_planks"
+      },
+      {
+        "op": "setblock",
+        "x": 1,
+        "y": 66,
+        "z": 4,
+        "block": "oak_planks"
+      },
+      {
+        "op": "setblock",
+        "x": 1,
+        "y": 67,
+        "z": 0,
+        "block": "oak_planks"
+      },
+      {
+        "op": "setblock",
+        "x": 1,
+        "y": 67,
+        "z": 4,
+        "block": "oak_planks"
+      },
+      {
+        "op": "setblock",
+        "x": 1,
+        "y": 68,
+        "z": 0,
+        "block": "oak_slab"
+      },
+      {
+        "op": "setblock",
+        "x": 1,
+        "y": 68,
+        "z": 1,
+        "block": "oak_slab"
+      },
+      {
+        "op": "setblock",
+        "x": 1,
+        "y": 68,
+        "z": 2,
+        "block": "oak_slab"
+      },
+      {
+        "op": "setblock",
+        "x": 1,
+        "y": 68,
+        "z": 3,
+        "block": "oak_slab"
+      },
+      {
+        "op": "setblock",
+        "x": 1,
+        "y": 68,
+        "z": 4,
+        "block": "oak_slab"
+      },
+      {
+        "op": "setblock",
+        "x": 2,
+        "y": 64,
+        "z": 0,
+        "block": "oak_planks"
+      },
+      {
+        "op": "setblock",
+        "x": 2,
+        "y": 64,
+        "z": 1,
+        "block": "oak_planks"
+      },
+      {
+        "op": "setblock",
+        "x": 2,
+        "y": 64,
+        "z": 2,
+        "block": "oak_planks"
+      },
+      {
+        "op": "setblock",
+        "x": 2,
+        "y": 64,
+        "z": 3,
+        "block": "oak_planks"
+      },
+      {
+        "op": "setblock",
+        "x": 2,
+        "y": 64,
+        "z": 4,
+        "block": "oak_planks"
+      },
+      {
+        "op": "setblock",
+        "x": 2,
+        "y": 65,
+        "z": 0,
+        "block": "oak_planks"
+      },
+      {
+        "op": "setblock",
+        "x": 2,
+        "y": 65,
+        "z": 4,
+        "block": "oak_planks"
+      },
+      {
+        "op": "setblock",
+        "x": 2,
+        "y": 66,
+        "z": 0,
+        "block": "oak_planks"
+      },
+      {
+        "op": "setblock",
+        "x": 2,
+        "y": 66,
+        "z": 4,
+        "block": "oak_planks"
+      },
+      {
+        "op": "setblock",
+        "x": 2,
+        "y": 67,
+        "z": 0,
+        "block": "oak_planks"
+      },
+      {
+        "op": "setblock",
+        "x": 2,
+        "y": 67,
+        "z": 4,
+        "block": "oak_planks"
+      },
+      {
+        "op": "setblock",
+        "x": 2,
+        "y": 68,
+        "z": 0,
+        "block": "oak_slab"
+      },
+      {
+        "op": "setblock",
+        "x": 2,
+        "y": 68,
+        "z": 1,
+        "block": "oak_slab"
+      },
+      {
+        "op": "setblock",
+        "x": 2,
+        "y": 68,
+        "z": 2,
+        "block": "oak_slab"
+      },
+      {
+        "op": "setblock",
+        "x": 2,
+        "y": 68,
+        "z": 3,
+        "block": "oak_slab"
+      },
+      {
+        "op": "setblock",
+        "x": 2,
+        "y": 68,
+        "z": 4,
+        "block": "oak_slab"
+      },
+      {
+        "op": "setblock",
+        "x": 3,
+        "y": 64,
+        "z": 0,
+        "block": "oak_planks"
+      },
+      {
+        "op": "setblock",
+        "x": 3,
+        "y": 64,
+        "z": 1,
+        "block": "oak_planks"
+      },
+      {
+        "op": "setblock",
+        "x": 3,
+        "y": 64,
+        "z": 2,
+        "block": "oak_planks"
+      },
+      {
+        "op": "setblock",
+        "x": 3,
+        "y": 64,
+        "z": 3,
+        "block": "oak_planks"
+      },
+      {
+        "op": "setblock",
+        "x": 3,
+        "y": 64,
+        "z": 4,
+        "block": "oak_planks"
+      },
+      {
+        "op": "setblock",
+        "x": 3,
+        "y": 65,
+        "z": 0,
+        "block": "oak_planks"
+      },
+      {
+        "op": "setblock",
+        "x": 3,
+        "y": 65,
+        "z": 4,
+        "block": "oak_planks"
+      },
+      {
+        "op": "setblock",
+        "x": 3,
+        "y": 66,
+        "z": 0,
+        "block": "oak_planks"
+      },
+      {
+        "op": "setblock",
+        "x": 3,
+        "y": 66,
+        "z": 4,
+        "block": "oak_planks"
+      },
+      {
+        "op": "setblock",
+        "x": 3,
+        "y": 67,
+        "z": 0,
+        "block": "oak_planks"
+      },
+      {
+        "op": "setblock",
+        "x": 3,
+        "y": 67,
+        "z": 4,
+        "block": "oak_planks"
+      },
+      {
+        "op": "setblock",
+        "x": 3,
+        "y": 68,
+        "z": 0,
+        "block": "oak_slab"
+      },
+      {
+        "op": "setblock",
+        "x": 3,
+        "y": 68,
+        "z": 1,
+        "block": "oak_slab"
+      },
+      {
+        "op": "setblock",
+        "x": 3,
+        "y": 68,
+        "z": 2,
+        "block": "oak_slab"
+      },
+      {
+        "op": "setblock",
+        "x": 3,
+        "y": 68,
+        "z": 3,
+        "block": "oak_slab"
+      },
+      {
+        "op": "setblock",
+        "x": 3,
+        "y": 68,
+        "z": 4,
+        "block": "oak_slab"
+      },
+      {
+        "op": "setblock",
+        "x": 4,
+        "y": 64,
+        "z": 0,
+        "block": "oak_planks"
+      },
+      {
+        "op": "setblock",
+        "x": 4,
+        "y": 64,
+        "z": 1,
+        "block": "oak_planks"
+      },
+      {
+        "op": "setblock",
+        "x": 4,
+        "y": 64,
+        "z": 2,
+        "block": "oak_planks"
+      },
+      {
+        "op": "setblock",
+        "x": 4,
+        "y": 64,
+        "z": 3,
+        "block": "oak_planks"
+      },
+      {
+        "op": "setblock",
+        "x": 4,
+        "y": 64,
+        "z": 4,
+        "block": "oak_planks"
+      },
+      {
+        "op": "setblock",
+        "x": 4,
+        "y": 65,
+        "z": 0,
+        "block": "oak_planks"
+      },
+      {
+        "op": "setblock",
+        "x": 4,
+        "y": 65,
+        "z": 4,
+        "block": "oak_planks"
+      },
+      {
+        "op": "setblock",
+        "x": 4,
+        "y": 66,
+        "z": 0,
+        "block": "oak_planks"
+      },
+      {
+        "op": "setblock",
+        "x": 4,
+        "y": 66,
+        "z": 4,
+        "block": "oak_planks"
+      },
+      {
+        "op": "setblock",
+        "x": 4,
+        "y": 67,
+        "z": 0,
+        "block": "oak_planks"
+      },
+      {
+        "op": "setblock",
+        "x": 4,
+        "y": 67,
+        "z": 4,
+        "block": "oak_planks"
+      },
+      {
+        "op": "setblock",
+        "x": 4,
+        "y": 68,
+        "z": 0,
+        "block": "oak_slab"
+      },
+      {
+        "op": "setblock",
+        "x": 4,
+        "y": 68,
+        "z": 1,
+        "block": "oak_slab"
+      },
+      {
+        "op": "setblock",
+        "x": 4,
+        "y": 68,
+        "z": 2,
+        "block": "oak_slab"
+      },
+      {
+        "op": "setblock",
+        "x": 4,
+        "y": 68,
+        "z": 3,
+        "block": "oak_slab"
+      },
+      {
+        "op": "setblock",
+        "x": 4,
+        "y": 68,
+        "z": 4,
+        "block": "oak_slab"
+      },
+      {
+        "op": "setblock",
+        "x": 5,
+        "y": 64,
+        "z": 0,
+        "block": "oak_planks"
+      },
+      {
+        "op": "setblock",
+        "x": 5,
+        "y": 64,
+        "z": 1,
+        "block": "oak_planks"
+      },
+      {
+        "op": "setblock",
+        "x": 5,
+        "y": 64,
+        "z": 2,
+        "block": "oak_planks"
+      },
+      {
+        "op": "setblock",
+        "x": 5,
+        "y": 64,
+        "z": 3,
+        "block": "oak_planks"
+      },
+      {
+        "op": "setblock",
+        "x": 5,
+        "y": 64,
+        "z": 4,
+        "block": "oak_planks"
+      },
+      {
+        "op": "setblock",
+        "x": 5,
+        "y": 65,
+        "z": 0,
+        "block": "oak_planks"
+      },
+      {
+        "op": "setblock",
+        "x": 5,
+        "y": 65,
+        "z": 4,
+        "block": "oak_planks"
+      },
+      {
+        "op": "setblock",
+        "x": 5,
+        "y": 66,
+        "z": 0,
+        "block": "oak_planks"
+      },
+      {
+        "op": "setblock",
+        "x": 5,
+        "y": 66,
+        "z": 4,
+        "block": "oak_planks"
+      },
+      {
+        "op": "setblock",
+        "x": 5,
+        "y": 67,
+        "z": 0,
+        "block": "oak_planks"
+      },
+      {
+        "op": "setblock",
+        "x": 5,
+        "y": 67,
+        "z": 4,
+        "block": "oak_planks"
+      },
+      {
+        "op": "setblock",
+        "x": 5,
+        "y": 68,
+        "z": 0,
+        "block": "oak_slab"
+      },
+      {
+        "op": "setblock",
+        "x": 5,
+        "y": 68,
+        "z": 1,
+        "block": "oak_slab"
+      },
+      {
+        "op": "setblock",
+        "x": 5,
+        "y": 68,
+        "z": 2,
+        "block": "oak_slab"
+      },
+      {
+        "op": "setblock",
+        "x": 5,
+        "y": 68,
+        "z": 3,
+        "block": "oak_slab"
+      },
+      {
+        "op": "setblock",
+        "x": 5,
+        "y": 68,
+        "z": 4,
+        "block": "oak_slab"
+      },
+      {
+        "op": "setblock",
+        "x": 6,
+        "y": 64,
+        "z": 0,
+        "block": "oak_planks"
+      },
+      {
+        "op": "setblock",
+        "x": 6,
+        "y": 64,
+        "z": 1,
+        "block": "oak_planks"
+      },
+      {
+        "op": "setblock",
+        "x": 6,
+        "y": 64,
+        "z": 2,
+        "block": "oak_planks"
+      },
+      {
+        "op": "setblock",
+        "x": 6,
+        "y": 64,
+        "z": 3,
+        "block": "oak_planks"
+      },
+      {
+        "op": "setblock",
+        "x": 6,
+        "y": 64,
+        "z": 4,
+        "block": "oak_planks"
+      },
+      {
+        "op": "setblock",
+        "x": 6,
+        "y": 65,
+        "z": 0,
+        "block": "oak_planks"
+      },
+      {
+        "op": "setblock",
+        "x": 6,
+        "y": 65,
+        "z": 1,
+        "block": "oak_planks"
+      },
+      {
+        "op": "setblock",
+        "x": 6,
+        "y": 65,
+        "z": 2,
+        "block": "oak_planks"
+      },
+      {
+        "op": "setblock",
+        "x": 6,
+        "y": 65,
+        "z": 3,
+        "block": "oak_planks"
+      },
+      {
+        "op": "setblock",
+        "x": 6,
+        "y": 65,
+        "z": 4,
+        "block": "oak_planks"
+      },
+      {
+        "op": "setblock",
+        "x": 6,
+        "y": 66,
+        "z": 0,
+        "block": "oak_planks"
+      },
+      {
+        "op": "setblock",
+        "x": 6,
+        "y": 66,
+        "z": 1,
+        "block": "oak_planks"
+      },
+      {
+        "op": "setblock",
+        "x": 6,
+        "y": 66,
+        "z": 2,
+        "block": "oak_planks"
+      },
+      {
+        "op": "setblock",
+        "x": 6,
+        "y": 66,
+        "z": 3,
+        "block": "oak_planks"
+      },
+      {
+        "op": "setblock",
+        "x": 6,
+        "y": 66,
+        "z": 4,
+        "block": "oak_planks"
+      },
+      {
+        "op": "setblock",
+        "x": 6,
+        "y": 67,
+        "z": 0,
+        "block": "oak_planks"
+      },
+      {
+        "op": "setblock",
+        "x": 6,
+        "y": 67,
+        "z": 1,
+        "block": "oak_planks"
+      },
+      {
+        "op": "setblock",
+        "x": 6,
+        "y": 67,
+        "z": 2,
+        "block": "oak_planks"
+      },
+      {
+        "op": "setblock",
+        "x": 6,
+        "y": 67,
+        "z": 3,
+        "block": "oak_planks"
+      },
+      {
+        "op": "setblock",
+        "x": 6,
+        "y": 67,
+        "z": 4,
+        "block": "oak_planks"
+      },
+      {
+        "op": "setblock",
+        "x": 6,
+        "y": 68,
+        "z": 0,
+        "block": "oak_slab"
+      },
+      {
+        "op": "setblock",
+        "x": 6,
+        "y": 68,
+        "z": 1,
+        "block": "oak_slab"
+      },
+      {
+        "op": "setblock",
+        "x": 6,
+        "y": 68,
+        "z": 2,
+        "block": "oak_slab"
+      },
+      {
+        "op": "setblock",
+        "x": 6,
+        "y": 68,
+        "z": 3,
+        "block": "oak_slab"
+      },
+      {
+        "op": "setblock",
+        "x": 6,
+        "y": 68,
+        "z": 4,
+        "block": "oak_slab"
+      }
+    ]
+  },
+  "tree": null
+}

@@ -1,0 +1,87 @@
+{
+  "generated_at_utc": "2026-03-04T12:03:02.555837+00:00",
+  "gate": "Gate 2 — Replay Determinism",
+  "mode": "dry-run-projection-layer",
+  "rounds_per_scenario": 100,
+  "overall_pass": true,
+  "scenarios": [
+    {
+      "scenario": "fog-only",
+      "rounds": 100,
+      "status_counts": {
+        "SUCCESS": 100
+      },
+      "mapping_status_counts": {
+        "OK": 100
+      },
+      "unique_hashes": 1,
+      "stable_hash": "ff18a375552028d5994f3abf62ba712ed195cf6455f771ff6d6d1f68935e834e",
+      "hash_counts": {
+        "ff18a375552028d5994f3abf62ba712ed195cf6455f771ff6d6d1f68935e834e": 100
+      },
+      "pass": true,
+      "sample": {
+        "status": "SUCCESS",
+        "failure_code": "NONE",
+        "mapping_status": "OK",
+        "mapping_failure_code": "NONE",
+        "lost_semantics": [],
+        "merge_hash": "ff18a375552028d5994f3abf62ba712ed195cf6455f771ff6d6d1f68935e834e",
+        "scene_block_count": 15,
+        "merged_block_count": 145
+      }
+    },
+    {
+      "scenario": "npc-only",
+      "rounds": 100,
+      "status_counts": {
+        "SUCCESS": 100
+      },
+      "mapping_status_counts": {
+        "OK": 100
+      },
+      "unique_hashes": 1,
+      "stable_hash": "840213f62ccb220a92ca39bc4cfc74c45d51412ecf09a9fc00cd335a2b186d22",
+      "hash_counts": {
+        "840213f62ccb220a92ca39bc4cfc74c45d51412ecf09a9fc00cd335a2b186d22": 100
+      },
+      "pass": true,
+      "sample": {
+        "status": "SUCCESS",
+        "failure_code": "NONE",
+        "mapping_status": "OK",
+        "mapping_failure_code": "NONE",
+        "lost_semantics": [],
+        "merge_hash": "840213f62ccb220a92ca39bc4cfc74c45d51412ecf09a9fc00cd335a2b186d22",
+        "scene_block_count": 1,
+        "merged_block_count": 131
+      }
+    },
+    {
+      "scenario": "fog+npc",
+      "rounds": 100,
+      "status_counts": {
+        "SUCCESS": 100
+      },
+      "mapping_status_counts": {
+        "OK": 100
+      },
+      "unique_hashes": 1,
+      "stable_hash": "95164dcff85e00b91b129e97152ba68ea0abf5fd04da13dc03e8fb34c719a7ac",
+      "hash_counts": {
+        "95164dcff85e00b91b129e97152ba68ea0abf5fd04da13dc03e8fb34c719a7ac": 100
+      },
+      "pass": true,
+      "sample": {
+        "status": "SUCCESS",
+        "failure_code": "NONE",
+        "mapping_status": "OK",
+        "mapping_failure_code": "NONE",
+        "lost_semantics": [],
+        "merge_hash": "95164dcff85e00b91b129e97152ba68ea0abf5fd04da13dc03e8fb34c719a7ac",
+        "scene_block_count": 16,
+        "merged_block_count": 146
+      }
+    }
+  ]
+}

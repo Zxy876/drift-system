@@ -1,0 +1,16 @@
+{
+  "themes": [
+    {
+      "theme_id": "vanilla_safe_camp",
+      "priority": 10,
+      "keywords": ["营地", "safe", "camp", "base"],
+      "allowed_fragments": ["camp", "fire", "cooking_area", "road"],
+      "bonus_tags": {
+        "safe_zone": 1.5,
+        "wood": 1.0,
+        "food": 0.7
+      },
+      "bonus_weight": 1.0
+    }
+  ]
+}

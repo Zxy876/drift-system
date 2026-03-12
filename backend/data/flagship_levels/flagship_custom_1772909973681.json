@@ -1,0 +1,620 @@
+{
+  "id": "flagship_custom_1772909973681",
+  "title": "绿宝石",
+  "text": [
+    "创建剧情；绿宝石"
+  ],
+  "tags": [],
+  "mood": {
+    "base": "calm",
+    "intensity": 0.5
+  },
+  "choices": [],
+  "meta": {
+    "trng_transaction": {
+      "tx_id": "tx_180b10a97559",
+      "base_state_hash": "befe6682a6c32ed55d288ddaf40636b0ee73c37fd48bd8ec91204afa91dba85e",
+      "committed_state_hash": "b450e47a275e671dd891764d7ad74099a3233d2dc6cf18b9dff2a9bf07506cde",
+      "committed_graph_hash": "01873cc883de0abd9ea928df3a1d235af35dd676ffa10b05f2df04d2e9d87374",
+      "commit_timestamp": 1772909973.685961,
+      "rule_version": "rule_v2_2",
+      "engine_version": "engine_v2_1",
+      "event_count": 1
+    },
+    "scene_generation": {
+      "scene_theme": "绿宝石",
+      "scene_hint": null,
+      "selected_anchor": "player",
+      "initial_anchor": "player",
+      "final_anchor": "player_safe_ground",
+      "player_pos": {
+        "world": "world",
+        "x": 2.0,
+        "y": 86.0,
+        "z": -2.0
+      },
+      "initial_anchor_pos": {
+        "world": "world",
+        "x": 2.0,
+        "y": 86.0,
+        "z": -2.0
+      },
+      "final_anchor_pos": {
+        "world": "world",
+        "x": 5.0,
+        "y": 86.0,
+        "z": -1.0
+      },
+      "anchor_pos": {
+        "world": "world",
+        "x": 5.0,
+        "y": 86.0,
+        "z": -1.0
+      },
+      "fragments": [
+        "market"
+      ],
+      "event_count": 1,
+      "event_plan": [
+        {
+          "event_id": "spawn_market",
+          "type": "spawn_structure",
+          "text": "spawn_market",
+          "anchor": {
+            "mode": "absolute",
+            "ref": "village_center",
+            "world": "world",
+            "x": 5.0,
+            "y": 86.0,
+            "z": -1.0
+          },
+          "offset": {
+            "dx": 0.0,
+            "dy": 0.0,
+            "dz": 0.0
+          },
+          "data": {
+            "template": "market_stalls"
+          }
+        }
+      ],
+      "scene_graph": {
+        "root": "market",
+        "nodes": [
+          "market"
+        ],
+        "edges": []
+      },
+      "layout": {
+        "strategy": "radial_v1",
+        "root": "market",
+        "positions": {
+          "market": {
+            "x": 0,
+            "z": 0
+          }
+        }
+      },
+      "scene_state": {
+        "level_id": "flagship_custom_1772909973681",
+        "root": "market",
+        "nodes": [
+          "market"
+        ],
+        "edges": [],
+        "positions": {
+          "market": {
+            "x": 0,
+            "z": 0
+          }
+        },
+        "spawned_nodes": [
+          "market"
+        ],
+        "version": 1
+      },
+      "scene_diff": {
+        "added_nodes": [],
+        "added_edges": [],
+        "added_positions": {},
+        "trigger_event_keys": [
+          "collect:bread",
+          "collect:food",
+          "collect:trade",
+          "collect:emerald",
+          "npc_talk"
+        ]
+      },
+      "patch_mode": "full",
+      "incremental_event_count": 0,
+      "incremental_event_plan": [],
+      "inventory_resources": {
+        "bread": 10,
+        "emerald": 20
+      },
+      "selected_root": "market",
+      "candidate_scores": [
+        {
+          "fragment": "market",
+          "score": 747.066,
+          "raw_score": 747.066,
+          "reason": "trade + food",
+          "influence": [
+            {
+              "semantic": "trade",
+              "amount": 30,
+              "weight": 2.76,
+              "score": 82.8,
+              "frequency_boost": 96.537
+            },
+            {
+              "semantic": "food",
+              "amount": 10,
+              "weight": 1.365,
+              "score": 13.65,
+              "frequency_boost": 3.029
+            }
+          ],
+          "influence_score": 96.45,
+          "frequency_boost": 99.566,
+          "cooldown_penalty": 0.0,
+          "cooldown_hits": 0
+        },
+        {
+          "fragment": "cooking_area",
+          "score": 238.518,
+          "raw_score": 238.518,
+          "reason": "food",
+          "influence": [
+            {
+              "semantic": "food",
+              "amount": 10,
+              "weight": 2.205,
+              "score": 22.05,
+              "frequency_boost": 4.893
+            }
+          ],
+          "influence_score": 22.05,
+          "frequency_boost": 4.893,
+          "cooldown_penalty": 0.0,
+          "cooldown_hits": 0
+        }
+      ],
+      "selected_children": [],
+      "blocked": [
+        {
+          "fragment": "camp",
+          "stage": "root",
+          "reason": "missing_required: wood"
+        },
+        {
+          "fragment": "village",
+          "stage": "root",
+          "reason": "missing_required: wood"
+        },
+        {
+          "fragment": "camp",
+          "stage": "fallback",
+          "reason": "missing_required: wood"
+        },
+        {
+          "fragment": "farm",
+          "stage": "fallback",
+          "reason": "missing_required: water"
+        },
+        {
+          "fragment": "fire",
+          "stage": "fallback",
+          "reason": "missing_required: light"
+        },
+        {
+          "fragment": "forge",
+          "stage": "fallback",
+          "reason": "missing_required: stone"
+        },
+        {
+          "fragment": "road",
+          "stage": "fallback",
+          "reason": "missing_required: stone"
+        },
+        {
+          "fragment": "shrine",
+          "stage": "fallback",
+          "reason": "missing_required: stone"
+        },
+        {
+          "fragment": "village",
+          "stage": "fallback",
+          "reason": "missing_required: wood"
+        },
+        {
+          "fragment": "wanderer_npc",
+          "stage": "fallback",
+          "reason": "theme_mismatch"
+        },
+        {
+          "fragment": "watchtower",
+          "stage": "fallback",
+          "reason": "missing_required: wood, stone"
+        },
+        {
+          "fragment": "vanilla:camp_storage_ext",
+          "stage": "fallback",
+          "reason": "missing_required: safe_zone"
+        },
+        {
+          "fragment": "ruins:ruins_arch",
+          "stage": "fallback",
+          "reason": "missing_required: ruin"
+        },
+        {
+          "fragment": "poetry:echo_stage",
+          "stage": "fallback",
+          "reason": "missing_required: poetry"
+        },
+        {
+          "fragment": "forge",
+          "stage": "expand",
+          "reason": "missing_required: stone"
+        },
+        {
+          "fragment": "farm",
+          "stage": "expand",
+          "reason": "missing_required: water"
+        }
+      ],
+      "reasons": {
+        "selection_stage": "fallback_all",
+        "selected_root": "trade + food",
+        "cooldown": {
+          "applied": false,
+          "window": 3,
+          "penalty_weight": 0.35,
+          "max_ratio": 0.85,
+          "recent_selected_roots": []
+        }
+      },
+      "semantic_scores": {
+        "food": 10,
+        "trade": 30
+      },
+      "semantic_resolution": [
+        {
+          "item": "bread",
+          "semantic_tags": [
+            "food",
+            "trade"
+          ],
+          "source": "vanilla_registry",
+          "adapter_hit": true
+        },
+        {
+          "item": "emerald",
+          "semantic_tags": [
+            "trade"
+          ],
+          "source": "vanilla_registry",
+          "adapter_hit": true
+        }
+      ],
+      "semantic_source": {
+        "vanilla_registry": 2,
+        "mod_map": 0,
+        "fallback": 0
+      },
+      "semantic_adapter_hits": 2,
+      "root_history": [
+        "market"
+      ],
+      "selection_context": {
+        "recent_selected_roots": []
+      },
+      "asset_registry_version": "1.0",
+      "selected_assets": [
+        "market"
+      ],
+      "asset_sources": [
+        "generated"
+      ],
+      "asset_selection": {
+        "selected_assets": [
+          "market"
+        ],
+        "candidate_assets": [
+          "market"
+        ]
+      },
+      "fragment_source": [
+        {
+          "asset_id": "market",
+          "source": "generated"
+        }
+      ],
+      "theme_filter": {
+        "theme": "绿宝石",
+        "applied": false,
+        "allowed_fragments": [
+          "market"
+        ],
+        "matched_themes": [],
+        "selected_theme": null
+      }
+    }
+  },
+  "npcs": [],
+  "bootstrap_patch": {
+    "variables": {
+      "story_world_generated": true,
+      "story_title": "绿宝石"
+    },
+    "mc": {
+      "tell": "§6绿宝石§r\n创建剧情；绿宝石",
+      "spawn": {
+        "x": 5,
+        "y": 86,
+        "z": -1,
+        "world": "world"
+      },
+      "time": "day",
+      "weather": "clear",
+      "spawns": [
+        {
+          "type": "villager",
+          "name": "矿工",
+          "x": 13,
+          "y": 86,
+          "z": -6,
+          "dialog": "听说附近有绿宝石矿脉，但很危险。",
+          "world": "world"
+        },
+        {
+          "type": "zombie",
+          "name": "守卫僵尸",
+          "x": 20,
+          "y": 86,
+          "z": 9,
+          "dialog": "守卫着废弃矿洞。",
+          "world": "world"
+        },
+        {
+          "type": "cow",
+          "name": "牧牛",
+          "x": 0,
+          "y": 86,
+          "z": 2,
+          "dialog": "",
+          "world": "world"
+        }
+      ],
+      "blocks": [
+        {
+          "type": "stone",
+          "x": 5,
+          "y": 85,
+          "z": -1,
+          "world": "world"
+        },
+        {
+          "type": "oak_planks",
+          "x": 10,
+          "y": 86,
+          "z": -6,
+          "world": "world"
+        },
+        {
+          "type": "oak_planks",
+          "x": 11,
+          "y": 86,
+          "z": -6,
+          "world": "world"
+        },
+        {
+          "type": "oak_planks",
+          "x": 12,
+          "y": 86,
+          "z": -6,
+          "world": "world"
+        },
+        {
+          "type": "glass",
+          "x": 11,
+          "y": 87,
+          "z": -6,
+          "world": "world"
+        },
+        {
+          "type": "stone",
+          "x": 17,
+          "y": 86,
+          "z": 7,
+          "world": "world"
+        },
+        {
+          "type": "stone",
+          "x": 18,
+          "y": 86,
+          "z": 8,
+          "world": "world"
+        },
+        {
+          "type": "stone",
+          "x": 19,
+          "y": 86,
+          "z": 9,
+          "world": "world"
+        },
+        {
+          "type": "stone",
+          "x": 20,
+          "y": 86,
+          "z": 10,
+          "world": "world"
+        }
+      ],
+      "structure": [
+        {
+          "template": "market_stalls",
+          "offset": {
+            "dx": 0.0,
+            "dy": 0.0,
+            "dz": 0.0
+          },
+          "_scene_event_id": "spawn_market",
+          "world": "world"
+        }
+      ],
+      "build_multi": [
+        {
+          "shape": "platform",
+          "size": 1,
+          "material": "OAK_PLANKS",
+          "offset": {
+            "dx": 0.0,
+            "dy": 0.0,
+            "dz": 0.0
+          },
+          "_scene_event_id": "spawn_market",
+          "world": "world"
+        }
+      ]
+    }
+  },
+  "world_patch": {
+    "variables": {
+      "story_world_generated": true,
+      "story_title": "绿宝石"
+    },
+    "mc": {
+      "tell": "§6绿宝石§r\n创建剧情；绿宝石",
+      "spawn": {
+        "x": 5,
+        "y": 86,
+        "z": -1,
+        "world": "world"
+      },
+      "time": "day",
+      "weather": "clear",
+      "spawns": [
+        {
+          "type": "villager",
+          "name": "矿工",
+          "x": 13,
+          "y": 86,
+          "z": -6,
+          "dialog": "听说附近有绿宝石矿脉，但很危险。",
+          "world": "world"
+        },
+        {
+          "type": "zombie",
+          "name": "守卫僵尸",
+          "x": 20,
+          "y": 86,
+          "z": 9,
+          "dialog": "守卫着废弃矿洞。",
+          "world": "world"
+        },
+        {
+          "type": "cow",
+          "name": "牧牛",
+          "x": 0,
+          "y": 86,
+          "z": 2,
+          "dialog": "",
+          "world": "world"
+        }
+      ],
+      "blocks": [
+        {
+          "type": "stone",
+          "x": 5,
+          "y": 85,
+          "z": -1,
+          "world": "world"
+        },
+        {
+          "type": "oak_planks",
+          "x": 10,
+          "y": 86,
+          "z": -6,
+          "world": "world"
+        },
+        {
+          "type": "oak_planks",
+          "x": 11,
+          "y": 86,
+          "z": -6,
+          "world": "world"
+        },
+        {
+          "type": "oak_planks",
+          "x": 12,
+          "y": 86,
+          "z": -6,
+          "world": "world"
+        },
+        {
+          "type": "glass",
+          "x": 11,
+          "y": 87,
+          "z": -6,
+          "world": "world"
+        },
+        {
+          "type": "stone",
+          "x": 17,
+          "y": 86,
+          "z": 7,
+          "world": "world"
+        },
+        {
+          "type": "stone",
+          "x": 18,
+          "y": 86,
+          "z": 8,
+          "world": "world"
+        },
+        {
+          "type": "stone",
+          "x": 19,
+          "y": 86,
+          "z": 9,
+          "world": "world"
+        },
+        {
+          "type": "stone",
+          "x": 20,
+          "y": 86,
+          "z": 10,
+          "world": "world"
+        }
+      ],
+      "structure": [
+        {
+          "template": "market_stalls",
+          "offset": {
+            "dx": 0.0,
+            "dy": 0.0,
+            "dz": 0.0
+          },
+          "_scene_event_id": "spawn_market",
+          "world": "world"
+        }
+      ],
+      "build_multi": [
+        {
+          "shape": "platform",
+          "size": 1,
+          "material": "OAK_PLANKS",
+          "offset": {
+            "dx": 0.0,
+            "dy": 0.0,
+            "dz": 0.0
+          },
+          "_scene_event_id": "spawn_market",
+          "world": "world"
+        }
+      ]
+    }
+  },
+  "tree": null
+}

@@ -1,0 +1,126 @@
+{
+  "id": "flagship_custom_1765324829999",
+  "title": "进入剧情",
+  "text": [
+    "进入剧情"
+  ],
+  "tags": [],
+  "mood": {
+    "base": "calm",
+    "intensity": 0.5
+  },
+  "choices": [],
+  "meta": {},
+  "npcs": [],
+  "bootstrap_patch": {
+    "variables": {
+      "story_world_generated": true,
+      "story_title": "进入剧情"
+    },
+    "mc": {
+      "tell": "§6进入剧情§r\n进入剧情",
+      "spawn": {
+        "x": 0,
+        "y": 70,
+        "z": 0
+      },
+      "time": "dusk",
+      "weather": "clear",
+      "spawns": [
+        {
+          "type": "villager",
+          "name": "老向导",
+          "x": 3,
+          "y": 70,
+          "z": -2,
+          "dialog": "冒险者，你终于来了！前方森林深处有座废弃的哨塔，据说藏着古老的秘密..."
+        },
+        {
+          "type": "skeleton",
+          "name": "骷髅守卫",
+          "x": 10,
+          "y": 70,
+          "z": 15,
+          "dialog": "入侵者...止步..."
+        },
+        {
+          "type": "cow",
+          "name": "哞哞",
+          "x": -5,
+          "y": 70,
+          "z": 4,
+          "dialog": ""
+        }
+      ],
+      "blocks": [
+        {
+          "type": "stone",
+          "x": 0,
+          "y": 69,
+          "z": 0
+        },
+        {
+          "type": "oak_planks",
+          "x": 2,
+          "y": 70,
+          "z": -1
+        },
+        {
+          "type": "oak_planks",
+          "x": 3,
+          "y": 70,
+          "z": -1
+        },
+        {
+          "type": "oak_planks",
+          "x": 4,
+          "y": 70,
+          "z": -1
+        },
+        {
+          "type": "glass",
+          "x": 3,
+          "y": 71,
+          "z": -1
+        },
+        {
+          "type": "stone",
+          "x": 10,
+          "y": 69,
+          "z": 15
+        },
+        {
+          "type": "stone",
+          "x": 11,
+          "y": 69,
+          "z": 15
+        },
+        {
+          "type": "stone",
+          "x": 10,
+          "y": 70,
+          "z": 15
+        },
+        {
+          "type": "stone",
+          "x": 11,
+          "y": 70,
+          "z": 15
+        },
+        {
+          "type": "stone",
+          "x": 10,
+          "y": 71,
+          "z": 15
+        },
+        {
+          "type": "stone",
+          "x": 11,
+          "y": 71,
+          "z": 15
+        }
+      ]
+    }
+  },
+  "tree": null
+}

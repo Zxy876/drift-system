@@ -1,0 +1,389 @@
+{
+  "id": "level_1",
+  "title": "心悦文集 第1章",
+  "text": [
+    "飘移（数学 b e t a 版）",
+    "intr o",
+    "五⽉的赛事（⼆模）即将到来，桃⼦在他的赛道模拟飘移。练到⼀百公⾥看谁敢与他",
+    "为敌。",
+    "⼀百公⾥计划",
+    "提到⼀百公⾥从来看的都不是练的次数  ，只要敢踩油⻔，就成了。飘〜飘〜飘    我安",
+    "静地喝饮料，轻松的笑  。我上⻋了  （提速的前提是上⻋）",
+    "投射现实，桃⼦由驾驶位闪现书桌前，⼿刹变成了笔，⻋窗前的景变成了题",
+    "如果说飘移能在数学上体现  那我的呈现⽅式是什么？",
+    "⾸先  ⻋程没有了实体  ，我观望或踌躇不前就是在驻⻋。⼀旦驻⻋，提速就要浪费距",
+    "离，想多次漂移就难了。我不能驻⻋。",
+    "桃⼦抄起笔，全⾝的⾎都热了。空有⼀腔热⾎没有⽤，试卷上全是阻⽌顺畅的路障。",
+    "有也不能驻⻋，驻⻋就输了。",
+    "禁⽤驻⻋挡下，⼿刹的作⽤（标记断点）",
+    "桃⼦⼩⼼地阅读着题⽬，他有想法，或许跳跃。受⽆知限制，他做得不是很顺。他的",
+    "⼿在⼿刹上⽅摸索拉动着，好像他可以在做题的过程中标记断点，跳出题⽬时集中处",
+    "理，不！还有⼀个作⽤，当⼀道题，⼤步骤明了，细节却没法想到，断点的作⽤就在",
+    "于回溯，回溯就会有⼀个或多个根节点。他们是重要的。",
+    "回溯（盘⼭公路；我绕过⼭腰⾬声敲敲）",
+    "回溯不能解决被⽆知限制的问题，但是它可以将那些不能解决的问题暴露（类似⾊彩",
+    "反转：在只有两种颜⾊的情况下，不是⿊的就是⽩的）在识别出重要隧道，（做题中的",
+    "重要节点，包含被知识限制的）逐个钻⼊",
+    "突击（再开⼊隧道，⻛声潇潇）",
+    "桃⼦明⽩，实⼒⽆法模拟，必须⼈⻋⼀体飘移",
+    "他好像得要导航  （因为⽬的地和起点的连线不是直的）  于是他得到了知识清单，和题",
+    "⽬答案",
+    "（答案上锁，只为验证漂移是否正确没有偏离轨道）    在那些隧道⾥  知识清单是导",
+    "航，⽽答案是空地，没有答到正确答案的隧道通往的就是⼀个洞，直接就掉下去。（答",
+    "案在别的隧道）",
+    "计分（输和赢的分⼨，计算的很精准）",
+    "⽆标题",
+    "1"
+  ],
+  "tags": [
+    "心悦文集",
+    "叙事"
+  ],
+  "mood": {
+    "base": "calm",
+    "intensity": 0.5
+  },
+  "choices": [
+    {
+      "label": "继续",
+      "next": "level_2"
+    }
+  ],
+  "meta": {
+    "source": "xinyue_wenji",
+    "chapter": 1,
+    "word_count": 754
+  },
+  "world_patch": {
+    "mc": {
+      "spawn": {
+        "type": "villager",
+        "name": "赛车手桃子",
+        "offset": {
+          "dx": 3,
+          "dy": 0,
+          "dz": 3
+        },
+        "behaviors": [
+          {
+            "type": "patrol",
+            "path": [
+              {
+                "dx": -4,
+                "dz": 0
+              },
+              {
+                "dx": 0,
+                "dz": 4
+              },
+              {
+                "dx": 4,
+                "dz": 0
+              },
+              {
+                "dx": 0,
+                "dz": -4
+              }
+            ],
+            "speed": 1.35,
+            "description": "沿着起跑线热身，为玩家演示入弯路线"
+          },
+          {
+            "type": "particle",
+            "particle": "dust 1 0 0 1",
+            "description": "桃子脚下泛起红色尘光，营造漂移氛围"
+          },
+          {
+            "type": "interact",
+            "trigger": "right_click",
+            "trigger_keywords": [
+              "指导",
+              "漂移",
+              "训练"
+            ],
+            "action": "dialogue",
+            "messages": [
+              "§e[桃子]§r 需要漂移节奏？保持油门别松！",
+              "§e[桃子]§r 说出'我想要训练'，我带你跑热身圈。",
+              "§7提示：完成赛道检查点即可领取飘移凭证。"
+            ],
+            "description": "提供漂移技巧指导与关键词提示"
+          },
+          {
+            "type": "quest",
+            "trigger_keywords": [
+              "训练",
+              "热身",
+              "漂移"
+            ],
+            "quest_name": "飘移热身圈",
+            "rewards": [
+              "speed_boost",
+              "experience"
+            ],
+            "description": "引导玩家完成热身圈并收集赛道凭证"
+          }
+        ],
+        "ai_hints": "桃子作为赛道教练，会观察玩家的漂移角度，在完成检查点时给予鼓励。 她善用赛车隐喻，让新手明白节奏与线位。"
+      },
+      "build": {
+        "shape": "platform",
+        "size": 6,
+        "material": "stone_bricks"
+      },
+      "music": {
+        "record": "pigstep"
+      },
+      "particle": {
+        "type": "end_rod",
+        "color": "red",
+        "count": 10
+      },
+      "tell": "✨ 欢迎来到【赛道】- 心悦文集 第1章",
+      "_scene": {
+        "level_id": "level_1",
+        "title": "心悦文集 第1章",
+        "theme": "赛道",
+        "scene_world": "KunmingLakeStory",
+        "teleport": {
+          "x": 0.5,
+          "y": 70.0,
+          "z": 0.5,
+          "yaw": 0.0,
+          "pitch": 0.0
+        },
+        "featured_npc": "赛车手桃子",
+        "focus": "racing_line"
+      }
+    },
+    "variables": {
+      "theme": "赛道",
+      "biome": "plains",
+      "structure": "race_track",
+      "unlocked": false
+    }
+  },
+  "narrative": {
+    "text": [
+      "飘移（数学 b e t a 版）",
+      "intr o",
+      "五⽉的赛事（⼆模）即将到来，桃⼦在他的赛道模拟飘移。练到⼀百公⾥看谁敢与他",
+      "为敌。",
+      "⼀百公⾥计划",
+      "提到⼀百公⾥从来看的都不是练的次数  ，只要敢踩油⻔，就成了。飘〜飘〜飘    我安",
+      "静地喝饮料，轻松的笑  。我上⻋了  （提速的前提是上⻋）",
+      "投射现实，桃⼦由驾驶位闪现书桌前，⼿刹变成了笔，⻋窗前的景变成了题",
+      "如果说飘移能在数学上体现  那我的呈现⽅式是什么？",
+      "⾸先  ⻋程没有了实体  ，我观望或踌躇不前就是在驻⻋。⼀旦驻⻋，提速就要浪费距",
+      "离，想多次漂移就难了。我不能驻⻋。",
+      "桃⼦抄起笔，全⾝的⾎都热了。空有⼀腔热⾎没有⽤，试卷上全是阻⽌顺畅的路障。",
+      "有也不能驻⻋，驻⻋就输了。",
+      "禁⽤驻⻋挡下，⼿刹的作⽤（标记断点）",
+      "桃⼦⼩⼼地阅读着题⽬，他有想法，或许跳跃。受⽆知限制，他做得不是很顺。他的",
+      "⼿在⼿刹上⽅摸索拉动着，好像他可以在做题的过程中标记断点，跳出题⽬时集中处",
+      "理，不！还有⼀个作⽤，当⼀道题，⼤步骤明了，细节却没法想到，断点的作⽤就在",
+      "于回溯，回溯就会有⼀个或多个根节点。他们是重要的。",
+      "回溯（盘⼭公路；我绕过⼭腰⾬声敲敲）",
+      "回溯不能解决被⽆知限制的问题，但是它可以将那些不能解决的问题暴露（类似⾊彩",
+      "反转：在只有两种颜⾊的情况下，不是⿊的就是⽩的）在识别出重要隧道，（做题中的",
+      "重要节点，包含被知识限制的）逐个钻⼊",
+      "突击（再开⼊隧道，⻛声潇潇）",
+      "桃⼦明⽩，实⼒⽆法模拟，必须⼈⻋⼀体飘移",
+      "他好像得要导航  （因为⽬的地和起点的连线不是直的）  于是他得到了知识清单，和题",
+      "⽬答案",
+      "（答案上锁，只为验证漂移是否正确没有偏离轨道）    在那些隧道⾥  知识清单是导",
+      "航，⽽答案是空地，没有答到正确答案的隧道通往的就是⼀个洞，直接就掉下去。（答",
+      "案在别的隧道）",
+      "计分（输和赢的分⼨，计算的很精准）",
+      "⽆标题",
+      "1"
+    ],
+    "beats": [
+      {
+        "id": "level_1_intro",
+        "trigger": "on_enter",
+        "scene_patch": "scene_grid_intro",
+        "rule_refs": [
+          "racer_heat_checkpoint"
+        ]
+      },
+      {
+        "id": "level_1_warmup",
+        "trigger": "rule_event:racer_checkpoint",
+        "scene_patch": "scene_midfield_boost",
+        "rule_refs": [
+          "racer_heat_checkpoint"
+        ]
+      },
+      {
+        "id": "level_1_finish",
+        "trigger": "rule_event:racer_finish",
+        "scene_patch": "scene_podium",
+        "rule_refs": [
+          "racer_finish_flag"
+        ]
+      }
+    ]
+  },
+  "scene": {
+    "world": "KunmingLakeStory",
+    "teleport": {
+      "x": 0.5,
+      "y": 70.0,
+      "z": 0.5,
+      "yaw": 0.0,
+      "pitch": 0.0
+    },
+    "environment": {
+      "weather": "CLEAR",
+      "time": "DAY"
+    },
+    "structures": [
+      "structures/race/start_banner.nbt"
+    ],
+    "npc_skins": [
+      {
+        "id": "赛车手桃子",
+        "skin": "registry:racer"
+      }
+    ]
+  },
+  "rules": {
+    "listeners": [
+      {
+        "id": "racer_heat_checkpoint",
+        "type": "quest_event",
+        "targets": [
+          "race_checkpoint"
+        ],
+        "quest_event": "racer_checkpoint",
+        "metadata": {
+          "dialogue": [
+            "§e[桃子]§r 刚才的漂移角度不错，再压一次弯心！",
+            "§7(桃子挥动旗帜示意继续冲刺)"
+          ],
+          "update_behaviors": [
+            {
+              "type": "particle",
+              "particle": "crit",
+              "description": "桃子身边迸发火花，提示加速"
+            }
+          ],
+          "world_patch": {
+            "mc": {
+              "title": {
+                "main": "§6漂移节奏就绪",
+                "sub": "桃子挥旗指向下一段弯道，保持油门别松！",
+                "fade_in": 5,
+                "stay": 70,
+                "fade_out": 20
+              },
+              "sound": {
+                "type": "MUSIC_DISC_BLOCKS",
+                "volume": 0.9,
+                "pitch": 1.05
+              },
+              "particle": {
+                "type": "FLAME",
+                "count": 60,
+                "radius": 3.5,
+                "speed": 0.12
+              },
+              "time": "sunset"
+            }
+          }
+        }
+      },
+      {
+        "id": "racer_finish_flag",
+        "type": "quest_event",
+        "targets": [
+          "race_finish"
+        ],
+        "quest_event": "racer_finish",
+        "metadata": {
+          "dialogue": {
+            "title": "终点庆祝",
+            "text": "桃子举起方格旗，为你的漂移喝彩。"
+          },
+          "commands": [
+            "title @p title {\"text\":\"漂移完成！\",\"color\":\"gold\"}",
+            "title @p subtitle {\"text\":\"桃子：速度就是答案！\",\"color\":\"yellow\"}"
+          ]
+        }
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "id": "level_1_race_line",
+      "type": "race",
+      "conditions": [
+        {
+          "location": "race_start_gate",
+          "count": 1
+        },
+        {
+          "location": "race_finish_line",
+          "count": 1
+        }
+      ],
+      "milestones": [
+        "warmup_complete",
+        "full_speed"
+      ],
+      "rewards": [
+        {
+          "type": "xp",
+          "amount": 150
+        },
+        {
+          "type": "item",
+          "amount": 1,
+          "data": {
+            "id": "speed_token"
+          }
+        }
+      ]
+    }
+  ],
+  "exit": {
+    "world_patch": {
+      "mc": {
+        "title": {
+          "main": "§6终点冲刺",
+          "sub": "桃子为你拉响终点警报，漂移任务完成！",
+          "fade_in": 10,
+          "stay": 80,
+          "fade_out": 30
+        },
+        "sound": {
+          "type": "UI_TOAST_CHALLENGE_COMPLETE",
+          "volume": 1.3,
+          "pitch": 1.0
+        },
+        "particle": {
+          "type": "FIREWORKS_SPARK",
+          "count": 120,
+          "radius": 4.5,
+          "speed": 0.05
+        },
+        "weather": "dream_sky",
+        "time": "night"
+      }
+    },
+    "phrase_aliases": [
+      "结束剧情",
+      "离开关卡",
+      "退出剧情"
+    ],
+    "return_spawn": "KunmingLakeHub",
+    "teleport": {
+      "x": 0.5,
+      "y": 70.0,
+      "z": 0.5,
+      "yaw": 0.0,
+      "pitch": 0.0
+    }
+  }
+}

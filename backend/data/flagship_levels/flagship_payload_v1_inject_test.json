@@ -1,0 +1,4174 @@
+{
+  "id": "flagship_payload_v1_inject_test",
+  "title": "payload_v1 wiring",
+  "text": [
+    "平静夜晚的湖边，有一座木屋，门朝南"
+  ],
+  "tags": [],
+  "mood": {
+    "base": "calm",
+    "intensity": 0.5
+  },
+  "choices": [],
+  "meta": {},
+  "npcs": [],
+  "bootstrap_patch": {
+    "version": "plugin_payload_v1",
+    "build_id": "ed3bf11aecba039073e7085e146d4cd19161f38397c8f32571ff517f635d6837",
+    "player_id": "payload_wiring_tester",
+    "build_path": "spec_engine_v1",
+    "patch_source": "deterministic_engine",
+    "scene_path": "scene_engine_v1",
+    "hash": {
+      "scene_spec": "97355277c241d9f5eed0e31dd543d8ff0b4ffe4931ca3f5384856474a39e8be5",
+      "spec": "303498312e2dd05f4fc0fccb29d5489c74d939a72c7a4401ebb05f4d451631c8",
+      "merged_blocks": "3ef787786e452a5844a34100da724cd296fee4aa2a723cb08968c2420a89ea68"
+    },
+    "stats": {
+      "scene_block_count": 198,
+      "spec_block_count": 130,
+      "merged_block_count": 293,
+      "conflicts_total": 35,
+      "spec_dropped_total": 35
+    },
+    "origin": {
+      "base_x": 0,
+      "base_y": 64,
+      "base_z": 0,
+      "anchor_mode": "fixed"
+    },
+    "commands": [
+      {
+        "op": "setblock",
+        "x": -1,
+        "y": 64,
+        "z": -1,
+        "block": "grass_block"
+      },
+      {
+        "op": "setblock",
+        "x": -1,
+        "y": 64,
+        "z": 0,
+        "block": "grass_block"
+      },
+      {
+        "op": "setblock",
+        "x": -1,
+        "y": 64,
+        "z": 1,
+        "block": "grass_block"
+      },
+      {
+        "op": "setblock",
+        "x": -1,
+        "y": 64,
+        "z": 2,
+        "block": "grass_block"
+      },
+      {
+        "op": "setblock",
+        "x": -1,
+        "y": 64,
+        "z": 3,
+        "block": "grass_block"
+      },
+      {
+        "op": "setblock",
+        "x": -1,
+        "y": 64,
+        "z": 4,
+        "block": "grass_block"
+      },
+      {
+        "op": "setblock",
+        "x": -1,
+        "y": 64,
+        "z": 5,
+        "block": "grass_block"
+      },
+      {
+        "op": "setblock",
+        "x": -1,
+        "y": 64,
+        "z": 6,
+        "block": "grass_block"
+      },
+      {
+        "op": "setblock",
+        "x": -1,
+        "y": 64,
+        "z": 7,
+        "block": "grass_block"
+      },
+      {
+        "op": "setblock",
+        "x": -1,
+        "y": 64,
+        "z": 8,
+        "block": "grass_block"
+      },
+      {
+        "op": "setblock",
+        "x": -1,
+        "y": 64,
+        "z": 9,
+        "block": "grass_block"
+      },
+      {
+        "op": "setblock",
+        "x": -1,
+        "y": 64,
+        "z": 10,
+        "block": "grass_block"
+      },
+      {
+        "op": "setblock",
+        "x": -1,
+        "y": 64,
+        "z": 11,
+        "block": "grass_block"
+      },
+      {
+        "op": "setblock",
+        "x": -1,
+        "y": 64,
+        "z": 12,
+        "block": "grass_block"
+      },
+      {
+        "op": "setblock",
+        "x": 0,
+        "y": 64,
+        "z": -1,
+        "block": "grass_block"
+      },
+      {
+        "op": "setblock",
+        "x": 0,
+        "y": 64,
+        "z": 0,
+        "block": "water"
+      },
+      {
+        "op": "setblock",
+        "x": 0,
+        "y": 64,
+        "z": 1,
+        "block": "water"
+      },
+      {
+        "op": "setblock",
+        "x": 0,
+        "y": 64,
+        "z": 2,
+        "block": "water"
+      },
+      {
+        "op": "setblock",
+        "x": 0,
+        "y": 64,
+        "z": 3,
+        "block": "water"
+      },
+      {
+        "op": "setblock",
+        "x": 0,
+        "y": 64,
+        "z": 4,
+        "block": "water"
+      },
+      {
+        "op": "setblock",
+        "x": 0,
+        "y": 64,
+        "z": 5,
+        "block": "water"
+      },
+      {
+        "op": "setblock",
+        "x": 0,
+        "y": 64,
+        "z": 6,
+        "block": "water"
+      },
+      {
+        "op": "setblock",
+        "x": 0,
+        "y": 64,
+        "z": 7,
+        "block": "water"
+      },
+      {
+        "op": "setblock",
+        "x": 0,
+        "y": 64,
+        "z": 8,
+        "block": "water"
+      },
+      {
+        "op": "setblock",
+        "x": 0,
+        "y": 64,
+        "z": 9,
+        "block": "water"
+      },
+      {
+        "op": "setblock",
+        "x": 0,
+        "y": 64,
+        "z": 10,
+        "block": "water"
+      },
+      {
+        "op": "setblock",
+        "x": 0,
+        "y": 64,
+        "z": 11,
+        "block": "water"
+      },
+      {
+        "op": "setblock",
+        "x": 0,
+        "y": 64,
+        "z": 12,
+        "block": "grass_block"
+      },
+      {
+        "op": "setblock",
+        "x": 0,
+        "y": 65,
+        "z": 0,
+        "block": "oak_planks"
+      },
+      {
+        "op": "setblock",
+        "x": 0,
+        "y": 65,
+        "z": 1,
+        "block": "oak_planks"
+      },
+      {
+        "op": "setblock",
+        "x": 0,
+        "y": 65,
+        "z": 2,
+        "block": "oak_planks"
+      },
+      {
+        "op": "setblock",
+        "x": 0,
+        "y": 65,
+        "z": 3,
+        "block": "oak_planks"
+      },
+      {
+        "op": "setblock",
+        "x": 0,
+        "y": 65,
+        "z": 4,
+        "block": "oak_planks"
+      },
+      {
+        "op": "setblock",
+        "x": 0,
+        "y": 66,
+        "z": 0,
+        "block": "oak_planks"
+      },
+      {
+        "op": "setblock",
+        "x": 0,
+        "y": 66,
+        "z": 1,
+        "block": "oak_planks"
+      },
+      {
+        "op": "setblock",
+        "x": 0,
+        "y": 66,
+        "z": 2,
+        "block": "oak_planks"
+      },
+      {
+        "op": "setblock",
+        "x": 0,
+        "y": 66,
+        "z": 3,
+        "block": "oak_planks"
+      },
+      {
+        "op": "setblock",
+        "x": 0,
+        "y": 66,
+        "z": 4,
+        "block": "oak_planks"
+      },
+      {
+        "op": "setblock",
+        "x": 0,
+        "y": 67,
+        "z": 0,
+        "block": "oak_planks"
+      },
+      {
+        "op": "setblock",
+        "x": 0,
+        "y": 67,
+        "z": 1,
+        "block": "oak_planks"
+      },
+      {
+        "op": "setblock",
+        "x": 0,
+        "y": 67,
+        "z": 2,
+        "block": "oak_planks"
+      },
+      {
+        "op": "setblock",
+        "x": 0,
+        "y": 67,
+        "z": 3,
+        "block": "oak_planks"
+      },
+      {
+        "op": "setblock",
+        "x": 0,
+        "y": 67,
+        "z": 4,
+        "block": "oak_planks"
+      },
+      {
+        "op": "setblock",
+        "x": 0,
+        "y": 68,
+        "z": 0,
+        "block": "oak_slab"
+      },
+      {
+        "op": "setblock",
+        "x": 0,
+        "y": 68,
+        "z": 1,
+        "block": "oak_slab"
+      },
+      {
+        "op": "setblock",
+        "x": 0,
+        "y": 68,
+        "z": 2,
+        "block": "oak_slab"
+      },
+      {
+        "op": "setblock",
+        "x": 0,
+        "y": 68,
+        "z": 3,
+        "block": "oak_slab"
+      },
+      {
+        "op": "setblock",
+        "x": 0,
+        "y": 68,
+        "z": 4,
+        "block": "oak_slab"
+      },
+      {
+        "op": "setblock",
+        "x": 1,
+        "y": 64,
+        "z": -1,
+        "block": "grass_block"
+      },
+      {
+        "op": "setblock",
+        "x": 1,
+        "y": 64,
+        "z": 0,
+        "block": "water"
+      },
+      {
+        "op": "setblock",
+        "x": 1,
+        "y": 64,
+        "z": 1,
+        "block": "water"
+      },
+      {
+        "op": "setblock",
+        "x": 1,
+        "y": 64,
+        "z": 2,
+        "block": "water"
+      },
+      {
+        "op": "setblock",
+        "x": 1,
+        "y": 64,
+        "z": 3,
+        "block": "water"
+      },
+      {
+        "op": "setblock",
+        "x": 1,
+        "y": 64,
+        "z": 4,
+        "block": "water"
+      },
+      {
+        "op": "setblock",
+        "x": 1,
+        "y": 64,
+        "z": 5,
+        "block": "water"
+      },
+      {
+        "op": "setblock",
+        "x": 1,
+        "y": 64,
+        "z": 6,
+        "block": "water"
+      },
+      {
+        "op": "setblock",
+        "x": 1,
+        "y": 64,
+        "z": 7,
+        "block": "water"
+      },
+      {
+        "op": "setblock",
+        "x": 1,
+        "y": 64,
+        "z": 8,
+        "block": "water"
+      },
+      {
+        "op": "setblock",
+        "x": 1,
+        "y": 64,
+        "z": 9,
+        "block": "water"
+      },
+      {
+        "op": "setblock",
+        "x": 1,
+        "y": 64,
+        "z": 10,
+        "block": "water"
+      },
+      {
+        "op": "setblock",
+        "x": 1,
+        "y": 64,
+        "z": 11,
+        "block": "water"
+      },
+      {
+        "op": "setblock",
+        "x": 1,
+        "y": 64,
+        "z": 12,
+        "block": "grass_block"
+      },
+      {
+        "op": "setblock",
+        "x": 1,
+        "y": 65,
+        "z": 0,
+        "block": "oak_planks"
+      },
+      {
+        "op": "setblock",
+        "x": 1,
+        "y": 65,
+        "z": 1,
+        "block": "lantern"
+      },
+      {
+        "op": "setblock",
+        "x": 1,
+        "y": 65,
+        "z": 4,
+        "block": "oak_planks"
+      },
+      {
+        "op": "setblock",
+        "x": 1,
+        "y": 66,
+        "z": 0,
+        "block": "oak_planks"
+      },
+      {
+        "op": "setblock",
+        "x": 1,
+        "y": 66,
+        "z": 4,
+        "block": "oak_planks"
+      },
+      {
+        "op": "setblock",
+        "x": 1,
+        "y": 67,
+        "z": 0,
+        "block": "oak_planks"
+      },
+      {
+        "op": "setblock",
+        "x": 1,
+        "y": 67,
+        "z": 4,
+        "block": "oak_planks"
+      },
+      {
+        "op": "setblock",
+        "x": 1,
+        "y": 68,
+        "z": 0,
+        "block": "oak_slab"
+      },
+      {
+        "op": "setblock",
+        "x": 1,
+        "y": 68,
+        "z": 1,
+        "block": "oak_slab"
+      },
+      {
+        "op": "setblock",
+        "x": 1,
+        "y": 68,
+        "z": 2,
+        "block": "oak_slab"
+      },
+      {
+        "op": "setblock",
+        "x": 1,
+        "y": 68,
+        "z": 3,
+        "block": "oak_slab"
+      },
+      {
+        "op": "setblock",
+        "x": 1,
+        "y": 68,
+        "z": 4,
+        "block": "oak_slab"
+      },
+      {
+        "op": "setblock",
+        "x": 2,
+        "y": 64,
+        "z": -1,
+        "block": "grass_block"
+      },
+      {
+        "op": "setblock",
+        "x": 2,
+        "y": 64,
+        "z": 0,
+        "block": "water"
+      },
+      {
+        "op": "setblock",
+        "x": 2,
+        "y": 64,
+        "z": 1,
+        "block": "water"
+      },
+      {
+        "op": "setblock",
+        "x": 2,
+        "y": 64,
+        "z": 2,
+        "block": "water"
+      },
+      {
+        "op": "setblock",
+        "x": 2,
+        "y": 64,
+        "z": 3,
+        "block": "water"
+      },
+      {
+        "op": "setblock",
+        "x": 2,
+        "y": 64,
+        "z": 4,
+        "block": "water"
+      },
+      {
+        "op": "setblock",
+        "x": 2,
+        "y": 64,
+        "z": 5,
+        "block": "water"
+      },
+      {
+        "op": "setblock",
+        "x": 2,
+        "y": 64,
+        "z": 6,
+        "block": "water"
+      },
+      {
+        "op": "setblock",
+        "x": 2,
+        "y": 64,
+        "z": 7,
+        "block": "water"
+      },
+      {
+        "op": "setblock",
+        "x": 2,
+        "y": 64,
+        "z": 8,
+        "block": "water"
+      },
+      {
+        "op": "setblock",
+        "x": 2,
+        "y": 64,
+        "z": 9,
+        "block": "water"
+      },
+      {
+        "op": "setblock",
+        "x": 2,
+        "y": 64,
+        "z": 10,
+        "block": "water"
+      },
+      {
+        "op": "setblock",
+        "x": 2,
+        "y": 64,
+        "z": 11,
+        "block": "water"
+      },
+      {
+        "op": "setblock",
+        "x": 2,
+        "y": 64,
+        "z": 12,
+        "block": "grass_block"
+      },
+      {
+        "op": "setblock",
+        "x": 2,
+        "y": 65,
+        "z": 0,
+        "block": "oak_planks"
+      },
+      {
+        "op": "setblock",
+        "x": 2,
+        "y": 65,
+        "z": 4,
+        "block": "oak_planks"
+      },
+      {
+        "op": "setblock",
+        "x": 2,
+        "y": 66,
+        "z": 0,
+        "block": "oak_planks"
+      },
+      {
+        "op": "setblock",
+        "x": 2,
+        "y": 66,
+        "z": 4,
+        "block": "oak_planks"
+      },
+      {
+        "op": "setblock",
+        "x": 2,
+        "y": 67,
+        "z": 0,
+        "block": "oak_planks"
+      },
+      {
+        "op": "setblock",
+        "x": 2,
+        "y": 67,
+        "z": 4,
+        "block": "oak_planks"
+      },
+      {
+        "op": "setblock",
+        "x": 2,
+        "y": 68,
+        "z": 0,
+        "block": "oak_slab"
+      },
+      {
+        "op": "setblock",
+        "x": 2,
+        "y": 68,
+        "z": 1,
+        "block": "oak_slab"
+      },
+      {
+        "op": "setblock",
+        "x": 2,
+        "y": 68,
+        "z": 2,
+        "block": "oak_slab"
+      },
+      {
+        "op": "setblock",
+        "x": 2,
+        "y": 68,
+        "z": 3,
+        "block": "oak_slab"
+      },
+      {
+        "op": "setblock",
+        "x": 2,
+        "y": 68,
+        "z": 4,
+        "block": "oak_slab"
+      },
+      {
+        "op": "setblock",
+        "x": 3,
+        "y": 64,
+        "z": -1,
+        "block": "grass_block"
+      },
+      {
+        "op": "setblock",
+        "x": 3,
+        "y": 64,
+        "z": 0,
+        "block": "water"
+      },
+      {
+        "op": "setblock",
+        "x": 3,
+        "y": 64,
+        "z": 1,
+        "block": "water"
+      },
+      {
+        "op": "setblock",
+        "x": 3,
+        "y": 64,
+        "z": 2,
+        "block": "water"
+      },
+      {
+        "op": "setblock",
+        "x": 3,
+        "y": 64,
+        "z": 3,
+        "block": "water"
+      },
+      {
+        "op": "setblock",
+        "x": 3,
+        "y": 64,
+        "z": 4,
+        "block": "water"
+      },
+      {
+        "op": "setblock",
+        "x": 3,
+        "y": 64,
+        "z": 5,
+        "block": "water"
+      },
+      {
+        "op": "setblock",
+        "x": 3,
+        "y": 64,
+        "z": 6,
+        "block": "water"
+      },
+      {
+        "op": "setblock",
+        "x": 3,
+        "y": 64,
+        "z": 7,
+        "block": "water"
+      },
+      {
+        "op": "setblock",
+        "x": 3,
+        "y": 64,
+        "z": 8,
+        "block": "water"
+      },
+      {
+        "op": "setblock",
+        "x": 3,
+        "y": 64,
+        "z": 9,
+        "block": "water"
+      },
+      {
+        "op": "setblock",
+        "x": 3,
+        "y": 64,
+        "z": 10,
+        "block": "water"
+      },
+      {
+        "op": "setblock",
+        "x": 3,
+        "y": 64,
+        "z": 11,
+        "block": "water"
+      },
+      {
+        "op": "setblock",
+        "x": 3,
+        "y": 64,
+        "z": 12,
+        "block": "grass_block"
+      },
+      {
+        "op": "setblock",
+        "x": 3,
+        "y": 65,
+        "z": 0,
+        "block": "air"
+      },
+      {
+        "op": "setblock",
+        "x": 3,
+        "y": 65,
+        "z": 4,
+        "block": "oak_planks"
+      },
+      {
+        "op": "setblock",
+        "x": 3,
+        "y": 66,
+        "z": 0,
+        "block": "air"
+      },
+      {
+        "op": "setblock",
+        "x": 3,
+        "y": 66,
+        "z": 4,
+        "block": "oak_planks"
+      },
+      {
+        "op": "setblock",
+        "x": 3,
+        "y": 67,
+        "z": 0,
+        "block": "oak_planks"
+      },
+      {
+        "op": "setblock",
+        "x": 3,
+        "y": 67,
+        "z": 4,
+        "block": "oak_planks"
+      },
+      {
+        "op": "setblock",
+        "x": 3,
+        "y": 68,
+        "z": 0,
+        "block": "oak_slab"
+      },
+      {
+        "op": "setblock",
+        "x": 3,
+        "y": 68,
+        "z": 1,
+        "block": "oak_slab"
+      },
+      {
+        "op": "setblock",
+        "x": 3,
+        "y": 68,
+        "z": 2,
+        "block": "oak_slab"
+      },
+      {
+        "op": "setblock",
+        "x": 3,
+        "y": 68,
+        "z": 3,
+        "block": "oak_slab"
+      },
+      {
+        "op": "setblock",
+        "x": 3,
+        "y": 68,
+        "z": 4,
+        "block": "oak_slab"
+      },
+      {
+        "op": "setblock",
+        "x": 4,
+        "y": 64,
+        "z": -1,
+        "block": "grass_block"
+      },
+      {
+        "op": "setblock",
+        "x": 4,
+        "y": 64,
+        "z": 0,
+        "block": "water"
+      },
+      {
+        "op": "setblock",
+        "x": 4,
+        "y": 64,
+        "z": 1,
+        "block": "water"
+      },
+      {
+        "op": "setblock",
+        "x": 4,
+        "y": 64,
+        "z": 2,
+        "block": "water"
+      },
+      {
+        "op": "setblock",
+        "x": 4,
+        "y": 64,
+        "z": 3,
+        "block": "water"
+      },
+      {
+        "op": "setblock",
+        "x": 4,
+        "y": 64,
+        "z": 4,
+        "block": "water"
+      },
+      {
+        "op": "setblock",
+        "x": 4,
+        "y": 64,
+        "z": 5,
+        "block": "water"
+      },
+      {
+        "op": "setblock",
+        "x": 4,
+        "y": 64,
+        "z": 6,
+        "block": "water"
+      },
+      {
+        "op": "setblock",
+        "x": 4,
+        "y": 64,
+        "z": 7,
+        "block": "water"
+      },
+      {
+        "op": "setblock",
+        "x": 4,
+        "y": 64,
+        "z": 8,
+        "block": "water"
+      },
+      {
+        "op": "setblock",
+        "x": 4,
+        "y": 64,
+        "z": 9,
+        "block": "water"
+      },
+      {
+        "op": "setblock",
+        "x": 4,
+        "y": 64,
+        "z": 10,
+        "block": "water"
+      },
+      {
+        "op": "setblock",
+        "x": 4,
+        "y": 64,
+        "z": 11,
+        "block": "water"
+      },
+      {
+        "op": "setblock",
+        "x": 4,
+        "y": 64,
+        "z": 12,
+        "block": "grass_block"
+      },
+      {
+        "op": "setblock",
+        "x": 4,
+        "y": 65,
+        "z": 0,
+        "block": "oak_planks"
+      },
+      {
+        "op": "setblock",
+        "x": 4,
+        "y": 65,
+        "z": 4,
+        "block": "oak_planks"
+      },
+      {
+        "op": "setblock",
+        "x": 4,
+        "y": 66,
+        "z": 0,
+        "block": "oak_planks"
+      },
+      {
+        "op": "setblock",
+        "x": 4,
+        "y": 66,
+        "z": 4,
+        "block": "oak_planks"
+      },
+      {
+        "op": "setblock",
+        "x": 4,
+        "y": 67,
+        "z": 0,
+        "block": "oak_planks"
+      },
+      {
+        "op": "setblock",
+        "x": 4,
+        "y": 67,
+        "z": 4,
+        "block": "oak_planks"
+      },
+      {
+        "op": "setblock",
+        "x": 4,
+        "y": 68,
+        "z": 0,
+        "block": "oak_slab"
+      },
+      {
+        "op": "setblock",
+        "x": 4,
+        "y": 68,
+        "z": 1,
+        "block": "oak_slab"
+      },
+      {
+        "op": "setblock",
+        "x": 4,
+        "y": 68,
+        "z": 2,
+        "block": "oak_slab"
+      },
+      {
+        "op": "setblock",
+        "x": 4,
+        "y": 68,
+        "z": 3,
+        "block": "oak_slab"
+      },
+      {
+        "op": "setblock",
+        "x": 4,
+        "y": 68,
+        "z": 4,
+        "block": "oak_slab"
+      },
+      {
+        "op": "setblock",
+        "x": 5,
+        "y": 64,
+        "z": -1,
+        "block": "grass_block"
+      },
+      {
+        "op": "setblock",
+        "x": 5,
+        "y": 64,
+        "z": 0,
+        "block": "water"
+      },
+      {
+        "op": "setblock",
+        "x": 5,
+        "y": 64,
+        "z": 1,
+        "block": "water"
+      },
+      {
+        "op": "setblock",
+        "x": 5,
+        "y": 64,
+        "z": 2,
+        "block": "water"
+      },
+      {
+        "op": "setblock",
+        "x": 5,
+        "y": 64,
+        "z": 3,
+        "block": "water"
+      },
+      {
+        "op": "setblock",
+        "x": 5,
+        "y": 64,
+        "z": 4,
+        "block": "water"
+      },
+      {
+        "op": "setblock",
+        "x": 5,
+        "y": 64,
+        "z": 5,
+        "block": "water"
+      },
+      {
+        "op": "setblock",
+        "x": 5,
+        "y": 64,
+        "z": 6,
+        "block": "water"
+      },
+      {
+        "op": "setblock",
+        "x": 5,
+        "y": 64,
+        "z": 7,
+        "block": "water"
+      },
+      {
+        "op": "setblock",
+        "x": 5,
+        "y": 64,
+        "z": 8,
+        "block": "water"
+      },
+      {
+        "op": "setblock",
+        "x": 5,
+        "y": 64,
+        "z": 9,
+        "block": "water"
+      },
+      {
+        "op": "setblock",
+        "x": 5,
+        "y": 64,
+        "z": 10,
+        "block": "water"
+      },
+      {
+        "op": "setblock",
+        "x": 5,
+        "y": 64,
+        "z": 11,
+        "block": "water"
+      },
+      {
+        "op": "setblock",
+        "x": 5,
+        "y": 64,
+        "z": 12,
+        "block": "grass_block"
+      },
+      {
+        "op": "setblock",
+        "x": 5,
+        "y": 65,
+        "z": 0,
+        "block": "oak_planks"
+      },
+      {
+        "op": "setblock",
+        "x": 5,
+        "y": 65,
+        "z": 4,
+        "block": "oak_planks"
+      },
+      {
+        "op": "setblock",
+        "x": 5,
+        "y": 66,
+        "z": 0,
+        "block": "oak_planks"
+      },
+      {
+        "op": "setblock",
+        "x": 5,
+        "y": 66,
+        "z": 4,
+        "block": "oak_planks"
+      },
+      {
+        "op": "setblock",
+        "x": 5,
+        "y": 67,
+        "z": 0,
+        "block": "oak_planks"
+      },
+      {
+        "op": "setblock",
+        "x": 5,
+        "y": 67,
+        "z": 4,
+        "block": "oak_planks"
+      },
+      {
+        "op": "setblock",
+        "x": 5,
+        "y": 68,
+        "z": 0,
+        "block": "oak_slab"
+      },
+      {
+        "op": "setblock",
+        "x": 5,
+        "y": 68,
+        "z": 1,
+        "block": "oak_slab"
+      },
+      {
+        "op": "setblock",
+        "x": 5,
+        "y": 68,
+        "z": 2,
+        "block": "oak_slab"
+      },
+      {
+        "op": "setblock",
+        "x": 5,
+        "y": 68,
+        "z": 3,
+        "block": "oak_slab"
+      },
+      {
+        "op": "setblock",
+        "x": 5,
+        "y": 68,
+        "z": 4,
+        "block": "oak_slab"
+      },
+      {
+        "op": "setblock",
+        "x": 6,
+        "y": 64,
+        "z": -1,
+        "block": "grass_block"
+      },
+      {
+        "op": "setblock",
+        "x": 6,
+        "y": 64,
+        "z": 0,
+        "block": "water"
+      },
+      {
+        "op": "setblock",
+        "x": 6,
+        "y": 64,
+        "z": 1,
+        "block": "water"
+      },
+      {
+        "op": "setblock",
+        "x": 6,
+        "y": 64,
+        "z": 2,
+        "block": "water"
+      },
+      {
+        "op": "setblock",
+        "x": 6,
+        "y": 64,
+        "z": 3,
+        "block": "water"
+      },
+      {
+        "op": "setblock",
+        "x": 6,
+        "y": 64,
+        "z": 4,
+        "block": "water"
+      },
+      {
+        "op": "setblock",
+        "x": 6,
+        "y": 64,
+        "z": 5,
+        "block": "water"
+      },
+      {
+        "op": "setblock",
+        "x": 6,
+        "y": 64,
+        "z": 6,
+        "block": "water"
+      },
+      {
+        "op": "setblock",
+        "x": 6,
+        "y": 64,
+        "z": 7,
+        "block": "water"
+      },
+      {
+        "op": "setblock",
+        "x": 6,
+        "y": 64,
+        "z": 8,
+        "block": "water"
+      },
+      {
+        "op": "setblock",
+        "x": 6,
+        "y": 64,
+        "z": 9,
+        "block": "water"
+      },
+      {
+        "op": "setblock",
+        "x": 6,
+        "y": 64,
+        "z": 10,
+        "block": "water"
+      },
+      {
+        "op": "setblock",
+        "x": 6,
+        "y": 64,
+        "z": 11,
+        "block": "water"
+      },
+      {
+        "op": "setblock",
+        "x": 6,
+        "y": 64,
+        "z": 12,
+        "block": "grass_block"
+      },
+      {
+        "op": "setblock",
+        "x": 6,
+        "y": 65,
+        "z": 0,
+        "block": "oak_planks"
+      },
+      {
+        "op": "setblock",
+        "x": 6,
+        "y": 65,
+        "z": 1,
+        "block": "oak_planks"
+      },
+      {
+        "op": "setblock",
+        "x": 6,
+        "y": 65,
+        "z": 2,
+        "block": "oak_planks"
+      },
+      {
+        "op": "setblock",
+        "x": 6,
+        "y": 65,
+        "z": 3,
+        "block": "oak_planks"
+      },
+      {
+        "op": "setblock",
+        "x": 6,
+        "y": 65,
+        "z": 4,
+        "block": "oak_planks"
+      },
+      {
+        "op": "setblock",
+        "x": 6,
+        "y": 66,
+        "z": 0,
+        "block": "oak_planks"
+      },
+      {
+        "op": "setblock",
+        "x": 6,
+        "y": 66,
+        "z": 1,
+        "block": "oak_planks"
+      },
+      {
+        "op": "setblock",
+        "x": 6,
+        "y": 66,
+        "z": 2,
+        "block": "oak_planks"
+      },
+      {
+        "op": "setblock",
+        "x": 6,
+        "y": 66,
+        "z": 3,
+        "block": "oak_planks"
+      },
+      {
+        "op": "setblock",
+        "x": 6,
+        "y": 66,
+        "z": 4,
+        "block": "oak_planks"
+      },
+      {
+        "op": "setblock",
+        "x": 6,
+        "y": 67,
+        "z": 0,
+        "block": "oak_planks"
+      },
+      {
+        "op": "setblock",
+        "x": 6,
+        "y": 67,
+        "z": 1,
+        "block": "oak_planks"
+      },
+      {
+        "op": "setblock",
+        "x": 6,
+        "y": 67,
+        "z": 2,
+        "block": "oak_planks"
+      },
+      {
+        "op": "setblock",
+        "x": 6,
+        "y": 67,
+        "z": 3,
+        "block": "oak_planks"
+      },
+      {
+        "op": "setblock",
+        "x": 6,
+        "y": 67,
+        "z": 4,
+        "block": "oak_planks"
+      },
+      {
+        "op": "setblock",
+        "x": 6,
+        "y": 68,
+        "z": 0,
+        "block": "oak_slab"
+      },
+      {
+        "op": "setblock",
+        "x": 6,
+        "y": 68,
+        "z": 1,
+        "block": "oak_slab"
+      },
+      {
+        "op": "setblock",
+        "x": 6,
+        "y": 68,
+        "z": 2,
+        "block": "oak_slab"
+      },
+      {
+        "op": "setblock",
+        "x": 6,
+        "y": 68,
+        "z": 3,
+        "block": "oak_slab"
+      },
+      {
+        "op": "setblock",
+        "x": 6,
+        "y": 68,
+        "z": 4,
+        "block": "oak_slab"
+      },
+      {
+        "op": "setblock",
+        "x": 7,
+        "y": 64,
+        "z": -1,
+        "block": "grass_block"
+      },
+      {
+        "op": "setblock",
+        "x": 7,
+        "y": 64,
+        "z": 0,
+        "block": "water"
+      },
+      {
+        "op": "setblock",
+        "x": 7,
+        "y": 64,
+        "z": 1,
+        "block": "water"
+      },
+      {
+        "op": "setblock",
+        "x": 7,
+        "y": 64,
+        "z": 2,
+        "block": "water"
+      },
+      {
+        "op": "setblock",
+        "x": 7,
+        "y": 64,
+        "z": 3,
+        "block": "water"
+      },
+      {
+        "op": "setblock",
+        "x": 7,
+        "y": 64,
+        "z": 4,
+        "block": "water"
+      },
+      {
+        "op": "setblock",
+        "x": 7,
+        "y": 64,
+        "z": 5,
+        "block": "water"
+      },
+      {
+        "op": "setblock",
+        "x": 7,
+        "y": 64,
+        "z": 6,
+        "block": "water"
+      },
+      {
+        "op": "setblock",
+        "x": 7,
+        "y": 64,
+        "z": 7,
+        "block": "water"
+      },
+      {
+        "op": "setblock",
+        "x": 7,
+        "y": 64,
+        "z": 8,
+        "block": "water"
+      },
+      {
+        "op": "setblock",
+        "x": 7,
+        "y": 64,
+        "z": 9,
+        "block": "water"
+      },
+      {
+        "op": "setblock",
+        "x": 7,
+        "y": 64,
+        "z": 10,
+        "block": "water"
+      },
+      {
+        "op": "setblock",
+        "x": 7,
+        "y": 64,
+        "z": 11,
+        "block": "water"
+      },
+      {
+        "op": "setblock",
+        "x": 7,
+        "y": 64,
+        "z": 12,
+        "block": "grass_block"
+      },
+      {
+        "op": "setblock",
+        "x": 8,
+        "y": 64,
+        "z": -1,
+        "block": "grass_block"
+      },
+      {
+        "op": "setblock",
+        "x": 8,
+        "y": 64,
+        "z": 0,
+        "block": "water"
+      },
+      {
+        "op": "setblock",
+        "x": 8,
+        "y": 64,
+        "z": 1,
+        "block": "water"
+      },
+      {
+        "op": "setblock",
+        "x": 8,
+        "y": 64,
+        "z": 2,
+        "block": "water"
+      },
+      {
+        "op": "setblock",
+        "x": 8,
+        "y": 64,
+        "z": 3,
+        "block": "water"
+      },
+      {
+        "op": "setblock",
+        "x": 8,
+        "y": 64,
+        "z": 4,
+        "block": "water"
+      },
+      {
+        "op": "setblock",
+        "x": 8,
+        "y": 64,
+        "z": 5,
+        "block": "water"
+      },
+      {
+        "op": "setblock",
+        "x": 8,
+        "y": 64,
+        "z": 6,
+        "block": "water"
+      },
+      {
+        "op": "setblock",
+        "x": 8,
+        "y": 64,
+        "z": 7,
+        "block": "water"
+      },
+      {
+        "op": "setblock",
+        "x": 8,
+        "y": 64,
+        "z": 8,
+        "block": "water"
+      },
+      {
+        "op": "setblock",
+        "x": 8,
+        "y": 64,
+        "z": 9,
+        "block": "water"
+      },
+      {
+        "op": "setblock",
+        "x": 8,
+        "y": 64,
+        "z": 10,
+        "block": "water"
+      },
+      {
+        "op": "setblock",
+        "x": 8,
+        "y": 64,
+        "z": 11,
+        "block": "water"
+      },
+      {
+        "op": "setblock",
+        "x": 8,
+        "y": 64,
+        "z": 12,
+        "block": "grass_block"
+      },
+      {
+        "op": "setblock",
+        "x": 9,
+        "y": 64,
+        "z": -1,
+        "block": "grass_block"
+      },
+      {
+        "op": "setblock",
+        "x": 9,
+        "y": 64,
+        "z": 0,
+        "block": "water"
+      },
+      {
+        "op": "setblock",
+        "x": 9,
+        "y": 64,
+        "z": 1,
+        "block": "water"
+      },
+      {
+        "op": "setblock",
+        "x": 9,
+        "y": 64,
+        "z": 2,
+        "block": "water"
+      },
+      {
+        "op": "setblock",
+        "x": 9,
+        "y": 64,
+        "z": 3,
+        "block": "water"
+      },
+      {
+        "op": "setblock",
+        "x": 9,
+        "y": 64,
+        "z": 4,
+        "block": "water"
+      },
+      {
+        "op": "setblock",
+        "x": 9,
+        "y": 64,
+        "z": 5,
+        "block": "water"
+      },
+      {
+        "op": "setblock",
+        "x": 9,
+        "y": 64,
+        "z": 6,
+        "block": "water"
+      },
+      {
+        "op": "setblock",
+        "x": 9,
+        "y": 64,
+        "z": 7,
+        "block": "water"
+      },
+      {
+        "op": "setblock",
+        "x": 9,
+        "y": 64,
+        "z": 8,
+        "block": "water"
+      },
+      {
+        "op": "setblock",
+        "x": 9,
+        "y": 64,
+        "z": 9,
+        "block": "water"
+      },
+      {
+        "op": "setblock",
+        "x": 9,
+        "y": 64,
+        "z": 10,
+        "block": "water"
+      },
+      {
+        "op": "setblock",
+        "x": 9,
+        "y": 64,
+        "z": 11,
+        "block": "water"
+      },
+      {
+        "op": "setblock",
+        "x": 9,
+        "y": 64,
+        "z": 12,
+        "block": "grass_block"
+      },
+      {
+        "op": "setblock",
+        "x": 10,
+        "y": 64,
+        "z": -1,
+        "block": "grass_block"
+      },
+      {
+        "op": "setblock",
+        "x": 10,
+        "y": 64,
+        "z": 0,
+        "block": "water"
+      },
+      {
+        "op": "setblock",
+        "x": 10,
+        "y": 64,
+        "z": 1,
+        "block": "water"
+      },
+      {
+        "op": "setblock",
+        "x": 10,
+        "y": 64,
+        "z": 2,
+        "block": "water"
+      },
+      {
+        "op": "setblock",
+        "x": 10,
+        "y": 64,
+        "z": 3,
+        "block": "water"
+      },
+      {
+        "op": "setblock",
+        "x": 10,
+        "y": 64,
+        "z": 4,
+        "block": "water"
+      },
+      {
+        "op": "setblock",
+        "x": 10,
+        "y": 64,
+        "z": 5,
+        "block": "water"
+      },
+      {
+        "op": "setblock",
+        "x": 10,
+        "y": 64,
+        "z": 6,
+        "block": "water"
+      },
+      {
+        "op": "setblock",
+        "x": 10,
+        "y": 64,
+        "z": 7,
+        "block": "water"
+      },
+      {
+        "op": "setblock",
+        "x": 10,
+        "y": 64,
+        "z": 8,
+        "block": "water"
+      },
+      {
+        "op": "setblock",
+        "x": 10,
+        "y": 64,
+        "z": 9,
+        "block": "water"
+      },
+      {
+        "op": "setblock",
+        "x": 10,
+        "y": 64,
+        "z": 10,
+        "block": "water"
+      },
+      {
+        "op": "setblock",
+        "x": 10,
+        "y": 64,
+        "z": 11,
+        "block": "water"
+      },
+      {
+        "op": "setblock",
+        "x": 10,
+        "y": 64,
+        "z": 12,
+        "block": "grass_block"
+      },
+      {
+        "op": "setblock",
+        "x": 10,
+        "y": 65,
+        "z": 10,
+        "block": "lantern"
+      },
+      {
+        "op": "setblock",
+        "x": 11,
+        "y": 64,
+        "z": -1,
+        "block": "grass_block"
+      },
+      {
+        "op": "setblock",
+        "x": 11,
+        "y": 64,
+        "z": 0,
+        "block": "water"
+      },
+      {
+        "op": "setblock",
+        "x": 11,
+        "y": 64,
+        "z": 1,
+        "block": "water"
+      },
+      {
+        "op": "setblock",
+        "x": 11,
+        "y": 64,
+        "z": 2,
+        "block": "water"
+      },
+      {
+        "op": "setblock",
+        "x": 11,
+        "y": 64,
+        "z": 3,
+        "block": "water"
+      },
+      {
+        "op": "setblock",
+        "x": 11,
+        "y": 64,
+        "z": 4,
+        "block": "water"
+      },
+      {
+        "op": "setblock",
+        "x": 11,
+        "y": 64,
+        "z": 5,
+        "block": "water"
+      },
+      {
+        "op": "setblock",
+        "x": 11,
+        "y": 64,
+        "z": 6,
+        "block": "water"
+      },
+      {
+        "op": "setblock",
+        "x": 11,
+        "y": 64,
+        "z": 7,
+        "block": "water"
+      },
+      {
+        "op": "setblock",
+        "x": 11,
+        "y": 64,
+        "z": 8,
+        "block": "water"
+      },
+      {
+        "op": "setblock",
+        "x": 11,
+        "y": 64,
+        "z": 9,
+        "block": "water"
+      },
+      {
+        "op": "setblock",
+        "x": 11,
+        "y": 64,
+        "z": 10,
+        "block": "water"
+      },
+      {
+        "op": "setblock",
+        "x": 11,
+        "y": 64,
+        "z": 11,
+        "block": "water"
+      },
+      {
+        "op": "setblock",
+        "x": 11,
+        "y": 64,
+        "z": 12,
+        "block": "grass_block"
+      },
+      {
+        "op": "setblock",
+        "x": 12,
+        "y": 64,
+        "z": -1,
+        "block": "grass_block"
+      },
+      {
+        "op": "setblock",
+        "x": 12,
+        "y": 64,
+        "z": 0,
+        "block": "grass_block"
+      },
+      {
+        "op": "setblock",
+        "x": 12,
+        "y": 64,
+        "z": 1,
+        "block": "grass_block"
+      },
+      {
+        "op": "setblock",
+        "x": 12,
+        "y": 64,
+        "z": 2,
+        "block": "grass_block"
+      },
+      {
+        "op": "setblock",
+        "x": 12,
+        "y": 64,
+        "z": 3,
+        "block": "grass_block"
+      },
+      {
+        "op": "setblock",
+        "x": 12,
+        "y": 64,
+        "z": 4,
+        "block": "grass_block"
+      },
+      {
+        "op": "setblock",
+        "x": 12,
+        "y": 64,
+        "z": 5,
+        "block": "grass_block"
+      },
+      {
+        "op": "setblock",
+        "x": 12,
+        "y": 64,
+        "z": 6,
+        "block": "grass_block"
+      },
+      {
+        "op": "setblock",
+        "x": 12,
+        "y": 64,
+        "z": 7,
+        "block": "grass_block"
+      },
+      {
+        "op": "setblock",
+        "x": 12,
+        "y": 64,
+        "z": 8,
+        "block": "grass_block"
+      },
+      {
+        "op": "setblock",
+        "x": 12,
+        "y": 64,
+        "z": 9,
+        "block": "grass_block"
+      },
+      {
+        "op": "setblock",
+        "x": 12,
+        "y": 64,
+        "z": 10,
+        "block": "grass_block"
+      },
+      {
+        "op": "setblock",
+        "x": 12,
+        "y": 64,
+        "z": 11,
+        "block": "grass_block"
+      },
+      {
+        "op": "setblock",
+        "x": 12,
+        "y": 64,
+        "z": 12,
+        "block": "grass_block"
+      }
+    ]
+  },
+  "world_patch": {
+    "version": "plugin_payload_v1",
+    "build_id": "ed3bf11aecba039073e7085e146d4cd19161f38397c8f32571ff517f635d6837",
+    "player_id": "payload_wiring_tester",
+    "build_path": "spec_engine_v1",
+    "patch_source": "deterministic_engine",
+    "scene_path": "scene_engine_v1",
+    "hash": {
+      "scene_spec": "97355277c241d9f5eed0e31dd543d8ff0b4ffe4931ca3f5384856474a39e8be5",
+      "spec": "303498312e2dd05f4fc0fccb29d5489c74d939a72c7a4401ebb05f4d451631c8",
+      "merged_blocks": "3ef787786e452a5844a34100da724cd296fee4aa2a723cb08968c2420a89ea68"
+    },
+    "stats": {
+      "scene_block_count": 198,
+      "spec_block_count": 130,
+      "merged_block_count": 293,
+      "conflicts_total": 35,
+      "spec_dropped_total": 35
+    },
+    "origin": {
+      "base_x": 0,
+      "base_y": 64,
+      "base_z": 0,
+      "anchor_mode": "fixed"
+    },
+    "commands": [
+      {
+        "op": "setblock",
+        "x": -1,
+        "y": 64,
+        "z": -1,
+        "block": "grass_block"
+      },
+      {
+        "op": "setblock",
+        "x": -1,
+        "y": 64,
+        "z": 0,
+        "block": "grass_block"
+      },
+      {
+        "op": "setblock",
+        "x": -1,
+        "y": 64,
+        "z": 1,
+        "block": "grass_block"
+      },
+      {
+        "op": "setblock",
+        "x": -1,
+        "y": 64,
+        "z": 2,
+        "block": "grass_block"
+      },
+      {
+        "op": "setblock",
+        "x": -1,
+        "y": 64,
+        "z": 3,
+        "block": "grass_block"
+      },
+      {
+        "op": "setblock",
+        "x": -1,
+        "y": 64,
+        "z": 4,
+        "block": "grass_block"
+      },
+      {
+        "op": "setblock",
+        "x": -1,
+        "y": 64,
+        "z": 5,
+        "block": "grass_block"
+      },
+      {
+        "op": "setblock",
+        "x": -1,
+        "y": 64,
+        "z": 6,
+        "block": "grass_block"
+      },
+      {
+        "op": "setblock",
+        "x": -1,
+        "y": 64,
+        "z": 7,
+        "block": "grass_block"
+      },
+      {
+        "op": "setblock",
+        "x": -1,
+        "y": 64,
+        "z": 8,
+        "block": "grass_block"
+      },
+      {
+        "op": "setblock",
+        "x": -1,
+        "y": 64,
+        "z": 9,
+        "block": "grass_block"
+      },
+      {
+        "op": "setblock",
+        "x": -1,
+        "y": 64,
+        "z": 10,
+        "block": "grass_block"
+      },
+      {
+        "op": "setblock",
+        "x": -1,
+        "y": 64,
+        "z": 11,
+        "block": "grass_block"
+      },
+      {
+        "op": "setblock",
+        "x": -1,
+        "y": 64,
+        "z": 12,
+        "block": "grass_block"
+      },
+      {
+        "op": "setblock",
+        "x": 0,
+        "y": 64,
+        "z": -1,
+        "block": "grass_block"
+      },
+      {
+        "op": "setblock",
+        "x": 0,
+        "y": 64,
+        "z": 0,
+        "block": "water"
+      },
+      {
+        "op": "setblock",
+        "x": 0,
+        "y": 64,
+        "z": 1,
+        "block": "water"
+      },
+      {
+        "op": "setblock",
+        "x": 0,
+        "y": 64,
+        "z": 2,
+        "block": "water"
+      },
+      {
+        "op": "setblock",
+        "x": 0,
+        "y": 64,
+        "z": 3,
+        "block": "water"
+      },
+      {
+        "op": "setblock",
+        "x": 0,
+        "y": 64,
+        "z": 4,
+        "block": "water"
+      },
+      {
+        "op": "setblock",
+        "x": 0,
+        "y": 64,
+        "z": 5,
+        "block": "water"
+      },
+      {
+        "op": "setblock",
+        "x": 0,
+        "y": 64,
+        "z": 6,
+        "block": "water"
+      },
+      {
+        "op": "setblock",
+        "x": 0,
+        "y": 64,
+        "z": 7,
+        "block": "water"
+      },
+      {
+        "op": "setblock",
+        "x": 0,
+        "y": 64,
+        "z": 8,
+        "block": "water"
+      },
+      {
+        "op": "setblock",
+        "x": 0,
+        "y": 64,
+        "z": 9,
+        "block": "water"
+      },
+      {
+        "op": "setblock",
+        "x": 0,
+        "y": 64,
+        "z": 10,
+        "block": "water"
+      },
+      {
+        "op": "setblock",
+        "x": 0,
+        "y": 64,
+        "z": 11,
+        "block": "water"
+      },
+      {
+        "op": "setblock",
+        "x": 0,
+        "y": 64,
+        "z": 12,
+        "block": "grass_block"
+      },
+      {
+        "op": "setblock",
+        "x": 0,
+        "y": 65,
+        "z": 0,
+        "block": "oak_planks"
+      },
+      {
+        "op": "setblock",
+        "x": 0,
+        "y": 65,
+        "z": 1,
+        "block": "oak_planks"
+      },
+      {
+        "op": "setblock",
+        "x": 0,
+        "y": 65,
+        "z": 2,
+        "block": "oak_planks"
+      },
+      {
+        "op": "setblock",
+        "x": 0,
+        "y": 65,
+        "z": 3,
+        "block": "oak_planks"
+      },
+      {
+        "op": "setblock",
+        "x": 0,
+        "y": 65,
+        "z": 4,
+        "block": "oak_planks"
+      },
+      {
+        "op": "setblock",
+        "x": 0,
+        "y": 66,
+        "z": 0,
+        "block": "oak_planks"
+      },
+      {
+        "op": "setblock",
+        "x": 0,
+        "y": 66,
+        "z": 1,
+        "block": "oak_planks"
+      },
+      {
+        "op": "setblock",
+        "x": 0,
+        "y": 66,
+        "z": 2,
+        "block": "oak_planks"
+      },
+      {
+        "op": "setblock",
+        "x": 0,
+        "y": 66,
+        "z": 3,
+        "block": "oak_planks"
+      },
+      {
+        "op": "setblock",
+        "x": 0,
+        "y": 66,
+        "z": 4,
+        "block": "oak_planks"
+      },
+      {
+        "op": "setblock",
+        "x": 0,
+        "y": 67,
+        "z": 0,
+        "block": "oak_planks"
+      },
+      {
+        "op": "setblock",
+        "x": 0,
+        "y": 67,
+        "z": 1,
+        "block": "oak_planks"
+      },
+      {
+        "op": "setblock",
+        "x": 0,
+        "y": 67,
+        "z": 2,
+        "block": "oak_planks"
+      },
+      {
+        "op": "setblock",
+        "x": 0,
+        "y": 67,
+        "z": 3,
+        "block": "oak_planks"
+      },
+      {
+        "op": "setblock",
+        "x": 0,
+        "y": 67,
+        "z": 4,
+        "block": "oak_planks"
+      },
+      {
+        "op": "setblock",
+        "x": 0,
+        "y": 68,
+        "z": 0,
+        "block": "oak_slab"
+      },
+      {
+        "op": "setblock",
+        "x": 0,
+        "y": 68,
+        "z": 1,
+        "block": "oak_slab"
+      },
+      {
+        "op": "setblock",
+        "x": 0,
+        "y": 68,
+        "z": 2,
+        "block": "oak_slab"
+      },
+      {
+        "op": "setblock",
+        "x": 0,
+        "y": 68,
+        "z": 3,
+        "block": "oak_slab"
+      },
+      {
+        "op": "setblock",
+        "x": 0,
+        "y": 68,
+        "z": 4,
+        "block": "oak_slab"
+      },
+      {
+        "op": "setblock",
+        "x": 1,
+        "y": 64,
+        "z": -1,
+        "block": "grass_block"
+      },
+      {
+        "op": "setblock",
+        "x": 1,
+        "y": 64,
+        "z": 0,
+        "block": "water"
+      },
+      {
+        "op": "setblock",
+        "x": 1,
+        "y": 64,
+        "z": 1,
+        "block": "water"
+      },
+      {
+        "op": "setblock",
+        "x": 1,
+        "y": 64,
+        "z": 2,
+        "block": "water"
+      },
+      {
+        "op": "setblock",
+        "x": 1,
+        "y": 64,
+        "z": 3,
+        "block": "water"
+      },
+      {
+        "op": "setblock",
+        "x": 1,
+        "y": 64,
+        "z": 4,
+        "block": "water"
+      },
+      {
+        "op": "setblock",
+        "x": 1,
+        "y": 64,
+        "z": 5,
+        "block": "water"
+      },
+      {
+        "op": "setblock",
+        "x": 1,
+        "y": 64,
+        "z": 6,
+        "block": "water"
+      },
+      {
+        "op": "setblock",
+        "x": 1,
+        "y": 64,
+        "z": 7,
+        "block": "water"
+      },
+      {
+        "op": "setblock",
+        "x": 1,
+        "y": 64,
+        "z": 8,
+        "block": "water"
+      },
+      {
+        "op": "setblock",
+        "x": 1,
+        "y": 64,
+        "z": 9,
+        "block": "water"
+      },
+      {
+        "op": "setblock",
+        "x": 1,
+        "y": 64,
+        "z": 10,
+        "block": "water"
+      },
+      {
+        "op": "setblock",
+        "x": 1,
+        "y": 64,
+        "z": 11,
+        "block": "water"
+      },
+      {
+        "op": "setblock",
+        "x": 1,
+        "y": 64,
+        "z": 12,
+        "block": "grass_block"
+      },
+      {
+        "op": "setblock",
+        "x": 1,
+        "y": 65,
+        "z": 0,
+        "block": "oak_planks"
+      },
+      {
+        "op": "setblock",
+        "x": 1,
+        "y": 65,
+        "z": 1,
+        "block": "lantern"
+      },
+      {
+        "op": "setblock",
+        "x": 1,
+        "y": 65,
+        "z": 4,
+        "block": "oak_planks"
+      },
+      {
+        "op": "setblock",
+        "x": 1,
+        "y": 66,
+        "z": 0,
+        "block": "oak_planks"
+      },
+      {
+        "op": "setblock",
+        "x": 1,
+        "y": 66,
+        "z": 4,
+        "block": "oak_planks"
+      },
+      {
+        "op": "setblock",
+        "x": 1,
+        "y": 67,
+        "z": 0,
+        "block": "oak_planks"
+      },
+      {
+        "op": "setblock",
+        "x": 1,
+        "y": 67,
+        "z": 4,
+        "block": "oak_planks"
+      },
+      {
+        "op": "setblock",
+        "x": 1,
+        "y": 68,
+        "z": 0,
+        "block": "oak_slab"
+      },
+      {
+        "op": "setblock",
+        "x": 1,
+        "y": 68,
+        "z": 1,
+        "block": "oak_slab"
+      },
+      {
+        "op": "setblock",
+        "x": 1,
+        "y": 68,
+        "z": 2,
+        "block": "oak_slab"
+      },
+      {
+        "op": "setblock",
+        "x": 1,
+        "y": 68,
+        "z": 3,
+        "block": "oak_slab"
+      },
+      {
+        "op": "setblock",
+        "x": 1,
+        "y": 68,
+        "z": 4,
+        "block": "oak_slab"
+      },
+      {
+        "op": "setblock",
+        "x": 2,
+        "y": 64,
+        "z": -1,
+        "block": "grass_block"
+      },
+      {
+        "op": "setblock",
+        "x": 2,
+        "y": 64,
+        "z": 0,
+        "block": "water"
+      },
+      {
+        "op": "setblock",
+        "x": 2,
+        "y": 64,
+        "z": 1,
+        "block": "water"
+      },
+      {
+        "op": "setblock",
+        "x": 2,
+        "y": 64,
+        "z": 2,
+        "block": "water"
+      },
+      {
+        "op": "setblock",
+        "x": 2,
+        "y": 64,
+        "z": 3,
+        "block": "water"
+      },
+      {
+        "op": "setblock",
+        "x": 2,
+        "y": 64,
+        "z": 4,
+        "block": "water"
+      },
+      {
+        "op": "setblock",
+        "x": 2,
+        "y": 64,
+        "z": 5,
+        "block": "water"
+      },
+      {
+        "op": "setblock",
+        "x": 2,
+        "y": 64,
+        "z": 6,
+        "block": "water"
+      },
+      {
+        "op": "setblock",
+        "x": 2,
+        "y": 64,
+        "z": 7,
+        "block": "water"
+      },
+      {
+        "op": "setblock",
+        "x": 2,
+        "y": 64,
+        "z": 8,
+        "block": "water"
+      },
+      {
+        "op": "setblock",
+        "x": 2,
+        "y": 64,
+        "z": 9,
+        "block": "water"
+      },
+      {
+        "op": "setblock",
+        "x": 2,
+        "y": 64,
+        "z": 10,
+        "block": "water"
+      },
+      {
+        "op": "setblock",
+        "x": 2,
+        "y": 64,
+        "z": 11,
+        "block": "water"
+      },
+      {
+        "op": "setblock",
+        "x": 2,
+        "y": 64,
+        "z": 12,
+        "block": "grass_block"
+      },
+      {
+        "op": "setblock",
+        "x": 2,
+        "y": 65,
+        "z": 0,
+        "block": "oak_planks"
+      },
+      {
+        "op": "setblock",
+        "x": 2,
+        "y": 65,
+        "z": 4,
+        "block": "oak_planks"
+      },
+      {
+        "op": "setblock",
+        "x": 2,
+        "y": 66,
+        "z": 0,
+        "block": "oak_planks"
+      },
+      {
+        "op": "setblock",
+        "x": 2,
+        "y": 66,
+        "z": 4,
+        "block": "oak_planks"
+      },
+      {
+        "op": "setblock",
+        "x": 2,
+        "y": 67,
+        "z": 0,
+        "block": "oak_planks"
+      },
+      {
+        "op": "setblock",
+        "x": 2,
+        "y": 67,
+        "z": 4,
+        "block": "oak_planks"
+      },
+      {
+        "op": "setblock",
+        "x": 2,
+        "y": 68,
+        "z": 0,
+        "block": "oak_slab"
+      },
+      {
+        "op": "setblock",
+        "x": 2,
+        "y": 68,
+        "z": 1,
+        "block": "oak_slab"
+      },
+      {
+        "op": "setblock",
+        "x": 2,
+        "y": 68,
+        "z": 2,
+        "block": "oak_slab"
+      },
+      {
+        "op": "setblock",
+        "x": 2,
+        "y": 68,
+        "z": 3,
+        "block": "oak_slab"
+      },
+      {
+        "op": "setblock",
+        "x": 2,
+        "y": 68,
+        "z": 4,
+        "block": "oak_slab"
+      },
+      {
+        "op": "setblock",
+        "x": 3,
+        "y": 64,
+        "z": -1,
+        "block": "grass_block"
+      },
+      {
+        "op": "setblock",
+        "x": 3,
+        "y": 64,
+        "z": 0,
+        "block": "water"
+      },
+      {
+        "op": "setblock",
+        "x": 3,
+        "y": 64,
+        "z": 1,
+        "block": "water"
+      },
+      {
+        "op": "setblock",
+        "x": 3,
+        "y": 64,
+        "z": 2,
+        "block": "water"
+      },
+      {
+        "op": "setblock",
+        "x": 3,
+        "y": 64,
+        "z": 3,
+        "block": "water"
+      },
+      {
+        "op": "setblock",
+        "x": 3,
+        "y": 64,
+        "z": 4,
+        "block": "water"
+      },
+      {
+        "op": "setblock",
+        "x": 3,
+        "y": 64,
+        "z": 5,
+        "block": "water"
+      },
+      {
+        "op": "setblock",
+        "x": 3,
+        "y": 64,
+        "z": 6,
+        "block": "water"
+      },
+      {
+        "op": "setblock",
+        "x": 3,
+        "y": 64,
+        "z": 7,
+        "block": "water"
+      },
+      {
+        "op": "setblock",
+        "x": 3,
+        "y": 64,
+        "z": 8,
+        "block": "water"
+      },
+      {
+        "op": "setblock",
+        "x": 3,
+        "y": 64,
+        "z": 9,
+        "block": "water"
+      },
+      {
+        "op": "setblock",
+        "x": 3,
+        "y": 64,
+        "z": 10,
+        "block": "water"
+      },
+      {
+        "op": "setblock",
+        "x": 3,
+        "y": 64,
+        "z": 11,
+        "block": "water"
+      },
+      {
+        "op": "setblock",
+        "x": 3,
+        "y": 64,
+        "z": 12,
+        "block": "grass_block"
+      },
+      {
+        "op": "setblock",
+        "x": 3,
+        "y": 65,
+        "z": 0,
+        "block": "air"
+      },
+      {
+        "op": "setblock",
+        "x": 3,
+        "y": 65,
+        "z": 4,
+        "block": "oak_planks"
+      },
+      {
+        "op": "setblock",
+        "x": 3,
+        "y": 66,
+        "z": 0,
+        "block": "air"
+      },
+      {
+        "op": "setblock",
+        "x": 3,
+        "y": 66,
+        "z": 4,
+        "block": "oak_planks"
+      },
+      {
+        "op": "setblock",
+        "x": 3,
+        "y": 67,
+        "z": 0,
+        "block": "oak_planks"
+      },
+      {
+        "op": "setblock",
+        "x": 3,
+        "y": 67,
+        "z": 4,
+        "block": "oak_planks"
+      },
+      {
+        "op": "setblock",
+        "x": 3,
+        "y": 68,
+        "z": 0,
+        "block": "oak_slab"
+      },
+      {
+        "op": "setblock",
+        "x": 3,
+        "y": 68,
+        "z": 1,
+        "block": "oak_slab"
+      },
+      {
+        "op": "setblock",
+        "x": 3,
+        "y": 68,
+        "z": 2,
+        "block": "oak_slab"
+      },
+      {
+        "op": "setblock",
+        "x": 3,
+        "y": 68,
+        "z": 3,
+        "block": "oak_slab"
+      },
+      {
+        "op": "setblock",
+        "x": 3,
+        "y": 68,
+        "z": 4,
+        "block": "oak_slab"
+      },
+      {
+        "op": "setblock",
+        "x": 4,
+        "y": 64,
+        "z": -1,
+        "block": "grass_block"
+      },
+      {
+        "op": "setblock",
+        "x": 4,
+        "y": 64,
+        "z": 0,
+        "block": "water"
+      },
+      {
+        "op": "setblock",
+        "x": 4,
+        "y": 64,
+        "z": 1,
+        "block": "water"
+      },
+      {
+        "op": "setblock",
+        "x": 4,
+        "y": 64,
+        "z": 2,
+        "block": "water"
+      },
+      {
+        "op": "setblock",
+        "x": 4,
+        "y": 64,
+        "z": 3,
+        "block": "water"
+      },
+      {
+        "op": "setblock",
+        "x": 4,
+        "y": 64,
+        "z": 4,
+        "block": "water"
+      },
+      {
+        "op": "setblock",
+        "x": 4,
+        "y": 64,
+        "z": 5,
+        "block": "water"
+      },
+      {
+        "op": "setblock",
+        "x": 4,
+        "y": 64,
+        "z": 6,
+        "block": "water"
+      },
+      {
+        "op": "setblock",
+        "x": 4,
+        "y": 64,
+        "z": 7,
+        "block": "water"
+      },
+      {
+        "op": "setblock",
+        "x": 4,
+        "y": 64,
+        "z": 8,
+        "block": "water"
+      },
+      {
+        "op": "setblock",
+        "x": 4,
+        "y": 64,
+        "z": 9,
+        "block": "water"
+      },
+      {
+        "op": "setblock",
+        "x": 4,
+        "y": 64,
+        "z": 10,
+        "block": "water"
+      },
+      {
+        "op": "setblock",
+        "x": 4,
+        "y": 64,
+        "z": 11,
+        "block": "water"
+      },
+      {
+        "op": "setblock",
+        "x": 4,
+        "y": 64,
+        "z": 12,
+        "block": "grass_block"
+      },
+      {
+        "op": "setblock",
+        "x": 4,
+        "y": 65,
+        "z": 0,
+        "block": "oak_planks"
+      },
+      {
+        "op": "setblock",
+        "x": 4,
+        "y": 65,
+        "z": 4,
+        "block": "oak_planks"
+      },
+      {
+        "op": "setblock",
+        "x": 4,
+        "y": 66,
+        "z": 0,
+        "block": "oak_planks"
+      },
+      {
+        "op": "setblock",
+        "x": 4,
+        "y": 66,
+        "z": 4,
+        "block": "oak_planks"
+      },
+      {
+        "op": "setblock",
+        "x": 4,
+        "y": 67,
+        "z": 0,
+        "block": "oak_planks"
+      },
+      {
+        "op": "setblock",
+        "x": 4,
+        "y": 67,
+        "z": 4,
+        "block": "oak_planks"
+      },
+      {
+        "op": "setblock",
+        "x": 4,
+        "y": 68,
+        "z": 0,
+        "block": "oak_slab"
+      },
+      {
+        "op": "setblock",
+        "x": 4,
+        "y": 68,
+        "z": 1,
+        "block": "oak_slab"
+      },
+      {
+        "op": "setblock",
+        "x": 4,
+        "y": 68,
+        "z": 2,
+        "block": "oak_slab"
+      },
+      {
+        "op": "setblock",
+        "x": 4,
+        "y": 68,
+        "z": 3,
+        "block": "oak_slab"
+      },
+      {
+        "op": "setblock",
+        "x": 4,
+        "y": 68,
+        "z": 4,
+        "block": "oak_slab"
+      },
+      {
+        "op": "setblock",
+        "x": 5,
+        "y": 64,
+        "z": -1,
+        "block": "grass_block"
+      },
+      {
+        "op": "setblock",
+        "x": 5,
+        "y": 64,
+        "z": 0,
+        "block": "water"
+      },
+      {
+        "op": "setblock",
+        "x": 5,
+        "y": 64,
+        "z": 1,
+        "block": "water"
+      },
+      {
+        "op": "setblock",
+        "x": 5,
+        "y": 64,
+        "z": 2,
+        "block": "water"
+      },
+      {
+        "op": "setblock",
+        "x": 5,
+        "y": 64,
+        "z": 3,
+        "block": "water"
+      },
+      {
+        "op": "setblock",
+        "x": 5,
+        "y": 64,
+        "z": 4,
+        "block": "water"
+      },
+      {
+        "op": "setblock",
+        "x": 5,
+        "y": 64,
+        "z": 5,
+        "block": "water"
+      },
+      {
+        "op": "setblock",
+        "x": 5,
+        "y": 64,
+        "z": 6,
+        "block": "water"
+      },
+      {
+        "op": "setblock",
+        "x": 5,
+        "y": 64,
+        "z": 7,
+        "block": "water"
+      },
+      {
+        "op": "setblock",
+        "x": 5,
+        "y": 64,
+        "z": 8,
+        "block": "water"
+      },
+      {
+        "op": "setblock",
+        "x": 5,
+        "y": 64,
+        "z": 9,
+        "block": "water"
+      },
+      {
+        "op": "setblock",
+        "x": 5,
+        "y": 64,
+        "z": 10,
+        "block": "water"
+      },
+      {
+        "op": "setblock",
+        "x": 5,
+        "y": 64,
+        "z": 11,
+        "block": "water"
+      },
+      {
+        "op": "setblock",
+        "x": 5,
+        "y": 64,
+        "z": 12,
+        "block": "grass_block"
+      },
+      {
+        "op": "setblock",
+        "x": 5,
+        "y": 65,
+        "z": 0,
+        "block": "oak_planks"
+      },
+      {
+        "op": "setblock",
+        "x": 5,
+        "y": 65,
+        "z": 4,
+        "block": "oak_planks"
+      },
+      {
+        "op": "setblock",
+        "x": 5,
+        "y": 66,
+        "z": 0,
+        "block": "oak_planks"
+      },
+      {
+        "op": "setblock",
+        "x": 5,
+        "y": 66,
+        "z": 4,
+        "block": "oak_planks"
+      },
+      {
+        "op": "setblock",
+        "x": 5,
+        "y": 67,
+        "z": 0,
+        "block": "oak_planks"
+      },
+      {
+        "op": "setblock",
+        "x": 5,
+        "y": 67,
+        "z": 4,
+        "block": "oak_planks"
+      },
+      {
+        "op": "setblock",
+        "x": 5,
+        "y": 68,
+        "z": 0,
+        "block": "oak_slab"
+      },
+      {
+        "op": "setblock",
+        "x": 5,
+        "y": 68,
+        "z": 1,
+        "block": "oak_slab"
+      },
+      {
+        "op": "setblock",
+        "x": 5,
+        "y": 68,
+        "z": 2,
+        "block": "oak_slab"
+      },
+      {
+        "op": "setblock",
+        "x": 5,
+        "y": 68,
+        "z": 3,
+        "block": "oak_slab"
+      },
+      {
+        "op": "setblock",
+        "x": 5,
+        "y": 68,
+        "z": 4,
+        "block": "oak_slab"
+      },
+      {
+        "op": "setblock",
+        "x": 6,
+        "y": 64,
+        "z": -1,
+        "block": "grass_block"
+      },
+      {
+        "op": "setblock",
+        "x": 6,
+        "y": 64,
+        "z": 0,
+        "block": "water"
+      },
+      {
+        "op": "setblock",
+        "x": 6,
+        "y": 64,
+        "z": 1,
+        "block": "water"
+      },
+      {
+        "op": "setblock",
+        "x": 6,
+        "y": 64,
+        "z": 2,
+        "block": "water"
+      },
+      {
+        "op": "setblock",
+        "x": 6,
+        "y": 64,
+        "z": 3,
+        "block": "water"
+      },
+      {
+        "op": "setblock",
+        "x": 6,
+        "y": 64,
+        "z": 4,
+        "block": "water"
+      },
+      {
+        "op": "setblock",
+        "x": 6,
+        "y": 64,
+        "z": 5,
+        "block": "water"
+      },
+      {
+        "op": "setblock",
+        "x": 6,
+        "y": 64,
+        "z": 6,
+        "block": "water"
+      },
+      {
+        "op": "setblock",
+        "x": 6,
+        "y": 64,
+        "z": 7,
+        "block": "water"
+      },
+      {
+        "op": "setblock",
+        "x": 6,
+        "y": 64,
+        "z": 8,
+        "block": "water"
+      },
+      {
+        "op": "setblock",
+        "x": 6,
+        "y": 64,
+        "z": 9,
+        "block": "water"
+      },
+      {
+        "op": "setblock",
+        "x": 6,
+        "y": 64,
+        "z": 10,
+        "block": "water"
+      },
+      {
+        "op": "setblock",
+        "x": 6,
+        "y": 64,
+        "z": 11,
+        "block": "water"
+      },
+      {
+        "op": "setblock",
+        "x": 6,
+        "y": 64,
+        "z": 12,
+        "block": "grass_block"
+      },
+      {
+        "op": "setblock",
+        "x": 6,
+        "y": 65,
+        "z": 0,
+        "block": "oak_planks"
+      },
+      {
+        "op": "setblock",
+        "x": 6,
+        "y": 65,
+        "z": 1,
+        "block": "oak_planks"
+      },
+      {
+        "op": "setblock",
+        "x": 6,
+        "y": 65,
+        "z": 2,
+        "block": "oak_planks"
+      },
+      {
+        "op": "setblock",
+        "x": 6,
+        "y": 65,
+        "z": 3,
+        "block": "oak_planks"
+      },
+      {
+        "op": "setblock",
+        "x": 6,
+        "y": 65,
+        "z": 4,
+        "block": "oak_planks"
+      },
+      {
+        "op": "setblock",
+        "x": 6,
+        "y": 66,
+        "z": 0,
+        "block": "oak_planks"
+      },
+      {
+        "op": "setblock",
+        "x": 6,
+        "y": 66,
+        "z": 1,
+        "block": "oak_planks"
+      },
+      {
+        "op": "setblock",
+        "x": 6,
+        "y": 66,
+        "z": 2,
+        "block": "oak_planks"
+      },
+      {
+        "op": "setblock",
+        "x": 6,
+        "y": 66,
+        "z": 3,
+        "block": "oak_planks"
+      },
+      {
+        "op": "setblock",
+        "x": 6,
+        "y": 66,
+        "z": 4,
+        "block": "oak_planks"
+      },
+      {
+        "op": "setblock",
+        "x": 6,
+        "y": 67,
+        "z": 0,
+        "block": "oak_planks"
+      },
+      {
+        "op": "setblock",
+        "x": 6,
+        "y": 67,
+        "z": 1,
+        "block": "oak_planks"
+      },
+      {
+        "op": "setblock",
+        "x": 6,
+        "y": 67,
+        "z": 2,
+        "block": "oak_planks"
+      },
+      {
+        "op": "setblock",
+        "x": 6,
+        "y": 67,
+        "z": 3,
+        "block": "oak_planks"
+      },
+      {
+        "op": "setblock",
+        "x": 6,
+        "y": 67,
+        "z": 4,
+        "block": "oak_planks"
+      },
+      {
+        "op": "setblock",
+        "x": 6,
+        "y": 68,
+        "z": 0,
+        "block": "oak_slab"
+      },
+      {
+        "op": "setblock",
+        "x": 6,
+        "y": 68,
+        "z": 1,
+        "block": "oak_slab"
+      },
+      {
+        "op": "setblock",
+        "x": 6,
+        "y": 68,
+        "z": 2,
+        "block": "oak_slab"
+      },
+      {
+        "op": "setblock",
+        "x": 6,
+        "y": 68,
+        "z": 3,
+        "block": "oak_slab"
+      },
+      {
+        "op": "setblock",
+        "x": 6,
+        "y": 68,
+        "z": 4,
+        "block": "oak_slab"
+      },
+      {
+        "op": "setblock",
+        "x": 7,
+        "y": 64,
+        "z": -1,
+        "block": "grass_block"
+      },
+      {
+        "op": "setblock",
+        "x": 7,
+        "y": 64,
+        "z": 0,
+        "block": "water"
+      },
+      {
+        "op": "setblock",
+        "x": 7,
+        "y": 64,
+        "z": 1,
+        "block": "water"
+      },
+      {
+        "op": "setblock",
+        "x": 7,
+        "y": 64,
+        "z": 2,
+        "block": "water"
+      },
+      {
+        "op": "setblock",
+        "x": 7,
+        "y": 64,
+        "z": 3,
+        "block": "water"
+      },
+      {
+        "op": "setblock",
+        "x": 7,
+        "y": 64,
+        "z": 4,
+        "block": "water"
+      },
+      {
+        "op": "setblock",
+        "x": 7,
+        "y": 64,
+        "z": 5,
+        "block": "water"
+      },
+      {
+        "op": "setblock",
+        "x": 7,
+        "y": 64,
+        "z": 6,
+        "block": "water"
+      },
+      {
+        "op": "setblock",
+        "x": 7,
+        "y": 64,
+        "z": 7,
+        "block": "water"
+      },
+      {
+        "op": "setblock",
+        "x": 7,
+        "y": 64,
+        "z": 8,
+        "block": "water"
+      },
+      {
+        "op": "setblock",
+        "x": 7,
+        "y": 64,
+        "z": 9,
+        "block": "water"
+      },
+      {
+        "op": "setblock",
+        "x": 7,
+        "y": 64,
+        "z": 10,
+        "block": "water"
+      },
+      {
+        "op": "setblock",
+        "x": 7,
+        "y": 64,
+        "z": 11,
+        "block": "water"
+      },
+      {
+        "op": "setblock",
+        "x": 7,
+        "y": 64,
+        "z": 12,
+        "block": "grass_block"
+      },
+      {
+        "op": "setblock",
+        "x": 8,
+        "y": 64,
+        "z": -1,
+        "block": "grass_block"
+      },
+      {
+        "op": "setblock",
+        "x": 8,
+        "y": 64,
+        "z": 0,
+        "block": "water"
+      },
+      {
+        "op": "setblock",
+        "x": 8,
+        "y": 64,
+        "z": 1,
+        "block": "water"
+      },
+      {
+        "op": "setblock",
+        "x": 8,
+        "y": 64,
+        "z": 2,
+        "block": "water"
+      },
+      {
+        "op": "setblock",
+        "x": 8,
+        "y": 64,
+        "z": 3,
+        "block": "water"
+      },
+      {
+        "op": "setblock",
+        "x": 8,
+        "y": 64,
+        "z": 4,
+        "block": "water"
+      },
+      {
+        "op": "setblock",
+        "x": 8,
+        "y": 64,
+        "z": 5,
+        "block": "water"
+      },
+      {
+        "op": "setblock",
+        "x": 8,
+        "y": 64,
+        "z": 6,
+        "block": "water"
+      },
+      {
+        "op": "setblock",
+        "x": 8,
+        "y": 64,
+        "z": 7,
+        "block": "water"
+      },
+      {
+        "op": "setblock",
+        "x": 8,
+        "y": 64,
+        "z": 8,
+        "block": "water"
+      },
+      {
+        "op": "setblock",
+        "x": 8,
+        "y": 64,
+        "z": 9,
+        "block": "water"
+      },
+      {
+        "op": "setblock",
+        "x": 8,
+        "y": 64,
+        "z": 10,
+        "block": "water"
+      },
+      {
+        "op": "setblock",
+        "x": 8,
+        "y": 64,
+        "z": 11,
+        "block": "water"
+      },
+      {
+        "op": "setblock",
+        "x": 8,
+        "y": 64,
+        "z": 12,
+        "block": "grass_block"
+      },
+      {
+        "op": "setblock",
+        "x": 9,
+        "y": 64,
+        "z": -1,
+        "block": "grass_block"
+      },
+      {
+        "op": "setblock",
+        "x": 9,
+        "y": 64,
+        "z": 0,
+        "block": "water"
+      },
+      {
+        "op": "setblock",
+        "x": 9,
+        "y": 64,
+        "z": 1,
+        "block": "water"
+      },
+      {
+        "op": "setblock",
+        "x": 9,
+        "y": 64,
+        "z": 2,
+        "block": "water"
+      },
+      {
+        "op": "setblock",
+        "x": 9,
+        "y": 64,
+        "z": 3,
+        "block": "water"
+      },
+      {
+        "op": "setblock",
+        "x": 9,
+        "y": 64,
+        "z": 4,
+        "block": "water"
+      },
+      {
+        "op": "setblock",
+        "x": 9,
+        "y": 64,
+        "z": 5,
+        "block": "water"
+      },
+      {
+        "op": "setblock",
+        "x": 9,
+        "y": 64,
+        "z": 6,
+        "block": "water"
+      },
+      {
+        "op": "setblock",
+        "x": 9,
+        "y": 64,
+        "z": 7,
+        "block": "water"
+      },
+      {
+        "op": "setblock",
+        "x": 9,
+        "y": 64,
+        "z": 8,
+        "block": "water"
+      },
+      {
+        "op": "setblock",
+        "x": 9,
+        "y": 64,
+        "z": 9,
+        "block": "water"
+      },
+      {
+        "op": "setblock",
+        "x": 9,
+        "y": 64,
+        "z": 10,
+        "block": "water"
+      },
+      {
+        "op": "setblock",
+        "x": 9,
+        "y": 64,
+        "z": 11,
+        "block": "water"
+      },
+      {
+        "op": "setblock",
+        "x": 9,
+        "y": 64,
+        "z": 12,
+        "block": "grass_block"
+      },
+      {
+        "op": "setblock",
+        "x": 10,
+        "y": 64,
+        "z": -1,
+        "block": "grass_block"
+      },
+      {
+        "op": "setblock",
+        "x": 10,
+        "y": 64,
+        "z": 0,
+        "block": "water"
+      },
+      {
+        "op": "setblock",
+        "x": 10,
+        "y": 64,
+        "z": 1,
+        "block": "water"
+      },
+      {
+        "op": "setblock",
+        "x": 10,
+        "y": 64,
+        "z": 2,
+        "block": "water"
+      },
+      {
+        "op": "setblock",
+        "x": 10,
+        "y": 64,
+        "z": 3,
+        "block": "water"
+      },
+      {
+        "op": "setblock",
+        "x": 10,
+        "y": 64,
+        "z": 4,
+        "block": "water"
+      },
+      {
+        "op": "setblock",
+        "x": 10,
+        "y": 64,
+        "z": 5,
+        "block": "water"
+      },
+      {
+        "op": "setblock",
+        "x": 10,
+        "y": 64,
+        "z": 6,
+        "block": "water"
+      },
+      {
+        "op": "setblock",
+        "x": 10,
+        "y": 64,
+        "z": 7,
+        "block": "water"
+      },
+      {
+        "op": "setblock",
+        "x": 10,
+        "y": 64,
+        "z": 8,
+        "block": "water"
+      },
+      {
+        "op": "setblock",
+        "x": 10,
+        "y": 64,
+        "z": 9,
+        "block": "water"
+      },
+      {
+        "op": "setblock",
+        "x": 10,
+        "y": 64,
+        "z": 10,
+        "block": "water"
+      },
+      {
+        "op": "setblock",
+        "x": 10,
+        "y": 64,
+        "z": 11,
+        "block": "water"
+      },
+      {
+        "op": "setblock",
+        "x": 10,
+        "y": 64,
+        "z": 12,
+        "block": "grass_block"
+      },
+      {
+        "op": "setblock",
+        "x": 10,
+        "y": 65,
+        "z": 10,
+        "block": "lantern"
+      },
+      {
+        "op": "setblock",
+        "x": 11,
+        "y": 64,
+        "z": -1,
+        "block": "grass_block"
+      },
+      {
+        "op": "setblock",
+        "x": 11,
+        "y": 64,
+        "z": 0,
+        "block": "water"
+      },
+      {
+        "op": "setblock",
+        "x": 11,
+        "y": 64,
+        "z": 1,
+        "block": "water"
+      },
+      {
+        "op": "setblock",
+        "x": 11,
+        "y": 64,
+        "z": 2,
+        "block": "water"
+      },
+      {
+        "op": "setblock",
+        "x": 11,
+        "y": 64,
+        "z": 3,
+        "block": "water"
+      },
+      {
+        "op": "setblock",
+        "x": 11,
+        "y": 64,
+        "z": 4,
+        "block": "water"
+      },
+      {
+        "op": "setblock",
+        "x": 11,
+        "y": 64,
+        "z": 5,
+        "block": "water"
+      },
+      {
+        "op": "setblock",
+        "x": 11,
+        "y": 64,
+        "z": 6,
+        "block": "water"
+      },
+      {
+        "op": "setblock",
+        "x": 11,
+        "y": 64,
+        "z": 7,
+        "block": "water"
+      },
+      {
+        "op": "setblock",
+        "x": 11,
+        "y": 64,
+        "z": 8,
+        "block": "water"
+      },
+      {
+        "op": "setblock",
+        "x": 11,
+        "y": 64,
+        "z": 9,
+        "block": "water"
+      },
+      {
+        "op": "setblock",
+        "x": 11,
+        "y": 64,
+        "z": 10,
+        "block": "water"
+      },
+      {
+        "op": "setblock",
+        "x": 11,
+        "y": 64,
+        "z": 11,
+        "block": "water"
+      },
+      {
+        "op": "setblock",
+        "x": 11,
+        "y": 64,
+        "z": 12,
+        "block": "grass_block"
+      },
+      {
+        "op": "setblock",
+        "x": 12,
+        "y": 64,
+        "z": -1,
+        "block": "grass_block"
+      },
+      {
+        "op": "setblock",
+        "x": 12,
+        "y": 64,
+        "z": 0,
+        "block": "grass_block"
+      },
+      {
+        "op": "setblock",
+        "x": 12,
+        "y": 64,
+        "z": 1,
+        "block": "grass_block"
+      },
+      {
+        "op": "setblock",
+        "x": 12,
+        "y": 64,
+        "z": 2,
+        "block": "grass_block"
+      },
+      {
+        "op": "setblock",
+        "x": 12,
+        "y": 64,
+        "z": 3,
+        "block": "grass_block"
+      },
+      {
+        "op": "setblock",
+        "x": 12,
+        "y": 64,
+        "z": 4,
+        "block": "grass_block"
+      },
+      {
+        "op": "setblock",
+        "x": 12,
+        "y": 64,
+        "z": 5,
+        "block": "grass_block"
+      },
+      {
+        "op": "setblock",
+        "x": 12,
+        "y": 64,
+        "z": 6,
+        "block": "grass_block"
+      },
+      {
+        "op": "setblock",
+        "x": 12,
+        "y": 64,
+        "z": 7,
+        "block": "grass_block"
+      },
+      {
+        "op": "setblock",
+        "x": 12,
+        "y": 64,
+        "z": 8,
+        "block": "grass_block"
+      },
+      {
+        "op": "setblock",
+        "x": 12,
+        "y": 64,
+        "z": 9,
+        "block": "grass_block"
+      },
+      {
+        "op": "setblock",
+        "x": 12,
+        "y": 64,
+        "z": 10,
+        "block": "grass_block"
+      },
+      {
+        "op": "setblock",
+        "x": 12,
+        "y": 64,
+        "z": 11,
+        "block": "grass_block"
+      },
+      {
+        "op": "setblock",
+        "x": 12,
+        "y": 64,
+        "z": 12,
+        "block": "grass_block"
+      }
+    ]
+  },
+  "tree": null
+}

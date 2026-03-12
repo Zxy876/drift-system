@@ -1,0 +1,730 @@
+{
+  "id": "flagship_custom_1772800490035",
+  "title": "森林营地",
+  "text": [
+    "创建剧情；黑夜森林营地"
+  ],
+  "tags": [],
+  "mood": {
+    "base": "calm",
+    "intensity": 0.5
+  },
+  "choices": [],
+  "meta": {
+    "trng_transaction": {
+      "tx_id": "tx_965ff071a569",
+      "base_state_hash": "befe6682a6c32ed55d288ddaf40636b0ee73c37fd48bd8ec91204afa91dba85e",
+      "committed_state_hash": "b450e47a275e671dd891764d7ad74099a3233d2dc6cf18b9dff2a9bf07506cde",
+      "committed_graph_hash": "39b4cdc95bf4a40a4ef86fe0c750d439a59976425acfcca8201adb2435875be1",
+      "commit_timestamp": 1772800490.040422,
+      "rule_version": "rule_v2_2",
+      "engine_version": "engine_v2_1",
+      "event_count": 3
+    },
+    "scene_generation": {
+      "scene_theme": "森林营地",
+      "scene_hint": "黑夜",
+      "selected_anchor": "player",
+      "initial_anchor": "player",
+      "final_anchor": "player_safe_ground",
+      "player_pos": {
+        "world": "world",
+        "x": -248.0,
+        "y": 68.0,
+        "z": -157.0
+      },
+      "initial_anchor_pos": {
+        "world": "world",
+        "x": -248.0,
+        "y": 68.0,
+        "z": -157.0
+      },
+      "final_anchor_pos": {
+        "world": "world",
+        "x": -250.0,
+        "y": 67.0,
+        "z": -154.0
+      },
+      "anchor_pos": {
+        "world": "world",
+        "x": -250.0,
+        "y": 67.0,
+        "z": -154.0
+      },
+      "fragments": [
+        "camp",
+        "fire",
+        "cooking_area"
+      ],
+      "event_count": 3,
+      "event_plan": [
+        {
+          "event_id": "spawn_camp",
+          "type": "spawn_structure",
+          "text": "spawn_camp",
+          "anchor": {
+            "mode": "absolute",
+            "ref": "player",
+            "world": "world",
+            "x": -250.0,
+            "y": 67.0,
+            "z": -154.0
+          },
+          "data": {
+            "template": "camp_small",
+            "scene_hint": "黑夜"
+          }
+        },
+        {
+          "event_id": "spawn_fire",
+          "type": "spawn_block",
+          "text": "spawn_fire",
+          "anchor": {
+            "mode": "absolute",
+            "ref": "camp_center",
+            "world": "world",
+            "x": -250.0,
+            "y": 67.0,
+            "z": -154.0
+          },
+          "data": {
+            "block": "campfire",
+            "scene_hint": "黑夜"
+          }
+        },
+        {
+          "event_id": "spawn_cooking_area",
+          "type": "spawn_structure",
+          "text": "spawn_cooking_area",
+          "anchor": {
+            "mode": "absolute",
+            "ref": "camp_center",
+            "world": "world",
+            "x": -250.0,
+            "y": 67.0,
+            "z": -154.0
+          },
+          "data": {
+            "template": "cooking_area_basic",
+            "scene_hint": "黑夜"
+          }
+        }
+      ],
+      "inventory_resources": {
+        "bamboo_fence": 2,
+        "pork": 12,
+        "raw_copper": 1,
+        "torch": 11,
+        "wood": 14
+      }
+    }
+  },
+  "npcs": [],
+  "bootstrap_patch": {
+    "variables": {
+      "story_world_generated": true,
+      "story_title": "森林营地"
+    },
+    "mc": {
+      "tell": "§6森林营地§r\n创建剧情；黑夜森林营地",
+      "spawn": {
+        "x": -250,
+        "y": 67,
+        "z": -154,
+        "world": "world"
+      },
+      "time": "night",
+      "weather": "clear",
+      "spawns": [
+        {
+          "type": "villager",
+          "name": "守夜人",
+          "x": -248,
+          "y": 67,
+          "z": -157,
+          "dialog": "小心，森林深处有怪物出没。",
+          "world": "world"
+        },
+        {
+          "type": "zombie",
+          "name": "迷失的僵尸",
+          "x": -255,
+          "y": 67,
+          "z": -150,
+          "dialog": "...",
+          "world": "world"
+        },
+        {
+          "type": "cow",
+          "name": "营地奶牛",
+          "x": -247,
+          "y": 67,
+          "z": -152,
+          "dialog": "",
+          "world": "world"
+        }
+      ],
+      "blocks": [
+        {
+          "type": "oak_planks",
+          "x": -250,
+          "y": 66,
+          "z": -154,
+          "world": "world"
+        },
+        {
+          "type": "oak_planks",
+          "x": -249,
+          "y": 66,
+          "z": -154,
+          "world": "world"
+        },
+        {
+          "type": "oak_planks",
+          "x": -251,
+          "y": 66,
+          "z": -154,
+          "world": "world"
+        },
+        {
+          "type": "oak_planks",
+          "x": -250,
+          "y": 66,
+          "z": -153,
+          "world": "world"
+        },
+        {
+          "type": "oak_planks",
+          "x": -250,
+          "y": 66,
+          "z": -155,
+          "world": "world"
+        },
+        {
+          "type": "stone",
+          "x": -250,
+          "y": 67,
+          "z": -154,
+          "world": "world"
+        },
+        {
+          "type": "torch",
+          "x": -250,
+          "y": 68,
+          "z": -154,
+          "world": "world"
+        },
+        {
+          "type": "oak_planks",
+          "x": -248,
+          "y": 66,
+          "z": -157,
+          "world": "world"
+        },
+        {
+          "type": "oak_planks",
+          "x": -247,
+          "y": 66,
+          "z": -157,
+          "world": "world"
+        },
+        {
+          "type": "oak_planks",
+          "x": -248,
+          "y": 66,
+          "z": -156,
+          "world": "world"
+        },
+        {
+          "type": "oak_planks",
+          "x": -247,
+          "y": 66,
+          "z": -156,
+          "world": "world"
+        },
+        {
+          "type": "oak_planks",
+          "x": -248,
+          "y": 67,
+          "z": -157,
+          "world": "world"
+        },
+        {
+          "type": "oak_planks",
+          "x": -247,
+          "y": 67,
+          "z": -157,
+          "world": "world"
+        },
+        {
+          "type": "oak_planks",
+          "x": -248,
+          "y": 67,
+          "z": -156,
+          "world": "world"
+        },
+        {
+          "type": "oak_planks",
+          "x": -247,
+          "y": 67,
+          "z": -156,
+          "world": "world"
+        },
+        {
+          "type": "oak_planks",
+          "x": -248,
+          "y": 68,
+          "z": -157,
+          "world": "world"
+        },
+        {
+          "type": "oak_planks",
+          "x": -247,
+          "y": 68,
+          "z": -157,
+          "world": "world"
+        },
+        {
+          "type": "oak_planks",
+          "x": -248,
+          "y": 68,
+          "z": -156,
+          "world": "world"
+        },
+        {
+          "type": "oak_planks",
+          "x": -247,
+          "y": 68,
+          "z": -156,
+          "world": "world"
+        },
+        {
+          "type": "glass",
+          "x": -248,
+          "y": 67,
+          "z": -156,
+          "world": "world"
+        },
+        {
+          "type": "glass",
+          "x": -247,
+          "y": 67,
+          "z": -156,
+          "world": "world"
+        },
+        {
+          "type": "torch",
+          "x": -248,
+          "y": 69,
+          "z": -157,
+          "world": "world"
+        },
+        {
+          "type": "torch",
+          "x": -247,
+          "y": 69,
+          "z": -157,
+          "world": "world"
+        },
+        {
+          "type": "campfire",
+          "offset": {
+            "dx": 0.0,
+            "dy": 0.0,
+            "dz": 0.0
+          },
+          "_scene_event_id": "spawn_fire",
+          "world": "world"
+        }
+      ],
+      "build_multi": [
+        {
+          "shape": "platform",
+          "size": 2,
+          "material": "OAK_PLANKS",
+          "offset": {
+            "dx": 1.0,
+            "dy": 0.0,
+            "dz": 1.0
+          },
+          "_scene_event_id": "spawn_camp",
+          "world": "world"
+        },
+        {
+          "shape": "line",
+          "size": 2,
+          "material": "OAK_FENCE",
+          "offset": {
+            "dx": 0.0,
+            "dy": 0.0,
+            "dz": 0.0
+          },
+          "_scene_event_id": "spawn_camp",
+          "world": "world"
+        },
+        {
+          "shape": "line",
+          "size": 1,
+          "material": "CAMPFIRE",
+          "offset": {
+            "dx": 0.0,
+            "dy": 0.0,
+            "dz": 0.0
+          },
+          "_scene_event_id": "spawn_fire",
+          "world": "world"
+        },
+        {
+          "shape": "line",
+          "size": 2,
+          "material": "COBBLESTONE",
+          "offset": {
+            "dx": 0.0,
+            "dy": 0.0,
+            "dz": 0.0
+          },
+          "_scene_event_id": "spawn_cooking_area",
+          "world": "world"
+        },
+        {
+          "shape": "line",
+          "size": 1,
+          "material": "FURNACE",
+          "offset": {
+            "dx": 1.0,
+            "dy": 0.0,
+            "dz": 0.0
+          },
+          "_scene_event_id": "spawn_cooking_area",
+          "world": "world"
+        }
+      ],
+      "structure": [
+        {
+          "template": "camp_small",
+          "offset": {
+            "dx": 1.0,
+            "dy": 0.0,
+            "dz": 1.0
+          },
+          "_scene_event_id": "spawn_camp",
+          "world": "world"
+        },
+        {
+          "template": "cooking_area_basic",
+          "offset": {
+            "dx": 0.0,
+            "dy": 0.0,
+            "dz": 0.0
+          },
+          "_scene_event_id": "spawn_cooking_area",
+          "world": "world"
+        }
+      ]
+    }
+  },
+  "world_patch": {
+    "variables": {
+      "story_world_generated": true,
+      "story_title": "森林营地"
+    },
+    "mc": {
+      "tell": "§6森林营地§r\n创建剧情；黑夜森林营地",
+      "spawn": {
+        "x": -250,
+        "y": 67,
+        "z": -154,
+        "world": "world"
+      },
+      "time": "night",
+      "weather": "clear",
+      "spawns": [
+        {
+          "type": "villager",
+          "name": "守夜人",
+          "x": -248,
+          "y": 67,
+          "z": -157,
+          "dialog": "小心，森林深处有怪物出没。",
+          "world": "world"
+        },
+        {
+          "type": "zombie",
+          "name": "迷失的僵尸",
+          "x": -255,
+          "y": 67,
+          "z": -150,
+          "dialog": "...",
+          "world": "world"
+        },
+        {
+          "type": "cow",
+          "name": "营地奶牛",
+          "x": -247,
+          "y": 67,
+          "z": -152,
+          "dialog": "",
+          "world": "world"
+        }
+      ],
+      "blocks": [
+        {
+          "type": "oak_planks",
+          "x": -250,
+          "y": 66,
+          "z": -154,
+          "world": "world"
+        },
+        {
+          "type": "oak_planks",
+          "x": -249,
+          "y": 66,
+          "z": -154,
+          "world": "world"
+        },
+        {
+          "type": "oak_planks",
+          "x": -251,
+          "y": 66,
+          "z": -154,
+          "world": "world"
+        },
+        {
+          "type": "oak_planks",
+          "x": -250,
+          "y": 66,
+          "z": -153,
+          "world": "world"
+        },
+        {
+          "type": "oak_planks",
+          "x": -250,
+          "y": 66,
+          "z": -155,
+          "world": "world"
+        },
+        {
+          "type": "stone",
+          "x": -250,
+          "y": 67,
+          "z": -154,
+          "world": "world"
+        },
+        {
+          "type": "torch",
+          "x": -250,
+          "y": 68,
+          "z": -154,
+          "world": "world"
+        },
+        {
+          "type": "oak_planks",
+          "x": -248,
+          "y": 66,
+          "z": -157,
+          "world": "world"
+        },
+        {
+          "type": "oak_planks",
+          "x": -247,
+          "y": 66,
+          "z": -157,
+          "world": "world"
+        },
+        {
+          "type": "oak_planks",
+          "x": -248,
+          "y": 66,
+          "z": -156,
+          "world": "world"
+        },
+        {
+          "type": "oak_planks",
+          "x": -247,
+          "y": 66,
+          "z": -156,
+          "world": "world"
+        },
+        {
+          "type": "oak_planks",
+          "x": -248,
+          "y": 67,
+          "z": -157,
+          "world": "world"
+        },
+        {
+          "type": "oak_planks",
+          "x": -247,
+          "y": 67,
+          "z": -157,
+          "world": "world"
+        },
+        {
+          "type": "oak_planks",
+          "x": -248,
+          "y": 67,
+          "z": -156,
+          "world": "world"
+        },
+        {
+          "type": "oak_planks",
+          "x": -247,
+          "y": 67,
+          "z": -156,
+          "world": "world"
+        },
+        {
+          "type": "oak_planks",
+          "x": -248,
+          "y": 68,
+          "z": -157,
+          "world": "world"
+        },
+        {
+          "type": "oak_planks",
+          "x": -247,
+          "y": 68,
+          "z": -157,
+          "world": "world"
+        },
+        {
+          "type": "oak_planks",
+          "x": -248,
+          "y": 68,
+          "z": -156,
+          "world": "world"
+        },
+        {
+          "type": "oak_planks",
+          "x": -247,
+          "y": 68,
+          "z": -156,
+          "world": "world"
+        },
+        {
+          "type": "glass",
+          "x": -248,
+          "y": 67,
+          "z": -156,
+          "world": "world"
+        },
+        {
+          "type": "glass",
+          "x": -247,
+          "y": 67,
+          "z": -156,
+          "world": "world"
+        },
+        {
+          "type": "torch",
+          "x": -248,
+          "y": 69,
+          "z": -157,
+          "world": "world"
+        },
+        {
+          "type": "torch",
+          "x": -247,
+          "y": 69,
+          "z": -157,
+          "world": "world"
+        },
+        {
+          "type": "campfire",
+          "offset": {
+            "dx": 0.0,
+            "dy": 0.0,
+            "dz": 0.0
+          },
+          "_scene_event_id": "spawn_fire",
+          "world": "world"
+        }
+      ],
+      "build_multi": [
+        {
+          "shape": "platform",
+          "size": 2,
+          "material": "OAK_PLANKS",
+          "offset": {
+            "dx": 1.0,
+            "dy": 0.0,
+            "dz": 1.0
+          },
+          "_scene_event_id": "spawn_camp",
+          "world": "world"
+        },
+        {
+          "shape": "line",
+          "size": 2,
+          "material": "OAK_FENCE",
+          "offset": {
+            "dx": 0.0,
+            "dy": 0.0,
+            "dz": 0.0
+          },
+          "_scene_event_id": "spawn_camp",
+          "world": "world"
+        },
+        {
+          "shape": "line",
+          "size": 1,
+          "material": "CAMPFIRE",
+          "offset": {
+            "dx": 0.0,
+            "dy": 0.0,
+            "dz": 0.0
+          },
+          "_scene_event_id": "spawn_fire",
+          "world": "world"
+        },
+        {
+          "shape": "line",
+          "size": 2,
+          "material": "COBBLESTONE",
+          "offset": {
+            "dx": 0.0,
+            "dy": 0.0,
+            "dz": 0.0
+          },
+          "_scene_event_id": "spawn_cooking_area",
+          "world": "world"
+        },
+        {
+          "shape": "line",
+          "size": 1,
+          "material": "FURNACE",
+          "offset": {
+            "dx": 1.0,
+            "dy": 0.0,
+            "dz": 0.0
+          },
+          "_scene_event_id": "spawn_cooking_area",
+          "world": "world"
+        }
+      ],
+      "structure": [
+        {
+          "template": "camp_small",
+          "offset": {
+            "dx": 1.0,
+            "dy": 0.0,
+            "dz": 1.0
+          },
+          "_scene_event_id": "spawn_camp",
+          "world": "world"
+        },
+        {
+          "template": "cooking_area_basic",
+          "offset": {
+            "dx": 0.0,
+            "dy": 0.0,
+            "dz": 0.0
+          },
+          "_scene_event_id": "spawn_cooking_area",
+          "world": "world"
+        }
+      ]
+    }
+  },
+  "tree": null
+}

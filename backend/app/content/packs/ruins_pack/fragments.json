@@ -1,0 +1,24 @@
+{
+  "fragments": [
+    {
+      "fragment_id": "ruins_arch",
+      "root": false,
+      "priority": 45,
+      "tags": ["ruin", "stone", "memory"],
+      "requires": ["ruin"],
+      "optional_resources": ["stone"],
+      "size": [5, 5],
+      "connections": [],
+      "events": [
+        {
+          "event_id": "spawn_ruins_arch_pack",
+          "type": "spawn_structure",
+          "anchor_ref": "player",
+          "data": {
+            "template": "ruins_arch_small"
+          }
+        }
+      ]
+    }
+  ]
+}

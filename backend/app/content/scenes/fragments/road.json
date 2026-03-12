@@ -1,0 +1,29 @@
+{
+  "id": "road",
+  "root": false,
+  "priority": 30,
+  "size": [9, 3],
+  "layout_anchor": "edge",
+  "tags": ["stone", "path", "travel"],
+  "requires": ["stone"],
+  "optional_resources": ["wood"],
+  "structures": [
+    {
+      "type": "road",
+      "template": "road_basic",
+      "offset": [8, 0, 0]
+    }
+  ],
+  "npcs": [],
+  "connections": [],
+  "events": [
+    {
+      "event_id": "spawn_road",
+      "type": "spawn_structure",
+      "anchor_ref": "camp_edge",
+      "data": {
+        "template": "road_basic"
+      }
+    }
+  ]
+}

@@ -1,0 +1,741 @@
+{
+  "id": "p6b_probe_camp_84c7c9a0",
+  "title": "P6B runtime probe camp",
+  "text": [
+    "P6B runtime probe camp"
+  ],
+  "tags": [],
+  "mood": {
+    "base": "calm",
+    "intensity": 0.5
+  },
+  "choices": [],
+  "meta": {
+    "trng_transaction": {
+      "tx_id": "tx_8597a86b49f1",
+      "base_state_hash": "befe6682a6c32ed55d288ddaf40636b0ee73c37fd48bd8ec91204afa91dba85e",
+      "committed_state_hash": "b450e47a275e671dd891764d7ad74099a3233d2dc6cf18b9dff2a9bf07506cde",
+      "committed_graph_hash": "39b4cdc95bf4a40a4ef86fe0c750d439a59976425acfcca8201adb2435875be1",
+      "commit_timestamp": 1772874289.391289,
+      "rule_version": "rule_v2_2",
+      "engine_version": "engine_v2_1",
+      "event_count": 3
+    },
+    "scene_generation": {
+      "scene_theme": "语义探针营地",
+      "scene_hint": null,
+      "selected_anchor": "player",
+      "initial_anchor": "player",
+      "final_anchor": "player_safe_ground",
+      "player_pos": {
+        "world": "world",
+        "x": 12.0,
+        "y": 65.0,
+        "z": -3.0
+      },
+      "initial_anchor_pos": {
+        "world": "world",
+        "x": 12.0,
+        "y": 65.0,
+        "z": -3.0
+      },
+      "final_anchor_pos": {
+        "world": "world",
+        "x": 12.0,
+        "y": 65.0,
+        "z": -3.0
+      },
+      "anchor_pos": {
+        "world": "world",
+        "x": 12.0,
+        "y": 65.0,
+        "z": -3.0
+      },
+      "fragments": [
+        "camp",
+        "fire",
+        "cooking_area"
+      ],
+      "event_count": 3,
+      "event_plan": [
+        {
+          "event_id": "spawn_camp",
+          "type": "spawn_structure",
+          "text": "spawn_camp",
+          "anchor": {
+            "mode": "absolute",
+            "ref": "player",
+            "world": "world",
+            "x": 12.0,
+            "y": 65.0,
+            "z": -3.0
+          },
+          "offset": {
+            "dx": 0.0,
+            "dy": 0.0,
+            "dz": 0.0
+          },
+          "data": {
+            "template": "camp_small"
+          }
+        },
+        {
+          "event_id": "spawn_fire",
+          "type": "spawn_block",
+          "text": "spawn_fire",
+          "anchor": {
+            "mode": "absolute",
+            "ref": "camp_center",
+            "world": "world",
+            "x": 12.0,
+            "y": 65.0,
+            "z": -3.0
+          },
+          "offset": {
+            "dx": 4.0,
+            "dy": 0.0,
+            "dz": 0.0
+          },
+          "data": {
+            "block": "campfire"
+          }
+        },
+        {
+          "event_id": "spawn_cooking_area",
+          "type": "spawn_structure",
+          "text": "spawn_cooking_area",
+          "anchor": {
+            "mode": "absolute",
+            "ref": "camp_center",
+            "world": "world",
+            "x": 12.0,
+            "y": 65.0,
+            "z": -3.0
+          },
+          "offset": {
+            "dx": -8.0,
+            "dy": 0.0,
+            "dz": 0.0
+          },
+          "data": {
+            "template": "cooking_area_basic"
+          }
+        }
+      ],
+      "scene_graph": {
+        "root": "camp",
+        "nodes": [
+          "camp",
+          "fire",
+          "cooking_area"
+        ],
+        "edges": [
+          {
+            "from": "camp",
+            "to": "fire"
+          },
+          {
+            "from": "camp",
+            "to": "cooking_area"
+          }
+        ]
+      },
+      "layout": {
+        "strategy": "radial_v1",
+        "root": "camp",
+        "positions": {
+          "camp": {
+            "x": 0,
+            "z": 0
+          },
+          "fire": {
+            "x": 4,
+            "z": 0
+          },
+          "cooking_area": {
+            "x": -8,
+            "z": 0
+          }
+        }
+      },
+      "inventory_resources": {
+        "pork": 1,
+        "torch": 1,
+        "wood": 2
+      },
+      "selected_root": "camp",
+      "candidate_scores": [
+        {
+          "fragment": "camp",
+          "score": 233.112,
+          "reason": "wood + light + fire + food"
+        },
+        {
+          "fragment": "village",
+          "score": 211.762,
+          "reason": "wood + food + light"
+        }
+      ],
+      "selected_children": [
+        "fire",
+        "cooking_area"
+      ],
+      "blocked": [
+        {
+          "fragment": "watchtower",
+          "stage": "expand",
+          "reason": "missing_required: stone"
+        }
+      ],
+      "reasons": {
+        "selection_stage": "root_candidates",
+        "selected_root": "wood + light + fire + food"
+      },
+      "semantic_scores": {
+        "food": 1,
+        "meat": 1,
+        "light": 1,
+        "fire": 1,
+        "wood": 2
+      }
+    }
+  },
+  "npcs": [],
+  "bootstrap_patch": {
+    "variables": {
+      "story_world_generated": true,
+      "story_title": "P6B runtime probe camp"
+    },
+    "mc": {
+      "tell": "§6P6B runtime probe camp§r\nP6B runtime probe camp",
+      "spawn": {
+        "x": 22,
+        "y": 67,
+        "z": 7,
+        "world": "world"
+      },
+      "time": "night",
+      "weather": "clear",
+      "spawns": [
+        {
+          "type": "villager",
+          "name": "Probe Operator",
+          "x": 27,
+          "y": 67,
+          "z": 9,
+          "dialog": "P6B runtime probe active. Monitor the camp perimeter.",
+          "world": "world"
+        },
+        {
+          "type": "skeleton",
+          "name": "Corrupted Probe",
+          "x": 7,
+          "y": 67,
+          "z": 12,
+          "dialog": "",
+          "world": "world"
+        },
+        {
+          "type": "cow",
+          "name": "Scavenger Cow",
+          "x": 20,
+          "y": 67,
+          "z": -6,
+          "dialog": "",
+          "world": "world"
+        }
+      ],
+      "blocks": [
+        {
+          "type": "stone",
+          "x": 12,
+          "y": 66,
+          "z": -3,
+          "world": "world"
+        },
+        {
+          "type": "stone",
+          "x": 12,
+          "y": 66,
+          "z": -2,
+          "world": "world"
+        },
+        {
+          "type": "stone",
+          "x": 13,
+          "y": 66,
+          "z": -3,
+          "world": "world"
+        },
+        {
+          "type": "stone",
+          "x": 13,
+          "y": 66,
+          "z": -2,
+          "world": "world"
+        },
+        {
+          "type": "oak_planks",
+          "x": 12,
+          "y": 67,
+          "z": -3,
+          "world": "world"
+        },
+        {
+          "type": "oak_planks",
+          "x": 12,
+          "y": 67,
+          "z": -2,
+          "world": "world"
+        },
+        {
+          "type": "oak_planks",
+          "x": 13,
+          "y": 67,
+          "z": -3,
+          "world": "world"
+        },
+        {
+          "type": "oak_planks",
+          "x": 13,
+          "y": 67,
+          "z": -2,
+          "world": "world"
+        },
+        {
+          "type": "glass",
+          "x": 12,
+          "y": 68,
+          "z": -3,
+          "world": "world"
+        },
+        {
+          "type": "glass",
+          "x": 12,
+          "y": 68,
+          "z": -2,
+          "world": "world"
+        },
+        {
+          "type": "glass",
+          "x": 13,
+          "y": 68,
+          "z": -3,
+          "world": "world"
+        },
+        {
+          "type": "glass",
+          "x": 13,
+          "y": 68,
+          "z": -2,
+          "world": "world"
+        },
+        {
+          "type": "stone",
+          "x": 17,
+          "y": 66,
+          "z": 2,
+          "world": "world"
+        },
+        {
+          "type": "stone",
+          "x": 17,
+          "y": 67,
+          "z": 2,
+          "world": "world"
+        },
+        {
+          "type": "stone",
+          "x": 17,
+          "y": 68,
+          "z": 2,
+          "world": "world"
+        },
+        {
+          "type": "oak_planks",
+          "x": 10,
+          "y": 66,
+          "z": -5,
+          "world": "world"
+        },
+        {
+          "type": "oak_planks",
+          "x": 10,
+          "y": 67,
+          "z": -5,
+          "world": "world"
+        },
+        {
+          "type": "oak_planks",
+          "x": 10,
+          "y": 68,
+          "z": -5,
+          "world": "world"
+        },
+        {
+          "type": "campfire",
+          "offset": {
+            "dx": 4.0,
+            "dy": 0.0,
+            "dz": 0.0
+          },
+          "_scene_event_id": "spawn_fire",
+          "world": "world"
+        }
+      ],
+      "structure": [
+        {
+          "template": "camp_small",
+          "offset": {
+            "dx": 0.0,
+            "dy": 0.0,
+            "dz": 0.0
+          },
+          "_scene_event_id": "spawn_camp",
+          "world": "world"
+        },
+        {
+          "template": "cooking_area_basic",
+          "offset": {
+            "dx": -8.0,
+            "dy": 0.0,
+            "dz": 0.0
+          },
+          "_scene_event_id": "spawn_cooking_area",
+          "world": "world"
+        }
+      ],
+      "build_multi": [
+        {
+          "shape": "platform",
+          "size": 2,
+          "material": "OAK_PLANKS",
+          "offset": {
+            "dx": 0.0,
+            "dy": 0.0,
+            "dz": 0.0
+          },
+          "_scene_event_id": "spawn_camp",
+          "world": "world"
+        },
+        {
+          "shape": "line",
+          "size": 2,
+          "material": "OAK_FENCE",
+          "offset": {
+            "dx": -1.0,
+            "dy": 0.0,
+            "dz": -1.0
+          },
+          "_scene_event_id": "spawn_camp",
+          "world": "world"
+        },
+        {
+          "shape": "line",
+          "size": 1,
+          "material": "CAMPFIRE",
+          "offset": {
+            "dx": 4.0,
+            "dy": 0.0,
+            "dz": 0.0
+          },
+          "_scene_event_id": "spawn_fire",
+          "world": "world"
+        },
+        {
+          "shape": "line",
+          "size": 2,
+          "material": "COBBLESTONE",
+          "offset": {
+            "dx": -8.0,
+            "dy": 0.0,
+            "dz": 0.0
+          },
+          "_scene_event_id": "spawn_cooking_area",
+          "world": "world"
+        },
+        {
+          "shape": "line",
+          "size": 1,
+          "material": "FURNACE",
+          "offset": {
+            "dx": -7.0,
+            "dy": 0.0,
+            "dz": 0.0
+          },
+          "_scene_event_id": "spawn_cooking_area",
+          "world": "world"
+        }
+      ]
+    }
+  },
+  "world_patch": {
+    "variables": {
+      "story_world_generated": true,
+      "story_title": "P6B runtime probe camp"
+    },
+    "mc": {
+      "tell": "§6P6B runtime probe camp§r\nP6B runtime probe camp",
+      "spawn": {
+        "x": 22,
+        "y": 67,
+        "z": 7,
+        "world": "world"
+      },
+      "time": "night",
+      "weather": "clear",
+      "spawns": [
+        {
+          "type": "villager",
+          "name": "Probe Operator",
+          "x": 27,
+          "y": 67,
+          "z": 9,
+          "dialog": "P6B runtime probe active. Monitor the camp perimeter.",
+          "world": "world"
+        },
+        {
+          "type": "skeleton",
+          "name": "Corrupted Probe",
+          "x": 7,
+          "y": 67,
+          "z": 12,
+          "dialog": "",
+          "world": "world"
+        },
+        {
+          "type": "cow",
+          "name": "Scavenger Cow",
+          "x": 20,
+          "y": 67,
+          "z": -6,
+          "dialog": "",
+          "world": "world"
+        }
+      ],
+      "blocks": [
+        {
+          "type": "stone",
+          "x": 12,
+          "y": 66,
+          "z": -3,
+          "world": "world"
+        },
+        {
+          "type": "stone",
+          "x": 12,
+          "y": 66,
+          "z": -2,
+          "world": "world"
+        },
+        {
+          "type": "stone",
+          "x": 13,
+          "y": 66,
+          "z": -3,
+          "world": "world"
+        },
+        {
+          "type": "stone",
+          "x": 13,
+          "y": 66,
+          "z": -2,
+          "world": "world"
+        },
+        {
+          "type": "oak_planks",
+          "x": 12,
+          "y": 67,
+          "z": -3,
+          "world": "world"
+        },
+        {
+          "type": "oak_planks",
+          "x": 12,
+          "y": 67,
+          "z": -2,
+          "world": "world"
+        },
+        {
+          "type": "oak_planks",
+          "x": 13,
+          "y": 67,
+          "z": -3,
+          "world": "world"
+        },
+        {
+          "type": "oak_planks",
+          "x": 13,
+          "y": 67,
+          "z": -2,
+          "world": "world"
+        },
+        {
+          "type": "glass",
+          "x": 12,
+          "y": 68,
+          "z": -3,
+          "world": "world"
+        },
+        {
+          "type": "glass",
+          "x": 12,
+          "y": 68,
+          "z": -2,
+          "world": "world"
+        },
+        {
+          "type": "glass",
+          "x": 13,
+          "y": 68,
+          "z": -3,
+          "world": "world"
+        },
+        {
+          "type": "glass",
+          "x": 13,
+          "y": 68,
+          "z": -2,
+          "world": "world"
+        },
+        {
+          "type": "stone",
+          "x": 17,
+          "y": 66,
+          "z": 2,
+          "world": "world"
+        },
+        {
+          "type": "stone",
+          "x": 17,
+          "y": 67,
+          "z": 2,
+          "world": "world"
+        },
+        {
+          "type": "stone",
+          "x": 17,
+          "y": 68,
+          "z": 2,
+          "world": "world"
+        },
+        {
+          "type": "oak_planks",
+          "x": 10,
+          "y": 66,
+          "z": -5,
+          "world": "world"
+        },
+        {
+          "type": "oak_planks",
+          "x": 10,
+          "y": 67,
+          "z": -5,
+          "world": "world"
+        },
+        {
+          "type": "oak_planks",
+          "x": 10,
+          "y": 68,
+          "z": -5,
+          "world": "world"
+        },
+        {
+          "type": "campfire",
+          "offset": {
+            "dx": 4.0,
+            "dy": 0.0,
+            "dz": 0.0
+          },
+          "_scene_event_id": "spawn_fire",
+          "world": "world"
+        }
+      ],
+      "structure": [
+        {
+          "template": "camp_small",
+          "offset": {
+            "dx": 0.0,
+            "dy": 0.0,
+            "dz": 0.0
+          },
+          "_scene_event_id": "spawn_camp",
+          "world": "world"
+        },
+        {
+          "template": "cooking_area_basic",
+          "offset": {
+            "dx": -8.0,
+            "dy": 0.0,
+            "dz": 0.0
+          },
+          "_scene_event_id": "spawn_cooking_area",
+          "world": "world"
+        }
+      ],
+      "build_multi": [
+        {
+          "shape": "platform",
+          "size": 2,
+          "material": "OAK_PLANKS",
+          "offset": {
+            "dx": 0.0,
+            "dy": 0.0,
+            "dz": 0.0
+          },
+          "_scene_event_id": "spawn_camp",
+          "world": "world"
+        },
+        {
+          "shape": "line",
+          "size": 2,
+          "material": "OAK_FENCE",
+          "offset": {
+            "dx": -1.0,
+            "dy": 0.0,
+            "dz": -1.0
+          },
+          "_scene_event_id": "spawn_camp",
+          "world": "world"
+        },
+        {
+          "shape": "line",
+          "size": 1,
+          "material": "CAMPFIRE",
+          "offset": {
+            "dx": 4.0,
+            "dy": 0.0,
+            "dz": 0.0
+          },
+          "_scene_event_id": "spawn_fire",
+          "world": "world"
+        },
+        {
+          "shape": "line",
+          "size": 2,
+          "material": "COBBLESTONE",
+          "offset": {
+            "dx": -8.0,
+            "dy": 0.0,
+            "dz": 0.0
+          },
+          "_scene_event_id": "spawn_cooking_area",
+          "world": "world"
+        },
+        {
+          "shape": "line",
+          "size": 1,
+          "material": "FURNACE",
+          "offset": {
+            "dx": -7.0,
+            "dy": 0.0,
+            "dz": 0.0
+          },
+          "_scene_event_id": "spawn_cooking_area",
+          "world": "world"
+        }
+      ]
+    }
+  },
+  "tree": null
+}

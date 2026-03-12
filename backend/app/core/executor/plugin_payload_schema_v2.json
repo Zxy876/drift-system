@@ -1,0 +1,229 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "plugin_payload_schema_v2.json",
+  "title": "Plugin Payload V2/V2.1 (Draft, Not Wired)",
+  "type": "object",
+  "required": [
+    "version",
+    "payload_version",
+    "build_id",
+    "player_id",
+    "build_path",
+    "patch_source",
+    "scene_path",
+    "rule_version",
+    "engine_version",
+    "hash",
+    "stats",
+    "origin",
+    "commands"
+  ],
+  "properties": {
+    "version": {
+      "const": "plugin_payload_v2"
+    },
+    "payload_version": {
+      "type": "string",
+      "enum": ["v2", "v2.1"]
+    },
+    "build_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "player_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "build_path": {
+      "type": "string"
+    },
+    "patch_source": {
+      "type": "string"
+    },
+    "scene_path": {
+      "type": "string"
+    },
+    "rule_version": {
+      "type": "string",
+      "minLength": 1
+    },
+    "engine_version": {
+      "type": "string",
+      "minLength": 1
+    },
+    "hash": {
+      "type": "object",
+      "required": ["scene_spec", "spec", "final_commands"],
+      "properties": {
+        "scene_spec": { "type": "string", "minLength": 64, "maxLength": 64 },
+        "spec": { "type": "string", "minLength": 64, "maxLength": 64 },
+        "final_commands": { "type": "string", "minLength": 64, "maxLength": 64 }
+      },
+      "additionalProperties": false
+    },
+    "stats": {
+      "type": "object",
+      "required": [
+        "scene_block_count",
+        "spec_block_count",
+        "merged_block_count",
+        "entity_command_count",
+        "conflicts_total",
+        "spec_dropped_total"
+      ],
+      "properties": {
+        "scene_block_count": { "type": "integer", "minimum": 0 },
+        "spec_block_count": { "type": "integer", "minimum": 0 },
+        "merged_block_count": { "type": "integer", "minimum": 0 },
+        "entity_command_count": { "type": "integer", "minimum": 0 },
+        "conflicts_total": { "type": "integer", "minimum": 0 },
+        "spec_dropped_total": { "type": "integer", "minimum": 0 }
+      },
+      "additionalProperties": false
+    },
+    "origin": {
+      "type": "object",
+      "required": ["base_x", "base_y", "base_z", "anchor_mode"],
+      "properties": {
+        "base_x": { "type": "integer" },
+        "base_y": { "type": "integer" },
+        "base_z": { "type": "integer" },
+        "anchor_mode": { "type": "string", "enum": ["player", "fixed"] }
+      },
+      "additionalProperties": false
+    },
+    "anchor": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 32,
+      "pattern": "^[a-z0-9][a-z0-9_-]{0,31}$"
+    },
+    "anchors": {
+      "type": "object",
+      "patternProperties": {
+        "^[a-z0-9][a-z0-9_-]{0,31}$": {
+          "type": "object",
+          "required": ["base_x", "base_y", "base_z", "anchor_mode"],
+          "properties": {
+            "base_x": { "type": "integer" },
+            "base_y": { "type": "integer" },
+            "base_z": { "type": "integer" },
+            "anchor_mode": { "type": "string", "enum": ["player", "fixed"] }
+          },
+          "additionalProperties": false
+        }
+      },
+      "additionalProperties": false
+    },
+    "block_ops": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["anchor", "offset", "block"],
+        "properties": {
+          "anchor": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 32,
+            "pattern": "^[a-z0-9][a-z0-9_-]{0,31}$"
+          },
+          "offset": {
+            "type": "array",
+            "minItems": 3,
+            "maxItems": 3,
+            "items": { "type": "integer" }
+          },
+          "block": { "type": "string", "minLength": 1 }
+        },
+        "additionalProperties": false
+      }
+    },
+    "entity_ops": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "type",
+          "entity_type",
+          "anchor",
+          "offset",
+          "name",
+          "profession",
+          "no_ai",
+          "silent",
+          "rotation"
+        ],
+        "properties": {
+          "type": { "const": "summon" },
+          "entity_type": { "const": "villager" },
+          "anchor": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 32,
+            "pattern": "^[a-z0-9][a-z0-9_-]{0,31}$"
+          },
+          "offset": {
+            "type": "array",
+            "minItems": 3,
+            "maxItems": 3,
+            "items": { "type": "integer" }
+          },
+          "name": { "type": "string", "minLength": 1, "maxLength": 32 },
+          "profession": { "const": "none" },
+          "no_ai": { "const": true },
+          "silent": { "const": true },
+          "rotation": { "type": "integer" }
+        },
+        "additionalProperties": false
+      }
+    },
+    "commands": {
+      "type": "array",
+      "items": {
+        "oneOf": [
+          {
+            "type": "object",
+            "required": ["type", "x", "y", "z", "block"],
+            "properties": {
+              "type": { "const": "setblock" },
+              "x": { "type": "integer" },
+              "y": { "type": "integer" },
+              "z": { "type": "integer" },
+              "block": { "type": "string", "minLength": 1 }
+            },
+            "additionalProperties": false
+          },
+          {
+            "type": "object",
+            "required": [
+              "type",
+              "entity_type",
+              "x",
+              "y",
+              "z",
+              "name",
+              "profession",
+              "no_ai",
+              "silent",
+              "rotation"
+            ],
+            "properties": {
+              "type": { "const": "summon" },
+              "entity_type": { "const": "villager" },
+              "x": { "type": "integer" },
+              "y": { "type": "integer" },
+              "z": { "type": "integer" },
+              "name": { "type": "string", "minLength": 1, "maxLength": 32 },
+              "profession": { "const": "none" },
+              "no_ai": { "const": true },
+              "silent": { "const": true },
+              "rotation": { "const": 90 }
+            },
+            "additionalProperties": false
+          }
+        ]
+      }
+    }
+  },
+  "additionalProperties": false
+}

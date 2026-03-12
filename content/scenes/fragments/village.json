@@ -1,0 +1,39 @@
+{
+  "id": "village",
+  "root": true,
+  "priority": 88,
+  "size": [9, 9],
+  "layout_anchor": "center",
+  "tags": ["food", "wood", "stone", "npc", "trade"],
+  "requires": ["food", "wood"],
+  "optional_resources": ["stone", "water", "light"],
+  "structures": [
+    {
+      "type": "plaza",
+      "template": "village_plaza_small",
+      "offset": [0, 0, 0]
+    },
+    {
+      "type": "house",
+      "template": "village_house_basic",
+      "offset": [4, 0, 2]
+    }
+  ],
+  "npcs": [
+    {
+      "id": "villager",
+      "role": "resident"
+    }
+  ],
+  "connections": ["market", "forge", "farm", "shrine"],
+  "events": [
+    {
+      "event_id": "spawn_village",
+      "type": "spawn_structure",
+      "anchor_ref": "player",
+      "data": {
+        "template": "village_core"
+      }
+    }
+  ]
+}

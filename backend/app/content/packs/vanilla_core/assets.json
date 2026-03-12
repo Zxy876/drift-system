@@ -1,0 +1,10 @@
+{
+  "assets": [
+    {
+      "asset_id": "camp_watch",
+      "type": "structure",
+      "tags": ["safe_zone", "guard", "wood"],
+      "spawn_method": "build_multi"
+    }
+  ]
+}

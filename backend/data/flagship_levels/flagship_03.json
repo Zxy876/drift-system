@@ -1,0 +1,387 @@
+{
+  "id": "flagship_03",
+  "title": "旗舰关卡 · 风暴之山",
+  "tags": ["旗舰", "登山", "心理", "心象", "恐惧"],
+  "meta": {
+    "chapter": 3,
+    "word_count": 0,
+    "difficulty": "medium",
+    "theme": "mountain_storm",
+    "flagship": true
+  },
+
+  "memory_affinity": ["xinyue.admitted_pain", "xinyue.masked_pain"],
+
+  "storyline_theme": "flagship_resilience",
+  "continuity": {
+    "previous": "flagship_tutorial",
+    "next": "flagship_08",
+    "next_major_level": "flagship_08",
+    "emotional_vector": "resolve_in_storm",
+    "arc_step": 2
+  },
+
+  "emotional_world_patch": {
+    "default": {
+      "label": "山地守势",
+      "tone": "steady",
+      "patch": {
+        "mc": {
+          "lighting_shift": "dusk_to_hearth",
+          "music": { "record": "pigstep", "volume": 0.6 },
+          "npc_emotion": {
+            "tone": "steady",
+            "targets": ["登山者"],
+            "lines": ["登山者整理风绳：风声很大，我们慢慢来。"]
+          }
+        }
+      }
+    },
+    "profiles": [
+      {
+        "id": "face_path",
+        "label": "迎风上攀",
+        "tone": "encouraging",
+        "requires": ["xinyue.face_once"],
+        "priority": 10,
+        "patch": {
+          "mc": {
+            "weather_transition": { "to": "CLEARING_SKY" },
+            "lighting_shift": "ember_warmth",
+            "music": { "record": "chirp", "volume": 0.8 },
+            "npc_emotion": {
+              "tone": "encouraging",
+              "targets": ["登山者"],
+              "lines": ["登山者笑着喊：看到顶峰了吗？风借着你往上推。"],
+              "actionbar": "山势回暖 · 面对"
+            }
+          }
+        }
+      },
+      {
+        "id": "escape_loop",
+        "label": "寒风回声",
+        "tone": "concerned",
+        "requires": ["xinyue.escape_once"],
+        "priority": 5,
+        "patch": {
+          "mc": {
+            "weather_transition": { "to": "SNOW" },
+            "lighting_shift": "storm_blue",
+            "music": { "record": "ward", "volume": 0.7 },
+            "npc_emotion": {
+              "tone": "concerned",
+              "targets": ["登山者"],
+              "lines": ["登山者把手套递给你：冷得厉害就先退一步，别让自己失温。"],
+              "actionbar": "寒意逼近 · 退却"
+            }
+          }
+        }
+      }
+    ]
+  },
+
+  "scene": {
+    "world": "KunmingLakeStory",
+    "teleport": { "x": 12.5, "y": 68, "z": -34.5, "yaw": -10, "pitch": 12 },
+    "environment": { "weather": "SNOW", "time": "DUSK" },
+    "structures": [
+      "structures/mountain/base_camp_v2.nbt",
+      "structures/mountain/mid_camp_v2.nbt",
+      "structures/mountain/summit_gate.nbt"
+    ],
+    "npc_skins": [
+      { "id": "Climber", "skin": "registry:climber" },
+      { "id": "FearShadow", "skin": "registry:fear" }
+    ]
+  },
+
+  "world_patch": {
+    "mc": {
+      "spawn": {
+        "type": "player_like",
+        "name": "登山者",
+        "offset": { "dx": 1, "dy": 0, "dz": -2 },
+        "behaviors": [
+          {
+            "type": "patrol",
+            "path": [
+              {"dx": 0, "dz": 0},
+              {"dx": 2, "dz": 2},
+              {"dx": -2, "dz": 2}
+            ],
+            "speed": 0.7,
+            "description": "在营地检查风绳和补给"
+          },
+          {
+            "type": "interact",
+            "trigger": "right_click",
+            "action": "dialogue",
+            "messages": [
+              "§6[登山者]§r 山不会等你，但你可以准备好。",
+              "§6[登山者]§r 想继续前进，说一句：'我准备好了。'"
+            ]
+          }
+        ],
+        "ai_hints": "登山者会根据玩家恐惧值动态调整对话语气。"
+      },
+      "_scene": {
+        "level_id": "flagship_03",
+        "title": "风暴之山",
+        "theme": "mountain_storm",
+        "scene_world": "KunmingLakeStory",
+        "teleport": { "x": 12.5, "y": 68, "z": -34.5, "yaw": -10, "pitch": 12 }
+      },
+      "weather_transition": { "from": "SNOW", "to": "CLEARING_SKY" },
+      "lighting_shift": "dusk_to_hearth"
+    },
+    "variables": {
+      "fear": 0.2,
+      "breath": 1.0,
+      "unlocked": true,
+      "arc_position": "rising_action"
+    },
+    "trigger_zones": [
+      {
+        "id": "flagship_03_base_camp",
+        "label": "营地暖火",
+        "quest_event": "intro_calm",
+        "radius": 4.0,
+        "offset": { "dx": 2.0, "dy": 0.0, "dz": -2.0 }
+      },
+      {
+        "id": "flagship_03_mid_camp",
+        "label": "迷雾营地",
+        "quest_event": "fear_pulse",
+        "radius": 5.0,
+        "offset": { "dx": 16.0, "dy": 4.0, "dz": 18.0 }
+      },
+      {
+        "id": "flagship_03_summit_portal",
+        "label": "峰顶门户",
+        "quest_event": "summit_view",
+        "radius": 5.5,
+        "offset": { "dx": 30.0, "dy": 18.0, "dz": 34.0 }
+      }
+    ]
+  },
+
+  "narrative": {
+    "text": [
+      "空气像被风切碎，雪的尖刺敲打面颊。",
+      "你感觉到胸腔在收缩——不是寒冷，是某种更深的东西。",
+      "登山者看着你，仿佛知道你要面对的不是山峰，而是你自己的影子。"
+    ],
+    "beats": [
+      {
+        "id": "flag_03_intro_comfort",
+        "trigger": "on_enter",
+        "scene_patch": "scene_base_camp_cinematic",
+        "cinematic_alias": "flagship_03.supported_entry",
+        "rule_refs": ["intro_calm"],
+        "milestone_event": "intro_calm",
+        "memory_required": ["xinyue.admitted_pain"],
+        "branch_hint": "flagship_resilience.support_path",
+        "world_patch": {
+          "mc": {
+            "tell": "§b[登山者]§r 今天风不算狠，我们可以慢慢走。",
+            "particle": {"type": "snowflake", "count": 18},
+            "sound": {"type": "MUSIC_DISC_CHIRP", "volume": 0.6, "pitch": 1.05}
+          }
+        },
+        "choices": [
+          {
+            "id": "intro_ready_gentle",
+            "text": "深呼吸：我想试着往上。",
+            "rule_event": "ready_to_climb",
+            "tags": ["supported", "brave"],
+            "continuity_tags": ["courage_reinforced"],
+            "next_major_level": "flagship_08"
+          },
+          {
+            "id": "intro_share_weight",
+            "text": "先和你说说心里的重物。",
+            "rule_event": "hesitation",
+            "tags": ["processing", "hesitant"],
+            "continuity_tags": ["weight_shared"]
+          }
+        ]
+      },
+      {
+        "id": "flag_03_intro",
+        "trigger": "on_enter",
+        "rule_refs": ["intro_calm"],
+        "milestone_event": "intro_calm",
+        "memory_required": ["xinyue.masked_pain"],
+        "scene_patch": "scene_base_camp_cinematic",
+        "cinematic_alias": "flagship_03.storm_entry",
+        "branch_hint": "flagship_resilience.guard_up",
+        "world_patch": {
+          "mc": {
+            "tell": "§6[登山者]§r 山不会给我们太多休息，先试着跟上我的节奏。",
+            "particle": {"type": "snowball", "count": 12},
+            "sound": {"type": "ENTITY_WOLF_GROWL", "volume": 0.5, "pitch": 1.1}
+          }
+        },
+        "choices": [
+          {
+            "id": "intro_ready",
+            "text": "我准备好了。",
+            "rule_event": "ready_to_climb",
+            "tags": ["brave"],
+            "continuity_tags": ["courage_reinforced"],
+            "next_major_level": "flagship_08"
+          },
+          {
+            "id": "intro_hesitate",
+            "text": "我……还不确定。",
+            "rule_event": "hesitation",
+            "tags": ["hesitant"],
+            "continuity_tags": ["doubt_swell"]
+          }
+        ]
+      },
+
+      {
+        "id": "flag_03_ascent",
+        "trigger": "rule_event:ready_to_climb",
+        "scene_patch": "scene_mid_camp_fog",
+        "rule_refs": ["fear_pulse"],
+        "milestone_event": "fear_pulse",
+        "branch_hint": "flagship_resilience.mid_climb",
+        "choices": [
+          {
+            "id": "push_fog",
+            "text": "继续前进（抵抗迷雾）",
+            "rule_event": "push_forward",
+            "tags": ["brave"],
+            "continuity_tags": ["courage_reinforced"],
+            "next_major_level": "flagship_08"
+          },
+          {
+            "id": "fall_back",
+            "text": "退后一步（心跳加速）",
+            "rule_event": "fear_gain",
+            "tags": ["fear"],
+            "continuity_tags": ["doubt_swell"]
+          }
+        ]
+      },
+
+      {
+        "id": "flag_03_summit",
+        "trigger": ["rule_event:push_forward", "rule_event:overcome_fear"],
+        "scene_patch": "scene_summit_arrival",
+        "rule_refs": ["summit_view"],
+        "milestone_event": "summit_view",
+        "memory_set": ["xinyue.reached_summit"],
+        "next_major_level": "flagship_08",
+        "branch_hint": "flagship_resilience.arc_handoff"
+      }
+    ]
+  },
+
+  "rules": {
+    "listeners": [
+      {
+        "id": "intro_calm",
+        "type": "quest_event",
+        "targets": ["base_camp"],
+        "quest_event": "intro_calm",
+        "metadata": {
+          "update_behaviors": [
+            { "type": "particle", "particle": "snowflake", "description": "轻雪飘过" }
+          ]
+        }
+      },
+      {
+        "id": "fear_pulse",
+        "type": "quest_event",
+        "targets": ["fog_zone"],
+        "quest_event": "fear_tick",
+        "metadata": {
+          "dialogue": [
+            "§7风声中似乎混入了你的心跳……",
+            "§8[幻象]§r   你为什么还要往上走？"
+          ],
+          "update_behaviors": [
+            { "type": "particle", "particle": "smoke", "description": "迷雾脉冲" }
+          ]
+        }
+      },
+      {
+        "id": "summit_view",
+        "type": "quest_event",
+        "targets": ["summit_portal"],
+        "quest_event": "summit_view",
+        "metadata": {
+          "commands": [
+            "title @p title {\"text\":\"风暴之巅\",\"color\":\"aqua\"}",
+            "playsound minecraft:music.game credits @p ~ ~ ~ 1 1"
+          ]
+        }
+      }
+    ]
+  },
+
+  "tasks": [
+    {
+      "id": "flagship_03_climb",
+      "type": "quest_event",
+      "title": "攀登风暴之山",
+      "hint": "跟随登山者的指引，穿过营地、迷雾与峰顶。",
+      "rule_event": "summit_view",
+      "conditions": [
+        {
+          "quest_event": "intro_calm",
+          "count": 1,
+          "title": "抵达营地，安定呼吸"
+        },
+        {
+          "quest_event": "fear_pulse",
+          "count": 1,
+          "title": "穿越迷雾营地"
+        },
+        {
+          "quest_event": "summit_view",
+          "count": 1,
+          "title": "登上风暴之巅"
+        }
+      ],
+      "milestones": [
+        {
+          "id": "flagship_03_arrive_base",
+          "title": "抵达营地",
+          "hint": "靠近营地火堆，聆听登山者的鼓励。",
+          "milestone_event": "intro_calm",
+          "target": "intro_calm"
+        },
+        {
+          "id": "flagship_03_reach_mid",
+          "title": "突破迷雾",
+          "hint": "保持步伐，走进迷雾营地中央。",
+          "milestone_event": "fear_pulse",
+          "target": "fear_pulse"
+        },
+        {
+          "id": "flagship_03_reach_summit",
+          "title": "俯瞰峰顶",
+          "hint": "沿着绳索抵达山顶石门。",
+          "milestone_event": "summit_view",
+          "target": "summit_view"
+        }
+      ],
+      "rule_refs": ["intro_calm", "fear_pulse", "summit_view"],
+      "rewards": [
+        { "type": "xp", "amount": 200 },
+        { "type": "item", "amount": 1, "data": { "id": "summit_token" } }
+      ]
+    }
+  ],
+
+  "exit": {
+    "phrase_aliases": ["结束剧情", "离开关卡", "返回营地"],
+    "return_spawn": "KunmingLakeHub",
+    "teleport": { "x": 0.5, "y": 70, "z": 0.5, "yaw": 0, "pitch": 0 }
+  }
+}

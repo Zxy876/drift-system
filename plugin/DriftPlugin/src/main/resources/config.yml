@@ -1,0 +1,54 @@
+# =========================================
+# DriftSystem / 心悦宇宙 配置文件
+# =========================================
+
+# 后端服务配置
+backend_url: "https://drift-backend-production-c2a5.up.railway.app"
+timeout: 5000
+
+# 系统设置
+system:
+  # 是否启用调试日志
+  debug: false
+
+  # 插件 -> 后端 HTTP 超时(秒)
+  backend_call_timeout: 150
+  backend_connect_timeout: 10
+  backend_read_timeout: 120
+  backend_write_timeout: 120
+  
+  # 自然语言处理超时时间(秒)
+  nlp_timeout: 30
+  
+  # 世界patch执行延迟(tick)
+  patch_delay: 0
+
+# 剧情系统
+story:
+  # 默认起始关卡
+  start_level: "flagship_01"
+  
+  # 自动保存进度间隔(秒)
+  auto_save_interval: 300
+
+# 世界设置
+world:
+  # 是否允许玩家通过聊天修改世界
+  allow_world_modification: true
+  
+  # 是否允许创建新剧情
+  allow_story_creation: true
+  
+  # 传送安全检查
+  safe_teleport: true
+
+# 消息配置
+messages:
+  prefix: "§b[心悦宇宙]§r"
+  error_prefix: "§c[错误]§r"
+  success_prefix: "§a[成功]§r"
+
+# 调试工具
+debug:
+  # 任务调试接口令牌（需与后端环境变量 DRIFT_TASK_DEBUG_TOKEN 保持一致）
+  task_token: ""

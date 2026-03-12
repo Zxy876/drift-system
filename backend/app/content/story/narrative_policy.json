@@ -1,0 +1,13 @@
+{
+  "version": "1.0",
+  "weights": {
+    "scene_match": 3,
+    "event_match": 2,
+    "asset_match": 2,
+    "level_match": 1
+  },
+  "tie_break_order": [
+    "priority",
+    "target_node_lexicographic"
+  ]
+}

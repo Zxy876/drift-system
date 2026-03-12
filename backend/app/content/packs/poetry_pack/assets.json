@@ -1,0 +1,16 @@
+{
+  "assets": [
+    {
+      "asset_id": "lonely_fire",
+      "type": "layout",
+      "tags": ["night", "memory", "fire"],
+      "spawn_method": "fragment"
+    },
+    {
+      "asset_id": "falling_moon",
+      "type": "layout",
+      "tags": ["night", "light", "poetry"],
+      "spawn_method": "fragment"
+    }
+  ]
+}

@@ -1,0 +1,34 @@
+{
+  "id": "watchtower",
+  "root": false,
+  "priority": 35,
+  "size": [3, 3],
+  "layout_anchor": "edge",
+  "tags": ["defense", "height", "wood", "stone"],
+  "requires": ["wood", "stone"],
+  "optional_resources": ["light"],
+  "structures": [
+    {
+      "type": "tower",
+      "template": "watchtower_basic",
+      "offset": [6, 0, 2]
+    }
+  ],
+  "npcs": [
+    {
+      "id": "guard",
+      "role": "watcher"
+    }
+  ],
+  "connections": [],
+  "events": [
+    {
+      "event_id": "spawn_watchtower",
+      "type": "spawn_structure",
+      "anchor_ref": "camp_edge",
+      "data": {
+        "template": "watchtower_basic"
+      }
+    }
+  ]
+}

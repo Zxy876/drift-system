@@ -1,0 +1,63 @@
+name: DriftSystem
+main: com.driftmc.DriftPlugin
+version: "2.0"
+api-version: 1.20
+author: Zxy876
+description: "心悦宇宙 · AI驱动剧情与创造系统"
+commands:
+  drift:
+    description: 主命令
+    usage: /drift <status|sync|debug|tutorial>
+    aliases: [ds, heart]
+
+  storycreative:
+    description: 剧情创造模式命令
+    usage: /storycreative [on|off|status|help]
+
+  minimap:
+    description: 显示心悦宇宙小地图
+    usage: /minimap
+
+  talk:
+    description: 手动将一句话交给自然语言解析
+    usage: /talk <message>
+
+  saytoai:
+    description: 向故事引擎发送一句话
+    usage: /saytoai <message>
+
+  advance:
+    description: 手动推进一次故事
+    usage: /advance [message]
+
+  storynext:
+    description: 让故事向前推进一步
+    usage: /storynext
+
+  heartmenu:
+    description: 查看心悦宇宙帮助菜单
+    usage: /heartmenu
+
+  level:
+    description: 加载指定剧情关卡
+    usage: /level <level_id>
+
+  levels:
+    description: 查看可用剧情关卡
+    usage: /levels
+
+  npc:
+    description: NPC 调试命令
+    usage: /npc <summon|remove>
+
+  tp2:
+    description: 轻便传送或位移
+    usage: /tp2 [x y z]
+
+  time2:
+    description: 调节世界时间
+    usage: /time2 <day|night|tick>
+
+  sayc:
+    description: 以心悦风格广播一句话
+    usage: /sayc <message>

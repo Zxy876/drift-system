@@ -1,0 +1,497 @@
+{
+  "id": "flagship_custom_1772779599235",
+  "title": "大风吹",
+  "text": [
+    "创建剧情 大风吹"
+  ],
+  "tags": [],
+  "mood": {
+    "base": "calm",
+    "intensity": 0.5
+  },
+  "choices": [],
+  "meta": {
+    "trng_transaction": {
+      "tx_id": "tx_2a2f8a9df4cb",
+      "base_state_hash": "befe6682a6c32ed55d288ddaf40636b0ee73c37fd48bd8ec91204afa91dba85e",
+      "committed_state_hash": "b450e47a275e671dd891764d7ad74099a3233d2dc6cf18b9dff2a9bf07506cde",
+      "committed_graph_hash": "419cff15062a2fbf4433afa4f0b76bc397f44991e6035ca45737c3fac21c7272",
+      "commit_timestamp": 1772779599.239585,
+      "rule_version": "rule_v2_2",
+      "engine_version": "engine_v2_1",
+      "event_count": 4
+    },
+    "scene_generation": {
+      "scene_theme": "大风吹",
+      "scene_hint": null,
+      "selected_anchor": "player",
+      "player_pos": {
+        "world": "world",
+        "x": 25.0,
+        "y": 35.0,
+        "z": 15.0
+      },
+      "anchor_pos": {
+        "world": "world",
+        "x": 9.0,
+        "y": 64.0,
+        "z": 3.0
+      },
+      "fragments": [
+        "camp",
+        "fire",
+        "wanderer_npc",
+        "cooking_area"
+      ],
+      "event_count": 4,
+      "event_plan": [
+        {
+          "event_id": "spawn_camp",
+          "type": "spawn_structure",
+          "text": "spawn_camp",
+          "anchor": {
+            "mode": "absolute",
+            "ref": "player",
+            "world": "world",
+            "x": 9.0,
+            "y": 64.0,
+            "z": 3.0
+          },
+          "data": {
+            "template": "camp_small"
+          }
+        },
+        {
+          "event_id": "spawn_fire",
+          "type": "spawn_block",
+          "text": "spawn_fire",
+          "anchor": {
+            "mode": "absolute",
+            "ref": "camp_center",
+            "world": "world",
+            "x": 9.0,
+            "y": 64.0,
+            "z": 3.0
+          },
+          "data": {
+            "block": "campfire"
+          }
+        },
+        {
+          "event_id": "spawn_npc",
+          "type": "spawn_npc",
+          "text": "spawn_npc",
+          "anchor": {
+            "mode": "absolute",
+            "ref": "camp_edge",
+            "world": "world",
+            "x": 9.0,
+            "y": 64.0,
+            "z": 3.0
+          },
+          "data": {
+            "npc_template": "wanderer"
+          }
+        },
+        {
+          "event_id": "spawn_cooking_area",
+          "type": "spawn_structure",
+          "text": "spawn_cooking_area",
+          "anchor": {
+            "mode": "absolute",
+            "ref": "camp_center",
+            "world": "world",
+            "x": 9.0,
+            "y": 64.0,
+            "z": 3.0
+          },
+          "data": {
+            "template": "cooking_area_basic"
+          }
+        }
+      ],
+      "inventory_resources": {
+        "pork": 6,
+        "raw_copper": 1,
+        "torch": 5,
+        "wood": 6
+      }
+    }
+  },
+  "npcs": [],
+  "bootstrap_patch": {
+    "variables": {
+      "story_world_generated": true,
+      "story_title": "大风吹"
+    },
+    "mc": {
+      "tell": "§6大风吹§r\n创建剧情 大风吹",
+      "spawn": {
+        "x": 0,
+        "y": 70,
+        "z": 0
+      },
+      "time": "day",
+      "weather": "windy",
+      "spawns": [
+        {
+          "type": "villager",
+          "name": "老农夫",
+          "x": 10,
+          "y": 70,
+          "z": 5,
+          "dialog": "小心，大风快来了！"
+        },
+        {
+          "type": "cow",
+          "name": "受惊的奶牛",
+          "x": -5,
+          "y": 70,
+          "z": -3,
+          "dialog": ""
+        },
+        {
+          "type": "zombie",
+          "name": "风中游荡者",
+          "x": 15,
+          "y": 70,
+          "z": -10,
+          "dialog": "呜...风太大了..."
+        }
+      ],
+      "blocks": [
+        {
+          "type": "stone",
+          "x": 0,
+          "y": 69,
+          "z": 0
+        },
+        {
+          "type": "oak_planks",
+          "x": 2,
+          "y": 70,
+          "z": 2
+        },
+        {
+          "type": "glass",
+          "x": 5,
+          "y": 72,
+          "z": 0
+        },
+        {
+          "type": "stone",
+          "x": -3,
+          "y": 70,
+          "z": 4
+        },
+        {
+          "type": "oak_planks",
+          "x": 8,
+          "y": 70,
+          "z": -2
+        },
+        {
+          "type": "glass",
+          "x": -5,
+          "y": 71,
+          "z": -1
+        },
+        {
+          "type": "campfire",
+          "offset": {
+            "dx": 0.0,
+            "dy": 0.0,
+            "dz": 0.0
+          },
+          "_scene_event_id": "spawn_fire",
+          "world": "world"
+        }
+      ],
+      "spawn_multi": [
+        {
+          "type": "villager",
+          "name": "阿无",
+          "offset": {
+            "dx": 2.0,
+            "dy": 0.0,
+            "dz": 1.0
+          },
+          "_scene_event_id": "spawn_npc",
+          "world": "world"
+        }
+      ],
+      "structure": [
+        {
+          "template": "camp_small",
+          "offset": {
+            "dx": 1.0,
+            "dy": 0.0,
+            "dz": 1.0
+          },
+          "_scene_event_id": "spawn_camp",
+          "world": "world"
+        },
+        {
+          "template": "cooking_area_basic",
+          "offset": {
+            "dx": 0.0,
+            "dy": 0.0,
+            "dz": 0.0
+          },
+          "_scene_event_id": "spawn_cooking_area",
+          "world": "world"
+        }
+      ],
+      "build_multi": [
+        {
+          "shape": "platform",
+          "size": 2,
+          "material": "OAK_PLANKS",
+          "offset": {
+            "dx": 1.0,
+            "dy": 0.0,
+            "dz": 1.0
+          },
+          "_scene_event_id": "spawn_camp",
+          "world": "world"
+        },
+        {
+          "shape": "line",
+          "size": 2,
+          "material": "OAK_FENCE",
+          "offset": {
+            "dx": 0.0,
+            "dy": 0.0,
+            "dz": 0.0
+          },
+          "_scene_event_id": "spawn_camp",
+          "world": "world"
+        },
+        {
+          "shape": "line",
+          "size": 1,
+          "material": "CAMPFIRE",
+          "offset": {
+            "dx": 0.0,
+            "dy": 0.0,
+            "dz": 0.0
+          },
+          "_scene_event_id": "spawn_fire",
+          "world": "world"
+        },
+        {
+          "shape": "line",
+          "size": 2,
+          "material": "COBBLESTONE",
+          "offset": {
+            "dx": 0.0,
+            "dy": 0.0,
+            "dz": 0.0
+          },
+          "_scene_event_id": "spawn_cooking_area",
+          "world": "world"
+        },
+        {
+          "shape": "line",
+          "size": 1,
+          "material": "FURNACE",
+          "offset": {
+            "dx": 1.0,
+            "dy": 0.0,
+            "dz": 0.0
+          },
+          "_scene_event_id": "spawn_cooking_area",
+          "world": "world"
+        }
+      ]
+    }
+  },
+  "world_patch": {
+    "variables": {
+      "story_world_generated": true,
+      "story_title": "大风吹"
+    },
+    "mc": {
+      "tell": "§6大风吹§r\n创建剧情 大风吹",
+      "spawn": {
+        "x": 0,
+        "y": 70,
+        "z": 0
+      },
+      "time": "day",
+      "weather": "windy",
+      "spawns": [
+        {
+          "type": "villager",
+          "name": "老农夫",
+          "x": 10,
+          "y": 70,
+          "z": 5,
+          "dialog": "小心，大风快来了！"
+        },
+        {
+          "type": "cow",
+          "name": "受惊的奶牛",
+          "x": -5,
+          "y": 70,
+          "z": -3,
+          "dialog": ""
+        },
+        {
+          "type": "zombie",
+          "name": "风中游荡者",
+          "x": 15,
+          "y": 70,
+          "z": -10,
+          "dialog": "呜...风太大了..."
+        }
+      ],
+      "blocks": [
+        {
+          "type": "stone",
+          "x": 0,
+          "y": 69,
+          "z": 0
+        },
+        {
+          "type": "oak_planks",
+          "x": 2,
+          "y": 70,
+          "z": 2
+        },
+        {
+          "type": "glass",
+          "x": 5,
+          "y": 72,
+          "z": 0
+        },
+        {
+          "type": "stone",
+          "x": -3,
+          "y": 70,
+          "z": 4
+        },
+        {
+          "type": "oak_planks",
+          "x": 8,
+          "y": 70,
+          "z": -2
+        },
+        {
+          "type": "glass",
+          "x": -5,
+          "y": 71,
+          "z": -1
+        },
+        {
+          "type": "campfire",
+          "offset": {
+            "dx": 0.0,
+            "dy": 0.0,
+            "dz": 0.0
+          },
+          "_scene_event_id": "spawn_fire",
+          "world": "world"
+        }
+      ],
+      "spawn_multi": [
+        {
+          "type": "villager",
+          "name": "阿无",
+          "offset": {
+            "dx": 2.0,
+            "dy": 0.0,
+            "dz": 1.0
+          },
+          "_scene_event_id": "spawn_npc",
+          "world": "world"
+        }
+      ],
+      "structure": [
+        {
+          "template": "camp_small",
+          "offset": {
+            "dx": 1.0,
+            "dy": 0.0,
+            "dz": 1.0
+          },
+          "_scene_event_id": "spawn_camp",
+          "world": "world"
+        },
+        {
+          "template": "cooking_area_basic",
+          "offset": {
+            "dx": 0.0,
+            "dy": 0.0,
+            "dz": 0.0
+          },
+          "_scene_event_id": "spawn_cooking_area",
+          "world": "world"
+        }
+      ],
+      "build_multi": [
+        {
+          "shape": "platform",
+          "size": 2,
+          "material": "OAK_PLANKS",
+          "offset": {
+            "dx": 1.0,
+            "dy": 0.0,
+            "dz": 1.0
+          },
+          "_scene_event_id": "spawn_camp",
+          "world": "world"
+        },
+        {
+          "shape": "line",
+          "size": 2,
+          "material": "OAK_FENCE",
+          "offset": {
+            "dx": 0.0,
+            "dy": 0.0,
+            "dz": 0.0
+          },
+          "_scene_event_id": "spawn_camp",
+          "world": "world"
+        },
+        {
+          "shape": "line",
+          "size": 1,
+          "material": "CAMPFIRE",
+          "offset": {
+            "dx": 0.0,
+            "dy": 0.0,
+            "dz": 0.0
+          },
+          "_scene_event_id": "spawn_fire",
+          "world": "world"
+        },
+        {
+          "shape": "line",
+          "size": 2,
+          "material": "COBBLESTONE",
+          "offset": {
+            "dx": 0.0,
+            "dy": 0.0,
+            "dz": 0.0
+          },
+          "_scene_event_id": "spawn_cooking_area",
+          "world": "world"
+        },
+        {
+          "shape": "line",
+          "size": 1,
+          "material": "FURNACE",
+          "offset": {
+            "dx": 1.0,
+            "dy": 0.0,
+            "dz": 0.0
+          },
+          "_scene_event_id": "spawn_cooking_area",
+          "world": "world"
+        }
+      ]
+    }
+  },
+  "tree": null
+}

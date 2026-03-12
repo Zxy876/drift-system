@@ -1,0 +1,29 @@
+{
+  "id": "cooking_area",
+  "root": false,
+  "priority": 42,
+  "size": [5, 5],
+  "layout_anchor": "edge",
+  "tags": ["food", "fire", "utility"],
+  "requires": ["food"],
+  "optional_resources": ["fire", "wood"],
+  "structures": [
+    {
+      "type": "kitchen",
+      "template": "cooking_area_basic",
+      "offset": [2, 0, 1]
+    }
+  ],
+  "npcs": [],
+  "connections": [],
+  "events": [
+    {
+      "event_id": "spawn_cooking_area",
+      "type": "spawn_structure",
+      "anchor_ref": "camp_center",
+      "data": {
+        "template": "cooking_area_basic"
+      }
+    }
+  ]
+}

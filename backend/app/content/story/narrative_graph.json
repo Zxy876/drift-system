@@ -1,0 +1,21 @@
+{
+  "version": "p8a_v1",
+  "entry_node": "forest_intro",
+  "nodes": {
+    "forest_intro": {
+      "arc": "main",
+      "next": ["camp_life"],
+      "requires": ["scene:camp"]
+    },
+    "camp_life": {
+      "arc": "main",
+      "next": ["village_arrival"],
+      "requires": ["scene:village"]
+    },
+    "village_arrival": {
+      "arc": "main",
+      "next": [],
+      "requires": ["scene:forge"]
+    }
+  }
+}

@@ -1,0 +1,610 @@
+{
+  "id": "p6b_probe_forge_0510487b",
+  "title": "P6B runtime probe forge",
+  "text": [
+    "P6B runtime probe forge"
+  ],
+  "tags": [],
+  "mood": {
+    "base": "calm",
+    "intensity": 0.5
+  },
+  "choices": [],
+  "meta": {
+    "trng_transaction": {
+      "tx_id": "tx_ddf237c83ec0",
+      "base_state_hash": "befe6682a6c32ed55d288ddaf40636b0ee73c37fd48bd8ec91204afa91dba85e",
+      "committed_state_hash": "b450e47a275e671dd891764d7ad74099a3233d2dc6cf18b9dff2a9bf07506cde",
+      "committed_graph_hash": "86302a5738a95ba982bc6fb4faf8ff1f36a7c4dc98f3daf92698ca54aeebd28b",
+      "commit_timestamp": 1772843951.915104,
+      "rule_version": "rule_v2_2",
+      "engine_version": "engine_v2_1",
+      "event_count": 2
+    },
+    "scene_generation": {
+      "scene_theme": "语义探针锻造",
+      "scene_hint": null,
+      "selected_anchor": "player",
+      "initial_anchor": "player",
+      "final_anchor": "player_safe_ground",
+      "player_pos": {
+        "world": "world",
+        "x": 12.0,
+        "y": 65.0,
+        "z": -3.0
+      },
+      "initial_anchor_pos": {
+        "world": "world",
+        "x": 12.0,
+        "y": 65.0,
+        "z": -3.0
+      },
+      "final_anchor_pos": {
+        "world": "world",
+        "x": 12.0,
+        "y": 65.0,
+        "z": -3.0
+      },
+      "anchor_pos": {
+        "world": "world",
+        "x": 12.0,
+        "y": 65.0,
+        "z": -3.0
+      },
+      "fragments": [],
+      "event_count": 0,
+      "event_plan": [],
+      "inventory_resources": {
+        "campfire": 1,
+        "iron_ingot": 2,
+        "stone": 2
+      }
+    }
+  },
+  "npcs": [],
+  "bootstrap_patch": {
+    "variables": {
+      "story_world_generated": true,
+      "story_title": "P6B runtime probe forge"
+    },
+    "mc": {
+      "tell": "§6P6B runtime probe forge§r\nP6B runtime probe forge",
+      "spawn": {
+        "x": 22,
+        "y": 67,
+        "z": 2,
+        "world": "world"
+      },
+      "time": "night",
+      "weather": "clear",
+      "spawns": [
+        {
+          "type": "villager",
+          "name": "Probe Smith",
+          "x": 27,
+          "y": 67,
+          "z": 5,
+          "dialog": "Welcome to the P6B Forge. I craft runtime probes here.",
+          "world": "world"
+        },
+        {
+          "type": "skeleton",
+          "name": "Guardian",
+          "x": 37,
+          "y": 67,
+          "z": 12,
+          "dialog": "Hsss... unauthorized access detected.",
+          "world": "world"
+        },
+        {
+          "type": "cow",
+          "name": "Forge Companion",
+          "x": 24,
+          "y": 67,
+          "z": 9,
+          "dialog": "",
+          "world": "world"
+        }
+      ],
+      "blocks": [
+        {
+          "type": "stone",
+          "x": 22,
+          "y": 66,
+          "z": 2,
+          "world": "world"
+        },
+        {
+          "type": "stone",
+          "x": 23,
+          "y": 66,
+          "z": 2,
+          "world": "world"
+        },
+        {
+          "type": "stone",
+          "x": 24,
+          "y": 66,
+          "z": 2,
+          "world": "world"
+        },
+        {
+          "type": "stone",
+          "x": 25,
+          "y": 66,
+          "z": 2,
+          "world": "world"
+        },
+        {
+          "type": "stone",
+          "x": 26,
+          "y": 66,
+          "z": 2,
+          "world": "world"
+        },
+        {
+          "type": "stone",
+          "x": 27,
+          "y": 66,
+          "z": 2,
+          "world": "world"
+        },
+        {
+          "type": "stone",
+          "x": 28,
+          "y": 66,
+          "z": 2,
+          "world": "world"
+        },
+        {
+          "type": "stone",
+          "x": 29,
+          "y": 66,
+          "z": 2,
+          "world": "world"
+        },
+        {
+          "type": "stone",
+          "x": 30,
+          "y": 66,
+          "z": 2,
+          "world": "world"
+        },
+        {
+          "type": "stone",
+          "x": 31,
+          "y": 66,
+          "z": 2,
+          "world": "world"
+        },
+        {
+          "type": "stone",
+          "x": 32,
+          "y": 66,
+          "z": 2,
+          "world": "world"
+        },
+        {
+          "type": "stone",
+          "x": 33,
+          "y": 66,
+          "z": 2,
+          "world": "world"
+        },
+        {
+          "type": "stone",
+          "x": 34,
+          "y": 66,
+          "z": 2,
+          "world": "world"
+        },
+        {
+          "type": "stone",
+          "x": 35,
+          "y": 66,
+          "z": 2,
+          "world": "world"
+        },
+        {
+          "type": "stone",
+          "x": 36,
+          "y": 66,
+          "z": 2,
+          "world": "world"
+        },
+        {
+          "type": "stone",
+          "x": 37,
+          "y": 66,
+          "z": 2,
+          "world": "world"
+        },
+        {
+          "type": "stone",
+          "x": 38,
+          "y": 66,
+          "z": 2,
+          "world": "world"
+        },
+        {
+          "type": "stone",
+          "x": 39,
+          "y": 66,
+          "z": 2,
+          "world": "world"
+        },
+        {
+          "type": "stone",
+          "x": 40,
+          "y": 66,
+          "z": 2,
+          "world": "world"
+        },
+        {
+          "type": "stone",
+          "x": 41,
+          "y": 66,
+          "z": 2,
+          "world": "world"
+        },
+        {
+          "type": "stone",
+          "x": 42,
+          "y": 66,
+          "z": 2,
+          "world": "world"
+        },
+        {
+          "type": "oak_planks",
+          "x": 27,
+          "y": 67,
+          "z": 5,
+          "world": "world"
+        },
+        {
+          "type": "oak_planks",
+          "x": 28,
+          "y": 67,
+          "z": 5,
+          "world": "world"
+        },
+        {
+          "type": "oak_planks",
+          "x": 29,
+          "y": 67,
+          "z": 5,
+          "world": "world"
+        },
+        {
+          "type": "oak_planks",
+          "x": 30,
+          "y": 67,
+          "z": 5,
+          "world": "world"
+        },
+        {
+          "type": "oak_planks",
+          "x": 31,
+          "y": 67,
+          "z": 5,
+          "world": "world"
+        },
+        {
+          "type": "glass",
+          "x": 32,
+          "y": 68,
+          "z": 5,
+          "world": "world"
+        },
+        {
+          "type": "glass",
+          "x": 33,
+          "y": 68,
+          "z": 5,
+          "world": "world"
+        },
+        {
+          "type": "glass",
+          "x": 34,
+          "y": 68,
+          "z": 5,
+          "world": "world"
+        },
+        {
+          "type": "stone",
+          "x": 37,
+          "y": 67,
+          "z": 12,
+          "world": "world"
+        },
+        {
+          "type": "stone",
+          "x": 38,
+          "y": 67,
+          "z": 12,
+          "world": "world"
+        },
+        {
+          "type": "stone",
+          "x": 39,
+          "y": 67,
+          "z": 12,
+          "world": "world"
+        }
+      ]
+    }
+  },
+  "world_patch": {
+    "variables": {
+      "story_world_generated": true,
+      "story_title": "P6B runtime probe forge"
+    },
+    "mc": {
+      "tell": "§6P6B runtime probe forge§r\nP6B runtime probe forge",
+      "spawn": {
+        "x": 22,
+        "y": 67,
+        "z": 2,
+        "world": "world"
+      },
+      "time": "night",
+      "weather": "clear",
+      "spawns": [
+        {
+          "type": "villager",
+          "name": "Probe Smith",
+          "x": 27,
+          "y": 67,
+          "z": 5,
+          "dialog": "Welcome to the P6B Forge. I craft runtime probes here.",
+          "world": "world"
+        },
+        {
+          "type": "skeleton",
+          "name": "Guardian",
+          "x": 37,
+          "y": 67,
+          "z": 12,
+          "dialog": "Hsss... unauthorized access detected.",
+          "world": "world"
+        },
+        {
+          "type": "cow",
+          "name": "Forge Companion",
+          "x": 24,
+          "y": 67,
+          "z": 9,
+          "dialog": "",
+          "world": "world"
+        }
+      ],
+      "blocks": [
+        {
+          "type": "stone",
+          "x": 22,
+          "y": 66,
+          "z": 2,
+          "world": "world"
+        },
+        {
+          "type": "stone",
+          "x": 23,
+          "y": 66,
+          "z": 2,
+          "world": "world"
+        },
+        {
+          "type": "stone",
+          "x": 24,
+          "y": 66,
+          "z": 2,
+          "world": "world"
+        },
+        {
+          "type": "stone",
+          "x": 25,
+          "y": 66,
+          "z": 2,
+          "world": "world"
+        },
+        {
+          "type": "stone",
+          "x": 26,
+          "y": 66,
+          "z": 2,
+          "world": "world"
+        },
+        {
+          "type": "stone",
+          "x": 27,
+          "y": 66,
+          "z": 2,
+          "world": "world"
+        },
+        {
+          "type": "stone",
+          "x": 28,
+          "y": 66,
+          "z": 2,
+          "world": "world"
+        },
+        {
+          "type": "stone",
+          "x": 29,
+          "y": 66,
+          "z": 2,
+          "world": "world"
+        },
+        {
+          "type": "stone",
+          "x": 30,
+          "y": 66,
+          "z": 2,
+          "world": "world"
+        },
+        {
+          "type": "stone",
+          "x": 31,
+          "y": 66,
+          "z": 2,
+          "world": "world"
+        },
+        {
+          "type": "stone",
+          "x": 32,
+          "y": 66,
+          "z": 2,
+          "world": "world"
+        },
+        {
+          "type": "stone",
+          "x": 33,
+          "y": 66,
+          "z": 2,
+          "world": "world"
+        },
+        {
+          "type": "stone",
+          "x": 34,
+          "y": 66,
+          "z": 2,
+          "world": "world"
+        },
+        {
+          "type": "stone",
+          "x": 35,
+          "y": 66,
+          "z": 2,
+          "world": "world"
+        },
+        {
+          "type": "stone",
+          "x": 36,
+          "y": 66,
+          "z": 2,
+          "world": "world"
+        },
+        {
+          "type": "stone",
+          "x": 37,
+          "y": 66,
+          "z": 2,
+          "world": "world"
+        },
+        {
+          "type": "stone",
+          "x": 38,
+          "y": 66,
+          "z": 2,
+          "world": "world"
+        },
+        {
+          "type": "stone",
+          "x": 39,
+          "y": 66,
+          "z": 2,
+          "world": "world"
+        },
+        {
+          "type": "stone",
+          "x": 40,
+          "y": 66,
+          "z": 2,
+          "world": "world"
+        },
+        {
+          "type": "stone",
+          "x": 41,
+          "y": 66,
+          "z": 2,
+          "world": "world"
+        },
+        {
+          "type": "stone",
+          "x": 42,
+          "y": 66,
+          "z": 2,
+          "world": "world"
+        },
+        {
+          "type": "oak_planks",
+          "x": 27,
+          "y": 67,
+          "z": 5,
+          "world": "world"
+        },
+        {
+          "type": "oak_planks",
+          "x": 28,
+          "y": 67,
+          "z": 5,
+          "world": "world"
+        },
+        {
+          "type": "oak_planks",
+          "x": 29,
+          "y": 67,
+          "z": 5,
+          "world": "world"
+        },
+        {
+          "type": "oak_planks",
+          "x": 30,
+          "y": 67,
+          "z": 5,
+          "world": "world"
+        },
+        {
+          "type": "oak_planks",
+          "x": 31,
+          "y": 67,
+          "z": 5,
+          "world": "world"
+        },
+        {
+          "type": "glass",
+          "x": 32,
+          "y": 68,
+          "z": 5,
+          "world": "world"
+        },
+        {
+          "type": "glass",
+          "x": 33,
+          "y": 68,
+          "z": 5,
+          "world": "world"
+        },
+        {
+          "type": "glass",
+          "x": 34,
+          "y": 68,
+          "z": 5,
+          "world": "world"
+        },
+        {
+          "type": "stone",
+          "x": 37,
+          "y": 67,
+          "z": 12,
+          "world": "world"
+        },
+        {
+          "type": "stone",
+          "x": 38,
+          "y": 67,
+          "z": 12,
+          "world": "world"
+        },
+        {
+          "type": "stone",
+          "x": 39,
+          "y": 67,
+          "z": 12,
+          "world": "world"
+        }
+      ]
+    }
+  },
+  "tree": null
+}

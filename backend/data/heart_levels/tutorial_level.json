@@ -1,0 +1,458 @@
+{
+  "id": "tutorial_level",
+  "title": "心悦之旅·序章",
+  "text": [
+    "欢迎来到心悦文集的世界",
+    "这里是一个由故事与冒险交织而成的奇幻空间。",
+    "在这里，你的每一句话都能改变剧情的走向，",
+    "你的每一个选择都会影响故事的结局。",
+    "",
+    "现在，让我来教你如何在这个世界中冒险...",
+    "",
+    "第一课：对话",
+    "你可以直接在聊天框中输入文字与世界互动。",
+    "试着说 '你好' 或者 '我准备好了' 来开始你的旅程。",
+    "",
+    "第二课：剧情创造",
+    "你可以说 '写一个剧情' 或 '创造一个故事' 来生成新的冒险。",
+    "AI会根据当前关卡的主题为你编织独特的故事。",
+    "",
+    "第三课：关卡跳转",
+    "想要探索其他关卡？只需说 '跳到第X关' 或 '前往XX关卡'。",
+    "心悦文集共有30个关卡，每个都有独特的场景和NPC。",
+    "",
+    "第四课：NPC互动",
+    "每个关卡都有专属的NPC角色。",
+    "你可以通过自然语言与他们对话，触发任务和获得奖励。",
+    "",
+    "第五课：小地图",
+    "说 '给我小地图' 来查看你的进度。",
+    "已解锁的关卡会以青绿色标记，当前关卡是金色。",
+    "",
+    "准备好开始你的心悦之旅了吗？",
+    "让我们从第一关开始吧！"
+  ],
+  "tags": [
+    "教学",
+    "新手指引"
+  ],
+  "mood": {
+    "base": "calm",
+    "intensity": 0.3
+  },
+  "choices": [
+    {
+      "label": "开始冒险",
+      "next": "level_01"
+    },
+    {
+      "label": "再看一遍教学",
+      "next": "tutorial_level"
+    }
+  ],
+  "meta": {
+    "source": "tutorial",
+    "chapter": 0,
+    "word_count": 300,
+    "is_tutorial": true
+  },
+  "world_patch": {
+    "mc": {
+      "spawn": {
+        "type": "villager",
+        "name": "心悦向导",
+        "offset": {
+          "dx": 0,
+          "dy": 0,
+          "dz": 5
+        },
+        "behaviors": [
+          {
+            "type": "stand",
+            "location": {
+              "dx": 0,
+              "dy": 0,
+              "dz": 5
+            },
+            "look_at": "nearest_player",
+            "description": "站在教学平台中心迎接新玩家"
+          },
+          {
+            "type": "patrol",
+            "path": [
+              {
+                "dx": 0,
+                "dz": 5
+              },
+              {
+                "dx": 3,
+                "dz": 3
+              },
+              {
+                "dx": -3,
+                "dz": 3
+              }
+            ],
+            "speed": 0.6,
+            "description": "缓步示范教学环线"
+          },
+          {
+            "type": "interact",
+            "trigger": "right_click",
+            "trigger_keywords": [
+              "教学",
+              "帮助",
+              "指南"
+            ],
+            "action": "dialogue",
+            "messages": [
+              "§e✨[心悦向导]§r 欢迎来到心悦文集的世界！",
+              "§e✨[心悦向导]§r 我是你的向导，让我来教你如何冒险。",
+              "",
+              "§b📖 第一步：自由对话",
+              "§7试着在聊天框输入：§f'你好'§7 或 §f'我准备好了'",
+              "",
+              "§b📖 第二步：创造剧情",
+              "§7输入：§f'写一个剧情'§7 来生成故事",
+              "",
+              "§b📖 第三步：关卡跳转",
+              "§7输入：§f'跳到第一关'§7 开始正式冒险",
+              "",
+              "§b📖 第四步：NPC互动",
+              "§7每个关卡都有独特的NPC，用自然语言与他们对话",
+              "",
+              "§b📖 第五步：查看地图",
+              "§7输入：§f'给我小地图'§7 查看进度",
+              "",
+              "§a准备好了吗？说§f'开始冒险'§a来开启你的旅程！"
+            ],
+            "description": "逐条讲解核心玩法与指令"
+          },
+          {
+            "type": "quest",
+            "trigger_keywords": [
+              "准备好了",
+              "开始",
+              "冒险",
+              "教学"
+            ],
+            "quest_name": "心悦之旅启程",
+            "rewards": [
+              "welcome_gift",
+              "tutorial_complete"
+            ],
+            "description": "完成新手教学"
+          }
+        ],
+        "ai_hints": "心悦向导会根据玩家的回答动态调整教学节奏，并在关键关键词出现时 触发指引粒子，引导玩家完成所有教程步骤。"
+      },
+      "spawn_multi": [
+        {
+          "type": "villager",
+          "name": "心悦前导",
+          "offset": {
+            "dx": -3,
+            "dy": 0,
+            "dz": -3
+          },
+          "behaviors": [
+            {
+              "type": "stand",
+              "location": {
+                "dx": -3,
+                "dz": -3
+              },
+              "look_at": "nearest_player",
+              "description": "守在旗舰主线传送门旁等待勇士"
+            },
+            {
+              "type": "interact",
+              "trigger": "right_click",
+              "trigger_keywords": [
+                "主线",
+                "旗舰"
+              ],
+              "action": "dialogue",
+              "messages": [
+                "§d[心悦前导]§r 要踏入旗舰主线，只需在聊天框输入：§f踏入心悦主线",
+                "§d[心悦前导]§r 教程完成后，这句话会带你直达旗舰旅程的起点。"
+              ],
+              "description": "教授旗舰主线开启指令"
+            }
+          ],
+          "ai_hints": "主线前导会在玩家靠近旗舰传送门时提醒他们使用'踏入心悦主线'关键词。"
+        }
+      ],
+      "build": {
+        "shape": "platform",
+        "size": 12,
+        "material": "quartz_block",
+        "description": "宽阔的白色石英平台，象征着新旅程的起点"
+      },
+      "music": {
+        "record": "cat",
+        "description": "轻松愉快的旋律，缓解新手的紧张感"
+      },
+      "particle": {
+        "type": "end_rod",
+        "color": "white",
+        "count": 20,
+        "description": "柔和的白色光点，营造神圣的氛围"
+      },
+      "tell": "§e✨ 欢迎来到§6心悦文集§e的世界！ ✨",
+      "_scene": {
+        "level_id": "tutorial_level",
+        "scene_world": "KunmingLakeTutorial",
+        "teleport": {
+          "x": 4.5,
+          "y": 68.0,
+          "z": 4.5,
+          "yaw": 180.0,
+          "pitch": 0.0
+        },
+        "featured_npc": "心悦向导"
+      }
+    },
+    "variables": {
+      "theme": "教学关卡",
+      "biome": "plains",
+      "structure": "tutorial_hall",
+      "is_tutorial": true,
+      "unlocked": true,
+      "world": "KunmingLakeTutorial"
+    }
+  },
+  "scene": {
+    "world": "KunmingLakeTutorial",
+    "teleport": {
+      "x": 4.5,
+      "y": 68.0,
+      "z": 4.5,
+      "yaw": 180.0,
+      "pitch": 0.0
+    },
+    "environment": {
+      "weather": "CLEAR",
+      "time": "DAY"
+    },
+    "structures": [
+      "structures/tutorial/spawn_plaza.nbt"
+    ],
+    "npc_skins": [
+      {
+        "id": "心悦向导",
+        "skin": "registry:tutorial"
+      },
+      {
+        "id": "心悦前导",
+        "skin": "registry:guide"
+      }
+    ]
+  },
+  "narrative": {
+    "text": [
+      "欢迎来到心悦文集的世界",
+      "这里是一个由故事与冒险交织而成的奇幻空间。",
+      "在这里，你的每一句话都能改变剧情的走向，",
+      "你的每一个选择都会影响故事的结局。",
+      "",
+      "现在，让我来教你如何在这个世界中冒险...",
+      "",
+      "第一课：对话",
+      "你可以直接在聊天框中输入文字与世界互动。",
+      "试着说 '你好' 或者 '我准备好了' 来开始你的旅程。",
+      "",
+      "第二课：剧情创造",
+      "你可以说 '写一个剧情' 或 '创造一个故事' 来生成新的冒险。",
+      "AI会根据当前关卡的主题为你编织独特的故事。",
+      "",
+      "第三课：关卡跳转",
+      "想要探索其他关卡？只需说 '跳到第X关' 或 '前往XX关卡'。",
+      "心悦文集共有30个关卡，每个都有独特的场景和NPC。",
+      "",
+      "第四课：NPC互动",
+      "每个关卡都有专属的NPC角色。",
+      "你可以通过自然语言与他们对话，触发任务和获得奖励。",
+      "",
+      "第五课：小地图",
+      "说 '给我小地图' 来查看你的进度。",
+      "已解锁的关卡会以青绿色标记，当前关卡是金色。",
+      "",
+      "准备好开始你的心悦之旅了吗？",
+      "让我们从第一关开始吧！"
+    ],
+    "beats": [
+      {
+        "id": "tutorial_intro",
+        "trigger": "on_enter",
+        "scene_patch": "scene_tutorial_plaza",
+        "rule_refs": [
+          "tutorial_guidance"
+        ]
+      },
+      {
+        "id": "tutorial_ready",
+        "trigger": "rule_event:tutorial_ready",
+        "scene_patch": "scene_ready_check",
+        "rule_refs": [
+          "tutorial_launch"
+        ]
+      },
+      {
+        "id": "tutorial_wrap",
+        "trigger": "rule_event:tutorial_complete",
+        "scene_patch": "scene_portal_hub",
+        "rule_refs": [
+          "tutorial_launch"
+        ]
+      }
+    ]
+  },
+  "rules": {
+    "listeners": [
+      {
+        "id": "tutorial_guidance",
+        "type": "chat_keyword",
+        "targets": [
+          "准备好了",
+          "开始冒险"
+        ],
+        "quest_event": "tutorial_ready",
+        "metadata": {
+          "dialogue": [
+            "§e✨[心悦向导]§r 很好！我能感受到你的勇气。",
+            "§7(向导挥动权杖，指引光束照向第一关传送门)"
+          ],
+          "commands": [
+            "playsound minecraft:entity.experience_orb.pickup voice @p ~ ~ ~ 1 1.3"
+          ],
+          "update_behaviors": [
+            {
+              "type": "particle",
+              "particle": "happy_villager",
+              "description": "向导周围冒出绿色光点，提示教学进度"
+            }
+          ]
+        }
+      },
+      {
+        "id": "tutorial_launch",
+        "type": "quest_event",
+        "targets": [
+          "tutorial_complete"
+        ],
+        "quest_event": "tutorial_complete",
+        "metadata": {
+          "dialogue": {
+            "title": "去冒险吧",
+            "text": "向导打开通往第一关的传送门，鼓励你踏出下一步。"
+          },
+          "commands": [
+            "title @p subtitle {\"text\":\"踏入心悦世界，创造你的故事！\",\"color\":\"gold\"}"
+          ],
+          "world_patch": {
+            "mc": {
+              "title": {
+                "main": "§d教学完成",
+                "sub": "传送门闪耀，心悦世界向你敞开。",
+                "fade_in": 8,
+                "stay": 80,
+                "fade_out": 28
+              },
+              "sound": {
+                "type": "MUSIC_DISC_MELLOHI",
+                "volume": 0.9,
+                "pitch": 1.05
+              },
+              "particle": {
+                "type": "ENCHANTMENT_TABLE",
+                "count": 100,
+                "radius": 3.5,
+                "speed": 0.1
+              },
+              "weather": "dream_sky",
+              "time": "sunset"
+            }
+          }
+        }
+      },
+      {
+        "id": "tutorial_campaign_start",
+        "type": "chat_keyword",
+        "targets": [
+          "踏入心悦主线"
+        ],
+        "quest_event": "tutorial_campaign_start",
+        "metadata": {
+          "dialogue": [
+            "§d✨[心悦前导]§r 太好了！旗舰主线即将开启。",
+            "§7(向导们共同打开前往旗舰关卡的星光走廊)"
+          ],
+          "commands": [
+            "title @p title {\"text\":\"旗舰主线已解锁\",\"color\":\"light_purple\"}",
+            "title @p subtitle {\"text\":\"按照提示踏入心悦主线吧！\",\"color\":\"white\"}"
+          ],
+          "world_patch": {
+            "mc": {
+              "particle": {
+                "type": "portal",
+                "count": 120,
+                "radius": 3.5,
+                "speed": 0.15
+              },
+              "sound": {
+                "type": "MUSIC_DISC_FAR",
+                "volume": 0.8,
+                "pitch": 1.05
+              }
+            }
+          }
+        }
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "id": "tutorial_conversation",
+      "type": "conversation",
+      "conditions": [
+        {
+          "entity": "心悦向导",
+          "count": 1
+        }
+      ],
+      "milestones": [
+        "said_hello",
+        "asked_for_help"
+      ],
+      "rewards": [
+        {
+          "type": "item",
+          "amount": 1,
+          "data": {
+            "id": "guide_compass"
+          }
+        },
+        {
+          "type": "xp",
+          "amount": 80
+        }
+      ]
+    }
+  ],
+  "exit": {
+    "phrase_aliases": [
+      "结束教学",
+      "返回大厅",
+      "回到中心"
+    ],
+    "return_spawn": "KunmingLakeHub",
+    "teleport": {
+      "x": 128.5,
+      "y": 72.0,
+      "z": -16.5,
+      "yaw": 180.0,
+      "pitch": 0.0
+    }
+  }
+}

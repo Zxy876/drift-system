@@ -1,0 +1,200 @@
+{
+  "id": "phase7_live_accept_1772681908464_4",
+  "title": "验收-4",
+  "text": [
+    "创建剧情 暴风雨 在海边"
+  ],
+  "tags": [],
+  "mood": {
+    "base": "calm",
+    "intensity": 0.5
+  },
+  "choices": [],
+  "meta": {},
+  "npcs": [],
+  "bootstrap_patch": {
+    "variables": {
+      "story_world_generated": true,
+      "story_title": "验收-4"
+    },
+    "mc": {
+      "tell": "§6验收-4§r\n创建剧情 暴风雨 在海边",
+      "spawn": {
+        "x": 10,
+        "y": 65,
+        "z": 0
+      },
+      "time": "night",
+      "weather": "thunder",
+      "spawns": [
+        {
+          "type": "villager",
+          "name": "老渔夫",
+          "x": 15,
+          "y": 65,
+          "z": -5,
+          "dialog": "暴风雨要来了，快躲进灯塔！"
+        },
+        {
+          "type": "zombie",
+          "name": "溺水僵尸",
+          "x": -5,
+          "y": 62,
+          "z": 10,
+          "dialog": "..."
+        },
+        {
+          "type": "cow",
+          "name": "受惊的奶牛",
+          "x": 20,
+          "y": 65,
+          "z": 8,
+          "dialog": ""
+        }
+      ],
+      "blocks": [
+        {
+          "type": "stone",
+          "x": 10,
+          "y": 64,
+          "z": 0
+        },
+        {
+          "type": "oak_planks",
+          "x": 12,
+          "y": 65,
+          "z": -3
+        },
+        {
+          "type": "glass",
+          "x": 15,
+          "y": 70,
+          "z": -5
+        },
+        {
+          "type": "stone",
+          "x": 14,
+          "y": 64,
+          "z": -5
+        },
+        {
+          "type": "stone",
+          "x": 16,
+          "y": 64,
+          "z": -5
+        },
+        {
+          "type": "oak_planks",
+          "x": 15,
+          "y": 65,
+          "z": -4
+        },
+        {
+          "type": "oak_planks",
+          "x": 15,
+          "y": 66,
+          "z": -5
+        },
+        {
+          "type": "torch",
+          "x": 15,
+          "y": 69,
+          "z": -5
+        }
+      ]
+    }
+  },
+  "world_patch": {
+    "variables": {
+      "story_world_generated": true,
+      "story_title": "验收-4"
+    },
+    "mc": {
+      "tell": "§6验收-4§r\n创建剧情 暴风雨 在海边",
+      "spawn": {
+        "x": 10,
+        "y": 65,
+        "z": 0
+      },
+      "time": "night",
+      "weather": "thunder",
+      "spawns": [
+        {
+          "type": "villager",
+          "name": "老渔夫",
+          "x": 15,
+          "y": 65,
+          "z": -5,
+          "dialog": "暴风雨要来了，快躲进灯塔！"
+        },
+        {
+          "type": "zombie",
+          "name": "溺水僵尸",
+          "x": -5,
+          "y": 62,
+          "z": 10,
+          "dialog": "..."
+        },
+        {
+          "type": "cow",
+          "name": "受惊的奶牛",
+          "x": 20,
+          "y": 65,
+          "z": 8,
+          "dialog": ""
+        }
+      ],
+      "blocks": [
+        {
+          "type": "stone",
+          "x": 10,
+          "y": 64,
+          "z": 0
+        },
+        {
+          "type": "oak_planks",
+          "x": 12,
+          "y": 65,
+          "z": -3
+        },
+        {
+          "type": "glass",
+          "x": 15,
+          "y": 70,
+          "z": -5
+        },
+        {
+          "type": "stone",
+          "x": 14,
+          "y": 64,
+          "z": -5
+        },
+        {
+          "type": "stone",
+          "x": 16,
+          "y": 64,
+          "z": -5
+        },
+        {
+          "type": "oak_planks",
+          "x": 15,
+          "y": 65,
+          "z": -4
+        },
+        {
+          "type": "oak_planks",
+          "x": 15,
+          "y": 66,
+          "z": -5
+        },
+        {
+          "type": "torch",
+          "x": 15,
+          "y": 69,
+          "z": -5
+        }
+      ]
+    }
+  },
+  "tree": null
+}

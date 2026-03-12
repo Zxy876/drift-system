@@ -1,0 +1,34 @@
+{
+  "id": "market",
+  "root": false,
+  "priority": 50,
+  "size": [7, 5],
+  "layout_anchor": "edge",
+  "tags": ["trade", "npc", "food"],
+  "requires": ["food"],
+  "optional_resources": ["wood", "cloth"],
+  "structures": [
+    {
+      "type": "stall",
+      "template": "market_stalls",
+      "offset": [3, 0, -1]
+    }
+  ],
+  "npcs": [
+    {
+      "id": "merchant",
+      "role": "trader"
+    }
+  ],
+  "connections": ["forge", "farm"],
+  "events": [
+    {
+      "event_id": "spawn_market",
+      "type": "spawn_structure",
+      "anchor_ref": "village_center",
+      "data": {
+        "template": "market_stalls"
+      }
+    }
+  ]
+}

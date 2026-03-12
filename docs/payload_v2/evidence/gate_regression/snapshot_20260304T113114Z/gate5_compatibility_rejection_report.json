@@ -1,0 +1,33 @@
+{
+  "generated_at_utc": "2026-03-04T11:28:47.320072+00:00",
+  "gate": "Gate 5 — Compatibility Rejection",
+  "overall_pass": true,
+  "checks": [
+    {
+      "name": "v2_to_executor_v1_reject",
+      "pass": true,
+      "result": {
+        "status": "REJECTED",
+        "failure_code": "UNSUPPORTED_PAYLOAD_VERSION"
+      }
+    },
+    {
+      "name": "v2_to_replay_v1_reject",
+      "pass": true,
+      "result": {
+        "status": "REJECTED",
+        "failure_code": "UNSUPPORTED_REPLAY_VERSION"
+      }
+    },
+    {
+      "name": "v1_to_executor_v1_pass",
+      "pass": true,
+      "result": {
+        "status": "SUCCESS",
+        "failure_code": "NONE",
+        "executed_commands": 2,
+        "world_state_hash": "2a9abb7aab3868e49d403420eba4a1d4a96696209f3dd33e4d117360f46d07f7"
+      }
+    }
+  ]
+}

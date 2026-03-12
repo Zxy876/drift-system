@@ -1,0 +1,24 @@
+{
+  "generated_at_utc": "2026-03-04T15:33:00.540844+00:00",
+  "gate": "Gate 6 — Projection Rule Immutability",
+  "overall_pass": true,
+  "snapshot": "/Users/zxydediannao/DriftSystem/backend/app/core/mapping/projection_rule_registry_freeze.json",
+  "default_rule_version": "rule_v2_2",
+  "result": {
+    "status": "PASS",
+    "failure_codes": [],
+    "details": {
+      "frozen_default_rule_version": "rule_v2_2",
+      "current_default_rule_version": "rule_v2_2",
+      "frozen_registry_digest": "03bf193e9022d8ccdea907edce49ca39d6128a3c8718fe6b0422416a0b05d116",
+      "current_registry_digest": "03bf193e9022d8ccdea907edce49ca39d6128a3c8718fe6b0422416a0b05d116",
+      "frozen_rule_hashes": {
+        "rule_v2_2": "561615933bf32a9436aead689872f968ccbcab1a579fcff180c0c3362908f17f"
+      },
+      "current_rule_hashes": {
+        "rule_v2_2": "561615933bf32a9436aead689872f968ccbcab1a579fcff180c0c3362908f17f"
+      },
+      "issues": []
+    }
+  }
+}

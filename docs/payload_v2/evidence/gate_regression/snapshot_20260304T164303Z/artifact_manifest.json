@@ -1,0 +1,65 @@
+{
+  "generated_at_utc": "2026-03-04T16:43:03.547537+00:00",
+  "snapshot_id": "snapshot_20260304T164303Z",
+  "commit_hash": "d8070014ebeecf03ace9d5541b2783ae10fa58f1",
+  "baseline": {
+    "return_code": 0,
+    "output": "docs/payload_v2/evidence/gate_regression/snapshot_20260304T164303Z/phase4_baseline_test_output.txt"
+  },
+  "gate_reports_copied": {
+    "gate2_replay_report.json": true,
+    "gate2b_execution_replay_report.json": true,
+    "gate3_hash_consistency_report.json": true,
+    "gate4_strict_integrity_report.json": true,
+    "gate5_compatibility_rejection_report.json": true,
+    "gate6_rule_immutability_report.json": true,
+    "gate7_rollback_safety_report.json": true
+  },
+  "gate_status": {
+    "gate2_replay_report.json": true,
+    "gate2b_execution_replay_report.json": true,
+    "gate3_hash_consistency_report.json": true,
+    "gate4_strict_integrity_report.json": true,
+    "gate5_compatibility_rejection_report.json": true,
+    "gate6_rule_immutability_report.json": true,
+    "gate7_rollback_safety_report.json": true
+  },
+  "artifacts": {
+    "docs/payload_v2/evidence/gate_regression/snapshot_20260304T164303Z/GATE_REGRESSION_EVIDENCE_SNAPSHOT.md": {
+      "sha256": "9ddebf61a82195bc5e8c511654bd167c3271f0311dc6a18d7af7a5e72f4511be",
+      "bytes": 1425
+    },
+    "docs/payload_v2/evidence/gate_regression/snapshot_20260304T164303Z/gate2_replay_report.json": {
+      "sha256": "5b5e87cb3e6ee20cfcf1dd4724fcd7fb8e274711086c46bde79cd8595c584962",
+      "bytes": 2536
+    },
+    "docs/payload_v2/evidence/gate_regression/snapshot_20260304T164303Z/gate2b_execution_replay_report.json": {
+      "sha256": "8c2b2604d1de5480efff65e5084555fbc59ea5176d94189cee5946e42f5f38de",
+      "bytes": 3847
+    },
+    "docs/payload_v2/evidence/gate_regression/snapshot_20260304T164303Z/gate3_hash_consistency_report.json": {
+      "sha256": "94ab78d0dc489fd9c41383c6a8b5c5a75704fd8c9ce5d0b13be11fcc2e2677ca",
+      "bytes": 2563
+    },
+    "docs/payload_v2/evidence/gate_regression/snapshot_20260304T164303Z/gate4_strict_integrity_report.json": {
+      "sha256": "4cc2e796fc3060ca493b44bedabe787ebf3ec1e18ec0b169b1044e35c4c8e661",
+      "bytes": 735
+    },
+    "docs/payload_v2/evidence/gate_regression/snapshot_20260304T164303Z/gate5_compatibility_rejection_report.json": {
+      "sha256": "24e398174804de0849485c4ccf7b89c3cba56426ae6c010c128dc5b6ef134e3d",
+      "bytes": 804
+    },
+    "docs/payload_v2/evidence/gate_regression/snapshot_20260304T164303Z/gate6_rule_immutability_report.json": {
+      "sha256": "a6ba7420350733eabfc88d3413dcf9cab5d127905367700861accce47765669f",
+      "bytes": 952
+    },
+    "docs/payload_v2/evidence/gate_regression/snapshot_20260304T164303Z/gate7_rollback_safety_report.json": {
+      "sha256": "8468a5e802701c5ce766d638676f6b552178e3577b2313c29dfa604ddd25c6cc",
+      "bytes": 621
+    },
+    "docs/payload_v2/evidence/gate_regression/snapshot_20260304T164303Z/phase4_baseline_test_output.txt": {
+      "sha256": "a43b1c44dd1e7077494364be64b82b24c56360825914f2412562a9c3c39cbf49",
+      "bytes": 99
+    }
+  }
+}

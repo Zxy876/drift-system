@@ -1,0 +1,47 @@
+{
+  "oak_log": ["wood"],
+  "spruce_log": ["wood"],
+  "birch_log": ["wood"],
+  "jungle_log": ["wood"],
+  "acacia_log": ["wood"],
+  "dark_oak_log": ["wood"],
+  "mangrove_log": ["wood"],
+  "cherry_log": ["wood"],
+  "bamboo_block": ["wood"],
+
+  "wood": ["wood"],
+  "planks": ["wood"],
+
+  "torch": ["light", "fire"],
+  "lantern": ["light"],
+  "campfire": ["light", "fire"],
+  "fire": ["fire"],
+  "light": ["light"],
+
+  "raw_porkchop": ["food", "meat"],
+  "cooked_porkchop": ["food", "meat"],
+  "beef": ["food", "meat"],
+  "cooked_beef": ["food", "meat"],
+  "bread": ["food", "trade"],
+  "wheat": ["food", "farm"],
+  "potato": ["food", "farm"],
+  "carrot": ["food", "farm"],
+  "pork": ["food", "meat"],
+  "food": ["food"],
+
+  "stone": ["stone"],
+  "cobblestone": ["stone"],
+  "deepslate": ["stone"],
+  "stone_bricks": ["stone"],
+
+  "iron_ingot": ["metal"],
+  "iron_block": ["metal"],
+  "metal": ["metal"],
+
+  "emerald": ["trade"],
+  "gold_ingot": ["trade", "metal"],
+  "trade": ["trade"],
+
+  "water_bucket": ["water"],
+  "water": ["water"]
+}

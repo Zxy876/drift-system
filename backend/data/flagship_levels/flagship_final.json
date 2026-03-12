@@ -1,0 +1,405 @@
+{
+  "id": "flagship_final",
+  "title": "黎明回响 · 河畔终章",
+  "tags": [
+    "旗舰",
+    "终章",
+    "情绪",
+    "心象"
+  ],
+  "meta": {
+    "chapter": 20,
+    "word_count": 1800,
+    "difficulty": "story",
+    "flagship": true
+  },
+  "memory_affinity": ["xinyue.face_once"],
+  "memory_recovery": ["xinyue.escape_once"],
+  "storyline_theme": "flagship_resilience",
+  "continuity": {
+    "previous": "flagship_12",
+    "next": null,
+    "next_major_level": null,
+    "emotional_vector": "dawn_resolution",
+    "arc_step": 5
+  },
+  "emotional_world_patch": {
+    "default": {
+      "label": "拂晓静滞",
+      "tone": "reflective",
+      "patch": {
+        "mc": {
+          "lighting_shift": "night_to_dawn",
+          "music": { "record": "otherside", "volume": 0.55 },
+          "npc_emotion": {
+            "tone": "reflective",
+            "targets": ["河畔回声"],
+            "lines": ["河水缓慢地绕过你们，像在倾听最后的答案。"]
+          }
+        }
+      }
+    },
+    "profiles": [
+      {
+        "id": "face_dawn",
+        "label": "晨光回潮",
+        "tone": "hopeful",
+        "requires": ["xinyue.face_once"],
+        "priority": 10,
+        "patch": {
+          "mc": {
+            "weather_transition": { "to": "CLEAR" },
+            "lighting_shift": "aurora_gold",
+            "music": { "record": "5", "volume": 0.8 },
+            "npc_emotion": {
+              "tone": "hopeful",
+              "targets": ["影子少女"],
+              "lines": ["影子少女抬头看向晨光：你听见了吗？风在说欢迎回家。"],
+              "actionbar": "拂晓破晓 · 面对"
+            }
+          }
+        }
+      },
+      {
+        "id": "escape_cycle",
+        "label": "夜潮回环",
+        "tone": "melancholy",
+        "requires": ["xinyue.escape_once"],
+        "priority": 6,
+        "patch": {
+          "mc": {
+            "weather_transition": { "to": "LIGHT_RAIN" },
+            "lighting_shift": "dawn_twilight",
+            "music": { "record": "mellohi", "volume": 0.75 },
+            "npc_emotion": {
+              "tone": "melancholy",
+              "targets": ["夜行者"],
+              "lines": ["夜行者把伞撑在你的肩上：我们还会再走一遍夜路吗？"],
+              "actionbar": "夜色缠绕 · 循环"
+            }
+          }
+        }
+      }
+    ]
+  },
+  "scene": {
+    "world": "KunmingLakeStory",
+    "teleport": { "x": -6.5, "y": 67.5, "z": 24.0, "yaw": 140.0, "pitch": 8.0 },
+    "environment": {
+      "weather": "CLEAR",
+      "time": "DAWN"
+    },
+    "structures": [
+      "structures/river/stone_pier.nbt",
+      "structures/river/dawn_bridge.nbt",
+      "structures/ritual/lantern_circle.nbt"
+    ],
+    "npc_skins": [
+      { "id": "影子少女", "skin": "registry:shadow" },
+      { "id": "夜行者", "skin": "registry:night" },
+      { "id": "河畔回声", "skin": "registry:river" }
+    ]
+  },
+  "world_patch": {
+    "mc": {
+      "spawn": {
+        "type": "player_like",
+        "name": "河畔回声",
+        "offset": { "dx": -2, "dy": 0, "dz": 3 },
+        "behaviors": [
+          {
+            "type": "stand",
+            "location": { "dx": -2, "dz": 3 },
+            "look_at": "player",
+            "description": "静立在水边倾听玩家的回答"
+          },
+          {
+            "type": "interact",
+            "trigger": "right_click",
+            "action": "dialogue",
+            "messages": [
+              "§b[河畔回声]§r 终章之河会记录每一句心声。",
+              "§b[河畔回声]§r 告诉我：是晨光为你指路，还是夜色陪你继续？"
+            ]
+          }
+        ],
+        "ai_hints": "终章引导者会根据记忆标记调整对话语气。"
+      },
+      "spawn_multi": [
+        {
+          "type": "player",
+          "name": "影子少女",
+          "offset": { "dx": 4, "dy": 0, "dz": -1 },
+          "behaviors": [
+            {
+              "type": "wander",
+              "radius": 3,
+              "speed": 0.45,
+              "description": "在晨光中拾起散落的灯笼"
+            }
+          ]
+        },
+        {
+          "type": "player",
+          "name": "夜行者",
+          "offset": { "dx": -4, "dy": 0, "dz": -2 },
+          "behaviors": [
+            {
+              "type": "patrol",
+              "path": [
+                { "dx": -4, "dz": -2 },
+                { "dx": -6, "dz": 2 },
+                { "dx": -2, "dz": 4 }
+              ],
+              "speed": 0.5,
+              "description": "沿着河岸来回踱步，等待新的决定"
+            }
+          ]
+        }
+      ],
+      "lighting_shift": "night_to_dawn",
+      "weather_transition": { "from": "NIGHT", "to": "DAWN" },
+      "music": { "record": "otherside" },
+      "particle": {
+        "type": "glow",
+        "color": "gold",
+        "count": 60,
+        "description": "河面上浮动的晨光粒子营造终章氛围"
+      },
+      "tell": "§d终章开始：河面泛起晨光，记忆在水面排成光带。",
+      "_scene": {
+        "level_id": "flagship_final",
+        "title": "黎明回响 · 河畔终章",
+        "theme": "dawn_river",
+        "scene_world": "KunmingLakeStory",
+        "teleport": { "x": -6.5, "y": 67.5, "z": 24.0, "yaw": 140.0, "pitch": 8.0 },
+        "featured_npc": "河畔回声"
+      },
+      "trigger_zones": [
+        {
+          "id": "flagship_final_arrival",
+          "label": "终章河岸",
+          "quest_event": "finale_arrival",
+          "radius": 4.5,
+          "offset": { "dx": 0.0, "dy": 0.0, "dz": 0.0 }
+        }
+      ],
+      "npc_trigger_events": [
+        { "npc": "河畔回声", "quest_event": "final_face_step" },
+        { "npc": "影子少女", "quest_event": "final_face_listen" },
+        { "npc": "夜行者", "quest_event": "final_escape_loop" }
+      ]
+    },
+    "variables": {
+      "theme": "dawn_finale",
+      "biome": "minecraft:river",
+      "weather": "DAWN",
+      "structure": "dawn_bridge",
+      "arc_position": "resolution",
+      "campaign_finale": true
+    }
+  },
+  "narrative": {
+    "text": [
+      "河风卷着夜色最后的潮湿，晨光在水面绽出细碎的金线。",
+      "你追逐的故事落在脚边，像是拾得的贝壳，每一个都保留着昨日的波纹。",
+      "影子少女和夜行者站在对岸，一个向你挥手，一个静静等着你的脚步。",
+      "你要把怎样的答案，丢进这条记住一切的河？"
+    ],
+    "beats": [
+      {
+        "id": "final_entry",
+        "trigger": "on_enter",
+        "scene_patch": "scene_dawn_river",
+        "rule_refs": ["finale_arrival"],
+        "milestone_event": "finale_arrival",
+        "world_patch": {
+          "mc": {
+            "tell": "§e晨光泛起。河畔回声等待你说出今晚的答案。",
+            "particle": { "type": "end_rod", "count": 32 },
+            "sound": { "type": "BLOCK_AMETHYST_BLOCK_CHIME", "volume": 0.7, "pitch": 1.12 }
+          }
+        }
+      },
+      {
+        "id": "final_face_branch",
+        "trigger": "story:continue",
+        "memory_required": ["xinyue.face_once"],
+        "scene_patch": "scene_face_dawn",
+        "branch_hint": "flagship_resilience.face_finale",
+        "milestone_event": "final_face_branch",
+        "world_patch": {
+          "mc": {
+            "tell": "§b你选择了迎向晨光，水面亮起通往新旅程的路径。",
+            "particle": { "type": "happy_villager", "count": 24 },
+            "weather": "CLEAR"
+          }
+        },
+        "choices": [
+          {
+            "id": "face_step_forward",
+            "text": "迈出脚步，踏上光桥。",
+            "rule_event": "final_face_step",
+            "tags": ["face_once", "resolve"]
+          },
+          {
+            "id": "face_listen_echo",
+            "text": "闭眼倾听晨风里的回声。",
+            "rule_event": "final_face_listen",
+            "tags": ["reflect", "hope"]
+          }
+        ]
+      },
+      {
+        "id": "final_escape_branch",
+        "trigger": "story:continue",
+        "memory_required": ["xinyue.escape_once"],
+        "scene_patch": "scene_escape_twilight",
+        "branch_hint": "flagship_resilience.escape_finale",
+        "milestone_event": "final_escape_branch",
+        "world_patch": {
+          "mc": {
+            "tell": "§7夜行的脚步还没停下，河面映出尚未完成的轨迹。",
+            "particle": { "type": "smoke", "count": 28 },
+            "weather": "LIGHT_RAIN"
+          }
+        },
+        "choices": [
+          {
+            "id": "escape_circle",
+            "text": "沿着河岸继续夜行。",
+            "rule_event": "final_escape_loop",
+            "tags": ["escape", "loop"]
+          },
+          {
+            "id": "escape_pause",
+            "text": "停下脚步，看一眼远方的灯。",
+            "rule_event": "final_escape_pause",
+            "tags": ["hesitate", "reflect"]
+          }
+        ]
+      },
+      {
+        "id": "final_face_resolution",
+        "trigger": ["rule_event:final_face_step", "rule_event:final_face_listen"],
+        "memory_set": ["xinyue.campaign_complete"],
+        "branch_hint": "flagship_resilience.face_resolution",
+        "milestone_event": "final_face_resolution",
+        "world_patch": {
+          "mc": {
+            "title": {
+              "main": "§6晨光回应",
+              "sub": "你将脚步交给清晨，新的道路在眼前展开。",
+              "fade_in": 12,
+              "stay": 90,
+              "fade_out": 40
+            },
+            "sound": { "type": "MUSIC_DISC_PIGSTEP", "volume": 0.6, "pitch": 1.0 },
+            "particle": { "type": "glow", "count": 60 }
+          }
+        },
+        "next_major_level": null
+      },
+      {
+        "id": "final_escape_resonance",
+        "trigger": ["rule_event:final_escape_loop", "rule_event:final_escape_pause"],
+        "memory_set": ["xinyue.campaign_complete"],
+        "branch_hint": "flagship_resilience.escape_resolution",
+        "milestone_event": "final_escape_resolution",
+        "world_patch": {
+          "mc": {
+            "title": {
+              "main": "§8夜行仍在",
+              "sub": "你选择继续与夜色同行，故事在脚下留下一串微光。",
+              "fade_in": 12,
+              "stay": 90,
+              "fade_out": 40
+            },
+            "sound": { "type": "MUSIC_DISC_MELLOHI", "volume": 0.65, "pitch": 1.05 },
+            "particle": { "type": "ash", "count": 42 }
+          }
+        },
+        "next_major_level": null
+      },
+      {
+        "id": "final_closure",
+        "trigger": "story:continue",
+        "world_patch": {
+          "mc": {
+            "tell": "§d终章已记入河流。无论晨光或夜行，你都把故事交给了自己。",
+            "music": { "record": "otherside", "volume": 0.45 }
+          }
+        },
+        "milestone_event": "final_closure"
+      }
+    ]
+  },
+  "rules": {
+    "listeners": [
+      {
+        "id": "finale_arrival",
+        "type": "story_event",
+        "targets": ["final_entry"],
+        "quest_event": "finale_arrival",
+        "metadata": {
+          "commands": [
+            "title @p subtitle {\"text\":\"终章河面泛起微光——跟随你的记忆前行。\",\"color\":\"gold\"}"
+          ]
+        }
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "id": "flagship_final_reflection",
+      "type": "quest_event",
+      "title": "倾听终章",
+      "hint": "河畔回声等待你的回答，无论晨光或夜行，都要完成你的故事。",
+      "rule_event": "finale_arrival",
+      "conditions": [
+        {
+          "quest_event": "finale_arrival",
+          "count": 1,
+          "title": "抵达黎明河畔"
+        }
+      ],
+      "milestones": [
+        {
+          "id": "flagship_final_arrival",
+          "title": "与河畔回声交谈",
+          "hint": "靠近河畔回声，诉说你的心声。",
+          "milestone_event": "finale_arrival",
+          "target": "finale_arrival"
+        },
+        {
+          "id": "flagship_final_choice",
+          "title": "作出终章抉择",
+          "hint": "在晨光或夜行之间做出决定，完成心悦主线。",
+          "milestone_event": "finale_resolution",
+          "target": "final_face_step",
+          "alternates": [
+            "final_face_listen",
+            "final_escape_loop",
+            "final_escape_pause"
+          ]
+        }
+      ],
+      "rule_refs": [
+        "finale_arrival",
+        "final_face_step",
+        "final_face_listen",
+        "final_escape_loop",
+        "final_escape_pause"
+      ],
+      "rewards": [
+        { "type": "xp", "amount": 320 },
+        { "type": "item", "data": { "id": "dawn_fragment" }, "amount": 1 }
+      ]
+    }
+  ],
+  "exit": {
+    "phrase_aliases": ["结束终章", "返回晨光", "离开终章"],
+    "return_spawn": "KunmingLakeHub",
+    "teleport": { "x": 128.5, "y": 72.0, "z": -16.5, "yaw": 90.0, "pitch": 0.0 }
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "id": "fire",
+  "root": false,
+  "priority": 40,
+  "size": [3, 3],
+  "layout_anchor": "edge",
+  "tags": ["light", "fire"],
+  "requires": ["light"],
+  "optional_resources": ["wood"],
+  "structures": [
+    {
+      "type": "campfire",
+      "template": "campfire_small",
+      "offset": [0, 0, 0]
+    }
+  ],
+  "npcs": [],
+  "connections": [],
+  "events": [
+    {
+      "event_id": "spawn_fire",
+      "type": "spawn_block",
+      "anchor_ref": "camp_center",
+      "data": {
+        "block": "campfire"
+      }
+    }
+  ]
+}

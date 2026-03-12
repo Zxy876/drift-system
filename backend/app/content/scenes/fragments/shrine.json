@@ -1,0 +1,35 @@
+{
+  "id": "shrine",
+  "root": false,
+  "priority": 44,
+  "size": [5, 5],
+  "layout_anchor": "edge",
+  "tags": ["story", "memory", "light", "stone"],
+  "requires": ["stone"],
+  "optional_resources": ["light"],
+  "theme_keywords": ["记忆", "回声", "古老", "静谧"],
+  "structures": [
+    {
+      "type": "shrine",
+      "template": "shrine_small",
+      "offset": [-5, 0, -2]
+    }
+  ],
+  "npcs": [
+    {
+      "id": "keeper",
+      "role": "oracle"
+    }
+  ],
+  "connections": [],
+  "events": [
+    {
+      "event_id": "spawn_shrine",
+      "type": "spawn_structure",
+      "anchor_ref": "village_outskirts",
+      "data": {
+        "template": "shrine_small"
+      }
+    }
+  ]
+}

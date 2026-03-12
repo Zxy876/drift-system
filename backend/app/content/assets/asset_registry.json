@@ -1,0 +1,77 @@
+{
+  "version": "1.0",
+  "assets": {
+    "camp": {
+      "type": "structure",
+      "source": "vanilla",
+      "semantic_tags": ["fire", "wood", "outdoor", "safe_zone"],
+      "spawn_method": "build_multi"
+    },
+    "forge": {
+      "type": "structure",
+      "source": "vanilla",
+      "semantic_tags": ["metal", "work", "heat", "craft"],
+      "spawn_method": "build_multi"
+    },
+    "ruins": {
+      "type": "structure",
+      "source": "vanilla",
+      "semantic_tags": ["stone", "decay", "history", "danger"],
+      "spawn_method": "structure"
+    },
+    "watchtower": {
+      "type": "structure",
+      "source": "vanilla",
+      "semantic_tags": ["height", "guard", "scout", "wind"],
+      "spawn_method": "structure"
+    },
+    "market": {
+      "type": "layout",
+      "source": "generated",
+      "semantic_tags": ["trade", "crowd", "town", "safe_zone"],
+      "spawn_method": "build_multi"
+    },
+    "graveyard": {
+      "type": "layout",
+      "source": "generated",
+      "semantic_tags": ["death", "stone", "memory", "night"],
+      "spawn_method": "build_multi"
+    },
+    "bridge": {
+      "type": "structure",
+      "source": "vanilla",
+      "semantic_tags": ["travel", "water", "path", "wind"],
+      "spawn_method": "build_multi"
+    },
+    "checkpoint": {
+      "type": "layout",
+      "source": "generated",
+      "semantic_tags": ["guard", "path", "order", "safe_zone"],
+      "spawn_method": "build_multi"
+    },
+    "forest_path": {
+      "type": "layout",
+      "source": "generated",
+      "semantic_tags": ["wood", "travel", "outdoor", "calm"],
+      "spawn_method": "build_multi"
+    },
+    "beacon": {
+      "type": "entity",
+      "source": "vanilla",
+      "semantic_tags": ["light", "signal", "height", "hope"],
+      "spawn_method": "spawn"
+    },
+    "lantern_cluster": {
+      "type": "item",
+      "source": "generated",
+      "semantic_tags": ["light", "fire", "town", "night"],
+      "spawn_method": "build_multi"
+    },
+    "trial_ring": {
+      "type": "layout",
+      "source": "generated",
+      "semantic_tags": ["combat", "circle", "challenge", "heat"],
+      "spawn_method": "build_multi"
+    }
+  }
+}

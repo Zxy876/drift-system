@@ -1,0 +1,105 @@
+{
+  "generated_at_utc": "2026-03-04T11:28:06.642251+00:00",
+  "gate": "Gate 2B — Execution Replay Determinism",
+  "scope": "executor_v2 static summon + replay_v2 deterministic path",
+  "rounds_per_scenario": 100,
+  "overall_pass": true,
+  "scenarios": [
+    {
+      "scenario": "fog-only",
+      "rounds": 100,
+      "unique_world_state_hashes": 1,
+      "unique_merged_hashes": 1,
+      "unique_final_command_hashes": 1,
+      "replay_status_counts": {
+        "SUCCESS": 100
+      },
+      "world_state_hash_counts": {
+        "61c9cb27d83f44f850dede02c81873a7ac43c471b7cc0410e5b52593daca6b6d": 100
+      },
+      "merged_hash_counts": {
+        "ff18a375552028d5994f3abf62ba712ed195cf6455f771ff6d6d1f68935e834e": 100
+      },
+      "final_command_hash_counts": {
+        "2cf8f38a9ab006a95cec22566b48f2244729ab209e5f09dbf60b679c70141d6d": 100
+      },
+      "pass": true,
+      "sample": {
+        "compose_status": "SUCCESS",
+        "compose_failure": "NONE",
+        "mapping_status": "OK",
+        "payload_status": "plugin_payload_v2",
+        "merged_hash": "ff18a375552028d5994f3abf62ba712ed195cf6455f771ff6d6d1f68935e834e",
+        "final_commands_hash_v2": "2cf8f38a9ab006a95cec22566b48f2244729ab209e5f09dbf60b679c70141d6d",
+        "replay_status": "SUCCESS",
+        "world_state_hash": "61c9cb27d83f44f850dede02c81873a7ac43c471b7cc0410e5b52593daca6b6d",
+        "world_block_count": 145,
+        "world_entity_count": 0
+      }
+    },
+    {
+      "scenario": "npc-only",
+      "rounds": 100,
+      "unique_world_state_hashes": 1,
+      "unique_merged_hashes": 1,
+      "unique_final_command_hashes": 1,
+      "replay_status_counts": {
+        "SUCCESS": 100
+      },
+      "world_state_hash_counts": {
+        "d647b2186d10abe9b0cfcabf222ddb2a81f7c1d063c36e97c3edd4847d97d439": 100
+      },
+      "merged_hash_counts": {
+        "840213f62ccb220a92ca39bc4cfc74c45d51412ecf09a9fc00cd335a2b186d22": 100
+      },
+      "final_command_hash_counts": {
+        "189861003ab79305103a1e0e58668227f208d7c246628fac423ec4633d27cbb2": 100
+      },
+      "pass": true,
+      "sample": {
+        "compose_status": "SUCCESS",
+        "compose_failure": "NONE",
+        "mapping_status": "OK",
+        "payload_status": "plugin_payload_v2",
+        "merged_hash": "840213f62ccb220a92ca39bc4cfc74c45d51412ecf09a9fc00cd335a2b186d22",
+        "final_commands_hash_v2": "189861003ab79305103a1e0e58668227f208d7c246628fac423ec4633d27cbb2",
+        "replay_status": "SUCCESS",
+        "world_state_hash": "d647b2186d10abe9b0cfcabf222ddb2a81f7c1d063c36e97c3edd4847d97d439",
+        "world_block_count": 130,
+        "world_entity_count": 1
+      }
+    },
+    {
+      "scenario": "fog+npc",
+      "rounds": 100,
+      "unique_world_state_hashes": 1,
+      "unique_merged_hashes": 1,
+      "unique_final_command_hashes": 1,
+      "replay_status_counts": {
+        "SUCCESS": 100
+      },
+      "world_state_hash_counts": {
+        "a95e4f5af4ee9c7659f6be21c85ff12e4366a0d821620544fdde1fd3e31b81e6": 100
+      },
+      "merged_hash_counts": {
+        "95164dcff85e00b91b129e97152ba68ea0abf5fd04da13dc03e8fb34c719a7ac": 100
+      },
+      "final_command_hash_counts": {
+        "a13b8ae311c20aa98a4a4371ef25e89396741714df77e8134e01536a04b3e0c7": 100
+      },
+      "pass": true,
+      "sample": {
+        "compose_status": "SUCCESS",
+        "compose_failure": "NONE",
+        "mapping_status": "OK",
+        "payload_status": "plugin_payload_v2",
+        "merged_hash": "95164dcff85e00b91b129e97152ba68ea0abf5fd04da13dc03e8fb34c719a7ac",
+        "final_commands_hash_v2": "a13b8ae311c20aa98a4a4371ef25e89396741714df77e8134e01536a04b3e0c7",
+        "replay_status": "SUCCESS",
+        "world_state_hash": "a95e4f5af4ee9c7659f6be21c85ff12e4366a0d821620544fdde1fd3e31b81e6",
+        "world_block_count": 145,
+        "world_entity_count": 1
+      }
+    }
+  ]
+}

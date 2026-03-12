@@ -1,0 +1,434 @@
+{
+  "id": "rt_p2_1772773212_f94e",
+  "title": "P2 Runtime Acceptance",
+  "text": [
+    "创建剧情 森林营地，验证资源语义"
+  ],
+  "tags": [],
+  "mood": {
+    "base": "calm",
+    "intensity": 0.5
+  },
+  "choices": [],
+  "meta": {
+    "trng_transaction": {
+      "tx_id": "tx_0fd41ff0ed5e",
+      "base_state_hash": "befe6682a6c32ed55d288ddaf40636b0ee73c37fd48bd8ec91204afa91dba85e",
+      "committed_state_hash": "b450e47a275e671dd891764d7ad74099a3233d2dc6cf18b9dff2a9bf07506cde",
+      "committed_graph_hash": "316d84166134531567436819cbe9a9c1f9e1bab79e757a1301c3d64db950d3ae",
+      "commit_timestamp": 1772773212.346102,
+      "rule_version": "rule_v2_2",
+      "engine_version": "engine_v2_1",
+      "event_count": 2
+    },
+    "scene_generation": {
+      "scene_theme": "大风吹",
+      "scene_hint": "森林",
+      "selected_anchor": "home",
+      "fragments": [
+        "fire",
+        "wanderer_npc"
+      ],
+      "event_count": 2,
+      "event_plan": [
+        {
+          "event_id": "spawn_fire",
+          "type": "spawn_block",
+          "text": "spawn_fire",
+          "anchor": {
+            "mode": "absolute",
+            "ref": "camp_center",
+            "world": "world",
+            "x": 0.0,
+            "y": 64.0,
+            "z": 0.0
+          },
+          "data": {
+            "block": "campfire",
+            "scene_hint": "森林",
+            "scene_variant": "forest"
+          }
+        },
+        {
+          "event_id": "spawn_npc",
+          "type": "spawn_npc",
+          "text": "spawn_npc",
+          "anchor": {
+            "mode": "absolute",
+            "ref": "camp_edge",
+            "world": "world",
+            "x": 0.0,
+            "y": 64.0,
+            "z": 0.0
+          },
+          "data": {
+            "npc_template": "wanderer",
+            "scene_hint": "森林",
+            "scene_variant": "forest"
+          }
+        }
+      ],
+      "inventory_resources": {
+        "oak_log": 1,
+        "raw_porkchop": 1,
+        "torch": 1
+      }
+    }
+  },
+  "npcs": [],
+  "bootstrap_patch": {
+    "variables": {
+      "story_world_generated": true,
+      "story_title": "P2 Runtime Acceptance"
+    },
+    "mc": {
+      "tell": "§6P2 Runtime Acceptance§r\n创建剧情 森林营地，验证资源语义",
+      "spawn": {
+        "x": 0,
+        "y": 70,
+        "z": 0
+      },
+      "time": "night",
+      "weather": "clear",
+      "spawns": [
+        {
+          "type": "villager",
+          "name": "营地守卫",
+          "x": 2,
+          "y": 70,
+          "z": -5,
+          "dialog": "小心，森林深处有危险生物出没。"
+        },
+        {
+          "type": "cow",
+          "name": "营地奶牛",
+          "x": -4,
+          "y": 70,
+          "z": 3,
+          "dialog": ""
+        },
+        {
+          "type": "skeleton",
+          "name": "骷髅弓箭手",
+          "x": 10,
+          "y": 70,
+          "z": 15,
+          "dialog": "入侵者！"
+        }
+      ],
+      "blocks": [
+        {
+          "type": "oak_planks",
+          "x": 0,
+          "y": 70,
+          "z": 0
+        },
+        {
+          "type": "oak_planks",
+          "x": 1,
+          "y": 70,
+          "z": 0
+        },
+        {
+          "type": "oak_planks",
+          "x": -1,
+          "y": 70,
+          "z": 0
+        },
+        {
+          "type": "oak_planks",
+          "x": 0,
+          "y": 70,
+          "z": 1
+        },
+        {
+          "type": "oak_planks",
+          "x": 0,
+          "y": 70,
+          "z": -1
+        },
+        {
+          "type": "stone",
+          "x": 0,
+          "y": 69,
+          "z": 0
+        },
+        {
+          "type": "stone",
+          "x": 1,
+          "y": 69,
+          "z": 0
+        },
+        {
+          "type": "stone",
+          "x": -1,
+          "y": 69,
+          "z": 0
+        },
+        {
+          "type": "stone",
+          "x": 0,
+          "y": 69,
+          "z": 1
+        },
+        {
+          "type": "stone",
+          "x": 0,
+          "y": 69,
+          "z": -1
+        },
+        {
+          "type": "glass",
+          "x": 2,
+          "y": 71,
+          "z": 0
+        },
+        {
+          "type": "glass",
+          "x": -2,
+          "y": 71,
+          "z": 0
+        },
+        {
+          "type": "oak_planks",
+          "x": 3,
+          "y": 70,
+          "z": 2
+        },
+        {
+          "type": "oak_planks",
+          "x": 3,
+          "y": 70,
+          "z": 3
+        },
+        {
+          "type": "stone",
+          "x": 3,
+          "y": 69,
+          "z": 2
+        },
+        {
+          "type": "stone",
+          "x": 3,
+          "y": 69,
+          "z": 3
+        },
+        {
+          "type": "campfire",
+          "offset": {
+            "dx": 0.0,
+            "dy": 0.0,
+            "dz": 0.0
+          },
+          "_scene_event_id": "spawn_fire",
+          "world": "world"
+        }
+      ],
+      "spawn_multi": [
+        {
+          "type": "villager",
+          "name": "阿无",
+          "offset": {
+            "dx": 2.0,
+            "dy": 0.0,
+            "dz": 1.0
+          },
+          "_scene_event_id": "spawn_npc",
+          "world": "world"
+        }
+      ],
+      "build_multi": [
+        {
+          "shape": "line",
+          "size": 1,
+          "material": "CAMPFIRE",
+          "offset": {
+            "dx": 0.0,
+            "dy": 0.0,
+            "dz": 0.0
+          },
+          "_scene_event_id": "spawn_fire",
+          "world": "world"
+        }
+      ]
+    }
+  },
+  "world_patch": {
+    "variables": {
+      "story_world_generated": true,
+      "story_title": "P2 Runtime Acceptance"
+    },
+    "mc": {
+      "tell": "§6P2 Runtime Acceptance§r\n创建剧情 森林营地，验证资源语义",
+      "spawn": {
+        "x": 0,
+        "y": 70,
+        "z": 0
+      },
+      "time": "night",
+      "weather": "clear",
+      "spawns": [
+        {
+          "type": "villager",
+          "name": "营地守卫",
+          "x": 2,
+          "y": 70,
+          "z": -5,
+          "dialog": "小心，森林深处有危险生物出没。"
+        },
+        {
+          "type": "cow",
+          "name": "营地奶牛",
+          "x": -4,
+          "y": 70,
+          "z": 3,
+          "dialog": ""
+        },
+        {
+          "type": "skeleton",
+          "name": "骷髅弓箭手",
+          "x": 10,
+          "y": 70,
+          "z": 15,
+          "dialog": "入侵者！"
+        }
+      ],
+      "blocks": [
+        {
+          "type": "oak_planks",
+          "x": 0,
+          "y": 70,
+          "z": 0
+        },
+        {
+          "type": "oak_planks",
+          "x": 1,
+          "y": 70,
+          "z": 0
+        },
+        {
+          "type": "oak_planks",
+          "x": -1,
+          "y": 70,
+          "z": 0
+        },
+        {
+          "type": "oak_planks",
+          "x": 0,
+          "y": 70,
+          "z": 1
+        },
+        {
+          "type": "oak_planks",
+          "x": 0,
+          "y": 70,
+          "z": -1
+        },
+        {
+          "type": "stone",
+          "x": 0,
+          "y": 69,
+          "z": 0
+        },
+        {
+          "type": "stone",
+          "x": 1,
+          "y": 69,
+          "z": 0
+        },
+        {
+          "type": "stone",
+          "x": -1,
+          "y": 69,
+          "z": 0
+        },
+        {
+          "type": "stone",
+          "x": 0,
+          "y": 69,
+          "z": 1
+        },
+        {
+          "type": "stone",
+          "x": 0,
+          "y": 69,
+          "z": -1
+        },
+        {
+          "type": "glass",
+          "x": 2,
+          "y": 71,
+          "z": 0
+        },
+        {
+          "type": "glass",
+          "x": -2,
+          "y": 71,
+          "z": 0
+        },
+        {
+          "type": "oak_planks",
+          "x": 3,
+          "y": 70,
+          "z": 2
+        },
+        {
+          "type": "oak_planks",
+          "x": 3,
+          "y": 70,
+          "z": 3
+        },
+        {
+          "type": "stone",
+          "x": 3,
+          "y": 69,
+          "z": 2
+        },
+        {
+          "type": "stone",
+          "x": 3,
+          "y": 69,
+          "z": 3
+        },
+        {
+          "type": "campfire",
+          "offset": {
+            "dx": 0.0,
+            "dy": 0.0,
+            "dz": 0.0
+          },
+          "_scene_event_id": "spawn_fire",
+          "world": "world"
+        }
+      ],
+      "spawn_multi": [
+        {
+          "type": "villager",
+          "name": "阿无",
+          "offset": {
+            "dx": 2.0,
+            "dy": 0.0,
+            "dz": 1.0
+          },
+          "_scene_event_id": "spawn_npc",
+          "world": "world"
+        }
+      ],
+      "build_multi": [
+        {
+          "shape": "line",
+          "size": 1,
+          "material": "CAMPFIRE",
+          "offset": {
+            "dx": 0.0,
+            "dy": 0.0,
+            "dz": 0.0
+          },
+          "_scene_event_id": "spawn_fire",
+          "world": "world"
+        }
+      ]
+    }
+  },
+  "tree": null
+}
