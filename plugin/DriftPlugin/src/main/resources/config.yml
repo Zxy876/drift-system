@@ -3,7 +3,7 @@
 # =========================================
 
 # 后端服务配置
-backend_url: "https://drift-backend-production-c2a5.up.railway.app"
+backend_url: "https://drift-system-backend-production.up.railway.app"
 timeout: 5000
 
 # 系统设置
