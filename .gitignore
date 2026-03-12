@@ -2,7 +2,7 @@ pycache/
 *.log
 .venv/
 node_modules/
-world/
+/world/
 logs/
 .DS_Store
 server/
